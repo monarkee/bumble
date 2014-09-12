@@ -26,6 +26,6 @@
         {{ Form::close() }}
     </main>
 
-
+    @include ('bumble::partials.sidenav')
 </section>
 @stop

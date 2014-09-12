@@ -24,6 +24,14 @@ if (!function_exists('model_name'))
     }
 }
 
+if (!function_exists('sentence_name'))
+{
+    function sentence_name($value)
+    {
+        return preg_replace('/(?!^)[A-Z]{2,}(?=[A-Z][a-z])|[A-Z][a-z]|[0-9]{1,}/', ' $0', $value);
+    }
+}
+
 /**
  * Return the active color
  * @param  [type] $boolean [description]

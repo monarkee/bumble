@@ -22,7 +22,12 @@ class BumbleModel extends Eloquent
 
     public function getModelName()
     {
-        return ucwords((new ReflectionClass($this))->getShortName());
+        return sentence_name(ucwords(class_basename($this)));
+    }
+
+    public function getPluralSlug()
+    {
+        return resource_name(class_basename($this));
     }
 
     // public function update(array $attributes = [])
@@ -40,8 +45,7 @@ class BumbleModel extends Eloquent
 
     public function getCreateLinkAttribute()
     {
-        $permalink = str_replace('_', '-', $this->system_name);
-        return url(Config::get('bumble::urls.admin_prefix').'/'.$permalink.'/create');
+        return url(Config::get('bumble::urls.admin_prefix').'/'.$this->getPluralSlug().'/create');
     }
 
     public function getIndexLinkAttribute()
