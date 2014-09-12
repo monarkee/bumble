@@ -2,7 +2,8 @@
 
 Route::group(['prefix' => Config::get('bumble::urls.admin_prefix')], function()
 {
-    Route::get('new', [
+    // Dynamically Create Routes For Every Model
+    Route::get('models/{model}', [
         'uses' => 'Monarkee\Bumble\Controllers\NewController@getIndex',
         'as' => 'admin.new.index'
     ]);

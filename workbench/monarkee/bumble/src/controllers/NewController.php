@@ -1,5 +1,6 @@
 <?php namespace Monarkee\Bumble\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
 use League\Flysystem\Filesystem;
@@ -13,21 +14,40 @@ class NewController extends BumbleController
         '.DS_Store'
     ];
 
+    /**
+     * @var Request
+     */
+    private $request;
+
+    function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
+
     public function getIndex()
     {
-        $filesystem = new Filesystem(new Adapter(app_path() . '/models'));
+        $modelName = model_name($this->request->segment(3));
 
-        foreach ($filesystem->listPaths() as $file)
-        {
-            if ($this->checkIfAllowed($file))
-            {
-                $key = str_replace('.php', '', $file);
-                $models[] = (new $key);
-            }
-        }
+        $model = new $modelName;
 
-        return View::make('bumble::new.index')->with(compact('models'));
+        return View::make('bumble::new.create')->with(compact('model'));
     }
+
+//    public function getIndex()
+//    {
+//        $filesystem = new Filesystem(new Adapter(app_path() . '/models'));
+//
+//        foreach ($filesystem->listPaths() as $file)
+//        {
+//            if ($this->checkIfAllowed($file))
+//            {
+//                $key = str_replace('.php', '', $file);
+//                $models[] = (new $key);
+//            }
+//        }
+//
+//        return View::make('bumble::new.form.create')->with(compact('models'));
+//    }
 
     private function checkIfAllowed($file)
     {

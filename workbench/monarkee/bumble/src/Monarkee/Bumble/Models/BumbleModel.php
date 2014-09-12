@@ -20,6 +20,11 @@ class BumbleModel extends Eloquent
         return isset($this->fields);
     }
 
+    public function getModelName()
+    {
+        return ucwords((new ReflectionClass($this))->getShortName());
+    }
+
     // public function update(array $attributes = [])
     // {
         // $class = get_class($this);

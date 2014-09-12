@@ -26,7 +26,7 @@ class Entry extends BumbleModel
                 'column'        => 'excerpt',
                 'sort'          => '3',
                 'description'   => 'The is the excerpt of the Entry',
-                'validation'    => 'required',
+                'validation'    => '',
             ]),
             new TextareaField('content', [
                 'column'        => 'content',

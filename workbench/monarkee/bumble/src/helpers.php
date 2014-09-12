@@ -1,5 +1,33 @@
 <?php
 
+if (!function_exists('slug_case'))
+{
+    function slug_case($value)
+    {
+        return ctype_lower($value) ? $value : strtolower(preg_replace('/(.)([A-Z])/', '$1-$2', $value));
+    }
+}
+
+if (!function_exists('slug_case'))
+{
+    function slug_case($value)
+    {
+//        return lcfirst(static::studly($value));
+        $value = ucwords(str_replace(array('-', '_'), ' ', $value));
+
+        return str_replace(' ', '', $value);
+    }
+}
+
+if (!function_exists('model_name'))
+{
+    function model_name($value)
+    {
+        return camel_case($value);
+    }
+}
+
+
 /**
  * Return the active color
  * @param  [type] $boolean [description]
