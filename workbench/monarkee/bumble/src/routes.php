@@ -1,12 +1,19 @@
 <?php
 
+
+use League\Flysystem\Adapter\Local as Adapter;
+use League\Flysystem\Filesystem;
+
 Route::group(['prefix' => Config::get('bumble::urls.admin_prefix')], function()
 {
     // Dynamically Create Routes For Every Model
-    Route::get('models/{model}', [
-        'uses' => 'Monarkee\Bumble\Controllers\NewController@getIndex',
-        'as' => 'admin.new.index'
-    ]);
+    $filesystem = new Filesystem(new Adapter(app_path() . '/models'));
+
+    foreach ($filesystem->listPaths() as $file)
+    {
+        $key = str_replace('.php', '', $file);
+        Route::resource(resource_name($key), 'Monarkee\Bumble\Controllers\PostController');
+    }
 
     /*
     |--------------------------------------------------------------------------

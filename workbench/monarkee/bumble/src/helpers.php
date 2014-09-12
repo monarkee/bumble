@@ -8,14 +8,11 @@ if (!function_exists('slug_case'))
     }
 }
 
-if (!function_exists('slug_case'))
+if (!function_exists('resource_name'))
 {
-    function slug_case($value)
+    function resource_name($value)
     {
-//        return lcfirst(static::studly($value));
-        $value = ucwords(str_replace(array('-', '_'), ' ', $value));
-
-        return str_replace(' ', '', $value);
+        return str_plural(slug_case($value));
     }
 }
 
@@ -23,10 +20,9 @@ if (!function_exists('model_name'))
 {
     function model_name($value)
     {
-        return camel_case($value);
+        return str_singular(studly_case($value));
     }
 }
-
 
 /**
  * Return the active color
@@ -141,7 +137,6 @@ if (!function_exists('carbon_date'))
     function carbon_date($date)
     {
         return (new \Carbon\Carbon)->createFromTimestamp(strtotime($date));
-        // return 'Yes';
     }
 }
 

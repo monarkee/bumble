@@ -30,7 +30,7 @@ class NewController extends BumbleController
 
         $model = new $modelName;
 
-        return View::make('bumble::new.create')->with(compact('model'));
+        return View::make('bumble::posts.create')->with(compact('model'));
     }
 
 //    public function getIndex()
