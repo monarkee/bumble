@@ -1,0 +1,12 @@
+<div class="VideoGridItem__wrap">
+    <svg class="spinner" width="40px" height="40px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+    </svg>
+    <img class="VideoGridItem__img" ng-src="{{ video.img }}" />
+    <video class="VideoGridItem__video"></video>
+    <div class="VideoGridItem__bar" ng-class="{ 'VideoGridItem__bar--active': active }">
+        <div class="VideoGridItem__duration tcw fw-bold ft-1">{{ video.duration }}</div>
+        <a class="VideoGridItem__cart tcg20 fw-bold ft-1">+ Cart</a>
+        <a class="VideoGridItem__temp-wishlist tcg20 fw-bold ft-1">+ TC</a>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+.text {
+    @include modifier(success) {
+        color: $danger_color;
+    }
+
+    @include modifier(warning) {
+        color: $danger_color;
+    }
+
+    @include modifier(danger) {
+        color: $danger_color;
+    }
+}

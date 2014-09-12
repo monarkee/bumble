@@ -1,0 +1,16 @@
+<div class="VideoClipDetails">
+    <div class="VideoClip__description">{{ video.details.description }}</div>
+    <div class="VideoClip__formats">
+        <div class="VideoClip__format" ng-repeat="format in video.formats">
+            <div class="VideoClip__format_details">
+                <strong>{{ format.type }}</strong> {{ format.description }}
+            </div>
+            <div class="VideoClip__format_price">${{ format.price }}</div>
+        </div>
+    </div>
+    <div class="VideoClip__details">
+        <div class="VideoClip__duration">
+            <strong>Duration:</strong> {{ video.details.duration }}
+        </div>
+    </div>
+</div>

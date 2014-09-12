@@ -1,0 +1,17 @@
+.badge {
+//    @include hide-text;
+    background: $branding_gray;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    text-align: center;
+    border-radius: 50px;
+
+    &.green {
+        background: $success_color;
+    }
+
+    &.red {
+        background: $danger_color;
+    }
+}

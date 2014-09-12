@@ -1,0 +1,29 @@
+{
+    "name": "monarkee/bumble",
+    "description": "",
+    "authors": [
+        {
+            "name": "David Hemphill",
+            "email": "davidlee.hemphill@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "doctrine/dbal": "v2.4.1",
+        "thomaswelton/laravel-gravatar": "dev-master",
+        "michelf/php-markdown": "1.4.1",
+        "league/flysystem": "0.5.*"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations",
+            "src/controllers"
+        ],
+        "psr-0": {
+            "Monarkee\\Bumble": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
