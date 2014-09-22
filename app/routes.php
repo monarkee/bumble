@@ -1,4 +1,14 @@
 <?php
+Route::get('/', function()
+{
+    $entries = Entry::all();
+
+    foreach ($entries as $entry)
+    {
+        echo "$entry->title<br>";
+    }
+});
+
 // Your index route, leave this here
 //Route::get('/', 'HomeController@getIndex');
 
@@ -8,6 +18,6 @@
 //    Route::get($page->get('slug'), $page->get('title').'Controller@getIndex');
 //}
 
-$user = \Monarkee\Bumble\Models\User::find(1);
-$user->password = Hash::make('Matt10:29');
-$user->save();
+//$user = \Monarkee\Bumble\Models\User::find(1);
+//$user->password = Hash::make('Matt10:29');
+//$user->save();

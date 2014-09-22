@@ -2,6 +2,9 @@
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use League\Flysystem\Filesystem;
+use League\Flysystem\Adapter\Local as LocalAdapter;
+use League\Flysystem\Adapter\AwsS3 as S3Adapter;
 use Monarkee\Bumble\Models\BumbleModel;
 use Monarkee\Bumble\Models\Module;
 
@@ -42,19 +45,7 @@ class BumbleServiceProvider extends ServiceProvider {
         $this->app->booting(function()
         {
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-            $loader->alias('Posts', 'Monarkee\Bumble\Facades\Posts');
-            $loader->alias('Bumble', 'Monarkee\Bumble\Facades\Bumble');
             $loader->alias('Setting', 'Monarkee\Bumble\Facades\Setting');
-        });
-
-        $this->app->bind('bumble', function()
-        {
-            return new \Monarkee\Bumble\Bumble;
-        });
-
-        $this->app->bind('posts', function()
-        {
-            return new \Monarkee\Bumble\Posts;
         });
 
         $this->app->bind('setting', function()

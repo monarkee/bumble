@@ -26,7 +26,9 @@ class NewController extends BumbleController
 
     public function getIndex()
     {
-        $modelName = model_name($this->request->segment(3));
+        $segment = $this->request->segment(3);
+
+        $modelName = model_name($segment);
 
         $model = new $modelName;
 

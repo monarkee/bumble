@@ -116,7 +116,6 @@ return array(
         'Illuminate\Workbench\WorkbenchServiceProvider',
         'Monarkee\Bumble\BumbleServiceProvider',
         'Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider',
-        'Way\Generators\GeneratorsServiceProvider',
 	),
 
 	/*

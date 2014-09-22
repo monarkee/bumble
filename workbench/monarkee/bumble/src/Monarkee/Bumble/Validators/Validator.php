@@ -12,6 +12,8 @@ abstract class Validator
    */
   public function validate($input, $rules = [])
   {
+    $rules = $rules ?: $this->rules;
+
     $validator = V::make($input, $rules);
 
     if ($validator->fails()) throw new ValidationException($validator->messages(), 1);
@@ -27,20 +29,5 @@ abstract class Validator
   public function validateForUpdate($input)
   {
     return $this->validate($input, $this->updateRules);
-  }
-
-  public function createRulesArray($moduleComponents)
-  {
-    $validationRules = [];
-
-    foreach ($moduleComponents as $component)
-    {
-        $validationRules[$component->column] = $component->validation_string;
-    }
-
-    // Add the 'active' validation to all post validation rulesets by default
-    $validationRules['active'] = $this->rules['active'];
-
-    return $validationRules;
   }
 }

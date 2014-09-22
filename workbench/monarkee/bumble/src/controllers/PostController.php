@@ -1,5 +1,6 @@
 <?php namespace Monarkee\Bumble\Controllers;
 
+use Illuminate\Config\Repository;
 use Illuminate\Http\Request;
 use View;
 use DB;
@@ -19,50 +20,47 @@ class PostController extends BumbleController
      * @var \Illuminate\Http\Request
      */
     private $request;
+
     /**
      * @var Application
      */
     private $app;
 
-    public function __construct(PostService $postService, Request $request)
+    /**
+     * @var Config
+     */
+    private $config;
+
+    public function __construct(PostService $postService, Request $request, Repository $config)
     {
         $this->postService = $postService;
         $this->request = $request;
+        $this->config = $config;
     }
 
-//    public function index()
-//    {
-//        $moduleSystemName = Request::segment(2);
-//
-//        // Get the ID of the module
-//        $modules = Module::all();
-//        $module = Module::whereSystemName(swap_sep($moduleSystemName))->firstOrFail();
-//        $moduleComponents = Component::whereModuleId($module->id)->ordered()->displayInListing()->get();
-//        $posts = DB::table($module->system_name)->get();
-//
-//        if ($modules and $module)
-//        {
-//            return View::make('bumble::posts2.index')
-//                       ->with(compact('posts', 'moduleComponents', 'module', 'modules'));
-//        }
-//    }
+    public function index()
+    {
+        $modelName = model_name($this->request->segment(2));
 
-//    public function edit()
-//    {
-//        $moduleSystemName = Request::segment(2);
-//        $id = Request::segment(3);
-//
-//        // Get the module
-//        $module = Module::whereSystemName(swap_sep($moduleSystemName))->firstOrFail();
-//
-//        // Get the components
-//        $moduleComponents = Component::whereModuleId($module->id)->ordered()->get();
-//
-//        // Get the post data
-//        $post = DB::table(swap_sep($moduleSystemName))->whereId($id)->first();
-//
-//        return View::make('bumble::posts2.edit')->with(compact('module', 'moduleComponents', 'post'));
-//    }
+        $model = new $modelName;
+
+        // Get the ID of the model
+
+        return View::make('bumble::posts.index')->with(compact('model'));
+    }
+
+    public function edit()
+    {
+        $slug = $this->request->segment(2);
+        $id = $this->request->segment(3);
+
+        $modelName = model_name($slug);
+
+        $model = new $modelName;
+        $post = $model->whereId($id)->first();
+
+        return View::make('bumble::posts.edit')->with(compact('post', 'model'));
+    }
 
 //    public function update()
 //    {
@@ -92,6 +90,35 @@ class PostController extends BumbleController
         $model = new $modelName;
 
         return View::make('bumble::posts.create')->with(compact('model'));
+    }
+
+    public function store()
+    {
+        $segment = $this->request->segment(2);
+
+        $model = model_name($segment);
+        $resource = resource_name($segment);
+
+        $input = Input::all();
+
+        try
+        {
+            $this->postService->createPost($model, $input);
+
+            return Redirect::route($this->config->get('bumble::urls.admin_prefix').'.'.$resource.'.index')
+                           ->withSuccess('Good job, asshole.');
+        }
+        catch (ValidationException $e)
+        {
+            return Redirect::back()
+                           ->withInput()
+                           ->with('errors', $e->getErrors());
+        }
+    }
+
+    public function errors()
+    {
+        return View::make('bumble::errors');
     }
 
 //    public function store()

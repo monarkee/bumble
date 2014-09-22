@@ -2,7 +2,7 @@
 
 use Monarkee\Bumble\Repositories\ModelRepository;
 
-class SidenavComposer {
+class MasterComposer {
 
     /**
      * @var
@@ -16,6 +16,6 @@ class SidenavComposer {
 
     public function compose($view)
     {
-        $view->with('sideModels', $this->modelRepo->getModels());
+        $view->with('topModels', $this->modelRepo->getModels());
     }
 }

@@ -10,7 +10,7 @@ class ModelRepository {
      */
     private $models;
 
-    private $objects;
+    private $objects = [];
 
     /**
      * Get an array of model names from the directory
@@ -23,7 +23,7 @@ class ModelRepository {
     }
 
     /**
-     * Dynamically Create Routes For Every Model
+     * Load the array of models
      */
     private function generateArray()
     {
@@ -36,19 +36,30 @@ class ModelRepository {
         }
     }
 
-    public function getModels()
+    public function getModels($hidden = false)
     {
-        $this->loadObjects();
+        $this->loadObjects($hidden);
 
         return $this->objects;
     }
 
-    private function loadObjects()
+    private function loadObjects($hidden = false)
     {
-        foreach ($this->getModelNames() as $model)
+        if ($this->hasModels())
         {
-            $newObject = new $model;
-            $this->objects[] = $newObject;
+            foreach ($this->getModelNames() as $model)
+            {
+                $newObject = new $model;
+                if (!$newObject->isHidden())
+                {
+                    $this->objects[] = $newObject;
+                }
+            }
         }
     }
-} 
+
+    public function hasModels()
+    {
+        return !is_null($this->objects) ? true : false;
+    }
+}

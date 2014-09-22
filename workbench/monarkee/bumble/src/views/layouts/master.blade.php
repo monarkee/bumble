@@ -25,10 +25,11 @@
             <nav class="main-nav">
                 <ul class="main-nav__links">
                     <li class="main-nav__item"><a href="{{ route('bumble_dashboard') }}" class="main-nav__link">Dashboard</a></li>
-                    @if (Schema::hasTable('content') or Schema::hasTable('pages'))
-                    <li class="main-nav__item"><a href="{{ route('admin.pages.index') }}" class="main-nav__link">Content</a></li>
-                    @endif
-                    <li class="main-nav__item"><a href="{{ route('bumble_modules') }}" class="main-nav__link">Modules</a></li>
+                    @foreach ($topModels as $model)
+                        @unless ($model->isHiddenFromTopNav())
+                            <li class="main-nav__item"><a href="{{ route(Config::get('bumble::urls.admin_prefix').'.'.$model->getPluralSlug().'.index') }}" class="main-nav__link">{{ $model->getPluralName() }}</a></li>
+                        @endunless
+                    @endforeach
                     @if (Schema::hasTable('settings'))
                         <li class="main-nav__item"><a href="{{ route('admin.settings.index') }}" class="main-nav__link">Settings</a></li>
                     @endif
