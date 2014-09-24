@@ -47,6 +47,8 @@
                                 @endif
                             @elseif ($field->getFieldType() == 'TextareaField')
                                 <td>{{ str_limit($entry->{$field->getColumn()}, $limit = 40, $end = '&hellip;') }}</td>
+                            @elseif ($field->getFieldType() == 'ImageField')
+                                <td>{{ $entry->{$field->getColumn()} }}</td>
                             @else
                                 <td>{{ $entry->{$field->getColumn()} }}</td>
                             @endif

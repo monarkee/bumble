@@ -4,6 +4,9 @@ use Monarkee\Bumble\Fields\Field;
 
 class ImageField extends FileField {
 
+    /**
+     * @return string
+     */
     public function getAdapter()
     {
         switch ($this->getFieldType())

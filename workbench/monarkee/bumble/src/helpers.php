@@ -24,6 +24,15 @@ if (!function_exists('model_name'))
     }
 }
 
+if (!function_exists('full_model_name'))
+{
+    function full_model_name($value)
+    {
+        $models = Config::get("bumble::bumble.models");
+        return $models . $value;
+    }
+}
+
 if (!function_exists('sentence_name'))
 {
     function sentence_name($value)

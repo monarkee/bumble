@@ -42,9 +42,11 @@ class PostController extends BumbleController
     {
         $modelName = model_name($this->request->segment(2));
 
-        $model = new $modelName;
+        // Somehow we have to get the full namespace of the Model
+        // or else we won't be able to instantiate them.
+        $modelClass = full_model_name($modelName);
 
-        // Get the ID of the model
+        $model = new $modelClass;
 
         return View::make('bumble::posts.index')->with(compact('model'));
     }
@@ -56,38 +58,45 @@ class PostController extends BumbleController
 
         $modelName = model_name($slug);
 
-        $model = new $modelName;
+        $modelClass = full_model_name($modelName);
+
+        $model = new $modelClass;
         $post = $model->whereId($id)->first();
 
         return View::make('bumble::posts.edit')->with(compact('post', 'model'));
     }
 
-//    public function update()
-//    {
-//        // Clean the input to be passed to the validator
-//        $input = Input::all();
-//        unset($input['_method']);
-//        unset($input['_token']);
-//
-//        $moduleSystemName = Request::segment(2);
-//        $id = Input::get('id');
-//
-//        try {
-//           $this->postService->updatePost($moduleSystemName, $id, $input);
-//        }
-//        catch (ValidationException $e)
-//        {
-//            return Redirect::back()->withInput()->withErrors($e->getErrors());
-//        }
-//
-//        return Redirect::back()->with('success', 'The entry was successfully updated.');
-//    }
+    public function update()
+    {
+        // Clean the input to be passed to the validator
+        $input = Input::all();
+        unset($input['_method']);
+        unset($input['_token']);
+
+        $id = Input::get('id');
+
+        $modelName = model_name($this->request->segment(2));
+        $modelClass = full_model_name($modelName);
+        $model = new $modelClass;
+
+        try {
+           $this->postService->updatePost($model, $id, $input);
+        }
+        catch (ValidationException $e)
+        {
+            return Redirect::back()->withInput()->withErrors($e->getErrors());
+        }
+
+        return Redirect::back()->with('success', 'The entry was successfully updated.');
+    }
 
     public function create()
     {
         $modelName = model_name($this->request->segment(2));
 
-        $model = new $modelName;
+        $modelClass = full_model_name($modelName);
+
+        $model = new $modelClass;
 
         return View::make('bumble::posts.create')->with(compact('model'));
     }
@@ -114,11 +123,6 @@ class PostController extends BumbleController
                            ->withInput()
                            ->with('errors', $e->getErrors());
         }
-    }
-
-    public function errors()
-    {
-        return View::make('bumble::errors');
     }
 
 //    public function store()

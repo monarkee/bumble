@@ -35,7 +35,9 @@ class PostService
 
     public function createPost($model, $input)
     {
-        $model = new $model;
+        $modelName = model_name($model);
+        $modelClass = full_model_name($modelName);
+        $model = new $modelClass;
 
         $rules = $model->validation;
 
@@ -75,42 +77,22 @@ class PostService
         $model->save();
     }
 
-//    public function updatePost($moduleSystemName, $id, $input)
-//    {
-//        // Get the module
-//        $module = Module::whereSystemName(table_name($moduleSystemName))->firstOrFail();
-//
-//        // Get the components
-//        $moduleComponents = Component::whereModuleId($module->id)->get();
-//
-//        // Get the rules for this module's components dynamically
-//        $validationRules = $this->validator->createRulesArray($moduleComponents);
-//
-//        // Now validate the entry, and return success or errors
-//        $this->validator->validate($input, $validationRules);
-//
-//        // Update updated_at timestamp manuall because this is not an Eloquent class
-//        $input['updated_at'] = Carbon::now();
-//
-//        // Update the entry and return the post
-//        return $post = DB::table(table_name($moduleSystemName))->where('id', $id)->update($input);
-//    }
-
-    public function deletePost($moduleSystemName, $id)
+    public function updatePost($model, $id, $input)
     {
-        // Do all of this in a transaction, that way if it fails we don't mess it all up
+        // Get the rules for this model
+        $rules = $model->validation;
 
-        // Delete relationships
+        // Now validate the entry, and return success or errors
+        $this->validator->validate($input, $rules);
 
-        // Delete the posts
-        $deleted = DB::table(table_name($moduleSystemName))->where('id', '=', $id)->delete();
+        // Update the entry and return the post
+        return $post = $model->whereId($id)->update($input);
+    }
 
-        if (!$deleted)
-        {
-            throw new \Exception('The entry was not deleted');
-        }
-
-        return true;
+    public function deletePost($model, $id)
+    {
+        $post = $model->find($id);
+        return $post->delete();
     }
 
     public function deleteRelationship()

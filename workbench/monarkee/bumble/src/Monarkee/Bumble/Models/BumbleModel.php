@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use Monarkee\Bumble\Exceptions\TableNotFoundException;
 use ReflectionClass;
 use Str;
 use Config;
@@ -9,9 +12,16 @@ use Config;
 abstract class BumbleModel extends Eloquent
 {
 
+    /**
+     * @var Blueprint
+     */
+    private $schema;
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
+
+        $this->checkIfTableExists();
 
         if (method_exists($this, 'setComponents')) $this->setComponents();
         $this->setImageFields();
@@ -184,5 +194,15 @@ abstract class BumbleModel extends Eloquent
                 $this->imageFields[] = $component;
             }
         }
+    }
+
+    public function checkIfTableExists()
+    {
+        if (!Schema::hasTable($this->getTable()))
+        {
+            throw new TableNotFoundException("The specified table '{$this->getTable()}' doesn't exist.");
+        }
+
+        return true;
     }
 }

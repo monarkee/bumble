@@ -1,4 +1,4 @@
-<?php
+<?php namespace Monarkee\Models;
 
 use Monarkee\Bumble\Fields\TextareaField;
 use Monarkee\Bumble\Fields\TextField;

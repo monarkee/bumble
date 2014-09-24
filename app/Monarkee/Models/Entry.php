@@ -1,4 +1,4 @@
-<?php
+<?php namespace Monarkee\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Monarkee\Bumble\Fields\Field;
