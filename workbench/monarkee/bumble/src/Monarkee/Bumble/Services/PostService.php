@@ -46,7 +46,13 @@ class PostService
         // Save each component to the model
         foreach ($model->getComponents() as $field)
         {
-            if (isset($input[$field->getColumn()])) $model->{$field->getColumn()} = $input[$field->getColumn()];
+            if (isset($input[$field->getColumn()])) {
+                $model->{$field->getColumn()} = $input[$field->getColumn()];
+            }
+            else
+            {
+                return;
+            }
         }
 
         // If there are image fields, then we need to upload them
@@ -54,23 +60,7 @@ class PostService
         // attributes on the model before the save
         if ($model->hasImageFields())
         {
-            foreach ($model->getImageFields() as $imageField)
-            {
-                if ($this->request->hasFile($imageField->getLowerName()))
-                {
-                    $filesystem = new ImageFieldUploadService([
-                        'image' => $this->request->file($imageField->getLowerName()),
-                        'adapter' => $imageField->getAdapter(),
-                        'upload_to' => $imageField->getUploadTo(),
-                    ]);
-
-                    // Write the image to the file system and move it in place
-                    $filesystem->write();
-
-                    // Change the attribute on the model
-                    $model->{$field->getColumn()} = $this->request->file($imageField->getLowerName())->getClientOriginalName();
-                }
-            }
+            $this->handleImageFields($model, $field);
         }
 
         // Finally, save the model
@@ -91,12 +81,66 @@ class PostService
 
     public function deletePost($model, $id)
     {
-        $post = $model->find($id);
+        $modelName = model_name($model);
+        $modelClass = full_model_name($modelName);
+        $model = new $modelClass;
+
+
+        $post = $model->find($id)->first();
+
         return $post->delete();
     }
 
     public function deleteRelationship()
     {
         return true;
+    }
+
+    public function handleLocalFiles($imageField)
+    {
+        $filesystem = new ImageFieldUploadService([
+            'image' => $this->request->file($imageField->getLowerName()),
+            'adapter' => $imageField->getAdapter(),
+            'upload_to' => $imageField->getUploadTo(),
+        ]);
+
+        // Write the image to the file system and move it in place
+        return $filesystem->write();;
+    }
+
+    public function handleS3Files($imageField)
+    {
+        $filesystem = new S3ImageFieldUploadService([
+            'bucket_name' => $imageField->getBucketName(),
+            'image' => $this->request->file($imageField->getLowerName()),
+            'adapter' => $imageField->getAdapter(),
+            'upload_to' => $imageField->getUploadTo(),
+        ]);
+
+        // Write the image to the file system and move it in place
+        return $filesystem->write();
+    }
+
+    /**
+     * @param $model
+     * @param $field
+     */
+    private function handleImageFields($model, $field)
+    {
+        foreach ($model->getImageFields() as $imageField) {
+            if ($this->request->hasFile($imageField->getLowerName())) {
+                switch ($imageField->getAdaptor()) {
+                    case 'Local':
+                        $this->handleLocalFiles($imageField);
+                        break;
+                    case 'S3':
+                        $this->handleS3Files($imageField);
+                        break;
+                }
+
+                // Change the attribute on the model
+                $model->{$field->getColumn()} = $this->request->file($imageField->getLowerName())->getClientOriginalName();
+            }
+        }
     }
 }

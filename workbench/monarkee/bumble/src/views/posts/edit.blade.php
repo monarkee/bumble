@@ -11,7 +11,7 @@
             'files' => 'true',
             'class' => 'form',
             'route' => [
-                Config::get('bumble::urls.admin_prefix').'.'.$model->getPluralSlug().'.update', $post->id
+                Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.update', $post->id
                 ]]) }}
         {{ Form::hidden('id', $post->id) }}
             @include('bumble::posts.partials.form')

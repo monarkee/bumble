@@ -9,10 +9,10 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "doctrine/dbal": "v2.4.1",
         "thomaswelton/laravel-gravatar": "dev-master",
         "michelf/php-markdown": "1.4.1",
-        "league/flysystem": "0.5.*"
+        "league/flysystem": "0.5.*",
+        "aws/aws-sdk-php-laravel": "1.*"
     },
     "require-dev": {
     },

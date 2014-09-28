@@ -5,7 +5,7 @@
     <main class="main-content">
         <div class="header">
             <h2 class="header__title">{{ $model->getPluralName() }}</h2>
-            <a href="{{ route(Config::get('bumble::urls.admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="btn-create">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
+            <a href="{{ route(Config::get('bumble::admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="btn-create">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
         </div>
 
         @include('bumble::partials.messages')
@@ -55,8 +55,8 @@
                         @endunless
                     @endforeach
                     <td>
-                        <a href="{{ route(Config::get('bumble::urls.admin_prefix').'.'.$model->getPluralSlug().'.edit', ['id' => $entry->id]) }}" class="btn">Edit</a>
-                        {{ Form::open(['route' => [Config::get('bumble::urls.admin_prefix').'.'.$model->getPluralSlug().'.destroy', $entry->id]]) }}
+                        <a href="{{ route(Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.edit', ['id' => $entry->id]) }}" class="btn">Edit</a>
+                        {{ Form::open(['method' => 'delete', 'route' => [Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.destroy', $entry->id]]) }}
                         {{ Form::hidden('id', $entry->id) }}
                         {{ Form::button('Delete', ['type' => 'submit', 'class' => 'btn btn--danger js-delete-post']) }}
                         {{ Form::close() }}

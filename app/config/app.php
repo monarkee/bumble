@@ -115,6 +115,7 @@ return array(
         'Illuminate\Workbench\WorkbenchServiceProvider',
         'Monarkee\Bumble\BumbleServiceProvider',
         'Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider',
+        'Aws\Laravel\AwsServiceProvider',
 	),
 
 	/*
@@ -182,6 +183,7 @@ return array(
         'View'            => 'Illuminate\Support\Facades\View',
 
         'Gravatar' => 'Thomaswelton\LaravelGravatar\Facades\Gravatar',
+        'AWS' => 'Aws\Laravel\AwsFacade',
 	),
 
 );

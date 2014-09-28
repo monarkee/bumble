@@ -55,8 +55,8 @@
                     <td>
                         {{-- $component->module->system_name --}}
                         {{-- $posts[$i]->id --}}
-                        <a href="{{ url(Config::get('bumble::urls.admin_prefix').'/'.module_name($component->module->system_name).'/'.$posts[$i]->id.'/edit') }}" class="btn">Edit</a>
-                        {{ Form::open(['method' => 'delete', 'url' => [url(Config::get('bumble::urls.admin_prefix').'/'.module_name($component->module->system_name).'/'.$posts[$i]->id), $posts[$i]->id]]) }}
+                        <a href="{{ url(Config::get('bumble::admin_prefix').'/'.module_name($component->module->system_name).'/'.$posts[$i]->id.'/edit') }}" class="btn">Edit</a>
+                        {{ Form::open(['method' => 'delete', 'url' => [url(Config::get('bumble::admin_prefix').'/'.module_name($component->module->system_name).'/'.$posts[$i]->id), $posts[$i]->id]]) }}
                         {{ Form::hidden('id', $posts[$i]->id) }}
                         {{-- Form::button('doobin', ['class' => 'btn']) --}}
                         {{ Form::button('Delete', ['type' => 'submit', 'class' => 'btn btn--danger js-delete-post']) }}

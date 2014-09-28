@@ -41,7 +41,7 @@ class ModelRepository {
      */
     private function generateArray()
     {
-        $namespace = $this->config->get('bumble::bumble.models');
+        $namespace = $this->config->get('bumble::models');
 
         $modelDir = str_replace("\\", "/", $namespace);
 
@@ -65,17 +65,25 @@ class ModelRepository {
     {
         if ($this->hasModels())
         {
+//            dd($this->getModelNames());
             foreach ($this->getModelNames() as $model)
             {
                 $testClass = new ReflectionClass($model);
 
                 if ( ! $testClass->isAbstract())
                 {
-                    $newObject = new $model;
-
-                    if ( ! $newObject->isHidden())
+                    try
                     {
-                        $this->objects[] = $newObject;
+                        $newObject = new $model;
+
+                        if ( ! $newObject->isHidden())
+                        {
+                            $this->objects[] = $newObject;
+                        }
+                    }
+                    catch (Exception $e)
+                    {
+
                     }
                 }
             }

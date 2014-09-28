@@ -129,7 +129,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function getCreateLinkAttribute()
     {
-        return url(Config::get('bumble::urls.admin_prefix').'/'.$this->getPluralSlug().'/create');
+        return url(Config::get('bumble::admin_prefix').'/'.$this->getPluralSlug().'/create');
     }
 
     /**
@@ -138,7 +138,7 @@ abstract class BumbleModel extends Eloquent
     public function getIndexLinkAttribute()
     {
         $permalink = str_replace('_', '-', $this->system_name);
-        return url(Config::get('bumble::urls.admin_prefix').'/'.$permalink);
+        return url(Config::get('bumble::admin_prefix').'/'.$permalink);
     }
 
     /**

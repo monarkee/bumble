@@ -3,7 +3,7 @@
 use League\Flysystem\Adapter\Local as Adapter;
 use League\Flysystem\Filesystem;
 
-Route::group(['prefix' => Config::get('bumble::urls.admin_prefix')], function()
+Route::group(['prefix' => Config::get('bumble::admin_prefix')], function()
 {
     Route::get('/errors', [
         'as' => 'errors',
@@ -20,14 +20,14 @@ Route::group(['prefix' => Config::get('bumble::urls.admin_prefix')], function()
         'uses' => 'Monarkee\Bumble\Controllers\ApiController@sort'
     ]);
 
-    Route::get(Config::get('bumble::urls.admin.login'), ['as' => 'bumble_login', 'uses' => 'Monarkee\Bumble\Controllers\LoginController@getLogin']);
-    Route::post(Config::get('bumble::urls.admin.login'), 'Monarkee\Bumble\Controllers\LoginController@postLogin');
-    Route::get(Config::get('bumble::urls.admin.logout'), ['as' => 'bumble_logout', 'uses' => 'Monarkee\Bumble\Controllers\LoginController@getLogout']);
+    Route::get(Config::get('bumble::admin.login'), ['as' => 'bumble_login', 'uses' => 'Monarkee\Bumble\Controllers\LoginController@getLogin']);
+    Route::post(Config::get('bumble::admin.login'), 'Monarkee\Bumble\Controllers\LoginController@postLogin');
+    Route::get(Config::get('bumble::admin.logout'), ['as' => 'bumble_logout', 'uses' => 'Monarkee\Bumble\Controllers\LoginController@getLogout']);
 
     Route::group(['before' => 'bumble_auth'], function()
     {
         Route::get('/', ['as' => 'bumble_index', 'uses' => 'Monarkee\Bumble\Controllers\DashboardController@redirectToIndex']);
-        Route::get(Config::get('bumble::urls.admin.dashboard'), ['as' => 'bumble_dashboard', 'uses' => 'Monarkee\Bumble\Controllers\DashboardController@getIndex']);
+        Route::get(Config::get('bumble::admin.dashboard'), ['as' => 'bumble_dashboard', 'uses' => 'Monarkee\Bumble\Controllers\DashboardController@getIndex']);
 
         Route::resource('settings', 'Monarkee\Bumble\Controllers\SettingsController', ['except' => ['show']]);
 

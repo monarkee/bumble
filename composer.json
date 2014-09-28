@@ -6,7 +6,9 @@
 	"require": {
         "laravel/framework": "4.2.9",
         "phpunit/phpunit": "dev-master",
-        "barryvdh/laravel-ide-helper": "1.*"
+        "barryvdh/laravel-ide-helper": "1.*",
+		"frozennode/administrator": "dev-master",
+		"aws/aws-sdk-php-laravel": "1.*"
 	},
 	"autoload": {
 		"classmap": [

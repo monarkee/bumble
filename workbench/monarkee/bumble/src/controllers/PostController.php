@@ -2,6 +2,7 @@
 
 use Illuminate\Config\Repository;
 use Illuminate\Http\Request;
+use SebastianBergmann\Exporter\Exception;
 use View;
 use DB;
 use Input;
@@ -114,7 +115,7 @@ class PostController extends BumbleController
         {
             $this->postService->createPost($model, $input);
 
-            return Redirect::route($this->config->get('bumble::urls.admin_prefix').'.'.$resource.'.index')
+            return Redirect::route($this->config->get('bumble::admin_prefix').'.'.$resource.'.index')
                            ->withSuccess('Good job, asshole.');
         }
         catch (ValidationException $e)
@@ -145,8 +146,29 @@ class PostController extends BumbleController
 //        return Redirect::back()->with('success', 'The entry was successfully created.');
 //    }
 //
-//    public function destroy()
-//    {
+
+    public function show($id)
+    {
+        dd($id);
+    }
+
+    public function destroy($id)
+    {
+        $segment = $this->request->segment(2);
+        $model = model_name($segment);
+
+        $input = Input::only('id');
+
+        try
+        {
+            $this->postService->deletePost($model, $input);
+        }
+        catch (Exception $e)
+        {
+            dd("Nope");
+        }
+
+
 //        $moduleSystemName = table_name(Request::segment(2));
 //        $id = Input::get('id');
 //
@@ -158,6 +180,6 @@ class PostController extends BumbleController
 //            return Redirect::back()->withInput()->withErrors($e);
 //        }
 //
-//        return Redirect::back()->with('success', 'The entry was successfully deleted.');
-//    }
+        return Redirect::back()->with('success', 'The entry was successfully deleted.');
+    }
 }

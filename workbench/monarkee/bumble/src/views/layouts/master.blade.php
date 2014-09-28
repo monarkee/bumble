@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Bumble</title>
 
-    <link rel="stylesheet" href="{{ asset('css/app.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('packages/bumble/app.min.css') }}">
 </head>
 <body>
     <header class="main-header">
@@ -15,8 +15,7 @@
 
             <div class="flexible-space"></div>
 
-
-            @unless (app_config('search') == 'off' || config('search') === false)
+            @unless (app_config('search') == 'off')
             <form action="{{ url('/') }}" class="main-search">
                 <input class="main-search__input" type="search" name="q" value="" placeholder="Search Entries">
             </form>
@@ -27,7 +26,7 @@
                     <li class="main-nav__item"><a href="{{ route('bumble_dashboard') }}" class="main-nav__link">Dashboard</a></li>
                     @foreach ($topModels as $model)
                         @unless ($model->isHiddenFromTopNav())
-                            <li class="main-nav__item"><a href="{{ route(Config::get('bumble::urls.admin_prefix').'.'.$model->getPluralSlug().'.index') }}" class="main-nav__link">{{ $model->getPluralName() }}</a></li>
+                            <li class="main-nav__item"><a href="{{ route(Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.index') }}" class="main-nav__link">{{ $model->getPluralName() }}</a></li>
                         @endunless
                     @endforeach
                     @if (Schema::hasTable('settings'))

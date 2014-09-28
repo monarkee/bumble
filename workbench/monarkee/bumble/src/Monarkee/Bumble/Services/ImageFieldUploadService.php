@@ -1,8 +1,5 @@
 <?php namespace Monarkee\Bumble\Services;
 
-use League\Flysystem\Adapter\Local as Adapter;
-use League\Flysystem\Adapter\AwsS3 as S3Adapter;
-use League\Flysystem\Filesystem;
 use SebastianBergmann\Exporter\Exception;
 
 class ImageFieldUploadService implements UploadInterface {
@@ -29,9 +26,6 @@ class ImageFieldUploadService implements UploadInterface {
      */
     public function create()
     {
-        $adapterClass = 'League\\Flysystem\\Adapter\\' . $this->attributes['adapter'];
-        $this->filesystem = new Filesystem(new $adapterClass($this->attributes['upload_to']));
-
         return $this;
     }
 

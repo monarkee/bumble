@@ -2,6 +2,7 @@
 
 interface UploadInterface {
 
+    public function create();
     public function write();
 //    public function update();
 //    public function put();

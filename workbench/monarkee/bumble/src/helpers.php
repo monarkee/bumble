@@ -28,7 +28,7 @@ if (!function_exists('full_model_name'))
 {
     function full_model_name($value)
     {
-        $models = Config::get("bumble::bumble.models");
+        $models = Config::get("bumble::models");
         return $models . $value;
     }
 }
