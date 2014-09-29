@@ -35,32 +35,30 @@ class PostService
 
     public function createPost($model, $input)
     {
+        $this->setInput($input);
+
         $modelName = model_name($model);
         $modelClass = full_model_name($modelName);
         $model = new $modelClass;
 
-        $rules = $model->validation;
+        $rules = $model->getValidationRules();
 
-        $this->validator->validate($input, $rules);
-
-        // Save each component to the model
-        foreach ($model->getComponents() as $field)
-        {
-            if (isset($input[$field->getColumn()])) {
-                $model->{$field->getColumn()} = $input[$field->getColumn()];
-            }
-            else
-            {
-                return;
-            }
-        }
+        $this->validator->validate($this->input, $rules);
 
         // If there are image fields, then we need to upload them
         // We will save the entry afterwards because we will rewrite
         // attributes on the model before the save
         if ($model->hasImageFields())
         {
-            $this->handleImageFields($model, $field);
+            $this->handleImageFields($model);
+        }
+
+        // Save each component to the model minus the ImageFields, which get unset from the array
+        foreach ($model->getComponents() as $field)
+        {
+            if (isset($this->input[$field->getColumn()])) {
+                $model->{$field->getColumn()} = $this->input[$field->getColumn()];
+            }
         }
 
         // Finally, save the model
@@ -125,7 +123,7 @@ class PostService
      * @param $model
      * @param $field
      */
-    private function handleImageFields($model, $field)
+    private function handleImageFields($model)
     {
         foreach ($model->getImageFields() as $imageField) {
             if ($this->request->hasFile($imageField->getLowerName())) {
@@ -139,8 +137,16 @@ class PostService
                 }
 
                 // Change the attribute on the model
-                $model->{$field->getColumn()} = $this->request->file($imageField->getLowerName())->getClientOriginalName();
+                $model->{$imageField->getColumn()} = $this->request->file($imageField->getLowerName())->getClientOriginalName();
             }
+
+            // Remove the ImageField from the input
+            $this->input = array_except($this->input, [$imageField->getColumn()]);
         }
+    }
+
+    public function setInput($input)
+    {
+        $this->input = $input;
     }
 }

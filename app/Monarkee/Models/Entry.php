@@ -1,9 +1,12 @@
 <?php namespace Monarkee\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Monarkee\Bumble\Fields\BelongsToManyField;
 use Monarkee\Bumble\Fields\Field;
 use Monarkee\Bumble\Fields\FileField;
+use Monarkee\Bumble\Fields\HasOneField;
 use Monarkee\Bumble\Fields\ImageField;
+use Monarkee\Bumble\Fields\S3ImageField;
 use Monarkee\Bumble\Fields\TextareaField;
 use Monarkee\Bumble\Fields\TextField;
 use Monarkee\Bumble\Models\BumbleModel;
@@ -11,8 +14,6 @@ use Monarkee\Bumble\Models\BumbleModel;
 class Entry extends BumbleModel
 {
     use SoftDeletingTrait;
-
-    public $timestamps = false;
 
     public $showInTopNav = true;
 
@@ -22,6 +23,7 @@ class Entry extends BumbleModel
         'title' => 'required',
         'slug' => 'required',
         'content' => 'required',
+        'entry_type_id' => 'required|exists:entry_types,id',
     ];
 
     public function setComponents()
@@ -45,21 +47,28 @@ class Entry extends BumbleModel
                 'sort'        => 4,
                 'description' => 'The is the content of the Entry',
             ]),
-            new ImageField('banner_image', [
+            new S3ImageField('banner_image', [
                 'show_in_listing' => false,
                 'upload_to'   => 'banner_images',
                 'sort'        => 5,
             ]),
+            new HasOneField('type', [
+                'title_column' => 'title',
+                'column' => 'entry_type_id',
+            ]),
+//            new BelongsToManyField('tags', [
+//                'widget' => 'TagField',
+//            ]),
         ];
     }
 
-//    public function type()
-//    {
-//        return $this->belongsTo('EntryType');
-//    }
-//
-//    public function tags()
-//    {
-//        return $this->belongsToMany('Tag');
-//    }
+    public function type()
+    {
+        return $this->belongsTo('Monarkee\Models\EntryType');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany('Tag');
+    }
 }

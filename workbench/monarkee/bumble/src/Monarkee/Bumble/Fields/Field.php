@@ -34,6 +34,11 @@ abstract class Field {
         return ucwords($string);
     }
 
+    public function getSingularName()
+    {
+        return str_singular(ucwords($this->title));
+    }
+
     public function getLowerName()
     {
         return lcfirst($this->title);
@@ -78,5 +83,15 @@ abstract class Field {
         {
             return "This is the {$this->getColumn()}.";
         }
+    }
+
+    public function getWidgetType()
+    {
+        return isset($this->options['widget']) ? $this->options['widget'] : $this->getFieldType();
+    }
+
+    public function hasCustomWidget()
+    {
+        return isset($this->options['widget']);
     }
 }

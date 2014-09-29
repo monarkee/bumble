@@ -2,7 +2,11 @@
     @include('bumble::partials.messages')
 
     @foreach ($model->getComponents() as $field)
-        @include ('bumble::fieldTypes.'.$field->getFieldType())
+        @if ($field->hasCustomWidget())
+            @include ('bumble::fieldTypes.'.$field->getWidgetType())
+        @else
+            @include ('bumble::fieldTypes.'.$field->getFieldType())
+        @endif
     @endforeach
 
     <div class="form__btn-row">
