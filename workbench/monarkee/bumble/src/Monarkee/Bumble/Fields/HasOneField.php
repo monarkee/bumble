@@ -4,6 +4,6 @@ class HasOneField extends Field
 {
     public function getTitleOption()
     {
-        return $this->options['title_column'];
+        return isset($this->options['title_column']) ? $this->options['title_column'] : 'title';
     }
 }

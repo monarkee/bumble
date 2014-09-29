@@ -16,26 +16,17 @@ class EntryType extends BumbleModel
 
     public $validation = [
         'title' => 'required',
-//        'slug' => 'required',
-        'active' => 'required',
     ];
 
     public function setComponents()
     {
         $this->components = [
-            new TextField('title', [
-                'sort'          => '1',
-                'description'   => 'Fun field for the title to live in',
-            ]),
-//            new TextField('slug', [
-//                'sort'          => '2',
-//                'description'   => 'short slug for the entry',
-//            ]),
-            new IntField('active', [
-                'show_in_listing' => false,
-                'sort'          => '3',
-                'description'   => 'Is this Entry activated?',
-            ]),
+            new TextField('title'),
         ];
+    }
+
+    public function entries()
+    {
+        return $this->hasMany('Monarkee\Models\Entry');
     }
 }

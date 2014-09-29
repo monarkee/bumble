@@ -6,6 +6,8 @@ use Monarkee\Bumble\Models\BumbleModel;
 
 class Page extends BumbleModel
 {
+    public $showInTopNav = true;
+
     protected $description = 'Pages are ways to pages of content';
 
     public $validation = [

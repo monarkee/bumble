@@ -23,7 +23,7 @@ class Entry extends BumbleModel
         'title' => 'required',
         'slug' => 'required',
         'content' => 'required',
-        'entry_type_id' => 'required|exists:entry_types,id',
+//        'entry_type_id' => 'required|exists:entry_types,id',
     ];
 
     public function setComponents()
@@ -33,18 +33,13 @@ class Entry extends BumbleModel
                 'sort'        => 1,
                 'description' => 'Fun field for the title to live in',
             ]),
-            new TextField('slug', [
-                'sort'        => 2,
-//                'description' => 'This is the slug for the Entry',
-            ]),
+            new TextField('slug'),
             new TextareaField('excerpt', [
                 'show_in_listing' => false,
-                'sort'        => 3,
                 'description' => 'The is the excerpt of the Entry',
             ]),
             new TextareaField('content', [
                 'show_in_listing' => false,
-                'sort'        => 4,
                 'description' => 'The is the content of the Entry',
             ]),
             new S3ImageField('banner_image', [
@@ -52,10 +47,8 @@ class Entry extends BumbleModel
                 'upload_to'   => 'banner_images',
                 'sort'        => 5,
             ]),
-            new HasOneField('type', [
-                'title_column' => 'title',
-                'column' => 'entry_type_id',
-            ]),
+            new HasOneField('type'),
+            new HasOneField('status'),
 //            new BelongsToManyField('tags', [
 //                'widget' => 'TagField',
 //            ]),
@@ -64,7 +57,12 @@ class Entry extends BumbleModel
 
     public function type()
     {
-        return $this->belongsTo('Monarkee\Models\EntryType');
+        return $this->hasOne('Monarkee\Models\EntryType');
+    }
+
+    public function status()
+    {
+        return $this->hasOne('Monarkee\Models\Status');
     }
 
     public function tags()
