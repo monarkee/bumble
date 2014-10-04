@@ -6,6 +6,7 @@ use Monarkee\Bumble\Fields\Field;
 use Monarkee\Bumble\Fields\FileField;
 use Monarkee\Bumble\Fields\HasOneField;
 use Monarkee\Bumble\Fields\ImageField;
+use Monarkee\Bumble\Fields\IntField;
 use Monarkee\Bumble\Fields\S3ImageField;
 use Monarkee\Bumble\Fields\TextareaField;
 use Monarkee\Bumble\Fields\TextField;
@@ -17,6 +18,10 @@ class Entry extends BumbleModel
 
     public $showInTopNav = true;
 
+    public $dates = [
+        'published_at',
+    ];
+
     protected $description = 'A beautiful place to put your entries';
 
     public $validation = [
@@ -24,6 +29,7 @@ class Entry extends BumbleModel
         'slug' => 'required',
         'content' => 'required',
 //        'entry_type_id' => 'required|exists:entry_types,id',
+        'published_at' => 'required|date',
     ];
 
     public function setComponents()
@@ -47,26 +53,22 @@ class Entry extends BumbleModel
                 'upload_to'   => 'banner_images',
                 'sort'        => 5,
             ]),
-            new HasOneField('type'),
             new HasOneField('status'),
+            new TextField('published_at'),
 //            new BelongsToManyField('tags', [
 //                'widget' => 'TagField',
 //            ]),
+            new IntField('active'),
         ];
-    }
-
-    public function type()
-    {
-        return $this->hasOne('Monarkee\Models\EntryType');
     }
 
     public function status()
     {
-        return $this->hasOne('Monarkee\Models\Status');
+        return $this->belongsTo('Monarkee\Models\Status');
     }
 
     public function tags()
     {
-        return $this->belongsToMany('Tag');
+        return $this->belongsToMany('Monarkee\Models\Tag');
     }
 }

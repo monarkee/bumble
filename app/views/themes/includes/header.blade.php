@@ -1,7 +1,3 @@
-<?php
-    // Pages
-    $pages = Bumble::get('page');
-?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -56,12 +52,12 @@
 
     <header id="main">
         <div class="wrap">
-            <h1><a href="/">{{ app_config('title') }}</a></h1>
-            @if ($pages->hasItems())
+            <h1><a href="/">{{ Config::get('bumble::site-title') }}</a></h1>
+            @if ($pages)
             <nav id="top">
                 <ul>
-                    @foreach ($pages->getItems() as $page)
-                    <li><a href="{{ $page->get('slug') }}">{{ $page->get('title') }}</a></li>
+                    @foreach ($pages as $page)
+                    <li><a href="{{ $page->slug }}">{{ $page->title }}</a></li>
                     @endforeach
                 </ul>
             </nav>

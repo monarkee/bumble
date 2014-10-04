@@ -1,4 +1,5 @@
 <aside class="main-sidebar">
+    @if ($sideModels)
     <ul class="side-nav">
         @foreach ($sideModels as $model)
             @unless ($model->isHidden())
@@ -6,4 +7,5 @@
             @endunless
         @endforeach
     </ul>
+    @endif
 </aside>

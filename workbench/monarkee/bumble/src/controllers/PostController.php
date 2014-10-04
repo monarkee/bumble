@@ -80,6 +80,8 @@ class PostController extends BumbleController
         $modelClass = full_model_name($modelName);
         $model = new $modelClass;
 
+        $resource = resource_name($modelName);
+
         try {
            $this->postService->updatePost($model, $id, $input);
         }
@@ -88,7 +90,7 @@ class PostController extends BumbleController
             return Redirect::back()->withInput()->withErrors($e->getErrors());
         }
 
-        return Redirect::back()->with('success', 'The entry was successfully updated.');
+        return Redirect::route($this->config->get('bumble::admin_prefix').'.'.$resource.'.index')->with('success', 'The entry was successfully updated.');
     }
 
     public function create()

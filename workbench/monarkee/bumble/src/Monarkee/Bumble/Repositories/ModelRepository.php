@@ -69,13 +69,11 @@ class ModelRepository {
             foreach ($this->getModelNames() as $model)
             {
                 $testClass = new ReflectionClass($model);
-
                 if ( ! $testClass->isAbstract())
                 {
                     try
                     {
                         $newObject = new $model;
-
                         if ( ! $newObject->isHidden())
                         {
                             $this->objects[] = $newObject;

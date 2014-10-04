@@ -37,12 +37,12 @@ abstract class BumbleModel extends Eloquent
      *
      * @var
      */
-    protected $hidden;
+    protected $invisible;
 
     /**
      * @var bool
      */
-    public $showInTopNav = false;
+    protected $showInTopNav = false;
 
     /**
      * @var array
@@ -146,7 +146,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function isHidden()
     {
-        return $this->hidden;
+        return $this->invisible;
     }
 
     /**

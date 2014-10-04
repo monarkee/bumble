@@ -19,4 +19,9 @@ class Status extends BumbleModel
             new TextField('title'),
         ];
     }
+
+    public function entry()
+    {
+        return $this->hasMany('Monarkee\Models\Entry');
+    }
 }

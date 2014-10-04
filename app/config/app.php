@@ -113,9 +113,11 @@ return array(
         'Illuminate\Validation\ValidationServiceProvider',
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
+
         'Monarkee\Bumble\BumbleServiceProvider',
         'Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider',
         'Aws\Laravel\AwsServiceProvider',
+        'Monarkee\Providers\BlogServiceProvider',
 	),
 
 	/*

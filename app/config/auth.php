@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'model' => 'Monarkee\Bumble\Models\User',
+	'model' => 'Monarkee\Models\User',
 
 	/*
 	|--------------------------------------------------------------------------
