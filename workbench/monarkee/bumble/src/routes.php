@@ -29,8 +29,6 @@ Route::group(['prefix' => Config::get('bumble::admin_prefix')], function()
         Route::get('/', ['as' => 'bumble_index', 'uses' => 'Monarkee\Bumble\Controllers\DashboardController@redirectToIndex']);
         Route::get(Config::get('bumble::admin.dashboard'), ['as' => 'bumble_dashboard', 'uses' => 'Monarkee\Bumble\Controllers\DashboardController@getIndex']);
 
-        Route::resource('settings', 'Monarkee\Bumble\Controllers\SettingsController', ['except' => ['show']]);
-
         $modelRepo = App::make('Monarkee\Bumble\Repositories\ModelRepository');
 
         foreach ($modelRepo->getModels(true) as $modelName)
