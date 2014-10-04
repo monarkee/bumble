@@ -14,7 +14,6 @@ class User extends BumbleUser
     public $validation = [
         'first_name' => 'required',
         'last_name' => 'required',
-        'password' => 'required',
     ];
 
     /**
