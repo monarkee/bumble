@@ -41,18 +41,6 @@ class BumbleServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-        // Make the facade work without adding it to app/config/app.php
-        $this->app->booting(function()
-        {
-            $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-            $loader->alias('Setting', 'Monarkee\Bumble\Facades\Setting');
-        });
-
-        $this->app->bind('setting', function()
-        {
-            return new \Monarkee\Bumble\Repositories\DbSettingsRepository;
-        });
-        $this->app->bind('Monarkee\Bumble\Repositories\SettingsInterface', 'Monarkee\Bumble\Repositories\DbSettingsRepository');
 	}
 
 	/**
