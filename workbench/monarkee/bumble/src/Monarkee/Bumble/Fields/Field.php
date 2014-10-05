@@ -56,7 +56,7 @@ abstract class Field {
 
     public function isRequired()
     {
-        return str_contains($this->options['validation'], 'required');
+        return isset($this->validation) ? str_contains($this->options['validation'], 'required') : false;
     }
 
     public function getColumn()
