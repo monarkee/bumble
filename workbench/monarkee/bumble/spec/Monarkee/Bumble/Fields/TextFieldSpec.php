@@ -9,7 +9,10 @@ class TextFieldSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith('title');
+        $this->beConstructedWith('title', [
+            'show_in_listing' => false,
+            'placeholder'   => 'A Title Field'
+        ]);
     }
 
     function it_is_initializable()
@@ -22,34 +25,39 @@ class TextFieldSpec extends ObjectBehavior
         $this->getFieldType();
     }
 
+    function it_should_have_the_correct_field_type()
+    {
+        $this->getFieldType()->shouldReturn('TextField');
+    }
+
     function it_should_know_if_it_is_an_image_field()
     {
-        $this->isImageField();
+        $this->isImageField()->shouldReturn(false);
     }
 
     function it_should_get_its_name()
     {
-        $this->getName();
+        $this->getName()->shouldReturn('Title');
     }
 
     function it_should_get_its_singular_name()
     {
-        $this->getSingularName();
+        $this->getSingularName()->shouldReturn('Title');
     }
 
     function it_should_get_its_lower_name()
     {
-        $this->getLowerName();
+        $this->getLowerName()->shouldReturn('title');
     }
 
     function it_should_get_its_title()
     {
-        $this->getTitle();
+        $this->getTitle()->shouldReturn('Title');
     }
 
     function it_should_get_its_description()
     {
-        $this->getDescription();
+        $this->getDescription()->shouldReturn('');
     }
 
     function it_should_get_if_its_required()
@@ -59,16 +67,26 @@ class TextFieldSpec extends ObjectBehavior
 
     function it_should_get_its_column()
     {
-        $this->getColumn();
+        $this->getColumn()->shouldReturn('title');
     }
 
     function it_should_get_if_its_shown_in_the_listing()
     {
-        $this->showInListing();
+        $this->showInListing()->shouldReturn(false);
     }
 
     function it_should_get_its_placeholder()
     {
-        $this->getPlaceholder();
+        $this->getPlaceholder()->shouldReturn('A Title Field');
+    }
+
+    function it_should_get_its_widget_type()
+    {
+        $this->getWidgetType()->shouldReturn('TextField');
+    }
+
+    function it_should_know_if_it_has_a_custom_widget()
+    {
+        $this->hasCustomWidget()->shouldReturn(false);
     }
 }

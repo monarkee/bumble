@@ -56,9 +56,7 @@ class PostService
         // Save each component to the model minus the ImageFields, which get unset from the array
         foreach ($model->getComponents() as $field)
         {
-            if (isset($this->input[$field->getColumn()])) {
-                $model->{$field->getColumn()} = $this->input[$field->getColumn()];
-            }
+            $this->setFields($model, $field);
         }
 
         // Finally, save the model
@@ -148,5 +146,16 @@ class PostService
     public function setInput($input)
     {
         $this->input = $input;
+    }
+
+    /**
+     * @param $model
+     * @param $field
+     */
+    private function setFields($model, $field)
+    {
+        if (isset($this->input[$field->getColumn()])) {
+            $model->{$field->getColumn()} = $this->input[$field->getColumn()];
+        }
     }
 }

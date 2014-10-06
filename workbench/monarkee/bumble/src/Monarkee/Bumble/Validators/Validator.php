@@ -1,20 +1,30 @@
 <?php namespace Monarkee\Bumble\Validators;
 
+use Illuminate\Validation\Factory as LaravelValidator;
 use Monarkee\Bumble\Exceptions\ValidationException;
-use Validator as V;
 
 abstract class Validator
 {
+    /**
+     * @var LaravelValidator
+     */
+    private $validator;
+
+    public function __construct(LaravelValidator $validator)
+    {
+        $this->validator = $validator;
+    }
+
   /**
    * Do the validation
    * @param  array $input The input rules
-   * @return Validator
+   * @return bool
    */
   public function validate($input, $rules = [])
   {
     $rules = $rules ?: $this->rules;
 
-    $validator = V::make($input, $rules);
+    $validator = $this->validator->make($input, $rules);
 
     if ($validator->fails()) throw new ValidationException($validator->messages(), 1);
 

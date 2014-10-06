@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Monarkee\Bumble\Fields\S3ImageField;
+use Monarkee\Bumble\Models\BumbleModel;
 use Monarkee\Bumble\Services\S3ImageFieldUploadService;
 use Monarkee\Bumble\Validators\PostValidator;
 use PhpSpec\ObjectBehavior;
@@ -19,6 +20,11 @@ class PostServiceSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Monarkee\Bumble\Services\PostService');
     }
+
+//    function it_should_create_a_post(BumbleModel $model, Request $input, $modelName = 'David')
+//    {
+//        $this->createPost($model, $input)->willReturn(true);
+//    }
 
     function it_sets_input()
     {
