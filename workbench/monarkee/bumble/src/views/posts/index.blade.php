@@ -30,7 +30,6 @@
                 </tr>
             </thead>
             <tbody>
-                <?php $i = 0; ?>
                 @foreach ($model->all() as $entry)
                 <tr>
                     <td class="id">{{ $entry->id }}</td>
@@ -63,7 +62,6 @@
                         {{ Form::close() }}
                     </td>
                 </tr>
-                <?php $i++; ?>
                 @endforeach
             </tbody>
         </table>
