@@ -10,7 +10,7 @@
     @endforeach
 
     <div class="form__btn-row">
-        {{ Form::button('Save Entry', ['class' => 'btn form__btn--auto-with', 'type' => 'submit']) }}
+        {{ Form::button('Save ' . $model->getModelName(), ['class' => 'btn form__btn--auto-with', 'type' => 'submit']) }}
     </div>
 </div>
 
