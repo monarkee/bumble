@@ -37,11 +37,9 @@
                     @foreach ($model->getComponents() as $field)
                         @unless ($field->showInListing() == false)
                             @if ($field->getFieldType() == 'TextField')
-                                @if ($field->getColumn() == 'slug')
-                                    <td><code>{{ $entry->{$field->getColumn()} }}</code></td>
-                                @else
                                 <td>{{ $entry->{$field->getColumn()} }}</td>
-                                @endif
+                            @elseif ($field->getFieldType() == 'SlugField')
+                                <td><code>{{ $entry->{$field->getColumn()} }}</code></td>
                             @elseif ($field->getFieldType() == 'BinaryField')
                                 @if ($field->getColumn() == 'active')
                                     <td class="active-status"><i class="badge {{ active_color($entry->active) }}"></i></td>

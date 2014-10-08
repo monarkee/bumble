@@ -4,6 +4,7 @@ use DB;
 use Carbon\Carbon;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\MessageBag;
 use Monarkee\Bumble\Exceptions\ValidationException;
 use Monarkee\Bumble\Support\BumbleStr;
 use Monarkee\Bumble\Validators\PostValidator;
@@ -32,12 +33,18 @@ class PostService
      */
     private $str;
 
-    public function __construct(PostValidator $validator, Application $app, Request $request, BumbleStr $str)
+    /**
+     * @var SlugifyService
+     */
+    private $slugifyService;
+
+    public function __construct(PostValidator $validator, Application $app, Request $request, BumbleStr $str, SlugifyService $slugifyService)
     {
         $this->validator = $validator;
         $this->app = $app;
         $this->request = $request;
         $this->str = $str;
+        $this->slugifyService = $slugifyService;
     }
 
     /**
@@ -100,7 +107,6 @@ class PostService
         $modelName = model_name($model);
         $modelClass = full_model_name($modelName);
         $model = new $modelClass;
-
 
         $post = $model->find($id)->first();
 
@@ -237,7 +243,7 @@ class PostService
             if (isset($this->input[$binaryField->getColumn()]))
             {
                 $model->{$binaryField->getColumn()} = true;
-                
+
                 // Remove the binaryFields from the input
                 $this->removeFieldFromInput($binaryField->getColumn());
             }
@@ -248,6 +254,32 @@ class PostService
         }
     }
 
+    public function handleSlugFields($model)
+    {
+        foreach ($model->getSlugFields() as $slugField)
+        {
+            if (!empty($this->input[$slugField->getColumn()]))
+            {
+                $model->{$slugField->getColumn()} = $this->slugifyService->slugify($this->input[$slugField->getColumn()]);
+            }
+            elseif ($slugField->getSetFrom())
+            {
+                $model->{$slugField->getColumn()} = $this->slugifyService->slugify($this->input[$slugField->getSetFrom()]);
+            }
+            else
+            {
+                $message = "The {$slugField->getColumn()} field is required.";
+                $errors = new MessageBag(['slug' => $message]);
+
+                throw new ValidationException($errors, $message);
+//                $model->{$slugField->getColumn()} = $this->slugifyService->slugify($this->input[$slugField->getColumn()]);
+            }
+
+            // Remove the slugFields from the input
+            $this->removeFieldFromInput($slugField->getColumn());
+        }
+    }
+
     /**
      * @param $model
      */
@@ -255,6 +287,10 @@ class PostService
     {
         if ($model->hasBinaryFields()) {
             $this->handleBinaryFields($model);
+        }
+
+        if ($model->hasSlugFields()) {
+            $this->handleSlugFields($model);
         }
 
         // If there are image fields, then we need to upload them

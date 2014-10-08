@@ -116,7 +116,7 @@ class PostController extends BumbleController
             $this->postService->createPost($model, $input);
 
             return Redirect::route($this->config->get('bumble::admin_prefix').'.'.$resource.'.index')
-                           ->withSuccess('Good job, asshole.');
+                           ->withSuccess('The entry was successfully created');
         }
         catch (ValidationException $e)
         {

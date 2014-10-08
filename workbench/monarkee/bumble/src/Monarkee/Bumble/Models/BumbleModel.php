@@ -15,12 +15,14 @@ abstract class BumbleModel extends Eloquent
     /**
      * @var
      */
-    public $validation;
+    public $validation = [];
 
     /**
      * @var
      */
-    public $editValidation;
+    private $editValidation;
+
+    private $slugFields;
 
     /**
      * @var Blueprint
@@ -30,7 +32,7 @@ abstract class BumbleModel extends Eloquent
     /**
      * @var
      */
-    public $binaryFields;
+    private $binaryFields;
 
     public function __construct(array $attributes = [])
     {
@@ -41,6 +43,7 @@ abstract class BumbleModel extends Eloquent
         if (method_exists($this, 'setComponents')) $this->setComponents();
         $this->setImageFields();
         $this->setBinaryFields();
+        $this->setSlugFields();
     }
 
     /**
@@ -250,6 +253,37 @@ abstract class BumbleModel extends Eloquent
         foreach ($this->getComponents() as $component) {
             if ($component->isBinaryField()) {
                 $this->binaryFields[] = $component;
+            }
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasSlugFields()
+    {
+        foreach ($this->getComponents() as $component)
+        {
+            if ($component->isSlugField()) return true;
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlugFields()
+    {
+        return $this->slugFields;
+    }
+
+    /**
+     *
+     */
+    private function setSlugFields()
+    {
+        foreach ($this->getComponents() as $component) {
+            if ($component->isSlugField()) {
+                $this->slugFields[] = $component;
             }
         }
     }

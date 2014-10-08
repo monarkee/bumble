@@ -54,11 +54,6 @@ abstract class Field {
         return isset($this->options['description']) ? $this->options['description'] : '';
     }
 
-    public function isRequired()
-    {
-        return isset($this->validation) ? str_contains($this->options['validation'], 'required') : false;
-    }
-
     public function getColumn()
     {
         return isset($this->options['column']) ? $this->options['column'] : $this->title;
@@ -96,6 +91,11 @@ abstract class Field {
     }
 
     public function isBinaryField()
+    {
+        return false;
+    }
+
+    public function isSlugField()
     {
         return false;
     }
