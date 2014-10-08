@@ -4,7 +4,7 @@ if (!function_exists('slug_case'))
 {
     function slug_case($value)
     {
-        return ctype_lower($value) ? $value : strtolower(preg_replace('/(.)([A-Z])/', '$1-$2', $value));
+        return BumbleStr::slug_case($value);
     }
 }
 
@@ -12,7 +12,7 @@ if (!function_exists('resource_name'))
 {
     function resource_name($value)
     {
-        return str_plural(slug_case($value));
+        return BumbleStr::resource_name($value);
     }
 }
 
@@ -20,7 +20,7 @@ if (!function_exists('model_name'))
 {
     function model_name($value)
     {
-        return str_singular(studly_case($value));
+        return BumbleStr::model_name($value);
     }
 }
 
@@ -28,8 +28,7 @@ if (!function_exists('full_model_name'))
 {
     function full_model_name($value)
     {
-        $models = Config::get("bumble::models");
-        return $models . $value;
+        return BumbleStr::full_model_name($value);
     }
 }
 
@@ -37,7 +36,7 @@ if (!function_exists('sentence_name'))
 {
     function sentence_name($value)
     {
-        return preg_replace('/(?!^)[A-Z]{2,}(?=[A-Z][a-z])|[A-Z][a-z]|[0-9]{1,}/', ' $0', $value);
+        return BumbleStr::sentence_name($value);
     }
 }
 

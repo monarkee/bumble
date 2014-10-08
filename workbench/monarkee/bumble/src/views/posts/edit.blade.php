@@ -2,6 +2,7 @@
 
 @section('content')
 <section class="main-area">
+    @include ('bumble::partials.sidenav')
     <main class="main-content">
         <div class="header">
             <h2 class="header__title">Editing {{ str_singular($model->name) }}{{ isset($post->title) ? ': '.$post->title : ' #'.$post->id }}</h2>
@@ -17,7 +18,5 @@
             @include('bumble::posts.partials.form')
         {{ Form::close() }}
     </main>
-
-    @include('bumble::partials.sidenav')
 </section>
 @stop

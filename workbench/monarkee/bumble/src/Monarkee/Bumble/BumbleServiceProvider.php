@@ -7,6 +7,7 @@ use League\Flysystem\Adapter\Local as LocalAdapter;
 use League\Flysystem\Adapter\AwsS3 as S3Adapter;
 use Monarkee\Bumble\Models\BumbleModel;
 use Monarkee\Bumble\Models\Module;
+use Monarkee\Bumble\Support\BumbleStr;
 
 class BumbleServiceProvider extends ServiceProvider {
 
@@ -41,6 +42,10 @@ class BumbleServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
+        $this->app->singleton('bumblestr', function()
+        {
+            return $this->app->make('Monarkee\Bumble\Support\BumbleStr');
+        });
 	}
 
 	/**

@@ -2,6 +2,7 @@
 
 @section('content')
 <section class="main-area">
+    @include ('bumble::partials.sidenav')
     <main class="main-content">
         <div class="header">
             <h2 class="header__title">Create a new {{ $model->getModelName() }}</h2>
@@ -10,7 +11,5 @@
             @include('bumble::posts.partials.form')
         {{ Form::close() }}
     </main>
-
-    @include ('bumble::partials.sidenav')
 </section>
 @stop

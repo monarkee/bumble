@@ -94,4 +94,9 @@ abstract class Field {
     {
         return isset($this->options['widget']);
     }
+
+    public function isBinaryField()
+    {
+        return false;
+    }
 }

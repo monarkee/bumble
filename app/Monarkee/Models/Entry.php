@@ -6,7 +6,7 @@ use Monarkee\Bumble\Fields\Field;
 use Monarkee\Bumble\Fields\FileField;
 use Monarkee\Bumble\Fields\HasOneField;
 use Monarkee\Bumble\Fields\ImageField;
-use Monarkee\Bumble\Fields\IntField;
+use Monarkee\Bumble\Fields\BinaryField;
 use Monarkee\Bumble\Fields\S3ImageField;
 use Monarkee\Bumble\Fields\TextareaField;
 use Monarkee\Bumble\Fields\TextField;
@@ -58,7 +58,7 @@ class Entry extends BumbleModel
 //            new BelongsToManyField('tags', [
 //                'widget' => 'TagField',
 //            ]),
-            new IntField('active'),
+            new BinaryField('active'),
         ];
     }
 

@@ -50,25 +50,25 @@ $('.js-delete-post').on 'click', (e) ->
     e.preventDefault()
 
 # This is the dropdown
-Dropdown =
-  init: () ->
-    Dropdown.dropdowns = $('.js-secondary-nav')
-    Dropdown.attachEventHandlers()
-
-  attachEventHandlers: () ->
-    Dropdown.dropdowns.on('click', (event) ->
-      event.preventDefault()
-      event.stopPropagation()
-      Dropdown.toggleChildMenu($(this))
-
-    # Make the menu go away when you click
-#    $('html').on 'click', () ->
-#      Dropdown.hideAllMenus()
-
-#  toggleChildMenu: ($parent) ->
-#    $parent.siblings('ul.secondary-nav').toggleClass('is-visible')
+#Dropdown =
+#  init: () ->
+#    Dropdown.dropdowns = $('.js-secondary-nav')
+#    Dropdown.attachEventHandlers()
 #
-#  hideAllMenus: () ->
-#    $('ul.secondary-nav').removeClass('is-visible')
+#  attachEventHandlers: () ->
+#    Dropdown.dropdowns.on('click', (event) ->
+#      event.preventDefault()
+#      event.stopPropagation()
+#      Dropdown.toggleChildMenu($(this))
 #
+#    # Make the menu go away when you click
+##    $('html').on 'click', () ->
+##      Dropdown.hideAllMenus()
+#
+##  toggleChildMenu: ($parent) ->
+##    $parent.siblings('ul.secondary-nav').toggleClass('is-visible')
+##
+##  hideAllMenus: () ->
+##    $('ul.secondary-nav').removeClass('is-visible')
+##
 #Dropdown.init()

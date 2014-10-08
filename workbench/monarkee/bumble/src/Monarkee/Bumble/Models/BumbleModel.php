@@ -13,9 +13,24 @@ abstract class BumbleModel extends Eloquent
 {
 
     /**
+     * @var
+     */
+    public $validation;
+
+    /**
+     * @var
+     */
+    public $editValidation;
+
+    /**
      * @var Blueprint
      */
     private $schema;
+
+    /**
+     * @var
+     */
+    public $binaryFields;
 
     public function __construct(array $attributes = [])
     {
@@ -25,6 +40,7 @@ abstract class BumbleModel extends Eloquent
 
         if (method_exists($this, 'setComponents')) $this->setComponents();
         $this->setImageFields();
+        $this->setBinaryFields();
     }
 
     /**
@@ -119,6 +135,14 @@ abstract class BumbleModel extends Eloquent
     /**
      * @return mixed
      */
+    public function getEditValidationRules()
+    {
+        return $this->editValidation;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getValidationRules()
     {
         return $this->validation;
@@ -185,6 +209,9 @@ abstract class BumbleModel extends Eloquent
         return $this->imageFields;
     }
 
+    /**
+     *
+     */
     private function setImageFields()
     {
         // Loop through the components and determine if any are ImageFields
@@ -196,6 +223,41 @@ abstract class BumbleModel extends Eloquent
         }
     }
 
+    /**
+     * @return bool
+     */
+    public function hasBinaryFields()
+    {
+        foreach ($this->getComponents() as $component)
+        {
+            if ($component->isBinaryField()) return true;
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBinaryFields()
+    {
+        return $this->binaryFields;
+    }
+
+    /**
+     *
+     */
+    private function setBinaryFields()
+    {
+        foreach ($this->getComponents() as $component) {
+            if ($component->isBinaryField()) {
+                $this->binaryFields[] = $component;
+            }
+        }
+    }
+
+    /**
+     * @return bool
+     * @throws TableNotFoundException
+     */
     public function checkIfTableExists()
     {
         if (!Schema::hasTable($this->getTable()))

@@ -7,17 +7,18 @@ return [
     | Admin Settings
     |--------------------------------------------------------------------------
     */
-    'site-title' => '',
-    'site-url' => '',
+    'site-title' => 'David Hemphill',
+    'site-url' => 'http://davidhemphill.com',
+    'search' => false,
 
     /*
     |--------------------------------------------------------------------------
     | Amazon S3 Configuration
     |--------------------------------------------------------------------------
     */
-    'S3-key' => '',
-    'S3-secret' => '',
-    'bucket_name' => '',
+    'S3-key' => 'AKIAJQJC6TEW54Q2NQOQ',
+    'S3-secret' => '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',
+    'bucket_name' => 'bumblecms',
 
     /*
     |--------------------------------------------------------------------------

@@ -2,6 +2,7 @@
 
 @section('content')
 <section class="main-area">
+    @include('bumble::partials.sidenav')
     <main class="main-content">
         <form action="" method="post" class="form">
         <div class="header">
@@ -80,7 +81,5 @@
         </div>
         </form>
     </main>
-
-    @include('bumble::partials.sidenav')
 </section>
 @stop

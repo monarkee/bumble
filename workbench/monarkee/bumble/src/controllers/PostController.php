@@ -77,13 +77,11 @@ class PostController extends BumbleController
         $id = Input::get('id');
 
         $modelName = model_name($this->request->segment(2));
-        $modelClass = full_model_name($modelName);
-        $model = new $modelClass;
 
         $resource = resource_name($modelName);
 
         try {
-           $this->postService->updatePost($model, $id, $input);
+           $this->postService->updatePost($modelName, $id, $input);
         }
         catch (ValidationException $e)
         {

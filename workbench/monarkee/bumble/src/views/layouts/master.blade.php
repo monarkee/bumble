@@ -5,6 +5,7 @@
     <title>Bumble</title>
 
     <link rel="stylesheet" href="{{ asset('packages/bumble/app.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.min.css') }}">
 </head>
 <body>
     <header class="main-header">
@@ -15,7 +16,7 @@
 
             <div class="flexible-space"></div>
 
-            @if (Config::get('admin::search'))
+            @if (Config::get('bumble::search'))
             <form action="{{ url('/') }}" class="main-search">
                 <input class="main-search__input" type="search" name="q" value="" placeholder="Search Entries">
             </form>

@@ -186,6 +186,7 @@ return array(
 
         'Gravatar' => 'Thomaswelton\LaravelGravatar\Facades\Gravatar',
         'AWS' => 'Aws\Laravel\AwsFacade',
+        'BumbleStr' => 'Monarkee\Bumble\Support\Facades\BumbleStr',
 	),
 
 );

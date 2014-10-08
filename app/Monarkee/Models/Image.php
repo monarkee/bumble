@@ -13,7 +13,13 @@ class Image extends BumbleModel
     use SoftDeletingTrait;
 
     public $validation = [
+        'title' => 'required',
+        'content' => 'description',
         'image' => 'required',
+    ];
+
+    public $editValidation = [
+//        'title' => 'required',
     ];
 
     public function setComponents()

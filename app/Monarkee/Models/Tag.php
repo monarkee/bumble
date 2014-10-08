@@ -1,7 +1,7 @@
 <?php namespace Monarkee\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
-use Monarkee\Bumble\Fields\IntField;
+use Monarkee\Bumble\Fields\BinaryField;
 use Monarkee\Bumble\Fields\TextField;
 use Monarkee\Bumble\Models\BumbleModel;
 

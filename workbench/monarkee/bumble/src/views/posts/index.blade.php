@@ -2,6 +2,7 @@
 
 @section('content')
 <section class="main-area">
+    @include('bumble::partials.sidenav')
     <main class="main-content">
         <div class="header">
             <h2 class="header__title">{{ $model->getPluralName() }}</h2>
@@ -41,7 +42,7 @@
                                 @else
                                 <td>{{ $entry->{$field->getColumn()} }}</td>
                                 @endif
-                            @elseif ($field->getFieldType() == 'IntField')
+                            @elseif ($field->getFieldType() == 'BinaryField')
                                 @if ($field->getColumn() == 'active')
                                     <td class="active-status"><i class="badge {{ active_color($entry->active) }}"></i></td>
                                 @endif
@@ -69,7 +70,5 @@
             </tbody>
         </table>
     </main>
-
-    @include('bumble::partials.sidenav')
 </section>
 @stop
