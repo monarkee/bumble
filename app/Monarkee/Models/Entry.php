@@ -54,11 +54,17 @@ class Entry extends BumbleModel
             new DateTimeField('published_at', [
                 'format' => 'D F Y'
             ]),
+            new HasOneField('category'),
 //            new BelongsToManyField('tags', [
 //                'widget' => 'TagField',
 //            ]),
             new BinaryField('active'),
         ];
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('Monarkee\Models\Category');
     }
 
     public function status()
