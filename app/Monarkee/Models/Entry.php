@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Monarkee\Bumble\Fields\BelongsToManyField;
+use Monarkee\Bumble\Fields\DateTimeField;
 use Monarkee\Bumble\Fields\Field;
 use Monarkee\Bumble\Fields\FileField;
 use Monarkee\Bumble\Fields\HasOneField;
@@ -50,7 +51,9 @@ class Entry extends BumbleModel
                 'upload_to'   => 'banner_images',
             ]),
             new HasOneField('status'),
-            new TextField('published_at'),
+            new DateTimeField('published_at', [
+                'format' => 'D F Y'
+            ]),
 //            new BelongsToManyField('tags', [
 //                'widget' => 'TagField',
 //            ]),
