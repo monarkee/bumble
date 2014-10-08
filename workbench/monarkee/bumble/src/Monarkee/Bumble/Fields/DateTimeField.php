@@ -6,10 +6,7 @@ class DateTimeField extends TextField
 {
     const DEFAULT_FORMAT = 'l jS \\of F Y h:i:s A';
 
-    public function getFieldType()
-    {
-        return 'TextField';
-    }
+
 
     public function hasFormat()
     {
