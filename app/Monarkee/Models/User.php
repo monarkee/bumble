@@ -1,5 +1,6 @@
 <?php namespace Monarkee\Models;
 
+use Monarkee\Bumble\Fields\BinaryField;
 use Monarkee\Bumble\Fields\PasswordField;
 use Monarkee\Bumble\Fields\TextField;
 use Monarkee\Bumble\Models\BumbleModel;
@@ -29,6 +30,7 @@ class User extends BumbleUser
             new TextField('first_name'),
             new TextField('middle_name'),
             new TextField('last_name'),
+            new BinaryField('active'),
         ];
     }
 }
