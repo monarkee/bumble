@@ -6,7 +6,6 @@ use League\Flysystem\File;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local as LocalAdapter;
 use League\Flysystem\Adapter\AwsS3 as Adapter;
-use Monarkee\Bumble\Exceptions\FileNotUploadedException;
 
 class S3ImageFieldUploadService implements UploadInterface
 {
@@ -42,8 +41,6 @@ class S3ImageFieldUploadService implements UploadInterface
         $this->local = new Filesystem(new LocalAdapter('/'));
 
         $this->remote = new Filesystem(new Adapter($client, $this->attributes['bucket_name']));
-
-
 
         return $this;
     }
