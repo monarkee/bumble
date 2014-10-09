@@ -2,7 +2,9 @@
 
 use DB;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Foundation\Application;
+use Illuminate\Hashing\HasherInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 use Monarkee\Bumble\Exceptions\ValidationException;
@@ -38,13 +40,19 @@ class PostService
      */
     private $slugifyService;
 
-    public function __construct(PostValidator $validator, Application $app, Request $request, BumbleStr $str, SlugifyService $slugifyService)
+    /**
+     * @var HasherInterface
+     */
+    private $hasher;
+
+    public function __construct(PostValidator $validator, Application $app, Request $request, BumbleStr $str, SlugifyService $slugifyService, HasherInterface $hasher)
     {
         $this->validator = $validator;
         $this->app = $app;
         $this->request = $request;
         $this->str = $str;
         $this->slugifyService = $slugifyService;
+        $this->hasher = $hasher;
     }
 
     /**
@@ -254,6 +262,10 @@ class PostService
         }
     }
 
+    /**
+     * @param $model
+     * @throws ValidationException
+     */
     public function handleSlugFields($model)
     {
         foreach ($model->getSlugFields() as $slugField)
@@ -272,11 +284,42 @@ class PostService
                 $errors = new MessageBag(['slug' => $message]);
 
                 throw new ValidationException($errors, $message);
-//                $model->{$slugField->getColumn()} = $this->slugifyService->slugify($this->input[$slugField->getColumn()]);
             }
 
             // Remove the slugFields from the input
             $this->removeFieldFromInput($slugField->getColumn());
+        }
+    }
+
+    /**
+     * @param $model
+     */
+    public function handlePasswordFields($model)
+    {
+        foreach ($model->getPasswordFields() as $passwordField)
+        {
+            // Use our built-in hashing using Laravel's Hasher
+            if ($passwordField->getHashOption())
+            {
+                $model->{$passwordField->getColumn()} = $this->hasher->make($this->input[$passwordField->getColumn()]);
+            }
+            // Use the setter the user has specified on the model
+            else
+            {
+                if (method_exists($model, 'set'.studly_case($passwordField->getColumn()).'Attribute'))
+                {
+                    $method = 'set'.studly_case($passwordField->getColumn()).'Attribute';
+                    $model->{$method}($this->input[$passwordField->getColumn()]);
+                }
+                else
+                {
+                    // The user hasn't specified any hashing so just save the value to the model
+                    $model->{$passwordField->getColumn()} = $this->input[$passwordField->getColumn()];
+                }
+            }
+
+            // Remove the slugFields from the input
+            $this->removeFieldFromInput($passwordField->getColumn());
         }
     }
 
@@ -300,7 +343,11 @@ class PostService
             $this->handleImageFields($model);
         }
 
-        // Save each component to the model minus the ImageFields, which get unset from the array
+        if ($model->hasFieldTypes('PasswordField')) {
+            $this->handlePasswordFields($model);
+        }
+
+        // Save the other components to the model
         foreach ($model->getComponents() as $field) {
             $this->setFields($model, $field);
         }

@@ -8,4 +8,9 @@ class PasswordField extends Field
     {
         return false;
     }
+
+    public function getHashOption()
+    {
+        return isset($this->options['hash']) ? $this->options['hash'] : true;
+    }
 }

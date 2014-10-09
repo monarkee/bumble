@@ -17,6 +17,8 @@ abstract class BumbleModel extends Eloquent
      */
     public $validation = [];
 
+    private $passwordFields;
+
     /**
      * @var
      */
@@ -44,6 +46,7 @@ abstract class BumbleModel extends Eloquent
         $this->setImageFields();
         $this->setBinaryFields();
         $this->setSlugFields();
+        $this->setPasswordFields();
     }
 
     /**
@@ -300,5 +303,27 @@ abstract class BumbleModel extends Eloquent
         }
 
         return true;
+    }
+
+    public function hasFieldTypes($type)
+    {
+        foreach ($this->getComponents() as $component)
+        {
+            if ($component->isFieldType($type)) return true;
+        }
+    }
+
+    public function getPasswordFields()
+    {
+        return $this->passwordFields;
+    }
+
+    public function setPasswordFields()
+    {
+        foreach ($this->getComponents() as $component) {
+            if ($component->isFieldType('PasswordField')) {
+                $this->passwordFields[] = $component;
+            }
+        }
     }
 }

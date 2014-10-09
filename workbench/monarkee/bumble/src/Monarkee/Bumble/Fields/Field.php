@@ -99,4 +99,9 @@ abstract class Field {
     {
         return false;
     }
+
+    public function isFieldType($type)
+    {
+        return $type == $this->getFieldType();
+    }
 }
