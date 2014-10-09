@@ -104,4 +104,14 @@ abstract class Field {
     {
         return $type == $this->getFieldType();
     }
+
+    public function isEditable()
+    {
+        return $this->options['editable'] ?: true;
+    }
+
+    public function isDisabled()
+    {
+        return $this->isEditable() ? false : 'disabled';
+    }
 }
