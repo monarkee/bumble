@@ -4,9 +4,7 @@ use Carbon\Carbon;
 
 class DateTimeField extends TextField
 {
-    const DEFAULT_FORMAT = 'l jS \\of F Y h:i:s A';
-
-
+    const DEFAULT_FORMAT = 'M d Y';
 
     public function hasFormat()
     {
