@@ -1,6 +1,6 @@
 <?php namespace Monarkee\Bumble\Services;
 
-use SebastianBergmann\Exporter\Exception;
+use Exception;
 
 class ImageFieldUploadService implements UploadInterface {
 
