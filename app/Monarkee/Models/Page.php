@@ -1,5 +1,7 @@
 <?php namespace Monarkee\Models;
 
+use Monarkee\Bumble\Fields\DateTimeField;
+use Monarkee\Bumble\Fields\SlugField;
 use Monarkee\Bumble\Fields\TextareaField;
 use Monarkee\Bumble\Fields\TextField;
 use Monarkee\Bumble\Models\BumbleModel;
@@ -18,22 +20,11 @@ class Page extends BumbleModel
     public function setComponents()
     {
         $this->components = [
-            new TextField('title', [
-                'sort'          => 1,
-                'description'   => 'The title of the Page',
-            ]),
-            new TextField('slug', [
-                'sort'          => 2,
-            ]),
-            new TextareaField('content', [
-                'sort'          => 3,
-            ]),
-            new TextField('created_at', [
-                'sort'          => 4,
-            ]),
-            new TextField('updated_at', [
-                'sort'          => 5,
-            ]),
+            new TextField('title'),
+            new SlugField('slug'),
+            new TextareaField('content'),
+            new DateTimeField('created_at'),
+            new DateTimeField('updated_at'),
         ];
     }
 }
