@@ -1,0 +1,429 @@
+/*
+    File: marketing.css
+    Media: screen
+    Copyright: (c) 2014 Monarkee. monarkee.com
+    Author: David Hemphill
+    Notes:
+*/
+
+@import '../../node_modules/amaretto/stylesheets/amaretto';
+
+// Custom Font Stacks
+$avenir: 'Avenir Next', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+// Global Widths
+$main_site_width: 120rem;
+
+// Padding & Margins
+$sv: 6rem;
+$sh: 6rem;
+
+// Custom Settings & Colors
+$branding_color: #2795b6;
+$branding_gray: rgba(60, 60, 60, 1);
+
+$bc1: darken($branding_color, 6%);
+$bc2: darken($branding_color, 17%);
+$bc3: darken($branding_color, 28%);
+$bc4: darken($branding_color, 39%);
+$bc5: darken($branding_color, 50%);
+$bc6: darken($branding_color, 61%);
+$bc7: darken($branding_color, 72%);
+$bc8: darken($branding_color, 83%);
+$bc9: darken($branding_color, 94%);
+
+$cg1: darken(#fff, 6%);
+$cg2: darken(#fff, 17%);
+$cg3: darken(#fff, 28%);
+$cg4: darken(#fff, 39%);
+$cg5: darken(#fff, 50%);
+$cg6: darken(#fff, 61%);
+$cg7: darken(#fff, 72%);
+$cg8: darken(#fff, 83%);
+$cg9: darken(#fff, 94%);
+
+
+
+// Colors
+$success_color: #4AB471;
+$warning_color: #F3AE4E;
+$danger_color: #CF5C60;
+
+// Responsive Breakpoints
+//-------------------------------------------------------------------------- */
+$sm: 'only screen and (min-width: 300px)';
+$md: 'only screen and (min-width: 600px)';
+$lg: 'only screen and (min-width: 900px)';
+$xlg: 'only screen and (min-width: 1440px)';
+
+$only-sm: 'only screen and (max-width: 599px)';
+$only-md: 'only screen and (min-width: 600px) and (max-width: 899px)';
+$only-lg: 'only screen and (min-width: 900px) and (max-width: 1439px)';
+$only-xlg: 'only screen and (min-width: 1440px)';
+
+// Basic Styles
+// ------------------------------------------------------------------------------------ */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  height: 100%;
+}
+
+body {
+  font-family: $avenir;
+  min-height: 100%;
+  color: $branding_gray;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+// Color Helpers
+// ------------------------------------------------------------------------------------ */
+$white: #fff;
+
+.tcw {
+  color: $white;
+}
+
+// Spacing Helpers
+// ------------------------------------------------------------------------------------ */
+.pv {
+  padding-top: $sv;
+  padding-bottom: $sv;
+}
+
+.mv {
+  margin-top: $sv;
+  margin-bottom: $sv;
+}
+
+// Wraps
+// ------------------------------------------------------------------------------------ */
+.wrap {
+  max-width: $main_site_width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Font Sizes
+// ------------------------------------------------------------------------------------ */
+$ft-1: 1.2rem;
+$ft-2: 1.4rem;
+$ft-3: 1.6rem;
+$ft-4: 1.8rem;
+$ft-5: 2.1rem;
+$ft-6: 2.4rem;
+$ft-7: 3.6rem;
+$ft-8: 4.8rem;
+$ft-9: 6.0rem;
+$ft-10: 7.2rem;
+
+.ft-1 { font-size: $ft-1; }
+.ft-2 { font-size: $ft-2; }
+.ft-3 { font-size: $ft-3; }
+.ft-4 { font-size: $ft-4; }
+.ft-5 { font-size: $ft-5; }
+.ft-6 { font-size: $ft-6; }
+.ft-7 { font-size: $ft-7; }
+.ft-8 { font-size: $ft-8; }
+.ft-9 { font-size: $ft-9; }
+.ft-10 { font-size: $ft-10; }
+
+// Responsive Font Sizes
+// ------------------------------------------------------------------------------------ */
+.sm-ft-1 {
+  @include media($only-sm)
+  {
+    font-size: $ft-1 !important;
+  }
+}
+
+.sm-ft-2 {
+  @include media($only-sm)
+  {
+    font-size: $ft-2 !important;
+  }
+}
+
+.sm-ft-3 {
+  @include media($only-sm)
+  {
+    font-size: $ft-3 !important;
+  }
+}
+
+.sm-ft-4 {
+  @include media($only-sm)
+  {
+    font-size: $ft-4 !important;
+  }
+}
+
+.sm-ft-5 {
+  @include media($only-sm)
+  {
+    font-size: $ft-5 !important;
+  }
+}
+
+.sm-ft-6 {
+  @include media($only-sm)
+  {
+    font-size: $ft-6 !important;
+  }
+}
+
+.sm-ft-7 {
+  @include media($only-sm)
+  {
+    font-size: $ft-7 !important;
+  }
+}
+
+.sm-ft-8 {
+  @include media($only-sm)
+  {
+    font-size: $ft-8 !important;
+  }
+}
+
+.sm-ft-9 {
+  @include media($only-sm)
+  {
+    font-size: $ft-9 !important;
+  }
+}
+
+.md-ft-1 {
+  @include media($md)
+  {
+    font-size: $ft-1 !important;
+  }
+}
+
+.md-ft-2 {
+  @include media($md)
+  {
+    font-size: $ft-2 !important;
+  }
+}
+
+.md-ft-3 {
+  @include media($md)
+  {
+    font-size: $ft-3 !important;
+  }
+}
+
+.md-ft-4 {
+  @include media($md)
+  {
+    font-size: $ft-4 !important;
+  }
+}
+
+.md-ft-5 {
+  @include media($md)
+  {
+    font-size: $ft-5 !important;
+  }
+}
+
+.md-ft-6 {
+  @include media($md)
+  {
+    font-size: $ft-6 !important;
+  }
+}
+
+.md-ft-7 {
+  @include media($md)
+  {
+    font-size: $ft-7 !important;
+  }
+}
+
+.md-ft-8 {
+  @include media($md)
+  {
+    font-size: $ft-8 !important;
+  }
+}
+
+.md-ft-9 {
+  @include media($md)
+  {
+    font-size: $ft-9 !important;
+  }
+}
+
+.lg-ft-1 {
+  @include media($lg)
+  {
+    font-size: $ft-1 !important;
+  }
+}
+
+.lg-ft-2 {
+  @include media($lg)
+  {
+    font-size: $ft-2 !important;
+  }
+}
+
+.lg-ft-3 {
+  @include media($lg)
+  {
+    font-size: $ft-3 !important;
+  }
+}
+
+.lg-ft-4 {
+  @include media($lg)
+  {
+    font-size: $ft-4 !important;
+  }
+}
+
+.lg-ft-5 {
+  @include media($lg)
+  {
+    font-size: $ft-5 !important;
+  }
+}
+
+.lg-ft-6 {
+  @include media($lg)
+  {
+    font-size: $ft-6 !important;
+  }
+}
+
+.lg-ft-7 {
+  @include media($lg)
+  {
+    font-size: $ft-7 !important;
+  }
+}
+
+.lg-ft-8 {
+  @include media($lg)
+  {
+    font-size: $ft-8 !important;
+  }
+}
+
+.lg-ft-9 {
+  @include media($lg)
+  {
+    font-size: $ft-9 !important;
+  }
+}
+
+// Main Header
+// ------------------------------------------------------------------------------------ */
+.main-header {
+  background-color: $branding_color;
+}
+
+.main-header__wrap {
+  display: flex;
+//  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 0;
+
+  @include media($md)
+  {
+      flex-direction: row;
+  }
+
+}
+
+// Logo
+// ------------------------------------------------------------------------------------ */
+.logo {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.logo__link {
+  color: $white;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+// Main Nav
+// ------------------------------------------------------------------------------------ */
+.main-nav {
+}
+
+.main-nav__items {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 0;
+}
+
+.main-nav__item {
+  display: flex;
+  list-style: none;
+}
+
+.main-nav__link {
+  font-size: $ft-1;
+  font-weight: 600;
+  color: $white;
+  padding-left: 3rem;
+  padding-right: 3.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+// Hero Banners
+// ------------------------------------------------------------------------------------ */
+.hero {
+  background-color: $bc1;
+}
+
+.banner {
+}
+
+.banner__title {
+  color: $white;
+  font-size: $ft-9;
+  font-weight: 300;
+  margin: 0;
+  text-align: center;
+}
+
+.banner_subtitle {
+  color: $white;
+  font-size: $ft-3;
+  font-weight: 400;
+  margin: 0;
+  text-align: center;
+//  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.7;
+}

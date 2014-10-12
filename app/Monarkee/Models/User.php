@@ -8,6 +8,8 @@ use Monarkee\Bumble\Models\User as BumbleUser;
 
 class User extends BumbleUser
 {
+    public $showInTopNav = true;
+
 
     /**
      * @var array

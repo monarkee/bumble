@@ -1,36 +1,62 @@
-@include('themes.includes.header')
-    <div id="posts">
-        @if ($posts)
-            @foreach($posts as $post)
-                <div class="post text">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bumble - The CMS for Laravel</title>
 
-                    <div class="post-meta-row">
-                    @if ($post->tags)
-                    <ul class="tags">
-                        @foreach ($post->tags as $tag)
-                        <li><a href="{{ $tag->id }}" class="tag">{{ $tag->title }}</a></li>
-                        @endforeach
-                    </ul>
-                    @endif
+<link rel="stylesheet" href="{{ asset('css/marketing.min.css') }}"/>
+</head>
+<body>
+    <header class="main-header">
+        <div class="wrap main-header__wrap">
+            <h1 class="logo">
+                <a href="{{ route('home') }}" class="logo__link">{{{ $homepage->title }}}</a>
+            </h1>
 
-                    <span class="post-meta">{{ $post->created_at }}</span>
-                     </div> <!-- /.post-meta-row -->
-
-                    <h2><a href="{Permalink}">{{ $post->title }}</a></h2>
-
-                    @markdown($post->excerpt)
-                    @markdown($post->content)
-
-                    <div class="post-meta-permalink"><p><a href="{Permalink}" alt="Permalink">+</a></p></div>  <!-- /.post-meta-permalink -->
-                </div> <!-- /.post -->
+            <nav class="main-nav">
+                <ul class="main-nav__items">
+                    <li class="main-nav__item">
+                        <a class="main-nav__link" href="">Home</a>
+                    </li>
+                    <li class="main-nav__item">
+                        <a class="main-nav__link" href="">Documentation</a>
+                    </li>
+                    <li class="main-nav__item">
+                        <a class="main-nav__link" href="">Blog</a>
+                    </li>
+                    <li class="main-nav__item">
+                        <a class="main-nav__link" href="">Donate</a>
+                    </li>
+                    <li class="main-nav__item">
+                        <a class="main-nav__link" href="">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="banner wrap hero__wrap pv">
+            @foreach ($banners as $banner)
+                <h2 class="banner__title">{{{ $banner->title }}}</h2>
+                <p class="banner_subtitle">{{{ $banner->content }}}</p>
             @endforeach
-        @endif
-    </div> <!-- /#posts -->
 
-
-            <div id="pagination">
-                <a id="pag-prev" href="{PreviousPage}">&larr; Previous Page</a>
-                <a id="pag-next" href="{NextPage}">Next Page &rarr;</a>
-            </div> <!-- /#pagination -->
+            <img class="pv" src="{{ asset('img/bumble.png') }}" alt="Screenshot of Bumble"/>
+        </div>
+    </section>
+    {{--
+    <section class="feature">
+        <div class="wrap">
+            <h3>{{{ $homepage->feature_1_title }}}</h3>
+            @markdown($homepage->feature_1_content)
+        </div>
+    </section>
+    <section class="feature">
+        <div class="wrap">
+            <h3>{{{ $homepage->feature_2_title }}}</h3>
+            @markdown($homepage->feature_2_content)
+        </div>
+    </section>
+    --}}
 </body>
 </html>

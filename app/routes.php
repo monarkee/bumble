@@ -1,2 +1,5 @@
 <?php
-Route::get('/', 'HomeController@getIndex');
+Route::get('/', [
+    'as' => 'home',
+    'uses' => 'HomeController@getIndex',
+]);

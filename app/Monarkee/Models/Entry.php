@@ -55,9 +55,9 @@ class Entry extends BumbleModel
                 'format' => 'D F Y'
             ]),
             new HasOneField('category'),
-//            new BelongsToManyField('tags', [
-//                'widget' => 'TagField',
-//            ]),
+            new BelongsToManyField('tags', [
+                'widget' => 'TagField',
+            ]),
             new BinaryField('active'),
         ];
     }

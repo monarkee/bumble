@@ -49,7 +49,8 @@ gulp.task('vendorcss', function () {
 // SCSS Compiling and Minification
 gulp.task('scss', function () {
     return gulp.src([
-        SRC + 'scss/app.scss'
+        SRC + 'scss/app.scss',
+        SRC + 'scss/marketing.scss',
     ])
         .pipe(plumber({
             errorHandler: onError
@@ -82,15 +83,6 @@ gulp.task('coffee', function () {
         .pipe(gulp.dest(BUILD + 'js'))
 });
 
-// Build Angular App
-gulp.task('angular', function () {
-    return gulp.src([
-        SRC + 'angular/**/*'
-    ])
-        .pipe(gulp.dest(BUILD + 'angular'))
-        .pipe(gulp.dest(DIST + 'angular'));
-});
-
 // Reload Blade Templates
 gulp.task('blade', function () {
     return gulp.src('app/views/**/*.blade.php')
@@ -101,6 +93,16 @@ gulp.task('blade', function () {
  * Master Build Tasks
  **/
 gulp.task('buildcss', ['scss', 'vendorcss'], function () {
+    gulp.src([
+        BUILD + 'css/vendor.css',
+        BUILD + 'css/marketing.css'
+    ])
+        .pipe(concat('marketing.min.css'))
+        .pipe(minifycss())
+        .pipe(gulp.dest(DIST + 'css'))
+//        .pipe(notify({message: 'CSS Complete.'}))
+        .pipe(livereload());
+
     return gulp.src([
         BUILD + 'css/vendor.css',
         BUILD + 'css/app.css'
