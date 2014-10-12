@@ -1,0 +1,36 @@
+{
+    "name": "Monarkee\\Bumble\\Fields\\HasOneField",
+    "line": 3,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble\\Fields",
+    "file": "src\/Monarkee\/Bumble\/Fields\/HasOneField.php",
+    "hash": "436ace181ea02534f7fc9ee9d0e8bc7e037ba6d8",
+    "parent": "Monarkee\\Bumble\\Fields\\Field",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "properties": [],
+    "methods": {
+        "getTitleOption": {
+            "name": "getTitleOption",
+            "line": 5,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

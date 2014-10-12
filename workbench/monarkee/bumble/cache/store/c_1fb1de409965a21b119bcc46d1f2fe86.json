@@ -1,0 +1,109 @@
+{
+    "name": "Monarkee\\Bumble\\Services\\S3ImageFieldUploadService",
+    "line": 10,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble\\Services",
+    "file": "src\/Monarkee\/Bumble\/Services\/S3ImageFieldUploadService.php",
+    "hash": "ef66d46ffacec3d595e7b1a3dec2fdb5716f4b70",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "S3Client": "Aws\\S3\\S3Client",
+        "App": "Illuminate\\Support\\Facades\\App",
+        "File": "League\\Flysystem\\File",
+        "Filesystem": "League\\Flysystem\\Filesystem",
+        "LocalAdapter": "League\\Flysystem\\Adapter\\Local",
+        "Adapter": "League\\Flysystem\\Adapter\\AwsS3"
+    },
+    "errors": [],
+    "interfaces": {
+        "Monarkee\\Bumble\\Services\\UploadInterface": "Monarkee\\Bumble\\Services\\UploadInterface"
+    },
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 21,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "attributes": {
+                    "name": "attributes",
+                    "line": 21,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "create": {
+            "name": "create",
+            "line": 32,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Monarkee\\Bumble\\Services\\$this",
+                    false
+                ]
+            ],
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "write": {
+            "name": "write",
+            "line": 51,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "setFile": {
+            "name": "setFile",
+            "line": 60,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

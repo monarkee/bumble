@@ -1,0 +1,41 @@
+{
+    "name": "Monarkee\\Bumble\\Fields\\TextField",
+    "line": 6,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble\\Fields",
+    "file": "src\/Monarkee\/Bumble\/Fields\/TextField.php",
+    "hash": "2bf6e847dd3b20ccc1d04763c661c14135f3ecda",
+    "parent": "Monarkee\\Bumble\\Fields\\Field",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Field": "Monarkee\\Bumble\\Fields\\Field",
+        "FieldInterface": "Monarkee\\Bumble\\Interfaces\\FieldInterface"
+    },
+    "errors": [],
+    "interfaces": {
+        "Monarkee\\Bumble\\Interfaces\\FieldInterface": "Monarkee\\Bumble\\Interfaces\\FieldInterface"
+    },
+    "properties": [],
+    "methods": {
+        "register": {
+            "name": "register",
+            "line": 8,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

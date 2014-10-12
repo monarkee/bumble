@@ -1,0 +1,65 @@
+{
+    "name": "Monarkee\\Bumble\\Models\\TestUser",
+    "line": 11,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble\\Models",
+    "file": "src\/Monarkee\/Bumble\/Models\/TestUser.php",
+    "hash": "b88ec3a25e11d0868749e48a7531c261bd3b4e11",
+    "parent": "Monarkee\\Bumble\\Models\\User",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Gravatar": "Gravatar",
+        "TextField": "Monarkee\\Bumble\\Fields\\TextField",
+        "BumbleModel": "Monarkee\\Bumble\\Models\\BumbleModel",
+        "InvalidArgumentException": "InvalidArgumentException",
+        "UserInterface": "Illuminate\\Auth\\UserInterface",
+        "RemindableInterface": "Illuminate\\Auth\\Reminders\\RemindableInterface",
+        "Eloquent": "Illuminate\\Database\\Eloquent\\Model"
+    },
+    "errors": [],
+    "interfaces": {
+        "Illuminate\\Auth\\UserInterface": "Illuminate\\Auth\\UserInterface",
+        "Illuminate\\Auth\\Reminders\\RemindableInterface": "Illuminate\\Auth\\Reminders\\RemindableInterface"
+    },
+    "properties": {
+        "validation": {
+            "name": "validation",
+            "line": 13,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": [],
+            "errors": []
+        }
+    },
+    "methods": {
+        "setComponents": {
+            "name": "setComponents",
+            "line": 17,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

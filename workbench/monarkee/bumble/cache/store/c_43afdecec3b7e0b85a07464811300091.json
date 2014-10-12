@@ -1,0 +1,114 @@
+{
+    "name": "Monarkee\\Bumble\\Repositories\\ModelRepository",
+    "line": 10,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble\\Repositories",
+    "file": "src\/Monarkee\/Bumble\/Repositories\/ModelRepository.php",
+    "hash": "af1486ad36a1af2da0b3514cb7955464845c1b5f",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Exception": "Exception",
+        "Repository": "Illuminate\\Config\\Repository",
+        "Adapter": "League\\Flysystem\\Adapter\\Local",
+        "Filesystem": "League\\Flysystem\\Filesystem",
+        "ReflectionClass": "ReflectionClass",
+        "FatalErrorException": "Symfony\\Component\\Debug\\Exception\\FatalErrorException"
+    },
+    "errors": [],
+    "interfaces": [],
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 24,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "config": {
+                    "name": "config",
+                    "line": 24,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Illuminate\\Config\\Repository",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Repository",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getModelNames": {
+            "name": "getModelNames",
+            "line": 32,
+            "short_desc": "Get an array of model names from the directory",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getModels": {
+            "name": "getModels",
+            "line": 57,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "hidden": {
+                    "name": "hidden",
+                    "line": 57,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "false",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "hasModels": {
+            "name": "hasModels",
+            "line": 91,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

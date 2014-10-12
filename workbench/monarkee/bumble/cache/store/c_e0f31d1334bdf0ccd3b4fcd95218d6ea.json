@@ -1,0 +1,119 @@
+{
+    "name": "Monarkee\\Bumble\\Fields\\SlugField",
+    "line": 6,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble\\Fields",
+    "file": "src\/Monarkee\/Bumble\/Fields\/SlugField.php",
+    "hash": "1a298e1d4b7d1b2bd136fe3c6dfe17915fa8471f",
+    "parent": "Monarkee\\Bumble\\Fields\\TextField",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "MessageBag": "Illuminate\\Support\\MessageBag",
+        "ValidationException": "Monarkee\\Bumble\\Exceptions\\ValidationException"
+    },
+    "errors": [],
+    "interfaces": [],
+    "properties": [],
+    "methods": {
+        "isSlugField": {
+            "name": "isSlugField",
+            "line": 13,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getSetFrom": {
+            "name": "getSetFrom",
+            "line": 18,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "isRequired": {
+            "name": "isRequired",
+            "line": 23,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "process": {
+            "name": "process",
+            "line": 28,
+            "short_desc": "The default process action is to just return the passed model back to the caller",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Monarkee\\Bumble\\Fields\\BumbleModel",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "model": {
+                    "name": "model",
+                    "line": 28,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Monarkee\\Bumble\\Fields\\$model",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "input": {
+                    "name": "input",
+                    "line": 28,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Monarkee\\Bumble\\Fields\\$input",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

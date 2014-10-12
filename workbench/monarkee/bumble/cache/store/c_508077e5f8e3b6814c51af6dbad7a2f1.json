@@ -1,0 +1,269 @@
+{
+    "name": "Monarkee\\Bumble\\Fields\\FileField",
+    "line": 6,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble\\Fields",
+    "file": "src\/Monarkee\/Bumble\/Fields\/FileField.php",
+    "hash": "0a38c39f2ac2c664c6c057add77d58992fec4a84",
+    "parent": "Monarkee\\Bumble\\Fields\\Field",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Field": "Monarkee\\Bumble\\Fields\\Field",
+        "FileFieldInterface": "Monarkee\\Bumble\\Interfaces\\FileFieldInterface"
+    },
+    "errors": [],
+    "interfaces": {
+        "Monarkee\\Bumble\\Interfaces\\FileFieldInterface": "Monarkee\\Bumble\\Interfaces\\FileFieldInterface"
+    },
+    "properties": {
+        "driver": {
+            "name": "driver",
+            "line": 13,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [
+                "Unable to parse \"@var\" tag \"\""
+            ]
+        },
+        "anonymize": {
+            "name": "anonymize",
+            "line": 27,
+            "short_desc": "Whether to anonymize the uploaded file's name",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "default": {},
+            "errors": []
+        },
+        "allowed_types": {
+            "name": "allowed_types",
+            "line": 48,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [
+                "Unable to parse \"@var\" tag \"\""
+            ]
+        }
+    },
+    "methods": {
+        "isAnonymized": {
+            "name": "isAnonymized",
+            "line": 18,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getUploadTo": {
+            "name": "getUploadTo",
+            "line": 32,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getUploadPath": {
+            "name": "getUploadPath",
+            "line": 40,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "isFileField": {
+            "name": "isFileField",
+            "line": 50,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "register": {
+            "name": "register",
+            "line": 55,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "process": {
+            "name": "process",
+            "line": 60,
+            "short_desc": "The default process action is to just return the passed model back to the caller",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Monarkee\\Bumble\\Fields\\BumbleModel",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "model": {
+                    "name": "model",
+                    "line": 60,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Monarkee\\Bumble\\Fields\\$model",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "input": {
+                    "name": "input",
+                    "line": 60,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Monarkee\\Bumble\\Fields\\$input",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "handleFile": {
+            "name": "handleFile",
+            "line": 65,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "request": {
+                    "name": "request",
+                    "line": 65,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "removeFile": {
+            "name": "removeFile",
+            "line": 70,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "filename": {
+                    "name": "filename",
+                    "line": 70,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": {
+        "DEFAULT_UPLOAD_TO": {
+            "name": "DEFAULT_UPLOAD_TO",
+            "line": 8,
+            "short_desc": "",
+            "long_desc": ""
+        }
+    }
+}

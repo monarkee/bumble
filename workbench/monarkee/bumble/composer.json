@@ -12,7 +12,9 @@
         "thomaswelton/laravel-gravatar": "dev-master",
         "michelf/php-markdown": "1.4.1",
         "league/flysystem": "0.5.*",
-        "aws/aws-sdk-php-laravel": "1.*"
+        "aws/aws-sdk-php-laravel": "1.*",
+        "intervention/image": "2.*",
+        "intervention/imagecache": "2.*"
     },
     "require-dev": {
         "phpspec/phpspec": "~2.0"

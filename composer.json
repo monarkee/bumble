@@ -8,7 +8,8 @@
         "phpunit/phpunit": "dev-master",
         "barryvdh/laravel-ide-helper": "1.*",
 		"frozennode/administrator": "dev-master",
-		"aws/aws-sdk-php-laravel": "1.*"
+		"aws/aws-sdk-php-laravel": "1.*",
+		"phpdocumentor/phpdocumentor": "2.1"
 	},
 	"autoload": {
 		"classmap": [
