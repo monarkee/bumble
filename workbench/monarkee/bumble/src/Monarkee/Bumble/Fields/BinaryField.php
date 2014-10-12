@@ -8,4 +8,13 @@ class BinaryField extends Field
     {
         return true;
     }
+
+    public function process($model, $input)
+    {
+        $column = $this->getColumn();
+
+        $model->{$this->getColumn()} = isset($input[$column]) ?: false;
+
+        return $model;
+    }
 }

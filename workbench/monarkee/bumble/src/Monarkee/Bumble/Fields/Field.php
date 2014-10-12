@@ -6,6 +6,8 @@ abstract class Field {
     {
         $this->title = $title;
         $this->options = $options;
+
+        if (method_exists($this, 'setUp')) $this->setUp();
     }
 
     public function getFieldType()
@@ -113,5 +115,29 @@ abstract class Field {
     public function isDisabled()
     {
         return $this->isEditable() ? false : 'disabled';
+    }
+
+    /**
+     * The default process action is to just return the passed
+     * model back to the caller
+     *
+     * @param $model
+     * @param $input
+     * @return BumbleModel
+     */
+    public function process($model, $input)
+    {
+        $column = $this->getColumn();
+
+        if(isset($input[$column])) {
+            $model->{$column} = $input[$column];
+        }
+
+        return $model;
+    }
+
+    public function isFileField()
+    {
+        return false;
     }
 }

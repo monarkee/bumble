@@ -69,7 +69,7 @@ class PostService
 
         $rules = $model->getValidationRules();
 
-        $this->validator->validate($input, $rules);
+        $this->validator->validate($this->input, $rules);
 
         return $this->saveEntry($model);
     }
@@ -93,7 +93,7 @@ class PostService
         if (!empty($rules))
         {
             // Now validate the entry, and return success or errors
-            $this->validator->validate($input, $rules);
+            $this->validator->validate($this->input, $rules);
         }
 
         $input = $this->filterEmptyInput($input);
@@ -118,73 +118,31 @@ class PostService
 
         $post = $model->find($id)->first();
 
-        return $post->delete();
-    }
+        // TODO: Handle deletion of images from the filesystem
+        // and know whether the model is soft-deletable
+        if (!$model->isSoftDeleting())
+        {
+            foreach ($model->getComponents() as $component)
+            {
+                if ($component->isFileField())
+                {
+                    $column = $component->getColumn();
+                    $location = $component->getUploadTo();
 
-    /**
-     * @return bool
-     */
-    public function deleteRelationship()
-    {
-        return true;
-    }
-
-    /**
-     * @param $imageField
-     * @return bool
-     */
-    public function handleLocalFiles($imageField)
-    {
-        $filesystem = new ImageFieldUploadService([
-            'image' => $this->request->file($imageField->getLowerName()),
-            'adapter' => $imageField->getAdapter(),
-            'upload_to' => $imageField->getUploadTo(),
-        ]);
-
-        // Write the image to the file system and move it in place
-        return $filesystem->write();;
-    }
-
-    /**
-     * @param $imageField
-     */
-    public function handleS3Files($imageField)
-    {
-        $filesystem = new S3ImageFieldUploadService([
-            'bucket_name' => $imageField->getBucketName(),
-            'image' => $this->request->file($imageField->getLowerName()),
-            'adapter' => $imageField->getAdapter(),
-            'upload_to' => $imageField->getUploadTo(),
-        ]);
-
-        // Write the image to the file system and move it in place
-        return $filesystem->write();
-    }
-
-    /**
-     * @param $model
-     * @param $field
-     */
-    private function handleImageFields($model)
-    {
-        foreach ($model->getImageFields() as $imageField) {
-            if ($this->request->hasFile($imageField->getLowerName())) {
-                switch ($imageField->getAdaptor()) {
-                    case 'Local':
-                        $this->handleLocalFiles($imageField);
-                        break;
-                    case 'S3':
-                        $this->handleS3Files($imageField);
-                        break;
+                    // Try to delete the file, if it doesn't work it probably doesn't exist
+                    try
+                    {
+                        unlink($location . '/' . $post->{$column});
+                    }
+                    catch (Exception $e)
+                    {
+                        return;
+                    }
                 }
-
-                // Change the attribute on the model
-                $model->{$imageField->getColumn()} = $this->request->file($imageField->getLowerName())->getClientOriginalName();
             }
-
-            // Remove the imageField from input
-            $this->removeFieldFromInput($imageField->getColumn());
         }
+
+        return $post->delete();
     }
 
     /**
@@ -202,17 +160,6 @@ class PostService
     public function setInput($input)
     {
         $this->input = $input;
-    }
-
-    /**
-     * @param $model
-     * @param $field
-     */
-    private function setFields($model, $field)
-    {
-        if (isset($this->input[$field->getColumn()])) {
-            $model->{$field->getColumn()} = $this->input[$field->getColumn()];
-        }
     }
 
     /**
@@ -241,118 +188,36 @@ class PostService
     }
 
     /**
-     * @param $input
-     * @param $model
-     */
-    private function handleBinaryFields($model)
-    {
-        foreach ($model->getBinaryFields() as $binaryField) {
-
-            if (isset($this->input[$binaryField->getColumn()]))
-            {
-                $model->{$binaryField->getColumn()} = true;
-
-                // Remove the binaryFields from the input
-                $this->removeFieldFromInput($binaryField->getColumn());
-            }
-            else
-            {
-                $model->{$binaryField->getColumn()} = false;
-            }
-        }
-    }
-
-    /**
-     * @param $model
-     * @throws ValidationException
-     */
-    public function handleSlugFields($model)
-    {
-        foreach ($model->getSlugFields() as $slugField)
-        {
-            if (!empty($this->input[$slugField->getColumn()]))
-            {
-                $model->{$slugField->getColumn()} = $this->slugifyService->slugify($this->input[$slugField->getColumn()]);
-            }
-            elseif ($slugField->getSetFrom())
-            {
-                $model->{$slugField->getColumn()} = $this->slugifyService->slugify($this->input[$slugField->getSetFrom()]);
-            }
-            else
-            {
-                $message = "The {$slugField->getColumn()} field is required.";
-                $errors = new MessageBag(['slug' => $message]);
-
-                throw new ValidationException($errors, $message);
-            }
-
-            // Remove the slugFields from the input
-            $this->removeFieldFromInput($slugField->getColumn());
-        }
-    }
-
-    /**
-     * @param $model
-     */
-    public function handlePasswordFields($model)
-    {
-        foreach ($model->getPasswordFields() as $passwordField)
-        {
-            // Use our built-in hashing using Laravel's Hasher
-            if ($passwordField->getHashOption())
-            {
-                $model->{$passwordField->getColumn()} = $this->hasher->make($this->input[$passwordField->getColumn()]);
-            }
-            // Use the setter the user has specified on the model
-            else
-            {
-                if (method_exists($model, 'set'.studly_case($passwordField->getColumn()).'Attribute'))
-                {
-                    $method = 'set'.studly_case($passwordField->getColumn()).'Attribute';
-                    $model->{$method}($this->input[$passwordField->getColumn()]);
-                }
-                else
-                {
-                    // The user hasn't specified any hashing so just save the value to the model
-                    $model->{$passwordField->getColumn()} = $this->input[$passwordField->getColumn()];
-                }
-            }
-
-            // Remove the slugFields from the input
-            $this->removeFieldFromInput($passwordField->getColumn());
-        }
-    }
-
-    /**
      * @param $model
      */
     private function saveEntry($model)
     {
-        if ($model->hasBinaryFields()) {
-            $this->handleBinaryFields($model);
-        }
-
-        if ($model->hasSlugFields()) {
-            $this->handleSlugFields($model);
-        }
-
-        // If there are image fields, then we need to upload them
-        // We will save the entry afterwards because we will rewrite
-        // attributes on the model before the save
-        if ($model->hasImageFields()) {
-            $this->handleImageFields($model);
-        }
-
-        if ($model->hasFieldTypes('PasswordField')) {
-            $this->handlePasswordFields($model);
-        }
-
-        // Save the other components to the model
-        foreach ($model->getComponents() as $field) {
-            $this->setFields($model, $field);
-        }
+        $model = $this->handleComponents($model);
 
         // Finally, save the model
         return $model->save();
+    }
+
+    public function handleComponents($model)
+    {
+        foreach ($model->getComponents() as $component)
+        {
+            $column = $component->getColumn();
+
+            // This include ImageFields as well because the inherit from FileField
+            if ($component->isFileField() && $this->request->hasFile($column))
+            {
+                // Handle the upload by calling the object's handleFile() method
+                $component->handleFile($this->request);
+                $model->{$column} = $this->request->file($component->getLowerName())->getClientOriginalName();
+            }
+            else
+            {
+                // Process the input data for this component type
+                $model = $component->process($model, $this->input);
+            }
+        }
+
+        return $model;
     }
 }

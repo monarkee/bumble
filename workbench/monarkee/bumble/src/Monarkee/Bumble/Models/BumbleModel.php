@@ -72,6 +72,13 @@ abstract class BumbleModel extends Eloquent
     public $imageFields;
 
     /**
+     */
+    public function isSoftDeleting()
+    {
+        return in_array('Illuminate\Database\Eloquent\SoftDeletingTrait', class_uses($this));
+    }
+
+    /**
      * @return mixed
      */
     public function getDescription()
