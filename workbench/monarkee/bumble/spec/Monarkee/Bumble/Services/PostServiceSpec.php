@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Factory;
 use Monarkee\Bumble\Fields\S3ImageField;
 use Monarkee\Bumble\Models\BumbleModel;
-use Monarkee\Bumble\Services\S3ImageFieldUploadService;
+use Monarkee\Bumble\Services\S3FileService;
 use Monarkee\Bumble\Support\BumbleStr;
 use Monarkee\Bumble\Validators\PostValidator;
 use Monarkee\Models\Tag;
