@@ -45,6 +45,8 @@
                                 @if ($field->getColumn() == 'active')
                                     <td class="active-status"><i class="badge {{ active_color($entry->active) }}"></i></td>
                                 @endif
+                            @elseif ($field->getFieldType() == 'DropdownField')
+                                <td>{{ $field->getValue($entry->{$field->getColumn()}) }}</td>
                             @elseif ($field->getFieldType() == 'TextareaField')
                                 <td>{{ str_limit($entry->{$field->getColumn()}, $limit = 40, $end = '&hellip;') }}</td>
                             @elseif ($field->getFieldType() == 'ImageField')

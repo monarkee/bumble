@@ -14,6 +14,7 @@
             'route' => [
                 Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.update', $post->id
                 ]]) }}
+        <?php $editing = true; ?>
         {{ Form::hidden('id', $post->id) }}
             @include('bumble::posts.partials.form')
         {{ Form::close() }}

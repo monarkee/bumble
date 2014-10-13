@@ -3,6 +3,7 @@
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Illuminate\Support\Facades\Hash;
 use Monarkee\Bumble\Fields\BinaryField;
+use Monarkee\Bumble\Fields\DropdownField;
 use Monarkee\Bumble\Fields\ImageField;
 use Monarkee\Bumble\Fields\PasswordField;
 use Monarkee\Bumble\Fields\SlugField;
@@ -14,17 +15,27 @@ class Title extends BumbleModel
     use SoftDeletingTrait;
 
     public $validation = [
-        'title' => 'required',
+        'options' => 'required',
+    ];
+
+    protected $dropdownOptions = [
+        'open' => 'Open',
+        'closed' => 'Closed',
+        'review' =>'In Review',
     ];
 
     public function setComponents()
     {
         $this->components = [
-            new TextField('title'),
-            new SlugField('slug', ['set_from' => 'title']),
+//            new TextField('title'),
+//            new SlugField('slug', ['set_from' => 'title']),
 //            new PasswordField('password'),
 //            new BinaryField('active'),
-            new ImageField('banner'),
+//            new ImageField('banner'),
+            new DropdownField('status', [
+                'options' => $this->dropdownOptions,
+                'default' => 'review'
+            ]),
         ];
     }
 

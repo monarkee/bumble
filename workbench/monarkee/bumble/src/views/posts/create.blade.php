@@ -7,7 +7,11 @@
         <div class="header">
             <h2 class="header__title">Create a new {{ $model->getModelName() }}</h2>
         </div>
-        {{ Form::open(['files' => true, 'class' => 'form', 'route' => Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.store']) }}
+        {{ Form::open([
+            'files' => true,
+            'class' => 'form',
+            'route' => Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.store'
+        ]) }}
             @include('bumble::posts.partials.form')
         {{ Form::close() }}
     </main>
