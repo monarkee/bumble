@@ -2,7 +2,7 @@
 
 use Exception;
 
-class ImageFieldUploadService implements UploadInterface {
+class FileFieldUploadService implements UploadInterface {
 
     /**
      * @var
@@ -36,7 +36,7 @@ class ImageFieldUploadService implements UploadInterface {
     {
         try
         {
-            $this->attributes['image']->move($this->attributes['upload_to'], $this->attributes['image']->getClientOriginalName());
+            $this->attributes['file']->move($this->attributes['upload_to'], $this->attributes['file']->getClientOriginalName());
         }
         catch (Exception $e)
         {

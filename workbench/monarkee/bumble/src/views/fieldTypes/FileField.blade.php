@@ -4,6 +4,5 @@
 
     <p>{{ $field->getDescription() }}</p>
     <p>{{ Form::file($field->getColumn()) }}</p>
-    <p>{{ $post->{$field->getColumn()} }}</p>
     <p>Uploads to &rsquo;{{ $field->getUploadTo() }}&rsquo;</p>
 </div>

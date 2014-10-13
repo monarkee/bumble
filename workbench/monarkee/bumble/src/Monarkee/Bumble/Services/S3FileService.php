@@ -7,7 +7,7 @@ use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local as LocalAdapter;
 use League\Flysystem\Adapter\AwsS3 as Adapter;
 
-class S3ImageFieldUploadService implements UploadInterface
+class S3FileService implements UploadInterface
 {
 
     /**
@@ -31,7 +31,7 @@ class S3ImageFieldUploadService implements UploadInterface
      */
     public function create()
     {
-        $this->config = App::make('config');
+        $this->config = app()->make('config');
 
         $client = S3Client::factory(array(
             'key'    => $this->config->get('bumble::S3-key'),
@@ -59,6 +59,11 @@ class S3ImageFieldUploadService implements UploadInterface
 
     public function setFile()
     {
-        $this->file = $this->attributes['image'];
+        $this->file = $this->attributes['file'];
+    }
+
+    public function delete()
+    {
+        $this->remote->delete($this->file);
     }
 }

@@ -8,7 +8,7 @@ use Monarkee\Bumble\Fields\FileField;
 use Monarkee\Bumble\Fields\HasOneField;
 use Monarkee\Bumble\Fields\ImageField;
 use Monarkee\Bumble\Fields\BinaryField;
-use Monarkee\Bumble\Fields\S3ImageField;
+use Monarkee\Bumble\Fields\S3FileField;
 use Monarkee\Bumble\Fields\SlugField;
 use Monarkee\Bumble\Fields\TextareaField;
 use Monarkee\Bumble\Fields\TextField;
@@ -46,7 +46,7 @@ class Entry extends BumbleModel
             new TextareaField('content', [
                 'show_in_listing' => false,
             ]),
-            new S3ImageField('banner_image', [
+            new S3FileField('banner_image', [
                 'show_in_listing' => false,
                 'upload_to'   => 'banner_images',
             ]),

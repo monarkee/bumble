@@ -2,6 +2,5 @@
 
 interface FieldInterface
 {
-    public function register();
     public function process($model, $input);
 }

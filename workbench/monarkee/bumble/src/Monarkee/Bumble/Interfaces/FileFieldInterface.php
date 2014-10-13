@@ -4,5 +4,5 @@ interface FileFieldInterface extends FieldInterface
 {
     public function handleFile($request);
 
-    public function removeFile($filename);
+    public function unlinkFile($filename);
 }

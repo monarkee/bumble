@@ -120,25 +120,11 @@ class PostService
 
         // TODO: Handle deletion of images from the filesystem
         // and know whether the model is soft-deletable
-        if (!$model->isSoftDeleting())
+        foreach ($model->getComponents() as $component)
         {
-            foreach ($model->getComponents() as $component)
+            if ($component->isFileField())
             {
-                if ($component->isFileField())
-                {
-                    $column = $component->getColumn();
-                    $location = $component->getUploadTo();
-
-                    // Try to delete the file, if it doesn't work it probably doesn't exist
-                    try
-                    {
-                        unlink($location . '/' . $post->{$column});
-                    }
-                    catch (Exception $e)
-                    {
-                        return;
-                    }
-                }
+                $this->unlinkFile($component, $post);
             }
         }
 
@@ -219,5 +205,20 @@ class PostService
         }
 
         return $model;
+    }
+
+    /**
+     * @param $component
+     * @param $post
+     */
+    private function unlinkFile($component, $post)
+    {
+        if ($component->unlinkFilesOnDelete()) {
+
+            $column = $component->getColumn();
+            $location = $component->getUploadTo();
+
+            $component->unlinkFile($location . '/' . $post->{$column});
+        }
     }
 }
