@@ -7,7 +7,7 @@
     "tags": [],
     "namespace": "Monarkee\\Bumble\\Interfaces",
     "file": "src\/Monarkee\/Bumble\/Interfaces\/FieldInterface.php",
-    "hash": "9dd0f03f0d96a1f0c9ab3791708ce5d26524f923",
+    "hash": "0f7718709bef4d060333aca5d2ac80a620273478",
     "parent": null,
     "modifiers": null,
     "is_trait": false,
@@ -17,23 +17,9 @@
     "interfaces": [],
     "properties": [],
     "methods": {
-        "register": {
-            "name": "register",
-            "line": 5,
-            "short_desc": "",
-            "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
-            "tags": [],
-            "modifiers": "1",
-            "is_by_ref": "",
-            "exceptions": [],
-            "errors": [],
-            "parameters": []
-        },
         "process": {
             "name": "process",
-            "line": 6,
+            "line": 5,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -46,7 +32,7 @@
             "parameters": {
                 "model": {
                     "name": "model",
-                    "line": 6,
+                    "line": 5,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -57,7 +43,7 @@
                 },
                 "input": {
                     "name": "input",
-                    "line": 6,
+                    "line": 5,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,

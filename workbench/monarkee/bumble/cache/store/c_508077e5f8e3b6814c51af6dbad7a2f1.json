@@ -1,20 +1,21 @@
 {
     "name": "Monarkee\\Bumble\\Fields\\FileField",
-    "line": 6,
+    "line": 7,
     "short_desc": "",
     "long_desc": "",
     "hint": null,
     "tags": [],
     "namespace": "Monarkee\\Bumble\\Fields",
     "file": "src\/Monarkee\/Bumble\/Fields\/FileField.php",
-    "hash": "0a38c39f2ac2c664c6c057add77d58992fec4a84",
+    "hash": "83007c810e461ad68a82f4a87a8643e20372335f",
     "parent": "Monarkee\\Bumble\\Fields\\Field",
     "modifiers": 0,
     "is_trait": false,
     "is_interface": false,
     "aliases": {
         "Field": "Monarkee\\Bumble\\Fields\\Field",
-        "FileFieldInterface": "Monarkee\\Bumble\\Interfaces\\FileFieldInterface"
+        "FileFieldInterface": "Monarkee\\Bumble\\Interfaces\\FileFieldInterface",
+        "FileFieldUploadService": "Monarkee\\Bumble\\Services\\FileFieldUploadService"
     },
     "errors": [],
     "interfaces": {
@@ -23,7 +24,7 @@
     "properties": {
         "driver": {
             "name": "driver",
-            "line": 13,
+            "line": 14,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -37,7 +38,7 @@
         },
         "anonymize": {
             "name": "anonymize",
-            "line": 27,
+            "line": 28,
             "short_desc": "Whether to anonymize the uploaded file's name",
             "long_desc": "",
             "hint": [
@@ -54,7 +55,7 @@
         },
         "allowed_types": {
             "name": "allowed_types",
-            "line": 48,
+            "line": 64,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -70,7 +71,7 @@
     "methods": {
         "isAnonymized": {
             "name": "isAnonymized",
-            "line": 18,
+            "line": 19,
             "short_desc": "",
             "long_desc": "",
             "hint": [
@@ -89,7 +90,7 @@
         },
         "getUploadTo": {
             "name": "getUploadTo",
-            "line": 32,
+            "line": 33,
             "short_desc": "",
             "long_desc": "",
             "hint": [
@@ -108,7 +109,7 @@
         },
         "getUploadPath": {
             "name": "getUploadPath",
-            "line": 40,
+            "line": 51,
             "short_desc": "",
             "long_desc": "",
             "hint": [
@@ -125,9 +126,23 @@
             "errors": [],
             "parameters": []
         },
+        "unlinkFilesOnDelete": {
+            "name": "unlinkFilesOnDelete",
+            "line": 56,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
         "isFileField": {
             "name": "isFileField",
-            "line": 50,
+            "line": 66,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -138,76 +153,10 @@
             "exceptions": [],
             "errors": [],
             "parameters": []
-        },
-        "register": {
-            "name": "register",
-            "line": 55,
-            "short_desc": "",
-            "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
-            "tags": [],
-            "modifiers": "1",
-            "is_by_ref": "",
-            "exceptions": [],
-            "errors": [],
-            "parameters": []
-        },
-        "process": {
-            "name": "process",
-            "line": 60,
-            "short_desc": "The default process action is to just return the passed model back to the caller",
-            "long_desc": "",
-            "hint": [
-                [
-                    "Monarkee\\Bumble\\Fields\\BumbleModel",
-                    false
-                ]
-            ],
-            "hint_desc": "",
-            "tags": [],
-            "modifiers": "1",
-            "is_by_ref": "",
-            "exceptions": [],
-            "errors": [],
-            "parameters": {
-                "model": {
-                    "name": "model",
-                    "line": 60,
-                    "short_desc": "",
-                    "long_desc": null,
-                    "hint": [
-                        [
-                            "Monarkee\\Bumble\\Fields\\$model",
-                            false
-                        ]
-                    ],
-                    "tags": [],
-                    "modifiers": "",
-                    "default": null,
-                    "is_by_ref": false
-                },
-                "input": {
-                    "name": "input",
-                    "line": 60,
-                    "short_desc": "",
-                    "long_desc": null,
-                    "hint": [
-                        [
-                            "Monarkee\\Bumble\\Fields\\$input",
-                            false
-                        ]
-                    ],
-                    "tags": [],
-                    "modifiers": "",
-                    "default": null,
-                    "is_by_ref": false
-                }
-            }
         },
         "handleFile": {
             "name": "handleFile",
-            "line": 65,
+            "line": 71,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -220,7 +169,7 @@
             "parameters": {
                 "request": {
                     "name": "request",
-                    "line": 65,
+                    "line": 71,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -231,9 +180,9 @@
                 }
             }
         },
-        "removeFile": {
-            "name": "removeFile",
-            "line": 70,
+        "unlinkFile": {
+            "name": "unlinkFile",
+            "line": 84,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -246,7 +195,7 @@
             "parameters": {
                 "filename": {
                     "name": "filename",
-                    "line": 70,
+                    "line": 84,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -261,7 +210,7 @@
     "constants": {
         "DEFAULT_UPLOAD_TO": {
             "name": "DEFAULT_UPLOAD_TO",
-            "line": 8,
+            "line": 9,
             "short_desc": "",
             "long_desc": ""
         }

@@ -7,7 +7,7 @@
     "tags": [],
     "namespace": "Monarkee\\Bumble\\Services",
     "file": "src\/Monarkee\/Bumble\/Services\/PostService.php",
-    "hash": "b73670bd8005280bd1cdc501df4434b4d6bdb03a",
+    "hash": "9d5061115a9c49c9c0d116706b946eb53f404e87",
     "parent": null,
     "modifiers": 0,
     "is_trait": false,
@@ -324,7 +324,7 @@
         },
         "removeFieldFromInput": {
             "name": "removeFieldFromInput",
-            "line": 152,
+            "line": 138,
             "short_desc": "",
             "long_desc": "",
             "hint": [
@@ -342,7 +342,7 @@
             "parameters": {
                 "field": {
                     "name": "field",
-                    "line": 152,
+                    "line": 138,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -360,7 +360,7 @@
         },
         "setInput": {
             "name": "setInput",
-            "line": 160,
+            "line": 146,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -373,7 +373,7 @@
             "parameters": {
                 "input": {
                     "name": "input",
-                    "line": 160,
+                    "line": 146,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -391,7 +391,7 @@
         },
         "getNewModel": {
             "name": "getNewModel",
-            "line": 184,
+            "line": 170,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -404,7 +404,7 @@
             "parameters": {
                 "class": {
                     "name": "class",
-                    "line": 184,
+                    "line": 170,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -422,7 +422,7 @@
         },
         "handleComponents": {
             "name": "handleComponents",
-            "line": 201,
+            "line": 187,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -435,7 +435,7 @@
             "parameters": {
                 "model": {
                     "name": "model",
-                    "line": 201,
+                    "line": 187,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,

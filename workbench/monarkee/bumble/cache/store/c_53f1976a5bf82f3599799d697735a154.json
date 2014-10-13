@@ -7,7 +7,7 @@
     "tags": [],
     "namespace": "Monarkee\\Bumble\\Interfaces",
     "file": "src\/Monarkee\/Bumble\/Interfaces\/FileFieldInterface.php",
-    "hash": "437a4f4b719ea8b2368bff5f194603abc25c81ba",
+    "hash": "793e9a9db67525c850e6239682fbb006a41e5aec",
     "parent": null,
     "modifiers": null,
     "is_trait": false,
@@ -45,8 +45,8 @@
                 }
             }
         },
-        "removeFile": {
-            "name": "removeFile",
+        "unlinkFile": {
+            "name": "unlinkFile",
             "line": 7,
             "short_desc": "",
             "long_desc": "",
