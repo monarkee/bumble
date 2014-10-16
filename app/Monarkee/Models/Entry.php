@@ -12,6 +12,7 @@ use Monarkee\Bumble\Fields\S3FileField;
 use Monarkee\Bumble\Fields\SlugField;
 use Monarkee\Bumble\Fields\TextareaField;
 use Monarkee\Bumble\Fields\TextField;
+use Monarkee\Bumble\Fieldset\Fieldset;
 use Monarkee\Bumble\Models\BumbleModel;
 
 class Entry extends BumbleModel
@@ -35,31 +36,35 @@ class Entry extends BumbleModel
 
     public function setComponents()
     {
-        $this->components = [
-            new TextField('title'),
-            new SlugField('slug', [
-                'set_from' => 'title'
-            ]),
-            new TextareaField('excerpt', [
-                'show_in_listing' => false,
-            ]),
-            new TextareaField('content', [
-                'show_in_listing' => false,
-            ]),
-            new S3FileField('banner_image', [
-                'show_in_listing' => false,
-                'upload_to'   => 'banner_images',
-            ]),
-            new HasOneField('status'),
-            new DateTimeField('published_at', [
-                'format' => 'D F Y'
-            ]),
-            new HasOneField('category'),
-            new BelongsToManyField('tags', [
-                'widget' => 'TagField',
-            ]),
-            new BinaryField('active'),
-        ];
+        $this->fieldset = new Fieldset([
+          'first_tab' => [
+                new TextField('title'),
+                new SlugField('slug', [
+                    'set_from' => 'title'
+                ]),
+            ],
+            'second_tab' => [
+                new TextareaField('excerpt', [
+                    'show_in_listing' => false,
+                ]),
+                new TextareaField('content', [
+                    'show_in_listing' => false,
+                ]),
+                new S3FileField('banner_image', [
+                    'show_in_listing' => false,
+                    'upload_to'   => 'banner_images',
+                ]),
+                new HasOneField('status'),
+                new DateTimeField('published_at', [
+                    'format' => 'D F Y'
+                ]),
+                new HasOneField('category'),
+                new BelongsToManyField('tags', [
+                    'widget' => 'TagField',
+                ]),
+                new BinaryField('active'),
+            ],
+        ]);
     }
 
     public function category()

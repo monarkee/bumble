@@ -3,6 +3,7 @@
 use Monarkee\Bumble\Fields\SlugField;
 use Monarkee\Bumble\Fields\TextareaField;
 use Monarkee\Bumble\Fields\TextField;
+use Monarkee\Bumble\Fieldset\Fieldset;
 use Monarkee\Bumble\Models\BumbleModel;
 
 class Product extends BumbleModel
@@ -17,10 +18,10 @@ class Product extends BumbleModel
 
     public function setComponents()
     {
-        $this->components = [
+        $this->fieldset = new Fieldset([
             new TextField('title'),
             new SlugField('slug'),
             new TextareaField('description'),
-        ];
+        ]);
     }
 }

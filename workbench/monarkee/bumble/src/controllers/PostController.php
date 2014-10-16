@@ -43,8 +43,6 @@ class PostController extends BumbleController
     {
         $modelName = model_name($this->request->segment(2));
 
-        // Somehow we have to get the full namespace of the Model
-        // or else we won't be able to instantiate them.
         $modelClass = full_model_name($modelName);
 
         $model = new $modelClass;

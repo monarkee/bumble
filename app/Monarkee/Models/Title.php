@@ -8,6 +8,7 @@ use Monarkee\Bumble\Fields\ImageField;
 use Monarkee\Bumble\Fields\PasswordField;
 use Monarkee\Bumble\Fields\SlugField;
 use Monarkee\Bumble\Fields\TextField;
+use Monarkee\Bumble\Fieldset\Fieldset;
 use Monarkee\Bumble\Models\BumbleModel;
 
 class Title extends BumbleModel
@@ -26,17 +27,17 @@ class Title extends BumbleModel
 
     public function setComponents()
     {
-        $this->components = [
-//            new TextField('title'),
-//            new SlugField('slug', ['set_from' => 'title']),
-//            new PasswordField('password'),
-//            new BinaryField('active'),
-//            new ImageField('banner'),
+        $this->fieldset = new Fieldset([
+            //            new TextField('title'),
+            //            new SlugField('slug', ['set_from' => 'title']),
+            //            new PasswordField('password'),
+            //            new BinaryField('active'),
+            //            new ImageField('banner'),
             new DropdownField('status', [
                 'options' => $this->dropdownOptions,
                 'default' => 'review'
             ]),
-        ];
+        ]);
     }
 
     public function setPasswordAttribute($value)

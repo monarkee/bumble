@@ -2,6 +2,7 @@
 
 use Monarkee\Bumble\Fields\TextareaField;
 use Monarkee\Bumble\Fields\TextField;
+use Monarkee\Bumble\Fieldset\Fieldset;
 use Monarkee\Bumble\Models\BumbleModel;
 
 class Setting extends BumbleModel
@@ -17,10 +18,10 @@ class Setting extends BumbleModel
 
     public function setComponents()
     {
-        $this->components = array(
+        $this->fieldset = new Fieldset([
             new TextField('key'),
             new TextField('value'),
             new TextareaField('description'),
-        );
+        ]);
     }
 }

@@ -15,8 +15,16 @@ abstract class BumbleModel extends Eloquent
     /**
      * @var
      */
+    protected $fieldset;
+
+    /**
+     * @var
+     */
     public $rules = [];
 
+    /**
+     * @var
+     */
     private $passwordFields;
 
     /**
@@ -24,6 +32,9 @@ abstract class BumbleModel extends Eloquent
      */
     private $editRules;
 
+    /**
+     * @var
+     */
     private $slugFields;
 
     /**
@@ -72,6 +83,8 @@ abstract class BumbleModel extends Eloquent
     public $imageFields;
 
     /**
+     * Find out if the model supports Soft Deletes
+     *
      */
     public function isSoftDeleting()
     {
@@ -91,7 +104,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function getComponents()
     {
-        return $this->components;
+        return $this->fieldset->getFields();
     }
 
     /**
@@ -312,6 +325,10 @@ abstract class BumbleModel extends Eloquent
         return true;
     }
 
+    /**
+     * @param $type
+     * @return bool
+     */
     public function hasFieldTypes($type)
     {
         foreach ($this->getComponents() as $component)

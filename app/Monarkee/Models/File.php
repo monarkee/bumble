@@ -5,6 +5,7 @@ use Monarkee\Bumble\Fields\FileField;
 use Monarkee\Bumble\Fields\S3FileField;
 use Monarkee\Bumble\Fields\TextareaField;
 use Monarkee\Bumble\Fields\TextField;
+use Monarkee\Bumble\Fieldset\Fieldset;
 use Monarkee\Bumble\Models\BumbleModel;
 
 class File extends BumbleModel
@@ -21,11 +22,11 @@ class File extends BumbleModel
      */
     public function setComponents()
     {
-        $this->components = [
+        $this->fieldset = new Fieldset([
             new TextField('title'),
             new TextareaField('description'),
             new S3FileField('file'),
-        ];
+        ]);
     }
 
 }

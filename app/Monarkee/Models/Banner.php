@@ -2,6 +2,7 @@
 
 use Monarkee\Bumble\Fields\TextareaField;
 use Monarkee\Bumble\Fields\TextField;
+use Monarkee\Bumble\Fieldset\Fieldset;
 use Monarkee\Bumble\Models\BumbleModel;
 
 class Banner extends BumbleModel
@@ -14,10 +15,10 @@ class Banner extends BumbleModel
 
     public function setComponents()
     {
-        $this->components = [
+        $this->fieldset = new Fieldset([
             new TextField('title'),
             new TextField('link'),
             new TextareaField('content'),
-        ];
+        ]);
     }
 }

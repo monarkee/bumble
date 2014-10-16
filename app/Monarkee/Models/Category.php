@@ -2,6 +2,7 @@
 
 use Monarkee\Bumble\Fields\SlugField;
 use Monarkee\Bumble\Fields\TextField;
+use Monarkee\Bumble\Fieldset\Fieldset;
 use Monarkee\Bumble\Models\BumbleModel;
 
 class Category extends BumbleModel
@@ -15,11 +16,11 @@ class Category extends BumbleModel
      */
     public function setComponents()
     {
-        $this->components = [
+        $this->fieldset = new Fieldset([
             new TextField('title'),
             new SlugField('slug', [
                 'set_from' => 'title'
             ]),
-        ];
+        ]);
     }
 }

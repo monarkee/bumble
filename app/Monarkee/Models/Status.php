@@ -1,6 +1,7 @@
 <?php namespace Monarkee\Models;
 
 use Monarkee\Bumble\Fields\TextField;
+use Monarkee\Bumble\Fieldset\Fieldset;
 use Monarkee\Bumble\Models\BumbleModel;
 
 class Status extends BumbleModel
@@ -15,9 +16,9 @@ class Status extends BumbleModel
 
     public function setComponents()
     {
-        $this->components = [
+        $this->fieldset = new Fieldset([
             new TextField('title'),
-        ];
+        ]);
     }
 
     public function entry()
