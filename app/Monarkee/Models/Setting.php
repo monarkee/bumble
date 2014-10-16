@@ -10,7 +10,7 @@ class Setting extends BumbleModel
 
     protected $description = 'Place your site settings here and use them throughout your app';
 
-    public $validation = [
+    public $rules = [
         'key' => 'required|unique:settings',
         'value' => 'required',
     ];

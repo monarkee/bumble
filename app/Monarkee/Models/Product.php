@@ -11,7 +11,7 @@ class Product extends BumbleModel
 
     protected $description = 'A beautiful place to put your entries';
 
-    public $validation = [
+    public $rules = [
         'title' => 'required',
     ];
 

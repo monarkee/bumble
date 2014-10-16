@@ -26,7 +26,7 @@ class Entry extends BumbleModel
 
     protected $description = 'A beautiful place to put your entries';
 
-    public $validation = [
+    public $rules = [
         'title' => 'required',
         'content' => 'required',
 //        'entry_type_id' => 'required|exists:entry_types,id',

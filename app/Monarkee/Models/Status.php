@@ -9,7 +9,7 @@ class Status extends BumbleModel
 
     protected $description = 'Statuses are helpful for creating a content workflow';
 
-    public $validation = [
+    public $rules = [
         'title' => 'required',
     ];
 

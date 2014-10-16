@@ -6,7 +6,7 @@ use Monarkee\Bumble\Models\BumbleModel;
 
 class Banner extends BumbleModel
 {
-    public $validation = [
+    public $rules = [
         'title' => 'required',
         'link'  => 'url',
         'content' => 'required',

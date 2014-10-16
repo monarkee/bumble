@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class TestUser extends User implements UserInterface, RemindableInterface
 {
-    public $validation = [
+    public $rules = [
         'title' => 'required',
     ];
 

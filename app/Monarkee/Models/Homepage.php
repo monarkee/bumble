@@ -6,7 +6,7 @@ use Monarkee\Bumble\Models\BumbleModel;
 
 class Homepage extends BumbleModel
 {
-    public $validation = [
+    public $rules = [
         'title' => 'required',
     ];
 

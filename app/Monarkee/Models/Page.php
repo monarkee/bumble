@@ -12,7 +12,7 @@ class Page extends BumbleModel
 
     protected $description = 'Pages are ways to pages of content';
 
-    public $validation = [
+    public $rules = [
         'title' => 'required',
         'slug' => 'required',
     ];

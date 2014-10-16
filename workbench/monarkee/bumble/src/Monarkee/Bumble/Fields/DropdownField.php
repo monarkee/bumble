@@ -4,6 +4,11 @@ use Monarkee\Bumble\Interfaces\FieldInterface;
 
 class DropdownField extends Field implements FieldInterface
 {
+    public function getTitleOption()
+    {
+        return isset($this->options['title_column']) ? $this->options['title_column'] : 'title';
+    }
+
     public function getValues()
     {
         return isset($this->options['options']) ? $this->options['options'] : [];
@@ -19,4 +24,5 @@ class DropdownField extends Field implements FieldInterface
         return $this->options['options'][$key];
 
     }
+
 }

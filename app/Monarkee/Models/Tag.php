@@ -12,7 +12,7 @@ class Tag extends BumbleModel
 
     protected $description = 'Tags are ways to organize things';
 
-    public $validation = [
+    public $rules = [
         'slug' => 'required',
     ];
 

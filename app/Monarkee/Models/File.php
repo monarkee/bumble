@@ -11,7 +11,7 @@ class File extends BumbleModel
 {
     use SoftDeletingTrait;
 
-    public $validation = [
+    public $rules = [
         'title' => 'required',
         'description' => 'required',
 //        'file' => 'required',

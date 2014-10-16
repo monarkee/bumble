@@ -14,7 +14,7 @@ class Title extends BumbleModel
 {
     use SoftDeletingTrait;
 
-    public $validation = [
+    public $rules = [
         'options' => 'required',
     ];
 

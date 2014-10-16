@@ -15,14 +15,14 @@ abstract class BumbleModel extends Eloquent
     /**
      * @var
      */
-    public $validation = [];
+    public $rules = [];
 
     private $passwordFields;
 
     /**
      * @var
      */
-    private $editValidation;
+    private $editRules;
 
     private $slugFields;
 
@@ -142,7 +142,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function fieldIsRequired($field)
     {
-        return array_key_exists($field->getLowerName(), $this->validation);
+        return array_key_exists($field->getLowerName(), $this->rules);
     }
 
     /**
@@ -150,7 +150,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function getEditValidationRules()
     {
-        return $this->editValidation;
+        return $this->editRules;
     }
 
     /**
@@ -158,7 +158,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function getValidationRules()
     {
-        return $this->validation;
+        return $this->rules;
     }
 
     /**
