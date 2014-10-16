@@ -43,10 +43,6 @@ abstract class BumbleModel extends Eloquent
         $this->checkIfTableExists();
 
         if (method_exists($this, 'setComponents')) $this->setComponents();
-        $this->setImageFields();
-        $this->setBinaryFields();
-        $this->setSlugFields();
-        $this->setPasswordFields();
     }
 
     /**
@@ -204,102 +200,6 @@ abstract class BumbleModel extends Eloquent
 
     /**
      * @return bool
-     */
-    public function hasImageFields()
-    {
-        // Loop through the components and determine if any are ImageFields
-        foreach ($this->getComponents() as $component)
-        {
-            if ($component->isImageField()) return true;
-        }
-    }
-
-    /**
-     *
-     */
-    public function getImageFields()
-    {
-        return $this->imageFields;
-    }
-
-    /**
-     *
-     */
-    private function setImageFields()
-    {
-        // Loop through the components and determine if any are ImageFields
-        foreach ($this->getComponents() as $component)
-        {
-            if ($component->isImageField()) {
-                $this->imageFields[] = $component;
-            }
-        }
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasBinaryFields()
-    {
-        foreach ($this->getComponents() as $component)
-        {
-            if ($component->isBinaryField()) return true;
-        }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBinaryFields()
-    {
-        return $this->binaryFields;
-    }
-
-    /**
-     *
-     */
-    private function setBinaryFields()
-    {
-        foreach ($this->getComponents() as $component) {
-            if ($component->isBinaryField()) {
-                $this->binaryFields[] = $component;
-            }
-        }
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasSlugFields()
-    {
-        foreach ($this->getComponents() as $component)
-        {
-            if ($component->isSlugField()) return true;
-        }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSlugFields()
-    {
-        return $this->slugFields;
-    }
-
-    /**
-     *
-     */
-    private function setSlugFields()
-    {
-        foreach ($this->getComponents() as $component) {
-            if ($component->isSlugField()) {
-                $this->slugFields[] = $component;
-            }
-        }
-    }
-
-    /**
-     * @return bool
      * @throws TableNotFoundException
      */
     public function checkIfTableExists()
@@ -317,20 +217,6 @@ abstract class BumbleModel extends Eloquent
         foreach ($this->getComponents() as $component)
         {
             if ($component->isFieldType($type)) return true;
-        }
-    }
-
-    public function getPasswordFields()
-    {
-        return $this->passwordFields;
-    }
-
-    public function setPasswordFields()
-    {
-        foreach ($this->getComponents() as $component) {
-            if ($component->isFieldType('PasswordField')) {
-                $this->passwordFields[] = $component;
-            }
         }
     }
 }
