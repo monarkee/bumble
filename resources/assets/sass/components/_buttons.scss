@@ -1,17 +1,24 @@
 .btn {
-    font-size: 14px;
-    background: $branding_color;
-    padding: 6px 14px;
-    color: $white;
-    font-weight: 400;
-    border: none;
-    outline: none;
-    cursor: pointer;
+  font-family: $avenir;
+  font-size: 1.2rem;
+  font-weight: $semibold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-color: $branding_color;
+  padding: 2rem 3.5rem;
+  color: rgba($white, 0.8);
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $bc1;
+    color: rgba($white, 1);
+  }
 }
 
 .btn--danger {
   background: $danger_color;
-  font-size: 1.4rem;
   font-weight: $normal;
 }
 

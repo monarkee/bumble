@@ -30,25 +30,29 @@
     background: #CF5C60; }
 
 .btn {
-  font-size: 14px;
-  background: #2795b6;
-  padding: 6px 14px;
-  color: #FFF;
-  font-weight: 400;
+  font-family: "Avenir Next", "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-color: #2795b6;
+  padding: 2rem 3.5rem;
+  color: rgba(255, 255, 255, 0.8);
   border: none;
   outline: none;
   cursor: pointer; }
+  .btn:hover {
+    background-color: #22809d;
+    color: white; }
 
 .btn--danger {
   background: #CF5C60;
-  font-size: 1.4rem;
   font-weight: 400; }
 
 .btn--full-width {
   width: 100%; }
 
 .form__text, .form__checkboxes, .form__textarea, .form__select, .form__hidden {
-  box-shadow: inset 0px 0px 5px 4px rgba(0, 0, 0, 0.02);
   background: rgba(0, 0, 0, 0.05);
   padding: 1.5rem;
   margin: 0 0 3rem; }
@@ -337,7 +341,7 @@ put-label {
 html {
   font-size: 62.5%;
   height: 100%;
-  background: #cfcfcf; }
+  background: #e8e8e8; }
 
 body {
   font-family: "Avenir Next", "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -647,10 +651,13 @@ a {
   background: rgba(60, 60, 60, 0.4); }
 
 .copyright {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   margin: 0;
   padding: 3rem;
-  color: #3c3c3c;
+  color: #AAA;
   text-align: center; }
 
 .small-form {

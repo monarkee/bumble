@@ -8,7 +8,7 @@
 // Form Well Placeholder
 %form-well {
     @extend %clearfix;
-    @include well(rgba($black, 0.02), 5px, 4px);
+//    @include well(rgba($black, 0.02), 5px, 4px);
     background: rgba($black, 0.05);
     padding: $main_padding/4;
     margin: 0 0 $main_margin/2;

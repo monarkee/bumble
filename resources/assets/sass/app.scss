@@ -36,7 +36,7 @@ $main_margin: $spacing-horz-lg;
 $branding_color: #2795b6;
 $branding_gray: rgba(60, 60, 60, 1);
 $light_gray: rgba(#f5f5f5, 1);
-$bg_light_gray: darken($light_gray, 15%);
+$bg_light_gray: darken($light_gray, 5%);
 
 // Colors (Black ($black) and white ($white) are already available from Amaretto)
 $bg_body: $bg_light_gray;
@@ -44,6 +44,26 @@ $bg_main: $white;
 $bg_sidebar: $light_gray;
 $link_color: red;
 $border_gray: darken($light_gray, 10%);
+
+$bc1: darken($branding_color, 6%);
+$bc2: darken($branding_color, 17%);
+$bc3: darken($branding_color, 28%);
+$bc4: darken($branding_color, 39%);
+$bc5: darken($branding_color, 50%);
+$bc6: darken($branding_color, 61%);
+$bc7: darken($branding_color, 72%);
+$bc8: darken($branding_color, 83%);
+$bc9: darken($branding_color, 94%);
+
+$cg1: darken(#fff, 6%);
+$cg2: darken(#fff, 17%);
+$cg3: darken(#fff, 28%);
+$cg4: darken(#fff, 39%);
+$cg5: darken(#fff, 50%);
+$cg6: darken(#fff, 61%);
+$cg7: darken(#fff, 72%);
+$cg8: darken(#fff, 83%);
+$cg9: darken(#fff, 94%);
 
 $success_color: #4AB471;
 $warning_color: #F3AE4E;
@@ -421,10 +441,13 @@ a {
 }
 
 .copyright {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  font-weight: $semibold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   margin: 0;
   padding: $main_padding/2;
-  color: $branding_gray;
+  color: #AAA;
   text-align: center;
 }
 
