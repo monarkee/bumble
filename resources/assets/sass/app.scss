@@ -5,20 +5,32 @@
     Author: David Hemphill
     Notes:
 */
-// Import Sass Frameworks
-//@import '../bower_components/bourbon/app/assets/stylesheets/bourbon';
-// @import '../../vendor/neat/app/assets/stylesheets/neat';
-@import '../../node_modules/amaretto/stylesheets/amaretto';
-
 // Custom Font Stacks
 $avenir: 'Avenir Next', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
+// Base Setup
+$white: #FFF;
+$black: #000;
+
+// Font weight variables
+$thin: 100;
+$xlight: 200;
+$light: 300;
+$normal: 400;
+$medium: 500;
+$semibold: 600;
+$bold: 700;
+$xbold: 800;
+$xxbold: 900;
+
 // Global Widths
-$main_site_width: rem(1200);
+$main_site_width: 120rem;
 
 // Padding & Margins
-$main_padding: rem(60);
-$main_margin: rem(60);
+$spacing-horz-lg: 6rem;
+
+$main_padding: $spacing-horz-lg;
+$main_margin: $spacing-horz-lg;
 
 // Custom Settings & Colors
 $branding_color: #2795b6;
@@ -37,14 +49,22 @@ $success_color: #4AB471;
 $warning_color: #F3AE4E;
 $danger_color: #CF5C60;
 
+// Mixins
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// Helpers
+@import "helpers/padding";
+
 // App-specific modules
-// @import '../scss/components/jpanelmenu';
 @import 'components/badges';
 @import 'components/buttons';
-// @import '../csss/components/charts';
 @import 'components/forms';
-// @import '../scss/components/grid';
-@import 'components/modules';
 @import 'components/messages';
 @import 'components/tables';
 @import 'components/text';
@@ -58,7 +78,7 @@ $danger_color: #CF5C60;
 html {
   font-size: 62.5%;
   height: 100%;
-      background: $bg_body;
+  background: $bg_body;
 }
 
 body {
@@ -69,6 +89,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  user-select: none;
 }
 
 a {
@@ -77,126 +98,122 @@ a {
 
 // Wraps
 // ------------------------------------------------------------------------------------ */
-%wrap {
-  @include clearfix;
+.wrap {
+  @extend %clearfix;
   width: $main-site-width;
-}
-
-%wrap-pad {
-  padding: $main_padding/10 0;
-}
-
-%flexible-wrap {
-  position: relative;
 }
 
 // Main Header
 // ------------------------------------------------------------------------------------ */
 .main-header {
   background: $branding_color;
-  height: rem(52);
+  height: 7.6rem;
+}
 
-  @include element('wrap') {
-    @include clearfix;
-    padding: 0;
-    margin: 0 auto;
-  }
+.main-header__wrap {
+  @extend %clearfix;
+  padding: 0;
+  margin: 0 auto;
 }
 
 // Main Logo
 // ------------------------------------------------------------------------------------ */
 .main-logo {
   float: left;
-  // margin: 14px 0 0 rem(15);
-  margin: rem(17) 0 0 rem(15);
-  line-height: 1;
+  margin: 0 0 0 2rem;
+  height: 7.6rem;
+  display: flex;
+  align-items: center;
+}
 
-  @include element('link') {
-    // @include font-size(26);
-    @include font-size(21);
-    color: $white;
-  }
+.main-logo__link {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: $white;
 }
 
 .visit-site {
-  @include font-size(12);
-  // background: darken($branding_gray, 5%);
-  display: block;
+  font-size: 1.2rem;
   float: left;
-  margin: 14px 0 -3px 20px;
+  height: 7.6rem;
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 20px;
   padding: 5px 10px;
-  // border-radius: 4px;
-  // border: 1px solid darken($white, 65%);
   font-weight: $bold;
   text-transform: uppercase;
-  letter-spacing: rem(2);
+  letter-spacing: 2px;
   color: $light_gray;
+  opacity: 0.7;
 
-  // &:after {
-  // content: '->';
-  // margin: 0 0 0 rem(10);
-  // }
-}
-
-.flexible-space {
+  &:hover {
+    opacity: 1;
+  }
 }
 
 // Main Navigation
 // ------------------------------------------------------------------------------------ */
 .main-nav {
   float: right;
+  display: flex;
+  height: 7.6rem;
+}
 
-  @include element('links') {
-    @include clearfix;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+.main-nav__links {
+  @extend %clearfix;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.main-nav__item {
+  position: relative;
+  float: left;
+  height: 7.6rem;
+
+  &:last-child {
+    margin-right: 0;
   }
+}
 
-  @include element('item') {
-    position: relative;
-    float: left;
+.main-nav__item--border-left {
+  border-left: 1px solid rgba($white, 0.3);
+}
 
-    @include modifier('border-left') {
-      border-left: 1px solid rgba($white, 0.3);
-    }
+.main-nav__link {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  font-weight: $semibold;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0 $main_margin/2.1;
+  color: $white;
+  height: 7.6rem;
+  text-align: center;
+  opacity: 0.8;
 
-    &:last-child {
-      margin-right: 0;
-    }
+  &:hover {
+    background: darken($branding_color, 5%);
   }
+}
 
-  @include element('link') {
-    @include font-size(15);
-    display: block;
-    float: left;
-    padding: 0 $main_margin/2;
-    color: $white;
-    height: rem(52);
-    line-height: rem(52);
-    text-align: center;
-    cursor: pointer;
-
-    &:hover {
-      background: darken($branding_color, 5%);
-    }
-  }
-
-  @include element('avatar') {
-    float: left;
-    margin: rem(9) rem(10) 0 0;
-    line-height: 1;
-    width: rem(35);
-    height: rem(35);
-    border-radius: 50px;
-  }
+.main-nav__avatar {
+  float: left;
+  margin: 0 1rem 0 0;
+  line-height: 1;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50px;
 }
 
 // Secondary Nav
 // ------------------------------------------------------------------------------------ */
 .secondary-nav {
   display: none;
-  // @include clearfix;
   transition: all 0.1s ease;
 
   position: absolute;
@@ -219,30 +236,29 @@ a {
 
   &:before {
     content: '';
-    //        @include triangle(17px, $white, up);
     position: absolute;
     top: -16px;
     right: 0;
     bottom: 0;
     left: 20px;
   }
+}
 
-  @include element('item') {
-    margin: 0;
-    padding: 10px;
-  }
+.secondary-nav__item {
+  margin: 0;
+  padding: 10px;
+}
 
-  @include element('link') {
-    @include font-size(16);
-    color: $branding_gray;
-  }
+.secondary-nav__link {
+  font-size: 16px;
+  color: $branding_gray;
+}
 
-  @include element('separator') {
-    height: 1px;
-    background: rgba($branding_gray, 0.2);
-    border: none;
-    margin: $main_margin/8 0;
-  }
+.secondary-nav__separator {
+  height: 1px;
+  background: rgba($branding_gray, 0.2);
+  border: none;
+  margin: $main_margin/8 0;
 }
 
 // Main Search
@@ -252,89 +268,90 @@ a {
   background: darken($branding_color, 8%);
   margin: 0;
   padding: 8px 12px;
+}
 
-  @include element('input') {
-    appearance: none;
-    @include font-size(14);
-    background: darken($branding_color, 5%);
-    width: rem(180);
-    // margin: 0;
-    height: rem(35);
-    padding: 0 rem(20);
-    outline: none;
-    border: none;
-    border-bottom: 1px solid rgba($white, 0.2);
-    border-radius: rem(50);
-    color: $white;
+.main-search__input {
+  appearance: none;
+  font-size: 14px;
+  background: darken($branding_color, 5%);
+  width: 18rem;
+  height: 3.5rem;
+  padding: 0 2rem;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgba($white, 0.2);
+  border-radius: 5rem;
+  color: $white;
 
-    &:focus {
-      background: darken($branding_color, 18%);
-      border-bottom: 1px solid darken($branding_color, 18%);
-    }
+  &:focus {
+    background: darken($branding_color, 18%);
+    border-bottom: 1px solid darken($branding_color, 18%);
   }
 }
 
 // Main Layout Areas
 // ------------------------------------------------------------------------------------ */
 .main-area {
-  @include clearfix;
+  @extend %clearfix;
   display: flex;
   flex-direction: row;
 }
 
 .main-sidebar {
   background: $light_gray;
-  width: 15%;
+  flex: 0 0 230px;
 }
 
 .main-content {
   background: $white;
-  width: 85%;
   padding: $main_padding/2 $main_padding/2 $main_padding;
+  width: 100%;
+}
 
-  @include element('left') {
-    float: left;
-    width: 75%;
-    padding: 0 $main_padding 0 0;
-  }
+.main-content__left {
+}
 
-  @include element('right') {
-    float: right;
-    width: 25%;
-  }
+.main-content__right {
 }
 
 .header {
-  @include clearfix;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
   position: relative;
   margin: 0 0 $main_margin/2;
   padding: 0 0 $main_margin/2;
   border-bottom: 1px dashed $border_gray;
+}
 
-  @include element(title) {
-    @include font-size(26);
-    float: left;
-    font-weight: $normal;
-    margin: 0 0 5px;
-    color: $branding_gray;
-  }
+.header__title {
+  font-size: 2.6rem;
+  font-weight: $normal;
+  margin: 0;
+  color: $branding_gray;
+}
 
-  @include element(id) {
-    @include font-size(17);
-    display: inline-block;
-    position: relative;
-    top: -2px;
-    margin: 0 0 0 rem(5);
-    color: lighten($branding_gray, 45%);
-  }
+.header__description {
+  color: #888;
+  font-size: 1.5rem;
+  margin: .5rem 0;
+}
+
+.header__id {
+  font-size: 1.7rem;
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  margin: 0 0 0 0.5rem;
+  color: lighten($branding_gray, 45%);
 }
 
 .btn-create {
-  @include font-size(18);
+  font-size: 1.8rem;
   margin: 4px 0 0;
   float: right;
   color: $branding_color;
-
 }
 
 // Side Nav
@@ -352,11 +369,11 @@ a {
 }
 
 .side-nav__link {
-  @include font-size(17);
+  font-size: 1.6rem;
   display: block;
   border-bottom: 1px solid $border-gray;
   padding: $main_padding/4;
-  color: $branding_gray;
+  color: #777;
 }
 
 // Sub Nav
@@ -367,21 +384,17 @@ a {
   background: darken($light_gray, 4%);
   margin: 0;
   padding: 0;
+}
 
-  @include element('item') {
+.sub-nav__link {
+  font-size: 1.4rem;
+  display: block;
+  padding: $main_padding/6 1.5rem;
+  color: $branding_gray;
 
-  }
-
-  @include element('link') {
-    @include font-size(14);
-    display: block;
-    padding: $main_padding/6 rem(15);
-    color: $branding_gray;
-
-    &:before {
-      content: '->';
-      margin-right: rem(15);
-    }
+  &:before {
+    content: '->';
+    margin-right: 1.5rem;
   }
 }
 
@@ -393,13 +406,13 @@ a {
 // ------------------------------------------------------------------------------------ */
 .icon {
   display: inline-block;
-  width: rem(16);
-  height: rem(16);
-  margin-right: rem(15);
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-right: 1.5rem;
+}
 
-  @include modifier('generic') {
-    background: rgba($branding_gray, 0.4);
-  }
+.icon--generic {
+  background: rgba($branding_gray, 0.4);
 }
 
 // Main Footer
@@ -408,8 +421,7 @@ a {
 }
 
 .copyright {
-  @include whiteshadow;
-  @include font-size(13);
+  font-size: 1.3rem;
   margin: 0;
   padding: $main_padding/2;
   color: $branding_gray;
@@ -422,4 +434,50 @@ a {
   background: rgba($branding_gray, 0.1);
   padding: $main_padding/4;
   line-height: 1;
+}
+
+// Tabs
+// ------------------------------------------------------------------------------------ */
+.tab-headers {
+  display: flex;
+}
+
+.tab-header {
+  background: #E5E5E5;
+  flex: 1 1 auto;
+  align-content: center;
+  justify-content: center;
+  align-items: stretch;
+  font-size: 1.4rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  text-transform: uppercase;
+  font-weight: $bold;
+  letter-spacing: 1px;
+  color: #888;
+  border-left: 1px solid #D5D5D5;
+
+  &:first-child {
+    border-left: none !important;
+  }
+}
+
+.tab-header__active {
+  background: #F5F5F5;
+  color: #AAA;
+}
+
+.tab-header__text {
+  text-align: center;
+}
+
+.tab {
+  @extend %clearfix;
+  background: #F5F5F5;
+  padding: 3rem;
+
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
 }

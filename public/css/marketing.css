@@ -1,0 +1,282 @@
+/*
+    File: marketing.css
+    Media: screen
+    Copyright: (c) 2014 Monarkee. monarkee.com
+    Author: David Hemphill
+    Notes:
+*/
+* {
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%;
+  height: 100%; }
+
+body {
+  font-family: "Avenir Next", "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  min-height: 100%;
+  color: #3c3c3c;
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+a {
+  text-decoration: none; }
+
+img {
+  width: 100%;
+  height: auto; }
+
+.tcw {
+  color: #fff; }
+
+.pv {
+  padding-top: 6rem;
+  padding-bottom: 6rem; }
+
+.mv {
+  margin-top: 6rem;
+  margin-bottom: 6rem; }
+
+.wrap {
+  max-width: 120rem;
+  margin-left: auto;
+  margin-right: auto; }
+
+.ft-1 {
+  font-size: 1.2rem; }
+
+.ft-2 {
+  font-size: 1.4rem; }
+
+.ft-3 {
+  font-size: 1.6rem; }
+
+.ft-4 {
+  font-size: 1.8rem; }
+
+.ft-5 {
+  font-size: 2.1rem; }
+
+.ft-6 {
+  font-size: 2.4rem; }
+
+.ft-7 {
+  font-size: 3.6rem; }
+
+.ft-8 {
+  font-size: 4.8rem; }
+
+.ft-9 {
+  font-size: 6rem; }
+
+.ft-10 {
+  font-size: 7.2rem; }
+
+@media only screen and (max-width: 599px) {
+  .sm-ft-1 {
+    font-size: 1.2rem !important; } }
+
+@media only screen and (max-width: 599px) {
+  .sm-ft-2 {
+    font-size: 1.4rem !important; } }
+
+@media only screen and (max-width: 599px) {
+  .sm-ft-3 {
+    font-size: 1.6rem !important; } }
+
+@media only screen and (max-width: 599px) {
+  .sm-ft-4 {
+    font-size: 1.8rem !important; } }
+
+@media only screen and (max-width: 599px) {
+  .sm-ft-5 {
+    font-size: 2.1rem !important; } }
+
+@media only screen and (max-width: 599px) {
+  .sm-ft-6 {
+    font-size: 2.4rem !important; } }
+
+@media only screen and (max-width: 599px) {
+  .sm-ft-7 {
+    font-size: 3.6rem !important; } }
+
+@media only screen and (max-width: 599px) {
+  .sm-ft-8 {
+    font-size: 4.8rem !important; } }
+
+@media only screen and (max-width: 599px) {
+  .sm-ft-9 {
+    font-size: 6rem !important; } }
+
+@media only screen and (min-width: 600px) {
+  .md-ft-1 {
+    font-size: 1.2rem !important; } }
+
+@media only screen and (min-width: 600px) {
+  .md-ft-2 {
+    font-size: 1.4rem !important; } }
+
+@media only screen and (min-width: 600px) {
+  .md-ft-3 {
+    font-size: 1.6rem !important; } }
+
+@media only screen and (min-width: 600px) {
+  .md-ft-4 {
+    font-size: 1.8rem !important; } }
+
+@media only screen and (min-width: 600px) {
+  .md-ft-5 {
+    font-size: 2.1rem !important; } }
+
+@media only screen and (min-width: 600px) {
+  .md-ft-6 {
+    font-size: 2.4rem !important; } }
+
+@media only screen and (min-width: 600px) {
+  .md-ft-7 {
+    font-size: 3.6rem !important; } }
+
+@media only screen and (min-width: 600px) {
+  .md-ft-8 {
+    font-size: 4.8rem !important; } }
+
+@media only screen and (min-width: 600px) {
+  .md-ft-9 {
+    font-size: 6rem !important; } }
+
+@media only screen and (min-width: 900px) {
+  .lg-ft-1 {
+    font-size: 1.2rem !important; } }
+
+@media only screen and (min-width: 900px) {
+  .lg-ft-2 {
+    font-size: 1.4rem !important; } }
+
+@media only screen and (min-width: 900px) {
+  .lg-ft-3 {
+    font-size: 1.6rem !important; } }
+
+@media only screen and (min-width: 900px) {
+  .lg-ft-4 {
+    font-size: 1.8rem !important; } }
+
+@media only screen and (min-width: 900px) {
+  .lg-ft-5 {
+    font-size: 2.1rem !important; } }
+
+@media only screen and (min-width: 900px) {
+  .lg-ft-6 {
+    font-size: 2.4rem !important; } }
+
+@media only screen and (min-width: 900px) {
+  .lg-ft-7 {
+    font-size: 3.6rem !important; } }
+
+@media only screen and (min-width: 900px) {
+  .lg-ft-8 {
+    font-size: 4.8rem !important; } }
+
+@media only screen and (min-width: 900px) {
+  .lg-ft-9 {
+    font-size: 6rem !important; } }
+
+.main-header {
+  background-color: #2795b6; }
+
+.main-header__wrap {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 2rem 0; }
+  @media only screen and (min-width: 600px) {
+    .main-header__wrap {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row; } }
+
+.logo {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0; }
+
+.logo__link {
+  color: #fff;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px; }
+
+.main-nav__items {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 0; }
+
+.main-nav__item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none; }
+
+.main-nav__link {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  padding-left: 3rem;
+  padding-right: 3.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.7; }
+  .main-nav__link:hover {
+    opacity: 1; }
+
+.hero {
+  background-color: #22809d; }
+
+.banner__title {
+  color: #fff;
+  font-size: 6rem;
+  font-weight: 300;
+  margin: 0;
+  text-align: center; }
+
+.banner_subtitle {
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 2px;
+  opacity: 0.7; }

@@ -1,0 +1,50 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  tr {
+    border-bottom: 1px solid $border_gray;
+  }
+
+  th {
+    color: $branding_color;
+    font-weight: $normal;
+  }
+
+  th, td {
+    font-size: 1.4rem;
+    text-align: left;
+    padding: $main_padding/3 0;
+
+    &:last-child {
+      text-align: right;
+    }
+
+    &.id {
+      min-width: 2.5rem;
+      text-align: center;
+    }
+
+    &.actions {
+      text-align: center;
+    }
+
+    &.active-status {
+      min-width: 4rem;
+      max-width: 4rem;
+      text-align: center;
+    }
+  }
+
+  code {
+    font-size: 1.4rem;
+    background: $light_gray;
+    color: $branding_gray;
+    border-radius: 4px;
+    padding: 6px 10px;
+  }
+
+  form {
+    display: inline-block;
+  }
+}

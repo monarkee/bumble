@@ -1,13 +1,14 @@
-//
-//
 // Form Elements
-//
-//
+// ------------------------------------------------------------------------------------ */
+@mixin well($color, $size1, $size2)
+{
+  box-shadow: inset 0px 0px $size1 $size2 $color;
+}
 
 // Form Well Placeholder
 %form-well {
-    @include clearfix;
-    @include well(rgba($black, 0.2), 5px, 4px);
+    @extend %clearfix;
+    @include well(rgba($black, 0.02), 5px, 4px);
     background: rgba($black, 0.05);
     padding: $main_padding/4;
     margin: 0 0 $main_margin/2;
@@ -16,11 +17,10 @@
 // Form Base Class
 // ------------------------------------------------------------------------------------ */
 .form {
-    @extend %flexible-wrap;
 }
 
 .form__label {
-    @include font-size(16);
+    font-size: 1.6rem;
     display: block;
     text-align: right;
     padding: 0 10px 0 0;
@@ -34,6 +34,10 @@
     @extend %form-well;
     float: left;
     width: 100%;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
     .form__text-input {
         float: right;
@@ -52,7 +56,7 @@
 }
 
 .form__text-input {
-    @include font-size(16);
+    font-size: 1.6rem;
     appearance: none;
     border-radius: 4px;
     border: 1px solid #CCC;
@@ -63,10 +67,11 @@
     padding: 8px 10px;
 
     &.big {
-        @include font-size(18);
+        font-size: 1.8rem;
         padding: 15px 10px;
-    }
-}
+    } }
+
+
 
 // Checkboxes
 // ------------------------------------------------------------------------------------ */
@@ -79,7 +84,7 @@
 }
 
 .form__checkbox-wrap {
-    @include clearfix;
+    @extend %clearfix;
     width: 100%;
     clear: both;
     margin: 0 10px $main_margin/2+10 $main_margin;
@@ -101,8 +106,7 @@
 
 .checkbox__label {
     @extend .form__label;
-    @include whiteshadow;
-    @include font-size(16);
+    font-size: 1.6rem;
     position: relative;
     float: left;
     width: 40%;
@@ -114,10 +118,10 @@
     left: 0;
     margin: 2px 10px 0 0;
 }
+.checkbox__in
 
-.checkbox__input-label {
+put-label {
     @extend .form__label;
-    @include whiteshadow;
     width: 100%;
     text-align: left;
     padding-left: 25px;
@@ -128,7 +132,7 @@
 // ------------------------------------------------------------------------------------ */
 .form__textarea {
     @extend %form-well;
-    @include clearfix;
+    @extend %clearfix;
     width: 100%;
     float: left;
     margin: 0 0 $main_margin/2;
@@ -140,12 +144,12 @@
     float: left;
     margin: rem(7) 0 rem(10);
     color: #666;
-    @include font-size(16);
+    font-size: 1.6rem;
 }
 
 .form__textarea-input {
     @extend .form__text-input;
-    @include font-size(16);
+    font-size: 1.6rem;
     width: 100%;
     max-width: 100%;
     margin: 0;
@@ -163,8 +167,7 @@
 
 .form__select-label {
     @extend .form__label;
-    @include whiteshadow;
-    @include font-size(16);
+    font-size: 1.6rem;
     float: left;
     text-align: left;
     color: #666;
@@ -172,7 +175,7 @@
 }
 
 .form__select-box {
-    @include font-size(15);
+    font-size: 1.5rem;
     float: right;
     width: 60%;
     height: 30px;
@@ -193,16 +196,11 @@
 }
 
 .form__btn {
-    // @include button($branding_color);
-    @include blackshadow;
-    // @include font-size(20);
     display: block;
     width: 100%;
     margin: 0;
     height: auto;
-    // padding: 15px 10px;
     text-align: center;
-    // font-family: $opensans;
     font-weight: $normal;
     color: rgba($white, 0.9);
     outline: none;
@@ -214,13 +212,11 @@
 // Form Hidden
 // ------------------------------------------------------------------------------------ */
 .form__show-hidden {
-    @include clearfix;
-    @include font-size(13);
-    @include whiteshadow;
+    @extend %clearfix;
+    font-size: 1.3rem;
     display: block;
     float: left;
     width: 100%;
-    // color: $mid_gray;
     margin: 0 0 -4px;
     padding: $main_padding;
     text-align: center;
@@ -231,26 +227,21 @@
 
 .form__hidden {
     @extend %form-well;
-    @include demarginizebottom;
     backface-visibility: visible;
     background: rgba(0, 0, 0, 0.05);
     width: 100%;
     float: left;
     padding: 0;
-    // padding-left: 0;
-    // padding-right: 0;
 
     .form__text, .form__select {
         background: none;
         box-shadow: none;
         padding: 0;
-        // padding-left: 0;
-        // padding-right: 0;
     }
 }
 
 .form__hidden-items {
-    @include clearfix;
+    @extend %clearfix;
     float: left;
     display: none;
     padding: $main_padding;
@@ -270,28 +261,20 @@
 }
 
 .form-header {
-    @include modifier(small) {
-        background: $light_gray;
-        padding: $main_padding/4;
-        border-bottom: 1px solid $border_gray;
-    }
+}
 
-    @include element(text) {
-        @include font-size(12);
-        margin: 0;
-    }
+.form-header__small {
+  background: $light_gray;
+  padding: $main_padding/4;
+  border-bottom: 1px solid $border_gray;
+}
 
-    @include modifier(content) {
-
-    }
-
-    @include modifier(footer) {
-
-    }
+.form-header__text {
+  font-size: 1.2rem;
+  margin: 0;
 }
 
 .form-content {
-    // background: $light_gray;
     padding: $main_padding/4;
 }
 
