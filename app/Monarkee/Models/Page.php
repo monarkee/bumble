@@ -21,12 +21,13 @@ class Page extends BumbleModel
     public function setComponents()
     {
         return new Fieldset([
-            'title' => [
+            'content' => [
                 new TextField('title'),
                 new SlugField('slug'),
+                new TextareaField('content', ['description' => 'Your entry content goes here']),
             ],
-            'content' => [
-                new TextareaField('content'),
+            'meta' => [
+
             ],
         ]);
     }
