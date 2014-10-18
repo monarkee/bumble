@@ -18,7 +18,7 @@ class Setting extends BumbleModel
 
     public function setComponents()
     {
-        $this->fieldset = new Fieldset([
+        return new Fieldset([
             new TextField('key'),
             new TextField('value'),
             new TextareaField('description'),

@@ -16,7 +16,7 @@ class Category extends BumbleModel
      */
     public function setComponents()
     {
-        $this->fieldset = new Fieldset([
+        return new Fieldset([
             new TextField('title'),
             new SlugField('slug', [
                 'set_from' => 'title'

@@ -40,6 +40,14 @@ if (!function_exists('sentence_name'))
     }
 }
 
+if (!function_exists('title_name'))
+{
+    function title_name($value)
+    {
+        return BumbleStr::title_name($value);
+    }
+}
+
 /**
  * Return the active color
  * @param  [type] $boolean [description]

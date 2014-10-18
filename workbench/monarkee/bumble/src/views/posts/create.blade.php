@@ -5,7 +5,12 @@
     @include ('bumble::partials.sidenav')
     <main class="main-content">
         <div class="header">
-            <h2 class="header__title">Create a new {{ $model->getModelName() }}</h2>
+            <div class="header__wrap">
+                <h2 class="header__title">Create a new {{ $model->getModelName() }}</h2>
+                @if ($model->getDescription())
+                    <p class="header__description">{{ $model->getDescription() }}</p>
+                @endif
+            </div>
         </div>
         {{ Form::open([
             'files' => true,

@@ -25,7 +25,7 @@ class Image extends BumbleModel
 
     public function setComponents()
     {
-        $this->fieldset = new Fieldset([
+        return new Fieldset([
             new TextField('title'),
             new TextareaField('content', [
                 'description' => 'Describe the image'

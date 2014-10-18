@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <title>Bumble - The CMS for Laravel</title>
 
-<link rel="stylesheet" href="{{ asset('css/marketing.min.css') }}"/>
+<link rel="stylesheet" href="{{ asset('css/marketing.css') }}"/>
 </head>
-<body>
+<body>`
     <header class="main-header">
         <div class="wrap main-header__wrap">
             <h1 class="logo">

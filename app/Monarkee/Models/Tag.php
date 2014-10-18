@@ -19,7 +19,7 @@ class Tag extends BumbleModel
 
     public function setComponents()
     {
-        $this->fieldset = new Fieldset([
+        return new Fieldset([
             new SlugField('slug'),
         ]);
     }

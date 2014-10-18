@@ -2,8 +2,8 @@
 
 use Monarkee\Bumble\Repositories\ModelRepository;
 
-class MasterComposer {
-
+class MasterComposer
+{
     /**
      * @var
      */
@@ -16,6 +16,6 @@ class MasterComposer {
 
     public function compose($view)
     {
-        $view->with('topModels', $this->modelRepo->getModels());
+                $view->with('topModels', $this->modelRepo->getModels());
     }
 }

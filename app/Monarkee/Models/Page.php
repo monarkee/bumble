@@ -20,12 +20,14 @@ class Page extends BumbleModel
 
     public function setComponents()
     {
-        $this->fieldset = new Fieldset([
-            new TextField('title'),
-            new SlugField('slug'),
-            new TextareaField('content'),
-            new DateTimeField('created_at'),
-            new DateTimeField('updated_at'),
+        return new Fieldset([
+            'title' => [
+                new TextField('title'),
+                new SlugField('slug'),
+            ],
+            'content' => [
+                new TextareaField('content'),
+            ],
         ]);
     }
 }

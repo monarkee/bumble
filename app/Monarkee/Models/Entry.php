@@ -36,14 +36,14 @@ class Entry extends BumbleModel
 
     public function setComponents()
     {
-        $this->fieldset = new Fieldset([
-          'first_tab' => [
+        return new Fieldset([
+          'content' => [
                 new TextField('title'),
                 new SlugField('slug', [
                     'set_from' => 'title'
                 ]),
             ],
-            'second_tab' => [
+            'meta' => [
                 new TextareaField('excerpt', [
                     'show_in_listing' => false,
                 ]),
@@ -59,11 +59,13 @@ class Entry extends BumbleModel
                     'format' => 'D F Y'
                 ]),
                 new HasOneField('category'),
+                new BinaryField('active'),
+            ],
+            'tags' => [
                 new BelongsToManyField('tags', [
                     'widget' => 'TagField',
                 ]),
-                new BinaryField('active'),
-            ],
+            ]
         ]);
     }
 

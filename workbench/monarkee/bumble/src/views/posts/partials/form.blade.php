@@ -1,23 +1,27 @@
 <div class="main-content__left">
     @include('bumble::partials.messages')
 
-    @foreach ($model->getComponents() as $field)
-        @if ($field->hasCustomWidget())
-            @include ('bumble::fieldTypes.'.$field->getWidgetType())
-        @else
-            @include ('bumble::fieldTypes.'.$field->getFieldType())
-        @endif
+    <div class="tab-headers">
+    @foreach ($model->getTabs() as $key => $tab)
+        <a href="#" class="tab-header _tab-header" data-tab-target="tab-header-{{ $key }}">
+            <div class="tab-header__text">{{ title_name($key) }}</div>
+        </a>
+    @endforeach
+    </div>
+
+    @foreach ($model->getTabs() as $key => $tab)
+        <div id="tab-header-{{ $key }}" class="tab">
+        @foreach ($model->getTabFields($key) as $field)
+            @if ($field->hasCustomWidget())
+                @include ('bumble::fieldTypes.'.$field->getWidgetType())
+            @else
+                @include ('bumble::fieldTypes.'.$field->getFieldType())
+            @endif
+        @endforeach
+        </div>
     @endforeach
 
-    <div class="form__btn-row">
+    <div class="pv">
         {{ Form::button('Save ' . $model->getModelName(), ['class' => 'btn form__btn--auto-with', 'type' => 'submit']) }}
     </div>
 </div>
-
-@if ($model->getDescription())
-    <div class="main-content__right">
-        <div class="form__help form__select">
-            <span class="form__select-label" for="checkin_class">{{ $model->getDescription() }}</span>
-        </div>
-    </div>
-@endif

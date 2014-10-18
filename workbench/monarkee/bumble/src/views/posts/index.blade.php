@@ -17,13 +17,13 @@
                     <th class="id">ID</th>
 
                     @foreach ($model->getComponents() as $field)
-                        @unless ($field->showInListing() == false)
+                        @if ($field->showInListing())
                             @if ($field->getColumn() == 'active')
                                 <th class="active-status">{{ Str::title($field->getName()) }}</th>
                             @else
                                 <th>{{ Str::title($field->getName()) }}</th>
                             @endif
-                        @endunless
+                        @endif
                     @endforeach
 
                     <th class="">Actions</th>

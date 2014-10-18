@@ -16,7 +16,7 @@ class Status extends BumbleModel
 
     public function setComponents()
     {
-        $this->fieldset = new Fieldset([
+        return new Fieldset([
             new TextField('title'),
         ]);
     }

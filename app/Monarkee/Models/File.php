@@ -22,7 +22,7 @@ class File extends BumbleModel
      */
     public function setComponents()
     {
-        $this->fieldset = new Fieldset([
+        return new Fieldset([
             new TextField('title'),
             new TextareaField('description'),
             new S3FileField('file'),

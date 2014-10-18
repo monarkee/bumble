@@ -25,15 +25,19 @@ class User extends BumbleUser
      */
     public function setComponents()
     {
-        $this->fieldset = new Fieldset([
-            new TextField('username'),
-            new TextField('email'),
-            new PasswordField('password'),
-            new TextField('prefix'),
-            new TextField('first_name'),
-            new TextField('middle_name'),
-            new TextField('last_name'),
-            new BinaryField('active'),
+        return new Fieldset([
+            'basics' => [
+                new TextField('username'),
+                new TextField('email'),
+                new PasswordField('password'),
+            ],
+            'extra' => [
+                new TextField('prefix'),
+                new TextField('first_name'),
+                new TextField('middle_name'),
+                new TextField('last_name'),
+                new BinaryField('active'),
+            ],
         ]);
     }
 }

@@ -15,7 +15,7 @@ class Banner extends BumbleModel
 
     public function setComponents()
     {
-        $this->fieldset = new Fieldset([
+        return new Fieldset([
             new TextField('title'),
             new TextField('link'),
             new TextareaField('content'),

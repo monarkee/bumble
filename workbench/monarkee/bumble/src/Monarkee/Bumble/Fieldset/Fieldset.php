@@ -38,9 +38,9 @@ class Fieldset
         // Check the tabs property and if it's not empty
         // we know we have tabs and can assign a new tab
         // instead of creating one
-        if (empty($this->tabs)) $this->tabs['content'] = [];
+//        if (empty($this->tabs)) $this->tabs[] = [];
 
-        $this->assignFields($this->originalFields);
+        $this->assignTabs($this->originalFields);
     }
 
     public function getTabs()
@@ -48,25 +48,34 @@ class Fieldset
         return $this->tabs;
     }
 
+    public function getTabFields($tabId)
+    {
+//        dd($this->tabs);
+        return $this->tabs[$tabId];
+//        return $tab->fields;
+    }
+
     /**
      * @param $field
      */
-    private function assignFields($fields = [])
+    private function assignTabs($tabs = [])
     {
-        foreach ($fields as $field)
+        foreach ($tabs as $key => $fields)
         {
-            if (is_array($field))
+            if (is_array($fields))
             {
-                $this->tabs[] = $field;
-
-                $this->assignFields($field);
+                $this->tabs[$key] = $fields;
+                $this->assignTabs($fields);
             }
             else
             {
-                $this->tabs['content'] = $field;
-
-                $this->fields[] = $field;
+                $this->fields[] = $fields;
             }
+        }
+
+        if (empty($this->tabs))
+        {
+            $this->tabs['content'] = $this->fields;
         }
     }
 }

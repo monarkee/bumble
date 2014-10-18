@@ -13,7 +13,7 @@ class Homepage extends BumbleModel
 
     public function setComponents()
     {
-        $this->fieldset = new Fieldset([
+        return new Fieldset([
             new TextField('title'),
             new TextField('feature_1_title'),
             new TextareaField('featured_1_content'),
