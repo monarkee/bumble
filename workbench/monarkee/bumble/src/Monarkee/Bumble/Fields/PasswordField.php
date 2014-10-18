@@ -29,6 +29,10 @@ class PasswordField extends Field implements FieldInterface
     {
         $column = $this->getColumn();
 
+        // If the column is empty then it means they don't require it
+        // and so we should just return it unscathed by hashing
+        if (empty($input[$column])) return $model;
+
         // Use our built-in hashing using Laravel's Hasher
         if ($this->getHashOption())
         {
