@@ -16,7 +16,7 @@
                 {{ Form::label('email', 'Email', ['class' => 'label label--tar']) }}
             </div>
             <div class="g-col-9">
-                {{ Form::text('email', null, ['class' => 'input input1', 'placeholder' => 'Your username']) }}
+                {{ Form::text('email', null, ['class' => 'input input1', 'placeholder' => 'Your email address']) }}
             </div>
         </div>
 
