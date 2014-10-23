@@ -43,8 +43,13 @@ class ModelRepository {
     {
         $namespace = $this->config->get('bumble::models');
 
-        $modelDir = $this->setModelDirectory($namespace);
+        $modelDir = str_replace("\\", "/", $namespace);
 
+        if (empty($namespace))
+        {
+            $modelDir = 'models/';
+        }
+        
         $filesystem = new Filesystem(new Adapter(app_path($modelDir)));
 
         foreach ($filesystem->listPaths() as $file)
@@ -91,20 +96,5 @@ class ModelRepository {
     public function hasModels()
     {
         return !is_null($this->objects) ? true : false;
-    }
-
-    /**
-     * @param $namespace
-     * @return mixed|string
-     */
-    private function setModelDirectory($namespace)
-    {
-        $modelDir = str_replace("\\", "/", $namespace);
-
-        if (empty($namespace)) {
-            $modelDir = 'models/';
-            return $modelDir;
-        }
-        return $modelDir;
     }
 }
