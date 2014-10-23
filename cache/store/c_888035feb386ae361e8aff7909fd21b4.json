@@ -1,0 +1,536 @@
+{
+    "name": "Monarkee\\Bumble\\Models\\BumbleModel",
+    "line": 12,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble\\Models",
+    "file": "src\/Monarkee\/Bumble\/Models\/BumbleModel.php",
+    "hash": "3f5fc8c23642d4162afa734b783b736925b29b03",
+    "parent": "Illuminate\\Database\\Eloquent\\Model",
+    "modifiers": 16,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Eloquent": "Illuminate\\Database\\Eloquent\\Model",
+        "SoftDeletingTrait": "Illuminate\\Database\\Eloquent\\SoftDeletingTrait",
+        "Blueprint": "Illuminate\\Database\\Schema\\Blueprint",
+        "Schema": "Illuminate\\Support\\Facades\\Schema",
+        "TableNotFoundException": "Monarkee\\Bumble\\Exceptions\\TableNotFoundException",
+        "ReflectionClass": "ReflectionClass",
+        "Str": "Str",
+        "Config": "Config"
+    },
+    "errors": [],
+    "interfaces": [],
+    "properties": {
+        "rules": {
+            "name": "rules",
+            "line": 23,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": {},
+            "errors": [
+                "Unable to parse \"@var\" tag \"\""
+            ]
+        },
+        "imageFields": {
+            "name": "imageFields",
+            "line": 78,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": []
+        }
+    },
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 50,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "attributes": {
+                    "name": "attributes",
+                    "line": 50,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "array",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "isSoftDeleting": {
+            "name": "isSoftDeleting",
+            "line": 84,
+            "short_desc": "Find out if the model supports Soft Deletes",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getDescription": {
+            "name": "getDescription",
+            "line": 92,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getComponents": {
+            "name": "getComponents",
+            "line": 100,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "setComponents": {
+            "name": "setComponents",
+            "line": 113,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "17",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "hasComponents": {
+            "name": "hasComponents",
+            "line": 118,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getTabs": {
+            "name": "getTabs",
+            "line": 123,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getTabFields": {
+            "name": "getTabFields",
+            "line": 128,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "tabId": {
+                    "name": "tabId",
+                    "line": 128,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getModelName": {
+            "name": "getModelName",
+            "line": 136,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getPluralName": {
+            "name": "getPluralName",
+            "line": 144,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getPluralSlug": {
+            "name": "getPluralSlug",
+            "line": 152,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "fieldIsRequired": {
+            "name": "fieldIsRequired",
+            "line": 161,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "field": {
+                    "name": "field",
+                    "line": 161,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Monarkee\\Bumble\\Models\\$field",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getEditValidationRules": {
+            "name": "getEditValidationRules",
+            "line": 169,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getValidationRules": {
+            "name": "getValidationRules",
+            "line": 177,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getCreateLinkAttribute": {
+            "name": "getCreateLinkAttribute",
+            "line": 185,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getIndexLinkAttribute": {
+            "name": "getIndexLinkAttribute",
+            "line": 193,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "isHidden": {
+            "name": "isHidden",
+            "line": 202,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "isHiddenFromTopNav": {
+            "name": "isHiddenFromTopNav",
+            "line": 210,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getShowInTopNav": {
+            "name": "getShowInTopNav",
+            "line": 218,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "checkIfTableExists": {
+            "name": "checkIfTableExists",
+            "line": 227,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [
+                [
+                    "TableNotFoundException",
+                    ""
+                ]
+            ],
+            "errors": [],
+            "parameters": []
+        },
+        "hasFieldTypes": {
+            "name": "hasFieldTypes",
+            "line": 241,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "type": {
+                    "name": "type",
+                    "line": 241,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Monarkee\\Bumble\\Models\\$type",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getRequiredClass": {
+            "name": "getRequiredClass",
+            "line": 249,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "field": {
+                    "name": "field",
+                    "line": 249,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

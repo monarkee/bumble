@@ -1,0 +1,102 @@
+{
+    "name": "Monarkee\\Bumble\\Exceptions\\ValidationException",
+    "line": 5,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble\\Exceptions",
+    "file": "src\/Monarkee\/Bumble\/Exceptions\/ValidationException.php",
+    "hash": "e0bb02e0859317e7ccfdcb16dc32e1eafd8abd75",
+    "parent": "Exception",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Exception": "Exception"
+    },
+    "errors": [],
+    "interfaces": [],
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 9,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "errors": {
+                    "name": "errors",
+                    "line": 9,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "message": {
+                    "name": "message",
+                    "line": 9,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "''",
+                    "is_by_ref": false
+                },
+                "code": {
+                    "name": "code",
+                    "line": 9,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "0",
+                    "is_by_ref": false
+                },
+                "previous": {
+                    "name": "previous",
+                    "line": 9,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Exception",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Exception",
+                    "default": "null",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "getErrors": {
+            "name": "getErrors",
+            "line": 16,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

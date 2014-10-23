@@ -1,0 +1,23 @@
+{
+    "name": "Monarkee\\Bumble\\Support\\Facades\\BumbleStr",
+    "line": 5,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble\\Support\\Facades",
+    "file": "src\/Monarkee\/Bumble\/Support\/Facades\/BumbleStr.php",
+    "hash": "b4ce63a9d8f6662e85d99d834f0c8be0543e1871",
+    "parent": "Illuminate\\Support\\Facades\\Facade",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Facade": "Illuminate\\Support\\Facades\\Facade"
+    },
+    "errors": [],
+    "interfaces": [],
+    "properties": [],
+    "methods": [],
+    "constants": []
+}

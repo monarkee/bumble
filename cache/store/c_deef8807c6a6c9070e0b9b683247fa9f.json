@@ -1,0 +1,152 @@
+{
+    "name": "Monarkee\\Bumble\\Validators\\Validator",
+    "line": 6,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble\\Validators",
+    "file": "src\/Monarkee\/Bumble\/Validators\/Validator.php",
+    "hash": "ed55f085fdb6b5a65e37e3fc521481895f16844d",
+    "parent": null,
+    "modifiers": 16,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "LaravelValidator": "Illuminate\\Validation\\Factory",
+        "ValidationException": "Monarkee\\Bumble\\Exceptions\\ValidationException"
+    },
+    "errors": [],
+    "interfaces": [],
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 13,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "validator": {
+                    "name": "validator",
+                    "line": 13,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Illuminate\\Validation\\Factory",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "LaravelValidator",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "validate": {
+            "name": "validate",
+            "line": 23,
+            "short_desc": "Do the validation",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [
+                "\"2\" @param tags are expected but only \"1\" found"
+            ],
+            "parameters": {
+                "input": {
+                    "name": "input",
+                    "line": 23,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "rules": {
+                    "name": "rules",
+                    "line": 23,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": "array()",
+                    "is_by_ref": false
+                }
+            }
+        },
+        "validateForCreate": {
+            "name": "validateForCreate",
+            "line": 34,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "input": {
+                    "name": "input",
+                    "line": 34,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "validateForUpdate": {
+            "name": "validateForUpdate",
+            "line": 39,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "input": {
+                    "name": "input",
+                    "line": 39,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

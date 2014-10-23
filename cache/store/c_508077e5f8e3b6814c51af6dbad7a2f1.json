@@ -1,0 +1,218 @@
+{
+    "name": "Monarkee\\Bumble\\Fields\\FileField",
+    "line": 7,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble\\Fields",
+    "file": "src\/Monarkee\/Bumble\/Fields\/FileField.php",
+    "hash": "83007c810e461ad68a82f4a87a8643e20372335f",
+    "parent": "Monarkee\\Bumble\\Fields\\Field",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Field": "Monarkee\\Bumble\\Fields\\Field",
+        "FileFieldInterface": "Monarkee\\Bumble\\Interfaces\\FileFieldInterface",
+        "FileFieldUploadService": "Monarkee\\Bumble\\Services\\FileFieldUploadService"
+    },
+    "errors": [],
+    "interfaces": {
+        "Monarkee\\Bumble\\Interfaces\\FileFieldInterface": "Monarkee\\Bumble\\Interfaces\\FileFieldInterface"
+    },
+    "properties": {
+        "driver": {
+            "name": "driver",
+            "line": 14,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [
+                "Unable to parse \"@var\" tag \"\""
+            ]
+        },
+        "anonymize": {
+            "name": "anonymize",
+            "line": 28,
+            "short_desc": "Whether to anonymize the uploaded file's name",
+            "long_desc": "",
+            "hint": [
+                [
+                    "bool",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "default": {},
+            "errors": []
+        },
+        "allowed_types": {
+            "name": "allowed_types",
+            "line": 64,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": [
+                "Unable to parse \"@var\" tag \"\""
+            ]
+        }
+    },
+    "methods": {
+        "isAnonymized": {
+            "name": "isAnonymized",
+            "line": 19,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "boolean",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getUploadTo": {
+            "name": "getUploadTo",
+            "line": 33,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "getUploadPath": {
+            "name": "getUploadPath",
+            "line": 51,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "unlinkFilesOnDelete": {
+            "name": "unlinkFilesOnDelete",
+            "line": 56,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "isFileField": {
+            "name": "isFileField",
+            "line": 66,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "handleFile": {
+            "name": "handleFile",
+            "line": 71,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "request": {
+                    "name": "request",
+                    "line": 71,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "unlinkFile": {
+            "name": "unlinkFile",
+            "line": 84,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "filename": {
+                    "name": "filename",
+                    "line": 84,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": {
+        "DEFAULT_UPLOAD_TO": {
+            "name": "DEFAULT_UPLOAD_TO",
+            "line": 9,
+            "short_desc": "",
+            "long_desc": ""
+        }
+    }
+}

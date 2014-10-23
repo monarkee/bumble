@@ -1,0 +1,50 @@
+{
+    "name": "Monarkee\\Bumble\\Services\\UploadInterface",
+    "line": 3,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble\\Services",
+    "file": "src\/Monarkee\/Bumble\/Services\/UploadInterface.php",
+    "hash": "c0ddbd4616cf84b1bc166f527ea6a7d93955d773",
+    "parent": null,
+    "modifiers": null,
+    "is_trait": false,
+    "is_interface": true,
+    "aliases": [],
+    "errors": [],
+    "interfaces": [],
+    "properties": [],
+    "methods": {
+        "create": {
+            "name": "create",
+            "line": 5,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "write": {
+            "name": "write",
+            "line": 6,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

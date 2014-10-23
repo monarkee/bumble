@@ -1,0 +1,7 @@
+/assets/src
+/assets/vendor/components/*/
+/node_modules
+/vendor
+composer.phar
+composer.lock
+.DS_Store

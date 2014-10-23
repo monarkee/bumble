@@ -1,0 +1,88 @@
+{
+    "name": "Monarkee\\Bumble\\BumbleServiceProvider",
+    "line": 12,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble",
+    "file": "src\/Monarkee\/Bumble\/BumbleServiceProvider.php",
+    "hash": "16cc24f5a90836ad63ea9802d47c635bbdfe67e1",
+    "parent": "Illuminate\\Support\\ServiceProvider",
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "AliasLoader": "Illuminate\\Foundation\\AliasLoader",
+        "ServiceProvider": "Illuminate\\Support\\ServiceProvider",
+        "Filesystem": "League\\Flysystem\\Filesystem",
+        "LocalAdapter": "League\\Flysystem\\Adapter\\Local",
+        "S3Adapter": "League\\Flysystem\\Adapter\\AwsS3",
+        "BumbleModel": "Monarkee\\Bumble\\Models\\BumbleModel",
+        "Module": "Monarkee\\Bumble\\Models\\Module",
+        "BumbleStr": "Monarkee\\Bumble\\Support\\BumbleStr"
+    },
+    "errors": [],
+    "interfaces": [],
+    "properties": [],
+    "methods": {
+        "boot": {
+            "name": "boot",
+            "line": 26,
+            "short_desc": "Bootstrap the application events.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "register": {
+            "name": "register",
+            "line": 43,
+            "short_desc": "Register the service provider.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "void",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        },
+        "provides": {
+            "name": "provides",
+            "line": 56,
+            "short_desc": "Get the services provided by the provider.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}

@@ -1,0 +1,81 @@
+{
+    "name": "Monarkee\\Bumble\\Composers\\MasterComposer",
+    "line": 5,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble\\Composers",
+    "file": "src\/Monarkee\/Bumble\/Composers\/MasterComposer.php",
+    "hash": "ff237d818b278a57e5176593493e2f6ea2a69b0e",
+    "parent": null,
+    "modifiers": 0,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "ModelRepository": "Monarkee\\Bumble\\Repositories\\ModelRepository"
+    },
+    "errors": [],
+    "interfaces": [],
+    "properties": [],
+    "methods": {
+        "__construct": {
+            "name": "__construct",
+            "line": 12,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "modelRepo": {
+                    "name": "modelRepo",
+                    "line": 12,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Monarkee\\Bumble\\Repositories\\ModelRepository",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "ModelRepository",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "compose": {
+            "name": "compose",
+            "line": 17,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "view": {
+                    "name": "view",
+                    "line": 17,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}

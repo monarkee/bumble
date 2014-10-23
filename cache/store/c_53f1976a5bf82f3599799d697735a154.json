@@ -1,0 +1,76 @@
+{
+    "name": "Monarkee\\Bumble\\Interfaces\\FileFieldInterface",
+    "line": 3,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Monarkee\\Bumble\\Interfaces",
+    "file": "src\/Monarkee\/Bumble\/Interfaces\/FileFieldInterface.php",
+    "hash": "793e9a9db67525c850e6239682fbb006a41e5aec",
+    "parent": null,
+    "modifiers": null,
+    "is_trait": false,
+    "is_interface": true,
+    "aliases": [],
+    "errors": [],
+    "interfaces": {
+        "Monarkee\\Bumble\\Interfaces\\FieldInterface": "Monarkee\\Bumble\\Interfaces\\FieldInterface"
+    },
+    "properties": [],
+    "methods": {
+        "handleFile": {
+            "name": "handleFile",
+            "line": 5,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "request": {
+                    "name": "request",
+                    "line": 5,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "unlinkFile": {
+            "name": "unlinkFile",
+            "line": 7,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "filename": {
+                    "name": "filename",
+                    "line": 7,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        }
+    },
+    "constants": []
+}
