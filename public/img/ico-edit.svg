@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ico-edit" stroke="#2795B6">
+            <circle id="Oval-1" cx="16" cy="16" r="16"></circle>
+            <g id="Rectangle-3-+-Line" transform="translate(16.000000, 16.000000) rotate(-330.000000) translate(-16.000000, -16.000000) translate(12.000000, 6.000000)">
+                <path d="M3.00166547,1.0658141e-14 C1.34389141,1.0658141e-14 -4.26325641e-14,1.34435073 -4.26325641e-14,2.99942248 L-4.26325641e-14,12.0005775 C-4.26325641e-14,13.6571128 0.838531077,16.0524118 1.87117308,17.3484456 L4,20.0202637 L6.12882692,17.3484456 C7.16224727,16.0514349 8,13.6556493 8,12.0005775 L8,2.99942248 C8,1.34288718 6.66097987,1.0658141e-14 4.99833453,1.0658141e-14 L3.00166547,1.0658141e-14 Z" id="Rectangle-4"></path>
+                <path d="M1.5,3.5 L6.5,3.5" id="Line" stroke-linecap="square"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,69 @@
+// Module Details
+// ------------------------------------------------------------------------------------ */
+.module-details {
+    // background: $branding_color;
+    width: 30%;
+    // display: none;
+    float: left;
+
+    input, textarea, select {
+        width: 100%;
+        border: 1px solid $border_gray;
+        padding: 10px;
+        border-radius: 3px;
+        @include font-size(14);
+    }
+
+    textarea {
+        height: rem(70);
+    }
+}
+
+// Module Components
+// ------------------------------------------------------------------------------------ */
+.module-components {
+    min-width: rem(250);
+    max-width: rem(250);
+    float: left;
+    margin: 0 0 0 rem(30);
+}
+
+.form-collapse {
+    margin: 0 0 rem(4);
+}
+
+.form-header {
+    cursor: pointer;
+
+    @include element(text) {
+        color: $branding_gray;
+        @include font-size(16);
+        font-weight: $normal;
+    }
+}
+
+.form-content {
+    display: none;
+
+    input, textarea {
+        width: 100%;
+        border: 1px solid $border_gray;
+        padding: 10px;
+        border-radius: 3px;
+        @include font-size(14);
+    }
+
+    textarea {
+        height: rem(70);
+    }
+}
+
+.form-footer {
+    display: none;
+}
+
+.form__btn-delete {
+    width: auto;
+    display: inline;
+    display: none;
+}

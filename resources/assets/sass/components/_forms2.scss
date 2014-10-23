@@ -1,0 +1,70 @@
+// Controls
+// ------------------------------------------------------------------------------------ */
+.control {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  background: #E5E5E5;
+  margin-bottom: 30px;
+  padding: 1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.control__label {}
+
+// Inputs
+// ------------------------------------------------------------------------------------ */
+.input {
+  font-family: $avenir;
+  border: 1px solid $white;
+  font-size: 1.6rem;
+  display: block;
+  width: 100%;
+  padding: 2%;
+  outline: none;
+
+  &:focus {
+    border: 1px solid #AAA;
+  }
+}
+
+.input1 {
+  height: 4.4rem;
+}
+
+// Labels
+// ------------------------------------------------------------------------------------ */
+.label {
+  font-size: 1.6rem;
+  color: #666;
+  height: 100%;
+
+//  display: flex;
+//  align-items: center;
+//  align-content: center;
+//  justify-content: center;
+}
+
+.label--tar {
+  padding-right: 2rem;
+}
+
+// Help Text
+// ------------------------------------------------------------------------------------ */
+.help-text {
+  font-size: 1.3rem;
+  margin: 0;
+  padding: 0;
+  color: #888;
+
+  &:before {
+    font-weight: $bold;
+    letter-spacing: 1px;
+    content: 'Hint: ';
+    text-transform: uppercase;
+  }
+}

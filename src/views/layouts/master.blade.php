@@ -5,7 +5,7 @@
     <title>Bumble</title>
 
     <link rel="stylesheet" href="{{ asset('bower_components/trumbowyg/dist/ui/trumbowyg.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/css/bumble.css') }}">
 </head>
 <body>
     <header class="main-header">
@@ -52,6 +52,6 @@
     <script type="text/javascript" src="{{ asset('bower_components/trumbowyg/dist/trumbowyg.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/showdown.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/mdhtmlform.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/bumble.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/packages/monarkee/bumble/js/bumble.js') }}"></script>
 </body>
 </html>

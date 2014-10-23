@@ -1,0 +1,22 @@
+// Basic Text
+// ------------------------------------------------------------------------------------ */
+
+.text {}
+
+.text--success {
+  color: $danger_color;
+}
+
+.text--warning {
+  color: $danger_color;
+}
+
+.text--danger {
+  color: $danger_color;
+}
+
+// Text Alignment
+// ------------------------------------------------------------------------------------ */
+.tal { text-align: left; }
+.tac { text-align: center; }
+.tar { text-align: right; }

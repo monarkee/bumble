@@ -1,0 +1,590 @@
+/*
+    File: screen.css
+    Media: screen
+    Copyright: (c) 2014 Monarkee. monarkee.com
+    Author: David Hemphill
+    Notes:
+*/
+// Custom Font Stacks
+$avenir: 'Avenir Next', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+// Base Setup
+$white: #FFF;
+$black: #000;
+
+// Font weight variables
+$thin: 100;
+$xlight: 200;
+$light: 300;
+$normal: 400;
+$medium: 500;
+$semibold: 600;
+$bold: 700;
+$xbold: 800;
+$xxbold: 900;
+
+// Global Widths
+$main_site_width: 120rem;
+
+// Padding & Margins
+$spacing-horz-lg: 6rem;
+$spacing-horz-md: 6rem/2;
+$spacing-horz-sm: 6rem/3;
+$spacing-horz-lg: 6rem;
+
+$main_padding: $spacing-horz-lg;
+$main_margin: $spacing-horz-lg;
+
+// Custom Settings & Colors
+$branding_color: #2795b6;
+$branding_gray: rgba(60, 60, 60, 1);
+$light_gray: rgba(#f5f5f5, 1);
+$bg_light_gray: darken($light_gray, 5%);
+
+// Colors (Black ($black) and white ($white) are already available from Amaretto)
+$bg_body: $bg_light_gray;
+$bg_main: $white;
+$bg_sidebar: $light_gray;
+$link_color: red;
+$border_gray: darken($light_gray, 10%);
+
+$bc1: darken($branding_color, 6%);
+$bc2: darken($branding_color, 17%);
+$bc3: darken($branding_color, 28%);
+$bc4: darken($branding_color, 39%);
+$bc5: darken($branding_color, 50%);
+$bc6: darken($branding_color, 61%);
+$bc7: darken($branding_color, 72%);
+$bc8: darken($branding_color, 83%);
+$bc9: darken($branding_color, 94%);
+
+$cg1: darken(#fff, 6%);
+$cg2: darken(#fff, 17%);
+$cg3: darken(#fff, 28%);
+$cg4: darken(#fff, 39%);
+$cg5: darken(#fff, 50%);
+$cg6: darken(#fff, 61%);
+$cg7: darken(#fff, 72%);
+$cg8: darken(#fff, 83%);
+$cg9: darken(#fff, 94%);
+
+$success_color: #4AB471;
+$warning_color: #F3AE4E;
+$danger_color: #CF5C60;
+
+// Mixins
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.hidetext {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// Helpers
+@import "helpers/responsive";
+@import "helpers/grid";
+@import "helpers/padding";
+
+// App-specific modules
+@import 'components/badges';
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/forms2';
+@import 'components/messages';
+@import 'components/tables';
+@import 'components/text';
+
+// Basic Styles
+// ------------------------------------------------------------------------------------ */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  height: 100%;
+  background: $bg_body;
+}
+
+body {
+  font-family: $avenir;
+  min-height: 100%;
+  color: $branding_gray;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+// Wraps
+// ------------------------------------------------------------------------------------ */
+.wrap {
+  @extend %clearfix;
+  width: $main-site-width;
+}
+
+// Main Header
+// ------------------------------------------------------------------------------------ */
+.main-header {
+  background: $branding_color;
+  height: 7.6rem;
+}
+
+.main-header__wrap {
+  @extend %clearfix;
+  padding: 0;
+  margin: 0 auto;
+}
+
+// Main Logo
+// ------------------------------------------------------------------------------------ */
+.main-logo {
+  float: left;
+  margin: 0 0 0 2rem;
+  height: 7.6rem;
+  display: flex;
+  align-items: center;
+}
+
+.main-logo__link {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: $white;
+}
+
+.visit-site {
+  font-size: 1.2rem;
+  float: left;
+  height: 7.6rem;
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 20px;
+  padding: 5px 10px;
+  font-weight: $bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: $light_gray;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+// Main Navigation
+// ------------------------------------------------------------------------------------ */
+.main-nav {
+  float: right;
+  display: flex;
+  height: 7.6rem;
+}
+
+.main-nav__links {
+  @extend %clearfix;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.main-nav__item {
+  position: relative;
+  float: left;
+  height: 7.6rem;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.main-nav__item--border-left {
+  border-left: 1px solid rgba($white, 0.3);
+}
+
+.main-nav__link {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  font-weight: $semibold;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0 $main_margin/2.1;
+  color: rgba($white, 0.7);
+  height: 7.6rem;
+  text-align: center;
+
+  &:hover {
+    color: $white;
+    background: darken($branding_color, 5%);
+  }
+}
+
+.main-nav__avatar {
+  float: left;
+  margin: 0 1rem 0 0;
+  line-height: 1;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50px;
+}
+
+// Secondary Nav
+// ------------------------------------------------------------------------------------ */
+.secondary-nav {
+  display: none;
+  flex-direction: column;
+  transition: all 0.1s ease;
+  position: absolute;
+  top: 7.6rem;
+  right: 0;
+  background: rgba($white, 1);
+  border: 1px solid rgba($branding_gray, 0.2);
+  border-top: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  z-index: 999;
+
+  &.is-visible {
+    display: flex;
+  }
+}
+
+.secondary-nav__item {
+//  flex: 0 0 100%;
+}
+
+.secondary-nav__link {
+  display: block;
+  font-size: 1.2rem;
+  color: $branding_gray;
+  padding: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: $bold;
+  text-align: center;
+
+  &:hover {
+    background-color: #F5F5F5;
+  }
+}
+
+.secondary-nav__separator {
+  height: 1px;
+  background: rgba($branding_gray, 0.2);
+  border: none;
+}
+
+// Main Search
+// ------------------------------------------------------------------------------------ */
+.main-search {
+  float: right;
+  background: darken($branding_color, 8%);
+  margin: 0;
+  padding: 8px 12px;
+}
+
+.main-search__input {
+  appearance: none;
+  font-size: 14px;
+  background: darken($branding_color, 5%);
+  width: 18rem;
+  height: 3.5rem;
+  padding: 0 2rem;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgba($white, 0.2);
+  border-radius: 5rem;
+  color: $white;
+
+  &:focus {
+    background: darken($branding_color, 18%);
+    border-bottom: 1px solid darken($branding_color, 18%);
+  }
+}
+
+// Main Layout Areas
+// ------------------------------------------------------------------------------------ */
+.main-area {
+  @extend %clearfix;
+  display: flex;
+  flex-direction: row;
+}
+
+.main-sidebar {
+  background: $light_gray;
+  flex: 0 0 230px;
+}
+
+.main-content {
+  background: $white;
+  padding: $main_padding/2 $main_padding/2 $main_padding/2;
+  width: 100%;
+}
+
+.main-content__left {
+}
+
+.main-content__right {
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin: 0 0 $main_margin/2;
+  padding: 0 0 $main_margin/2;
+  border-bottom: 1px dashed $border_gray;
+}
+
+.header__title {
+  font-size: 2.6rem;
+  font-weight: $normal;
+  margin: 0;
+  color: $branding_gray;
+}
+
+.header__description {
+  color: #888;
+  font-size: 1.5rem;
+  margin: .5rem 0;
+}
+
+.header__id {
+  font-size: 1.7rem;
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  margin: 0 0 0 0.5rem;
+  color: lighten($branding_gray, 45%);
+}
+
+.btn-create {
+  font-size: 1.8rem;
+  margin: 4px 0 0;
+  float: right;
+  color: $branding_color;
+}
+
+// Side Nav
+// ------------------------------------------------------------------------------------ */
+.side-nav {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-nav__item {
+  &:last-child a {
+    border-bottom: none
+  }
+}
+
+.side-nav__link {
+  font-size: 1.6rem;
+  display: block;
+  border-bottom: 1px solid $border-gray;
+  padding: $main_padding/4 $main_padding/4 $main_padding/4 $main_padding/3;
+  color: #777;
+}
+
+// Sub Nav
+// ------------------------------------------------------------------------------------ */
+.sub-nav {
+  display: none;
+  list-style-type: none;
+  background: darken($light_gray, 4%);
+  margin: 0;
+  padding: 0;
+}
+
+.sub-nav__link {
+  font-size: 1.4rem;
+  display: block;
+  padding: $main_padding/6 1.5rem;
+  color: $branding_gray;
+
+  &:before {
+    content: '->';
+    margin-right: 1.5rem;
+  }
+}
+
+.is--open {
+  display: block;
+}
+
+// Icon
+// ------------------------------------------------------------------------------------ */
+.icon {
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-right: 1.5rem;
+}
+
+.icon--generic {
+  background: rgba($branding_gray, 0.4);
+}
+
+// Main Footer
+// ------------------------------------------------------------------------------------ */
+.main-footer {
+}
+
+.copyright {
+  font-size: 1.2rem;
+  font-weight: $semibold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: $main_padding/2;
+  color: #AAA;
+  text-align: center;
+}
+
+// Small Inline Form
+// ------------------------------------------------------------------------------------ */
+.small-form {
+  background: rgba($branding_gray, 0.1);
+  padding: $main_padding/4;
+  line-height: 1;
+}
+
+// Tabs
+// ------------------------------------------------------------------------------------ */
+.tab-headers {
+  display: flex;
+}
+
+.tab-header {
+  background: #E5E5E5;
+  flex: 1 1 auto;
+  align-content: center;
+  justify-content: center;
+  align-items: stretch;
+  font-size: 1.4rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  text-transform: uppercase;
+  font-weight: $bold;
+  letter-spacing: 1px;
+  color: #888;
+  border-left: 1px solid #D5D5D5;
+
+  &:first-child {
+    border-left: none !important;
+  }
+}
+
+.tab-header__active {
+  background: #F5F5F5;
+  color: #AAA;
+}
+
+.tab-header__text {
+  text-align: center;
+}
+
+.tab {
+  @extend %clearfix;
+  background: #F5F5F5;
+  padding: 3rem;
+
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+// Trumbo Custom Styles
+// ------------------------------------------------------------------------------------ */
+.trumbowyg-box {
+  width: 100%;
+}
+
+.trumbowyg-editor {
+  font-size: 175%;
+}
+
+
+// Delete Post
+// ------------------------------------------------------------------------------------ */
+%edit-icon {
+  border: none;
+  background: none;
+  background-size: cover;
+  width: 28px;
+  height: 28px;
+  outline: none;
+  display: block;
+  float: right;
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
+  cursor: pointer;
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+.delete-post {
+  @extend .hidetext;
+  @extend %edit-icon;
+  background-image: url('../img/ico-delete@2x.png');
+}
+
+.edit-post {
+  @extend .hidetext;
+  @extend %edit-icon;
+  background-image: url('../img/ico-edit@2x.png');
+}
+
+// Login Page
+// ------------------------------------------------------------------------------------ */
+body.login {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+.login-form {
+  background-color: $white;
+  width: 60rem;
+  padding: 6rem;
+}
+
+.login-control {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.login-control__link {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 1.3rem;
+
+  & > a {
+    color: $branding_color;
+  }
+}
