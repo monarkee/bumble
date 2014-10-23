@@ -12,7 +12,7 @@ Route::group(['prefix' => Config::get('bumble::admin_prefix')], function()
 
         $modelRepo = App::make('Monarkee\Bumble\Repositories\ModelRepository');
 
-        foreach ($modelRepo->getModels(true) as $modelName)
+        foreach ($modelRepo->getModels() as $modelName)
         {
             Route::resource(resource_name($modelName->getPluralSlug()), 'Monarkee\Bumble\Controllers\PostController');
         }
