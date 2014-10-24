@@ -30,7 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($model->all() as $entry)
+                @foreach ($entries as $entry)
                 <tr>
                     <td class="id">{{ $entry->id }}</td>
                     @foreach ($model->getComponents() as $field)
@@ -69,6 +69,10 @@
                 @endforeach
             </tbody>
         </table>
+
+        <div class="pv">
+        {{ $entries->links() }}
+        </div>
     </main>
 </section>
 @stop

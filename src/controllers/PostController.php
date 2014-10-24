@@ -46,8 +46,9 @@ class PostController extends BumbleController
         $modelClass = full_model_name($modelName);
 
         $model = new $modelClass;
+        $entries = (new $modelClass)->paginate($this->config->get('bumble::paginate'));
 
-        return View::make('bumble::posts.index')->with(compact('model'));
+        return View::make('bumble::posts.index')->with(compact('model', 'entries'));
     }
 
     public function edit()

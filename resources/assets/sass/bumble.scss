@@ -557,6 +557,45 @@ a {
   background-image: url('../img/ico-edit@2x.png');
 }
 
+// Pagination
+// ------------------------------------------------------------------------------------ */
+.pagination {
+  margin: 0;
+  padding: 0;
+
+  .disabled,
+  .active {
+    opacity: 0.3;
+  }
+
+  li {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background: #EFEFEF;
+    width: 3.5rem;
+    height: 3.5rem;
+    list-style: none;
+    float: left;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: $semibold;
+    margin-right: 2px;
+    color: #777;
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    color: $branding_color;
+  }
+}
+
 // Login Page
 // ------------------------------------------------------------------------------------ */
 body.login {
