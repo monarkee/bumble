@@ -250,4 +250,9 @@ abstract class BumbleModel extends Eloquent
     {
         return $this->fieldIsRequired($field) ? ' required' : '';
     }
+
+    public function getField($field)
+    {
+        return isset($this->{$field}) ? $this->{$field} : '';
+    }
 }
