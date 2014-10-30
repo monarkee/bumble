@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Bumble</title>
 
-    <link rel="stylesheet" href="{{ asset('bower_components/trumbowyg/dist/ui/trumbowyg.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/bower_components/trumbowyg/dist/ui/trumbowyg.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/css/bumble.css') }}">
 </head>
 <body>
@@ -48,10 +48,8 @@
     <footer class="main-footer">
         <p class="copyright">&copy; {{ date('Y') }} Monarkee. All Rights Reserved.</p>
     </footer>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/trumbowyg/dist/trumbowyg.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/showdown.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/mdhtmlform.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('/packages/monarkee/bumble/js/vendor.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/packages/monarkee/bumble/js/bumble.js') }}"></script>
 </body>
 </html>
