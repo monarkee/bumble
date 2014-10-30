@@ -7,7 +7,7 @@
 <div class="control g-row">
     <div class="g-col-1">
         <div class="bgw" style="background-color: #fff">
-            {{ Form::textarea($field->getColumn(), null, ['class' => 'form__textarea-input mdhtmlform-md', 'placeholder' => $field->getDescription()]) }}
+            {{ Form::textarea($field->getColumn(), $field->getDefaultValue() ?: null, ['class' => 'form__textarea-input mdhtmlform-md', 'placeholder' => $field->getDescription()]) }}
         </div>
     </div>
     <div class="g-col-1">
