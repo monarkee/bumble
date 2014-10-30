@@ -35,24 +35,12 @@ class PostService
      */
     private $str;
 
-    /**
-     * @var SlugifyService
-     */
-    private $slugifyService;
-
-    /**
-     * @var HasherInterface
-     */
-    private $hasher;
-
-    public function __construct(PostValidator $validator, Application $app, Request $request, BumbleStr $str, SlugifyService $slugifyService, HasherInterface $hasher)
+    public function __construct(PostValidator $validator, Application $app, Request $request, BumbleStr $str)
     {
         $this->validator = $validator;
         $this->app = $app;
         $this->request = $request;
         $this->str = $str;
-        $this->slugifyService = $slugifyService;
-        $this->hasher = $hasher;
     }
 
     /**
@@ -61,7 +49,7 @@ class PostService
      * @return bool
      * @throws ValidationException
      */
-    public function createPost($class, $input)
+    public function create($class, $input)
     {
         $this->setInput($input);
 
@@ -71,7 +59,7 @@ class PostService
 
         if ($rules) $this->validator->validate($this->input, $rules);
 
-        return $this->saveEntry($model);
+        return $this->save($model);
     }
 
     /**
@@ -81,7 +69,7 @@ class PostService
      * @return mixed
      * @throws ValidationException
      */
-    public function updatePost($class, $id, $input)
+    public function update($class, $id, $input)
     {
         $this->setInput($input);
 
@@ -98,7 +86,7 @@ class PostService
         $entry = $model->find($id);
 
         // Save the entry
-        return $this->saveEntry($entry);
+        return $this->save($entry);
     }
 
     /**
@@ -106,7 +94,7 @@ class PostService
      * @param $id
      * @return mixed
      */
-    public function deletePost($model, $id)
+    public function delete($model, $id)
     {
         $modelName = model_name($model);
         $modelClass = full_model_name($modelName);
@@ -162,6 +150,7 @@ class PostService
 
     /**
      * @param $class
+     * @return mixed
      */
     public function getNewModel($class)
     {
@@ -172,7 +161,7 @@ class PostService
     /**
      * @param $model
      */
-    private function saveEntry($model)
+    private function save($model)
     {
         $model = $this->handleComponents($model);
 
@@ -180,6 +169,10 @@ class PostService
         return $model->save();
     }
 
+    /**
+     * @param $model
+     * @return mixed
+     */
     public function handleComponents($model)
     {
         foreach ($model->getComponents() as $component)
