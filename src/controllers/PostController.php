@@ -2,7 +2,7 @@
 
 use Illuminate\Config\Repository;
 use Illuminate\Http\Request;
-use SebastianBergmann\Exporter\Exception;
+use Exception;
 use View;
 use DB;
 use Input;
@@ -32,6 +32,11 @@ class PostController extends BumbleController
      */
     private $config;
 
+    /**
+     * @param PostService $postService
+     * @param Request     $request
+     * @param Repository  $config
+     */
     public function __construct(PostService $postService, Request $request, Repository $config)
     {
         $this->postService = $postService;
@@ -39,6 +44,9 @@ class PostController extends BumbleController
         $this->config = $config;
     }
 
+    /**
+     * @return mixed
+     */
     public function index()
     {
         $modelName = model_name($this->request->segment(2));
@@ -51,6 +59,9 @@ class PostController extends BumbleController
         return View::make('bumble::posts.index')->with(compact('model', 'entries'));
     }
 
+    /**
+     * @return mixed
+     */
     public function edit()
     {
         $slug = $this->request->segment(2);
@@ -66,6 +77,9 @@ class PostController extends BumbleController
         return View::make('bumble::posts.edit')->with(compact('post', 'model'));
     }
 
+    /**
+     * @return mixed
+     */
     public function update()
     {
         // Clean the input to be passed to the validator
@@ -80,7 +94,7 @@ class PostController extends BumbleController
         $resource = resource_name($modelName);
 
         try {
-           $this->postService->updatePost($modelName, $id, $input);
+           $this->postService->update($modelName, $id, $input);
         }
         catch (ValidationException $e)
         {
@@ -90,6 +104,9 @@ class PostController extends BumbleController
         return Redirect::route($this->config->get('bumble::admin_prefix').'.'.$resource.'.index')->with('success', 'The entry was successfully updated.');
     }
 
+    /**
+     * @return mixed
+     */
     public function create()
     {
         $modelName = model_name($this->request->segment(2));
@@ -101,6 +118,9 @@ class PostController extends BumbleController
         return View::make('bumble::posts.create')->with(compact('model'));
     }
 
+    /**
+     * @return mixed
+     */
     public function store()
     {
         $segment = $this->request->segment(2);
@@ -112,7 +132,7 @@ class PostController extends BumbleController
 
         try
         {
-            $this->postService->createPost($model, $input);
+            $this->postService->create($model, $input);
 
             return Redirect::route($this->config->get('bumble::admin_prefix').'.'.$resource.'.index')
                            ->withSuccess('The entry was successfully created');
@@ -125,32 +145,10 @@ class PostController extends BumbleController
         }
     }
 
-//    public function store()
-//    {
-//        $moduleSystemName = module_name(Request::segment(2));
-//
-//        // Clean the input to be passed to the validator
-//        $input = Input::all();
-//        unset($input['_method']);
-//        unset($input['_token']);
-//
-//        try {
-//           $this->postService->createPost($moduleSystemName, $input);
-//        }
-//        catch (ValidationException $e)
-//        {
-//            return Redirect::back()->withInput()->withErrors($e->getErrors());
-//        }
-//
-//        return Redirect::back()->with('success', 'The entry was successfully created.');
-//    }
-//
-
-    public function show($id)
-    {
-        dd($id);
-    }
-
+    /**
+     * @param $id
+     * @throws Exception
+     */
     public function destroy($id)
     {
         $segment = $this->request->segment(2);
@@ -160,25 +158,13 @@ class PostController extends BumbleController
 
         try
         {
-            $this->postService->deletePost($model, $input);
+            $this->postService->delete($model, $input);
+
+            return Redirect::back()->with('success', 'The entry was successfully deleted.');
         }
         catch (Exception $e)
         {
-            dd("Nope");
+            throw new Exception('Could not delete the post');
         }
-
-
-//        $moduleSystemName = table_name(Request::segment(2));
-//        $id = Input::get('id');
-//
-//        try {
-//           $this->postService->deletePost($moduleSystemName, $id);
-//        }
-//        catch (Exception $e)
-//        {
-//            return Redirect::back()->withInput()->withErrors($e);
-//        }
-//
-        return Redirect::back()->with('success', 'The entry was successfully deleted.');
     }
 }
