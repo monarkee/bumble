@@ -16,7 +16,7 @@
                 <tr>
                     <th class="id">ID</th>
 
-                    @foreach ($model->getComponents() as $field)
+                    @foreach ($model->getFields() as $field)
                         @if ($field->showInListing())
                             @if ($field->getColumn() == 'active')
                                 <th class="active-status">{{ Str::title($field->getName()) }}</th>
@@ -33,7 +33,7 @@
                 @foreach ($entries as $entry)
                 <tr>
                     <td class="id">{{ $entry->id }}</td>
-                    @foreach ($model->getComponents() as $field)
+                    @foreach ($model->getFields() as $field)
                         @unless ($field->showInListing() == false)
                             @if ($field->getFieldType() == 'TextField')
                                 <td>{{ $entry->{$field->getColumn()} }}</td>

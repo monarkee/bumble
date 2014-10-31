@@ -52,7 +52,7 @@ abstract class BumbleModel extends Eloquent
         parent::__construct($attributes);
 
         $this->checkIfTableExists();
-        $this->fieldset = $this->setComponents();
+        $this->fieldset = $this->setFields();
     }
 
     /**
@@ -97,7 +97,7 @@ abstract class BumbleModel extends Eloquent
     /**
      * @return mixed
      */
-    public function getComponents()
+    public function getFields()
     {
         return $this->fieldset->getFields();
     }
@@ -105,19 +105,19 @@ abstract class BumbleModel extends Eloquent
     /**
      * @var
      */
-    protected $components;
+    protected $fields;
 
     /**
      * @return mixed
      */
-    abstract public function setComponents();
+    abstract public function setFields();
 
     /**
      * @return bool
      */
-    public function hasComponents()
+    public function hasFields()
     {
-        return isset($this->components);
+        return isset($this->fields);
     }
 
     public function getTabs()
@@ -240,7 +240,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function hasFieldTypes($type)
     {
-        foreach ($this->getComponents() as $component)
+        foreach ($this->getFields() as $component)
         {
             if ($component->isFieldType($type)) return true;
         }
