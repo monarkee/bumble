@@ -11,7 +11,27 @@ trait BumbleUserTrait {
      */
     public function getFullNameAttribute()
     {
-        return trim($this->first_name .' '.$this->last_name);
+        return trim($this->getFirstName() .' '.$this->getLastName());
+    }
+
+    /**
+     * Get the first name of the user
+     *
+     * @return mixed
+     */
+    public function getFirstName()
+    {
+        return $this->attributes['first_name'];
+    }
+
+    /**
+     * Get the last name of the user
+     *
+     * @return mixed
+     */
+    public function getLastName()
+    {
+        return $this->attributes['last_name'];
     }
 
     /**
