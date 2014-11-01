@@ -46,6 +46,18 @@ class BumbleServiceProvider extends ServiceProvider {
         {
             return $this->app->make('Monarkee\Bumble\Support\BumbleStr');
         });
+
+        $this->app->singleton('bumble-gravatar', function()
+        {
+            return $this->app->make('Monarkee\Bumble\Support\Gravatar');
+        });
+
+        /*
+         * Create aliases for the dependency.
+         */
+        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+        $loader->alias('BumbleStr', 'Monarkee\Bumble\Support\Facades\BumbleStr');
+        $loader->alias('BumbleGravatar', 'Monarkee\Bumble\Support\Facades\Gravatar');
 	}
 
 	/**
@@ -55,7 +67,7 @@ class BumbleServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array('posts', 'bumble', 'markdown', 'setting');
+		return array();
 	}
 
 }

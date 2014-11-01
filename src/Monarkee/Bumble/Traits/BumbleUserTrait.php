@@ -1,6 +1,6 @@
 <?php namespace Monarkee\Bumble\Traits;
 
-use Thomaswelton\LaravelGravatar\Facades\Gravatar;
+use Monarkee\Bumble\Support\Facades\Gravatar;
 
 trait BumbleUserTrait {
     /**
@@ -41,6 +41,6 @@ trait BumbleUserTrait {
      */
     public function getAvatarAttribute()
     {
-        return Gravatar::src($this->getField('email'));
+        return Gravatar::get($this->getField('email'));
     }
 }

@@ -9,7 +9,6 @@ return [
     */
     'site-title' => 'Bumble',
     'site-url' => 'http://bumblecms.com',
-    'search' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -51,6 +50,5 @@ return [
         'login' => 'login',
         'logout' => 'logout',
         'dashboard' => 'dashboard',
-        'settings' => 'settings',
     ]
 ];
