@@ -1,4 +1,27 @@
 ###
+  Datetime Picker
+###
+$('._datetimefield').datetimepicker({
+  format: 'Y-m-d H:i:s'
+});
+
+###
+  Date Picker
+###
+$('._datefield').datetimepicker({
+  timepicker: false,
+  format: 'Y-m-d'
+});
+
+###
+  Time Picker
+###
+$('._timefield').datetimepicker({
+  datepicker: false,
+  format: 'H:i:s'
+});
+
+###
   Handle messages
 ###
 $('.js-hide-message').delay(7000).fadeOut(1000);

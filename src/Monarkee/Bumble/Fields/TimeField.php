@@ -3,9 +3,9 @@
 use Carbon\Carbon;
 use Monarkee\Bumble\Interfaces\FieldInterface;
 
-class DateTimeField extends TextField implements FieldInterface
+class TimeField extends TextField implements FieldInterface
 {
-    const DEFAULT_FORMAT = 'M d Y';
+    const DEFAULT_FORMAT = 'H:i';
 
     public function hasFormat()
     {

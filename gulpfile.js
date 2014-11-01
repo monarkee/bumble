@@ -19,6 +19,7 @@ var SRC = './resources/assets/',
 var vendorJS = [
     NODE + 'jquery/dist/cdn/jquery-2.1.1.min.js',
     BOWER + 'trumbowyg/dist/trumbowyg.min.js',
+    BOWER + 'datetimepicker/jquery.datetimepicker.js',
     SRC + 'packages/showdown/showdown.js',
     SRC + 'packages/mdhtmlform/mdhtmlform.js',
     NODE + 'fastclick/lib/fastclick.js',

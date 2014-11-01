@@ -5,6 +5,7 @@
     <title>Bumble</title>
 
     <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/bower_components/trumbowyg/dist/ui/trumbowyg.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/bower_components/datetimepicker/jquery.datetimepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/css/bumble.css') }}">
 </head>
 <body>
