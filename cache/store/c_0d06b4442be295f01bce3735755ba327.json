@@ -421,7 +421,7 @@
             }
         },
         "handleComponents": {
-            "name": "handleComponents",
+            "name": "handleFields",
             "line": 187,
             "short_desc": "",
             "long_desc": "",
