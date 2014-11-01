@@ -1,4 +1,15 @@
+
+/*
+  Handle messages
+ */
 var btnsGrps;
+
+$('.js-hide-message').delay(7000).fadeOut(1000);
+
+$('.js-close-message').on('click', function(e) {
+  console.log('Hiding the message');
+  return $(this).closest('.js-message').hide();
+});
 
 $('.js-delete-post').on('click', function(e) {
   var r;

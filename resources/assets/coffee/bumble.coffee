@@ -1,3 +1,12 @@
+###
+  Handle messages
+###
+$('.js-hide-message').delay(7000).fadeOut(1000);
+
+$('.js-close-message').on 'click', (e) ->
+  console.log 'Hiding the message'
+  $(this).closest('.js-message').hide()
+
 # Handle delete buttons on posts index page
 $('.js-delete-post').on 'click', (e) ->
   # Make sure the user wants to delete the post.

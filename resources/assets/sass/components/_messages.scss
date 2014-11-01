@@ -42,11 +42,13 @@
 }
 
 .message__btn-close {
-  background: url('../images/icon_dismiss@2x.png') no-repeat center;
-  background-size: 32px;
+  font-size: 21px;
+  font-weight: 800;
   vertical-align: middle;
   opacity: 0.6;
   display: block;
+  color: $white;
+  margin-right: 1rem;
 //  width: 44px;
 //  height: 44px;
 
