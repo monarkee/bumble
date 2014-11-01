@@ -41,7 +41,7 @@
                                 <td><code>{{ $entry->{$field->getColumn()} }}</code></td>
                             @elseif ($field->getFieldType() == 'DateTimeField')
                                 <td><code>{{ $field->display($entry->{$field->getColumn()}) }}</code></td>
-                            @elseif ($field->getFieldType() == 'BinaryField')
+                            @elseif ($field->getFieldType() == 'BooleanField')
                                 @if ($field->getColumn() == 'active')
                                     <td class="active-status"><i class="badge {{ active_color($entry->active) }}"></i></td>
                                 @endif

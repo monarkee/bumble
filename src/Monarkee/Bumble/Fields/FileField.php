@@ -9,11 +9,14 @@ class FileField extends Field implements FileFieldInterface {
     const DEFAULT_UPLOAD_TO = 'uploads';
 
     /**
-     * @var
+     * Whether to anonymize the uploaded file's name
+     * @var bool
      */
-    public $driver;
+    public $anonymize = false;
 
     /**
+     * Check whether the uploaded filename is to be anonymized when saved
+     *
      * @return boolean
      */
     public function isAnonymized()
@@ -22,52 +25,32 @@ class FileField extends Field implements FileFieldInterface {
     }
 
     /**
-     * Whether to anonymize the uploaded file's name
-     * @var bool
-     */
-    public $anonymize = false;
-
-    /**
+     * Get where the file is to be uploaded to
+     *
      * @return mixed
      */
     public function getUploadTo()
     {
-        if (isset($this->options['upload_to']))
-        {
-            if ($this->options['public'])
-            {
-                return $this->getUploadPath();
-            }
-
-            return $this->options['upload_to'];
-        }
+        if (isset($this->options['upload_to'])) return $this->options['upload_to'];
 
         return public_path(self::DEFAULT_UPLOAD_TO);
     }
 
     /**
-     * @return string
+     * Check wether to delete the files when the Model is deleted from the database
+     *
+     * @return bool
      */
-    public function getUploadPath()
-    {
-        return public_path($this->options['upload_to']);
-    }
-
     public function unlinkFilesOnDelete()
     {
-        return isset($this->options['unlink']) ? $this->options['unlink'] : true;
+        return isset($this->options['unlink_on_delete']) ? $this->options['unlink_on_delete'] : false;
     }
 
     /**
-     * @var
+     * Upload the file to the server
+     *
+     * @param $request
      */
-    public $allowed_types;
-
-    public function isFileField()
-    {
-        return true;
-    }
-
     public function handleFile($request)
     {
         $filename = $request->file($this->getLowerName());
@@ -81,6 +64,12 @@ class FileField extends Field implements FileFieldInterface {
         $filesystem->write();
     }
 
+    /**
+     * Delete the file from the server
+     *
+     * @param $filename
+     * @return bool
+     */
     public function unlinkFile($filename)
     {
         // Try to delete the file, if it doesn't work it probably doesn't exist

@@ -164,26 +164,6 @@ abstract class Field {
     }
 
     /**
-     * Check if this is a binary field
-     *
-     * @return bool
-     */
-    public function isBinaryField()
-    {
-        return false;
-    }
-
-    /**
-     * Check if this is a slug field
-     *
-     * @return bool
-     */
-    public function isSlugField()
-    {
-        return false;
-    }
-
-    /**
      * Return the fieldtype
      *
      * @param $type

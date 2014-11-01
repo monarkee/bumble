@@ -3,9 +3,10 @@
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
 use Monarkee\Bumble\Exceptions\ValidationException;
+use Monarkee\Bumble\Interfaces\FieldInterface;
 use Monarkee\Bumble\Services\SlugifyService;
 
-class SlugField extends TextField
+class SlugField extends TextField implements FieldInterface
 {
     protected $app;
 
@@ -14,11 +15,6 @@ class SlugField extends TextField
         parent::__construct($title, $options);
 
         $this->slugifyService = new SlugifyService(new Str);
-    }
-
-    public function isSlugField()
-    {
-        return true;
     }
 
     public function getSetFrom()
