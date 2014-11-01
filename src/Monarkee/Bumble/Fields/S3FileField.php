@@ -30,11 +30,12 @@ class S3FileField extends ImageField implements FileFieldInterface {
         return isset($this->options['upload_to']) ? $this->options['upload_to'] : self::DEFAULT_UPLOAD_TO;
     }
 
-    public function handleFile($request)
+    public function handleFile($request, $file, $filename)
     {
         $filesystem = new S3FileService([
             'bucket_name' => $this->getBucketName(),
             'file' => $request->file($this->getLowerName()),
+            'filename' => $filename,
             'upload_to' => $this->getUploadTo(),
         ]);
 

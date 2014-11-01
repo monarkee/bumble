@@ -6,13 +6,26 @@ use Monarkee\Bumble\Services\FileFieldUploadService;
 
 class FileField extends Field implements FileFieldInterface {
 
+    /**
+     * The default location to upload the file
+     */
     const DEFAULT_UPLOAD_TO = 'uploads';
 
     /**
      * Whether to anonymize the uploaded file's name
      * @var bool
      */
-    public $anonymize = false;
+    private $anonymize = false;
+
+    /**
+     * Check if this field is a FileField
+     *
+     * @return bool
+     */
+    public function isFileField()
+    {
+        return true;
+    }
 
     /**
      * Check whether the uploaded filename is to be anonymized when saved
@@ -50,13 +63,14 @@ class FileField extends Field implements FileFieldInterface {
      * Upload the file to the server
      *
      * @param $request
+     * @param $file
+     * @param $filename
      */
-    public function handleFile($request)
+    public function handleFile($request, $file, $filename)
     {
-        $filename = $request->file($this->getLowerName());
-
         $filesystem = new FileFieldUploadService([
-            'file' => $filename,
+            'file' => $file,
+            'filename' => $filename,
             'upload_to' => $this->getUploadTo(),
         ]);
 
@@ -81,5 +95,4 @@ class FileField extends Field implements FileFieldInterface {
             return;
         }
     }
-
 }

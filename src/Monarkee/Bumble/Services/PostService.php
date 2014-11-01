@@ -35,12 +35,18 @@ class PostService
      */
     private $str;
 
-    public function __construct(PostValidator $validator, Application $app, Request $request, BumbleStr $str)
+    /**
+     * @var HasherInterface
+     */
+    private $hash;
+
+    public function __construct(PostValidator $validator, Application $app, Request $request, BumbleStr $str, HasherInterface $hash)
     {
         $this->validator = $validator;
         $this->app = $app;
         $this->request = $request;
         $this->str = $str;
+        $this->hash = $hash;
     }
 
     /**
@@ -182,9 +188,16 @@ class PostService
             // This include ImageFields as well because the inherit from FileField
             if ($component->isFileField() && $this->request->hasFile($column))
             {
+                // Store the original file
+                $file = $this->request->file($column);
+
+                // Get a hashed filename if the user desires
+                $filename = $this->getFilename($this->request, $component);
+
                 // Handle the upload by calling the object's handleFile() method
-                $component->handleFile($this->request);
-                $model->{$column} = $this->request->file($component->getLowerName())->getClientOriginalName();
+                $component->handleFile($this->request, $file, $filename);
+
+                $model->{$column} = $filename;
             }
             else
             {
@@ -209,5 +222,25 @@ class PostService
 
             $component->unlinkFile($location . '/' . $post->{$column});
         }
+    }
+
+    /**
+     * @param $request
+     * @return mixed
+     */
+    private function getFilename($request, $component)
+    {
+        $current_file = $request->file($component->getLowerName());
+
+        if ($component->isAnonymized())
+        {
+            $extension = $current_file->getClientOriginalExtension();
+
+            $new_filename = $this->hash->make($current_file->getClientOriginalName());
+
+            return $new_filename . '.' .$extension;
+        }
+
+        return $current_file->getClientOriginalName();
     }
 }

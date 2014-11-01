@@ -53,7 +53,7 @@ class S3FileService implements UploadInterface
         if ($this->local->has($this->file->getRealPath()))
         {
             $file = $this->local->read($this->file->getRealPath());
-            $this->remote->write($this->attributes['upload_to'] . '/' . $this->file->getClientOriginalName(), $file, ['visibility' => 'public']);
+            $this->remote->write($this->attributes['upload_to'] . '/' . $this->attributes['filename'], $file, ['visibility' => 'public']);
         }
     }
 

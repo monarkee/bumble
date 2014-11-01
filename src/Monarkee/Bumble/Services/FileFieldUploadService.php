@@ -36,7 +36,7 @@ class FileFieldUploadService implements UploadInterface {
     {
         try
         {
-            $this->attributes['file']->move($this->attributes['upload_to'], $this->attributes['file']->getClientOriginalName());
+            $this->attributes['file']->move($this->attributes['upload_to'], $this->attributes['filename']);
         }
         catch (Exception $e)
         {
