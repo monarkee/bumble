@@ -627,3 +627,20 @@ body.login {
     color: $branding_color;
   }
 }
+
+// No Entries Message
+// ------------------------------------------------------------------------------------ */
+.info-box {
+  border: 2px dashed #CCC;
+  padding: 2rem;
+
+  p {
+    font-size: 1.8rem;
+    color: #999;
+    text-align: center;
+  }
+
+  a {
+    color: $branding_color;
+  }
+}

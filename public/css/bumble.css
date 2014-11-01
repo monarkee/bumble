@@ -1180,3 +1180,13 @@ body.login {
   font-size: 1.3rem; }
   .login-control__link > a {
     color: #2795b6; }
+
+.info-box {
+  border: 2px dashed #CCC;
+  padding: 2rem; }
+  .info-box p {
+    font-size: 1.8rem;
+    color: #999;
+    text-align: center; }
+  .info-box a {
+    color: #2795b6; }

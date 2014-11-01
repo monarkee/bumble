@@ -11,6 +11,7 @@
 
         @include('bumble::partials.messages')
 
+        @unless ($entries->isEmpty())
         <table class="table">
             <thead>
                 <tr>
@@ -73,6 +74,13 @@
         <div class="pv">
         {{ $entries->links() }}
         </div>
+        @else
+            <div class="info-box">
+                <p>You haven&rsquo;t create any {{ $model->getPluralName() }} yet.
+                    <a href="{{ route(Config::get('bumble::admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}">Create a new {{{ str_singular($model->getModelName()) }}} &#8594;</a>
+                </p>
+            </div>
+        @endunless
     </main>
 </section>
 @stop
