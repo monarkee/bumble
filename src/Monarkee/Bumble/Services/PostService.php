@@ -104,7 +104,7 @@ class PostService
 
         // TODO: Handle deletion of images from the filesystem
         // and know whether the model is soft-deletable
-        foreach ($model->getComponents() as $component)
+        foreach ($model->getFields() as $component)
         {
             if ($component->isFileField())
             {
@@ -163,7 +163,7 @@ class PostService
      */
     private function save($model)
     {
-        $model = $this->handleComponents($model);
+        $model = $this->handleFields($model);
 
         // Finally, save the model
         return $model->save();
@@ -173,9 +173,9 @@ class PostService
      * @param $model
      * @return mixed
      */
-    public function handleComponents($model)
+    public function handleFields($model)
     {
-        foreach ($model->getComponents() as $component)
+        foreach ($model->getFields() as $component)
         {
             $column = $component->getColumn();
 
