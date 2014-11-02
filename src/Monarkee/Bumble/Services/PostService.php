@@ -108,15 +108,9 @@ class PostService
 
         $post = $model->find($id)->first();
 
-        // TODO: Handle deletion of images from the filesystem
-        // and know whether the model is soft-deletable
-        foreach ($model->getFields() as $component)
-        {
-            if ($component->isFileField())
-            {
-                $this->unlinkFile($component, $post);
-            }
-        }
+        // Are we soft-deleting this model? If so, don't delete the file
+        // because we want to be able to restore it.
+        $this->handleFileFieldsIfNotSoftDeleting($model, $post);
 
         return $post->delete();
     }
@@ -143,13 +137,12 @@ class PostService
 
         $post = $model->onlyTrashed()->find($id)->first();
 
-        // TODO: Handle deletion of images from the filesystem
-        // and know whether the model is soft-deletable
+        // Actually delete the file from the file system
         foreach ($model->getFields() as $component)
         {
             if ($component->isFileField())
             {
-                $this->unlinkFile($component, $post);
+                $this->annihilateFile($component, $post, $component->getUploadTo(), $component->getColumn());
             }
         }
 
@@ -255,7 +248,7 @@ class PostService
             $column = $component->getColumn();
             $location = $component->getUploadTo();
 
-            $component->unlinkFile($location . '/' . $post->{$column});
+            $this->annihilateFile($component, $post, $location, $column);
         }
     }
 
@@ -271,11 +264,36 @@ class PostService
         {
             $extension = $current_file->getClientOriginalExtension();
 
-            $new_filename = $this->hash->make($current_file->getClientOriginalName());
+            $new_filename = substr(str_shuffle(str_repeat('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',32)),0,32);
 
             return $new_filename . '.' .$extension;
         }
 
         return $current_file->getClientOriginalName();
+    }
+
+    /**
+     * @param $component
+     * @param $post
+     * @param $location
+     * @param $column
+     */
+    private function annihilateFile($component, $post, $location, $column)
+    {
+        $component->unlinkFile($location . '/' . $post->{$column});
+    }
+
+    /**
+     * @param $model
+     * @param $post
+     */
+    private function handleFileFieldsIfNotSoftDeleting($model, $post)
+    {
+        if ( ! $model->isSoftDeleting()) {
+            // Handle deletion of images from the filesystem
+            foreach ($model->getFields() as $component) {
+                if ($component->isFileField() && $component->unlinkFilesOnDelete()) $this->unlinkFile($component, $post);
+            }
+        }
     }
 }
