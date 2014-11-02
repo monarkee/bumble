@@ -11,48 +11,37 @@ use Config;
 
 abstract class BumbleModel extends Eloquent
 {
-
     /**
+     * The fieldset for the model
+     *
      * @var
      */
     protected $fieldset;
 
     /**
+     * The validation rules used for creation and updating
+     *
      * @var
      */
     public $rules = [];
 
     /**
+     * The editing title key for the model
+     *
      * @var
      */
     protected $editingTitle;
 
     /**
-     * @var
-     */
-    private $passwordFields;
-
-    /**
+     * The edit validation rules
+     *
      * @var
      */
     private $editRules;
 
     /**
-     * @var
-     */
-    private $slugFields;
-
-    /**
-     * @var Blueprint
-     */
-    private $schema;
-
-    /**
-     * @var
-     */
-    private $binaryFields;
-
-    /**
+     * Create a new BumbleModel
+     *
      * @param array $attributes
      * @throws TableNotFoundException
      */
@@ -77,18 +66,16 @@ abstract class BumbleModel extends Eloquent
     protected $invisible;
 
     /**
+     * Whether to show the model in the top nav
+     *
      * @var bool
      */
     protected $showInTopNav = false;
 
     /**
-     * @var array
-     */
-    public $imageFields;
-
-    /**
      * Find out if the model supports Soft Deletes
      *
+     * @return boolean
      */
     public function isSoftDeleting()
     {
@@ -96,6 +83,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Get the description for the model
+     *
      * @return mixed
      */
     public function getDescription()
@@ -104,6 +93,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Get the fields for the model
+     *
      * @return mixed
      */
     public function getFields()
@@ -112,16 +103,22 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * The fields of the model
+     *
      * @var
      */
     protected $fields;
 
     /**
+     * Set the fields on the model
+     *
      * @return mixed
      */
     abstract public function setFields();
 
     /**
+     * Check wheter the model has fields
+     *
      * @return bool
      */
     public function hasFields()
@@ -130,6 +127,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Get the tabs for the model
+     *
      * @return mixed
      */
     public function getTabs()
@@ -138,6 +137,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Get the fields in a certain tab by ID
+     *
      * @param $tabId
      * @return mixed
      */
@@ -147,6 +148,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Get the model's name
+     *
      * @return mixed
      */
     public function getModelName()
@@ -155,6 +158,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Get the plural name for the model
+     *
      * @return string
      */
     public function getPluralName()
@@ -163,6 +168,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Get the plural slug for the model
+     *
      * @return string
      */
     public function getPluralSlug()
@@ -171,6 +178,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Check whether a field is required on the model
+     *
      * @param $field
      * @return bool
      */
@@ -180,6 +189,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Get the edit validation rules for the model
+     *
      * @return mixed
      */
     public function getEditValidationRules()
@@ -188,6 +199,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Get the validation rules for the model
+     *
      * @return mixed
      */
     public function getValidationRules()
@@ -196,23 +209,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
-     * @return string
-     */
-    public function getCreateLinkAttribute()
-    {
-        return url(Config::get('bumble::admin_prefix').'/'.$this->getPluralSlug().'/create');
-    }
-
-    /**
-     * @return string
-     */
-    public function getIndexLinkAttribute()
-    {
-        $permalink = str_replace('_', '-', $this->system_name);
-        return url(Config::get('bumble::admin_prefix').'/'.$permalink);
-    }
-
-    /**
+     * Check if the model is hidden completely from the CMS
+     *
      * @return mixed
      */
     public function isHidden()
@@ -221,6 +219,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Check if the model is hidden from the top nav
+     *
      * @return bool
      */
     public function isHiddenFromTopNav()
@@ -229,6 +229,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Check whether to show this model in the top navigation
+     *
      * @return boolean
      */
     public function getShowInTopNav()
@@ -237,6 +239,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Check if the table exists for the model
+     *
      * @return bool
      * @throws TableNotFoundException
      */
@@ -251,6 +255,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Check for arbitrary Field Types on the model
+     *
      * @param $type
      * @return bool
      */
@@ -263,6 +269,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Get the required class name of the model
+     *
      * @param $field
      * @return string
      */
@@ -272,6 +280,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Get the specified field for the model
+     *
      * @param $field
      * @return mixed|string
      */
@@ -281,6 +291,8 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
+     * Get the editing title for the model
+     *
      * @return mixed
      */
     public function editingTitle()
@@ -288,6 +300,11 @@ abstract class BumbleModel extends Eloquent
         return $this->columnExists($this->editingTitle) ? $this->{$this->editingTitle} : '';
     }
 
+    /**
+     * Check if a column exists on a the model's table
+     * @param $column
+     * @return mixed
+     */
     public function columnExists($column)
     {
         return Schema::hasColumn($this->getTable(), $column);
