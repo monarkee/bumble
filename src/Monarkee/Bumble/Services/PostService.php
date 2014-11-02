@@ -173,8 +173,10 @@ class PostService
      */
     private function filterEmptyInput($input)
     {
-        foreach ($input as $key => $value) {
-            if (empty($value)) {
+        foreach ($input as $key => $value)
+        {
+            if (empty($value))
+            {
                 unset($input[$key]);
             }
         }
@@ -226,8 +228,7 @@ class PostService
                 $component->handleFile($this->request, $file, $filename);
 
                 $model->{$column} = $filename;
-            }
-            else
+            } else
             {
                 // Process the input data for this component type
                 $model = $component->process($model, $this->input);
@@ -243,7 +244,8 @@ class PostService
      */
     private function unlinkFile($component, $post)
     {
-        if ($component->unlinkFilesOnDelete()) {
+        if ($component->unlinkFilesOnDelete())
+        {
 
             $column = $component->getColumn();
             $location = $component->getUploadTo();
@@ -264,9 +266,9 @@ class PostService
         {
             $extension = $current_file->getClientOriginalExtension();
 
-            $new_filename = substr(str_shuffle(str_repeat('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',32)),0,32);
+            $new_filename = substr(str_shuffle(str_repeat('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', 32)), 0, 32);
 
-            return $new_filename . '.' .$extension;
+            return $new_filename . '.' . $extension;
         }
 
         return $current_file->getClientOriginalName();
@@ -289,9 +291,11 @@ class PostService
      */
     private function handleFileFieldsIfNotSoftDeleting($model, $post)
     {
-        if ( ! $model->isSoftDeleting()) {
+        if (!$model->isSoftDeleting())
+        {
             // Handle deletion of images from the filesystem
-            foreach ($model->getFields() as $component) {
+            foreach ($model->getFields() as $component)
+            {
                 if ($component->isFileField() && $component->unlinkFilesOnDelete()) $this->unlinkFile($component, $post);
             }
         }
