@@ -7,9 +7,7 @@
         <div class="header">
             <div class="flex jcc aic acc">
                 <h2 class="header__title">{{ $model->getPluralName() }}</h2>
-                @if ($model->isSoftDeleting())
-                    <a href="{{ route(Config::get('bumble::admin_prefix') . '.' . $model->getPluralSlug() . '.trashed') }}" class="trashed-link">View Trashed</a>
-                @endif
+                <a href="{{ route(Config::get('bumble::admin_prefix') . '.' . $model->getPluralSlug() . '.index') }}" class="trashed-link">View Non-Trashed</a>
             </div>
             <a href="{{ route(Config::get('bumble::admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="btn-create">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
         </div>
@@ -32,7 +30,7 @@
                         @endif
                     @endforeach
 
-                    <th class="">Actions</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,13 +62,23 @@
                             @endif
                         @endunless
                     @endforeach
-                    <td width="90">
+                    <td>
                         <div class="inline-flex">
-                            <a href="{{ route(Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.edit', ['id' => $entry->id]) }}" class="edit-post">Edit</a>
-                            {{ Form::open(['method' => 'delete', 'route' => [Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.destroy', $entry->id]]) }}
+                        {{ Form::open([
+                            'method' => 'put',
+                            'class' => 'dibe',
+                            'route' => [
+                                Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.restore', $entry->id
+                            ]
+                        ]) }}
+                        {{ Form::hidden('id', $entry->id) }}
+                        {{ Form::button('Restore', ['type' => 'submit', 'class' => 'dib restore-button']) }}
+                        {{ Form::close() }}
+
+                        {{ Form::open(['method' => 'delete', 'route' => [Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.annihilate', $entry->id]]) }}
                             {{ Form::hidden('id', $entry->id) }}
                             {{ Form::button('', ['type' => 'submit', 'class' => 'delete-post js-delete-post']) }}
-                            {{ Form::close() }}
+                        {{ Form::close() }}
                         </div>
                     </td>
                 </tr>
@@ -83,9 +91,7 @@
         </div>
         @else
             <div class="info-box">
-                <p>You haven&rsquo;t create any {{ strtolower($model->getPluralName()) }} yet.
-                    <a href="{{ route(Config::get('bumble::admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}">Create a new {{{ str_singular($model->getModelName()) }}} &#8594;</a>
-                </p>
+                <p>There aren&rsquo;t any tashed {{ strtolower($model->getPluralName()) }} here.</p>
             </div>
         @endunless
     </main>

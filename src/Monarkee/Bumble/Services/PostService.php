@@ -121,6 +121,41 @@ class PostService
         return $post->delete();
     }
 
+    public function restore($model, $id)
+    {
+        $modelName = model_name($model);
+        $modelClass = full_model_name($modelName);
+        $model = new $modelClass;
+
+        return $model->withTrashed()->find($id)->restore();
+    }
+
+    /**
+     * @param $model
+     * @param $id
+     * @return mixed
+     */
+    public function annihilate($model, $id)
+    {
+        $modelName = model_name($model);
+        $modelClass = full_model_name($modelName);
+        $model = new $modelClass;
+
+        $post = $model->onlyTrashed()->find($id)->first();
+
+        // TODO: Handle deletion of images from the filesystem
+        // and know whether the model is soft-deletable
+        foreach ($model->getFields() as $component)
+        {
+            if ($component->isFileField())
+            {
+                $this->unlinkFile($component, $post);
+            }
+        }
+
+        return $post->forceDelete();
+    }
+
     /**
      * @param $field
      * @return array

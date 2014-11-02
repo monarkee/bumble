@@ -12,9 +12,29 @@ Route::group(['prefix' => Config::get('bumble::admin_prefix')], function()
 
         $modelRepo = App::make('Monarkee\Bumble\Repositories\ModelRepository');
 
-        foreach ($modelRepo->getModels() as $modelName)
+        foreach ($modelRepo->getModels() as $model)
         {
-            Route::resource(resource_name($modelName->getPluralSlug()), 'Monarkee\Bumble\Controllers\PostController');
+            Route::resource(resource_name($model->getPluralSlug()), 'Monarkee\Bumble\Controllers\PostController', [
+                'except' => ['show']
+            ]);
+
+            if ($model->isSoftDeleting())
+            {
+                Route::get(resource_name($model->getPluralSlug()).'/trashed', [
+                    'as' => Config::get('bumble::admin_prefix').'.'.resource_name($model->getPluralSlug()).'.trashed',
+                    'uses' => 'Monarkee\Bumble\Controllers\PostController@trashed'
+                ]);
+
+                Route::put(resource_name($model->getPluralSlug()).'/restore/{id}', [
+                    'as' => Config::get('bumble::admin_prefix').'.'.resource_name($model->getPluralSlug()).'.restore',
+                    'uses' => 'Monarkee\Bumble\Controllers\PostController@restore'
+                ]);
+
+                Route::delete(resource_name($model->getPluralSlug()).'/annihilate/{id}', [
+                    'as' => Config::get('bumble::admin_prefix').'.'.resource_name($model->getPluralSlug()).'.annihilate',
+                    'uses' => 'Monarkee\Bumble\Controllers\PostController@annihilate'
+                ]);
+            }
         }
         });
 });

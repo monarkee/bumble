@@ -88,7 +88,9 @@ $danger_color: #CF5C60;
 }
 
 // Helpers
+@import "helpers/display";
 @import "helpers/responsive";
+@import "helpers/flex";
 @import "helpers/grid";
 @import "helpers/padding";
 
@@ -642,5 +644,24 @@ body.login {
 
   a {
     color: $branding_color;
+  }
+}
+
+// Trashed Link
+// ------------------------------------------------------------------------------------ */
+.trashed-link {
+  background-color: #EEE;
+  padding: 3px 7px;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #999;
+  margin-left: 2rem;
+  border-radius: 2px;
+
+  &:hover {
+    background-color: #DDD;
+    color: #777;
   }
 }

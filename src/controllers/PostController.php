@@ -3,6 +3,7 @@
 use Illuminate\Config\Repository;
 use Illuminate\Http\Request;
 use Exception;
+use Monarkee\Bumble\Repositories\ModelRepository;
 use View;
 use DB;
 use Input;
@@ -33,15 +34,21 @@ class PostController extends BumbleController
     private $config;
 
     /**
+     * @var ModelRepository
+     */
+    private $modelRepo;
+
+    /**
      * @param PostService $postService
      * @param Request     $request
      * @param Repository  $config
      */
-    public function __construct(PostService $postService, Request $request, Repository $config)
+    public function __construct(PostService $postService, Request $request, Repository $config, ModelRepository $modelRepo)
     {
         $this->postService = $postService;
         $this->request = $request;
         $this->config = $config;
+        $this->modelRepo = $modelRepo;
     }
 
     /**
@@ -49,14 +56,59 @@ class PostController extends BumbleController
      */
     public function index()
     {
-        $modelName = model_name($this->request->segment(2));
+        $model = $this->modelRepo->get($this->request->segment(2));
 
-        $modelClass = full_model_name($modelName);
-
-        $model = new $modelClass;
-        $entries = (new $modelClass)->paginate($this->config->get('bumble::paginate'));
+        $entries = $model->orderBy('id', 'desc')->paginate($this->config->get('bumble::paginate'));
 
         return View::make('bumble::posts.index')->with(compact('model', 'entries'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function trashed()
+    {
+        $model = $this->modelRepo->get($this->request->segment(2));
+
+        $entries = $model->onlyTrashed()->paginate($this->config->get('bumble::paginate'));
+
+        return View::make('bumble::posts.trashed')->with(compact('model', 'entries'));
+    }
+
+    public function restore($id)
+    {
+        $segment = $this->request->segment(2);
+        $model = model_name($segment);
+
+        try
+        {
+            $this->postService->restore($model, $id);
+
+            return Redirect::back()->with('success', 'The entry was successfully restored.');
+        }
+        catch (Exception $e)
+        {
+            throw new Exception('Could not restore the post');
+        }
+    }
+
+    public function annihilate($id)
+    {
+        $segment = $this->request->segment(2);
+        $model = model_name($segment);
+
+        $input = Input::only('id');
+
+        try
+        {
+            $this->postService->annihilate($model, $input);
+
+            return Redirect::back()->with('success', 'The entry was deleted forever.');
+        }
+        catch (Exception $e)
+        {
+            throw new Exception('Could not delete the post');
+        }
     }
 
     /**
@@ -67,11 +119,7 @@ class PostController extends BumbleController
         $slug = $this->request->segment(2);
         $id = $this->request->segment(3);
 
-        $modelName = model_name($slug);
-
-        $modelClass = full_model_name($modelName);
-
-        $model = new $modelClass;
+        $model = $this->modelRepo->get($this->request->segment(2));
         $post = $model->whereId($id)->first();
 
         return View::make('bumble::posts.edit')->with(compact('post', 'model'));
@@ -109,11 +157,7 @@ class PostController extends BumbleController
      */
     public function create()
     {
-        $modelName = model_name($this->request->segment(2));
-
-        $modelClass = full_model_name($modelName);
-
-        $model = new $modelClass;
+        $model = $this->modelRepo->get($this->request->segment(2));
 
         return View::make('bumble::posts.create')->with(compact('model'));
     }

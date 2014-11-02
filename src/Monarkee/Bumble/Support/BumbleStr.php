@@ -49,7 +49,7 @@ class BumbleStr
     public function full_model_name($value)
     {
         $models = $this->config->get("bumble::models");
-        return $models . $value;
+        return $models . '\\' . $value;
     }
 
     /**
