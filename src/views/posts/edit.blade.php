@@ -5,7 +5,7 @@
     @include ('bumble::partials.sidenav')
     <main class="main-content">
         <div class="header">
-            <h2 class="header__title">Editing {{ str_singular($model->name) }}{{ isset($post->title) ? ': '.$post->title : ' #'.$post->id }}</h2>
+            <h2 class="header__title">Editing <span class="header__id">#{{ $post->id }} &ldquo;{{ $post->editingTitle() }}&rdquo;</span></h2>
         </div>
         {{ Form::model($post, [
             'method' => 'put',

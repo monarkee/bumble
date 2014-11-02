@@ -25,6 +25,11 @@ abstract class BumbleModel extends Eloquent
     /**
      * @var
      */
+    protected $editingTitle;
+
+    /**
+     * @var
+     */
     private $passwordFields;
 
     /**
@@ -47,6 +52,10 @@ abstract class BumbleModel extends Eloquent
      */
     private $binaryFields;
 
+    /**
+     * @param array $attributes
+     * @throws TableNotFoundException
+     */
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -120,11 +129,18 @@ abstract class BumbleModel extends Eloquent
         return isset($this->fields);
     }
 
+    /**
+     * @return mixed
+     */
     public function getTabs()
     {
         return $this->fieldset->getTabs();
     }
 
+    /**
+     * @param $tabId
+     * @return mixed
+     */
     public function getTabFields($tabId)
     {
         return $this->fieldset->getTabFields($tabId);
@@ -246,13 +262,34 @@ abstract class BumbleModel extends Eloquent
         }
     }
 
+    /**
+     * @param $field
+     * @return string
+     */
     public function getRequiredClass($field)
     {
         return $this->fieldIsRequired($field) ? ' required' : '';
     }
 
+    /**
+     * @param $field
+     * @return mixed|string
+     */
     public function getField($field)
     {
         return isset($this->{$field}) ? $this->{$field} : '';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function editingTitle()
+    {
+        return $this->columnExists($this->editingTitle) ? $this->{$this->editingTitle} : '';
+    }
+
+    public function columnExists($column)
+    {
+        return Schema::hasColumn($this->getTable(), $column);
     }
 }
