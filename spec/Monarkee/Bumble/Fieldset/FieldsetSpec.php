@@ -31,7 +31,7 @@ class FieldsetSpec extends ObjectBehavior
         ]);
     }
 
-    function it_should_get_its_fields()
+    function it_should_set_its_fields()
     {
     }
 

@@ -18,9 +18,9 @@ use stdClass;
 
 class PostServiceSpec extends ObjectBehavior
 {
-    function let(PostValidator $postValidator, Application $app, Request $request, BumbleStr $str, SlugifyService $slugifyService, HasherInterface $hash)
+    function let(PostValidator $postValidator, Application $app, Request $request, BumbleStr $str, HasherInterface $hash)
     {
-        $this->beConstructedWith($postValidator, $app, $request, $str, $slugifyService, $hash);
+        $this->beConstructedWith($postValidator, $app, $request, $str, $hash);
     }
 
     function it_is_initializable()
