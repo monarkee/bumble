@@ -297,7 +297,11 @@ abstract class BumbleModel extends Eloquent
      */
     public function editingTitle()
     {
-        return $this->columnExists($this->editingTitle) ? $this->{$this->editingTitle} : '';
+        if ($this->columnExists($this->editingTitle)) return $this->{$this->editingTitle};
+
+        if ($this->columnExists('title')) return $this->title;
+
+        return '';
     }
 
     /**
