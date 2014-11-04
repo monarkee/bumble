@@ -91,7 +91,7 @@
         </div>
         @else
             <div class="info-box">
-                <p>There aren&rsquo;t any tashed {{ strtolower($model->getPluralName()) }} here.</p>
+                <p>There aren&rsquo;t any trashed {{ strtolower($model->getPluralName()) }} here.</p>
             </div>
         @endunless
     </main>
