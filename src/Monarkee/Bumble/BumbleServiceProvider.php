@@ -16,7 +16,7 @@ class BumbleServiceProvider extends ServiceProvider {
 	 *
 	 * @var bool
 	 */
-	protected $defer = false;
+	protected $defer = true;
 
 	/**
 	 * Bootstrap the application events.
@@ -67,7 +67,7 @@ class BumbleServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array();
+		return array('bumble.bumblestr', 'bumble.bumble-gravatar');
 	}
 
 }
