@@ -24,6 +24,7 @@
     "autoload": {
         "classmap": [
             "src/migrations",
+            "src/seeds",
             "src/controllers"
         ],
         "psr-0": {
