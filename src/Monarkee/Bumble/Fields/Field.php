@@ -10,6 +10,12 @@ abstract class Field {
     protected $options;
 
     /**
+     * The default prefix to use for a fieldtype's view
+     * @var
+     */
+    protected $viewPrefix = 'bumble::fieldTypes';
+
+    /**
      * @param       $title
      * @param array $options
      */
@@ -148,9 +154,17 @@ abstract class Field {
      *
      * @return string
      */
+
     public function getWidgetType()
     {
-        return $this->hasOption('widget') ? $this->getOption('widget') : $this->getFieldType();
+        // 1. Use the fieldtypes property if set
+        // 2. Use the option 'widget'
+        // 3. Use the fieldType getter
+        if ($this->hasOption('widget')) return $this->viewPrefix . '.' . $this->getOption('widget');
+
+        if (isset($this->view)) return $this->view;
+
+        return $this->viewPrefix . '.' . $this->getFieldType();
     }
 
     /**

@@ -12,11 +12,7 @@
     @foreach ($model->getTabs() as $key => $tab)
         <div id="tab-header-{{ $key }}" class="tab">
         @foreach ($model->getTabFields($key) as $field)
-            @if ($field->hasCustomWidget())
-                @include ('bumble::fieldTypes.'.$field->getWidgetType())
-            @else
-                @include ('bumble::fieldTypes.'.$field->getFieldType())
-            @endif
+            @include ($field->getWidgetType())
         @endforeach
         </div>
     @endforeach
