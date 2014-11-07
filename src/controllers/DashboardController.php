@@ -8,7 +8,7 @@ class DashboardController extends BumbleController
 {
     /**
      * Dashboard View
-     * @return [type] [description]
+     * @return \Illuminate\View\View
      */
     public function getIndex()
     {
