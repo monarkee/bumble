@@ -2,7 +2,7 @@
 /*
   Datetime Picker
  */
-var btnsGrps;
+var btnsGrps, elem, init;
 
 $('._datetimefield').datetimepicker({
   format: 'Y-m-d H:i:s'
@@ -108,3 +108,21 @@ $('._dropdown').on('click', function(e) {
 $(document).on('click', function(e) {
   return $('._dropdown-menu').removeClass("is-visible");
 });
+
+
+/*
+  BooleanField Toggles
+ */
+
+elem = document.querySelector('._switch');
+
+init = new Switchery(elem, {
+  secondaryColor: "#DB5554"
+});
+
+
+/*
+  Tooltips
+ */
+
+$('._tooltip').tipr();

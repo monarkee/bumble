@@ -1,11 +1,8 @@
-<?php $fieldName = $model->fieldIsRequired($field) ? $field->getName() . ' (required)' : $field->getName(); ?>
-
-<div class="form__checkboxes">
-    <div class="checkbox__label">{{ $fieldName }}</div>
-    <div class="form__checkbox-wrap--half">
-        <label class="checkbox__input-label">
-            {{ Form::checkbox($field->getColumn(), null, ['class' => 'checkbox__input']) }}
-            {{  $field->getDescription() }}
-        </label>
+<div class="control g-row">
+    <div class="g-col-2 tar">
+        <label class="label label--tar">{{ $field->getName() }}</label>
+    </div>
+    <div class="g-col-10">
+        {{ Form::checkbox($field->getColumn(), null, null, ['class' => '_switch']) }}
     </div>
 </div>

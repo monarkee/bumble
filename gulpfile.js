@@ -11,6 +11,7 @@ var gulp = require('gulp'),
 
 var SRC = './resources/assets/',
     BOWER = './public/bower_components/',
+    PACKAGES = './public/packages/',
     NODE = './node_modules/',
     DIST = './public/';
 
@@ -19,6 +20,8 @@ var SRC = './resources/assets/',
 var vendorJS = [
     NODE + 'jquery/dist/cdn/jquery-2.1.1.min.js',
     BOWER + 'trumbowyg/dist/trumbowyg.min.js',
+    BOWER + 'switchery/dist/switchery.min.js',
+    PACKAGES + 'tipr/tipr.min.js',
     BOWER + 'datetimepicker/jquery.datetimepicker.js',
     SRC + 'packages/showdown/showdown.js',
     SRC + 'packages/mdhtmlform/mdhtmlform.js',

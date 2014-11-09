@@ -101,3 +101,17 @@ $('._dropdown').on 'click', (e) ->
 ###
 $(document).on 'click', (e) ->
     $('._dropdown-menu').removeClass("is-visible")
+
+###
+  BooleanField Toggles
+###
+elem = document.querySelector('._switch')
+init = new Switchery(elem, {
+  secondaryColor: "#DB5554"
+})
+
+###
+  Tooltips
+###
+
+$('._tooltip').tipr();

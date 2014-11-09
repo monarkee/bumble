@@ -264,6 +264,13 @@
       -ms-flex: 12;
           flex: 12; }
 
+.g-full {
+  width: 100%;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 100%;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%; }
+
 .align-items-center {
   -webkit-box-align: center;
   -webkit-align-items: center;
@@ -637,6 +644,7 @@ put-label {
   color: #CF5C60; }
 
 .control {
+  position: relative;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
