@@ -1,5 +1,8 @@
-<div class="form__text">
-    <?php $fieldName = $model->fieldIsRequired($field) ? $field->getTitle() . ' (required)' : $field->getTitle(); ?>
-    {{ Form::label($field->getColumn(), $fieldName, ['class' => 'form__text-label']) }}
-    {{ Form::text($field->getColumn(), $field->getDefaultValue() ?: null, ['class' => 'form__text-input _datetimefield', 'placeholder' => $field->getPlaceholder()]) }}
+<div class="control g-row">
+    <div class="g-col-2 tar">
+        {{ Form::label($field->getColumn(), $field->getTitle(), ['class' => 'label label--tar'.$model->getRequiredClass($field)]) }}
+    </div>
+    <div class="g-col-10">
+        {{ Form::text($field->getColumn(), $field->getDefaultValue() ?: null, ['class' => 'input input1 _datetimefield', 'placeholder' => $field->getPlaceholder()]) }}
+    </div>
 </div>
