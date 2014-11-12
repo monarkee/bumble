@@ -26,6 +26,8 @@
                         @if ($field->showInListing())
                             @if ($field->getColumn() == 'active' || $field->getFieldType() == "BooleanField")
                                 <th class="active-status">{{ Str::title($field->getName()) }}</th>
+                            @elseif ($field->getFieldType() == "HasOneField")
+                                <th>{{ $field->getTitle() }}</th>
                             @else
                                 <th>{{ Str::title($field->getName()) }}</th>
                             @endif
@@ -56,7 +58,7 @@
                             @elseif ($field->getFieldType() == 'ImageField')
                                 <td>{{ $entry->{$field->getColumn()} }}</td>
                             @elseif ($field->getFieldType() == 'HasOneField')
-                                <td>{{ $model->{$field->getLowerName()}()->getRelated()->whereId($entry->{$field->getColumn()})->pluck($field->getTitleOption()) }}</td>
+                                <td>{{ $model->{$field->method()}()->getRelated()->whereId($entry->{$field->getColumn()})->pluck($field->getTitleOption()) }}</td>
                             @else
                                 <td>{{ $entry->{$field->getColumn()} }}</td>
                             @endif

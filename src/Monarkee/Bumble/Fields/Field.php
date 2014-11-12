@@ -64,8 +64,9 @@ abstract class Field {
      */
     public function getName()
     {
-        $string = str_replace('_', ' ', $this->title);
-        return ucwords($string);
+        $label = $this->hasOption('title') ? $this->getOption('title') : $this->title;
+
+        return ucwords(str_replace('_', ' ', $label));
     }
 
     /**
@@ -276,6 +277,6 @@ abstract class Field {
      */
     public function getDefaultValue()
     {
-        return $this->hasOption('default_value') ? $this->getOption('default_value') : '';
+        return $this->hasOption('default_value') ? $this->getOption('default_value') : false;
     }
 }

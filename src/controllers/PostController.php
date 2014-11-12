@@ -142,7 +142,6 @@ class PostController extends BumbleController
         $resource = resource_name($modelName);
 
         try {
-//            dd($input);
            $this->postService->update($modelName, $id, $input);
         }
         catch (ValidationException $e)
