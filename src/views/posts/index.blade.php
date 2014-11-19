@@ -24,7 +24,7 @@
 
                     @foreach ($model->getFields() as $field)
                         @if ($field->showInListing())
-                            @if ($field->getColumn() == 'active')
+                            @if ($field->getColumn() == 'active' || $field->getFieldType() == "BooleanField")
                                 <th class="active-status">{{ Str::title($field->getName()) }}</th>
                             @else
                                 <th>{{ Str::title($field->getName()) }}</th>
@@ -48,9 +48,7 @@
                             @elseif ($field->getFieldType() == 'DateTimeField')
                                 <td><code>{{ $field->display($entry->{$field->getColumn()}) }}</code></td>
                             @elseif ($field->getFieldType() == 'BooleanField')
-                                @if ($field->getColumn() == 'active')
-                                    <td class="active-status"><i class="badge {{ active_color($entry->active) }}"></i></td>
-                                @endif
+                                <td class="active-status"><i class="badge {{ active_color($entry->active) }}"></i></td>
                             @elseif ($field->getFieldType() == 'DropdownField')
                                 <td>{{ $field->getValue($entry->{$field->getColumn()}) }}</td>
                             @elseif ($field->getFieldType() == 'TextareaField')
