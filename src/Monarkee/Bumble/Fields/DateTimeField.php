@@ -19,6 +19,8 @@ class DateTimeField extends TextField implements FieldInterface
 
     public function display($value)
     {
+        if (is_null($value)) return 'NULL';
+
         return Carbon::parse($value)->format($this->getFormat());
     }
 
@@ -38,9 +40,12 @@ class DateTimeField extends TextField implements FieldInterface
         {
             $model->{$column} = Carbon::now();
         }
-        elseif(isset($input[$column])) {
+        elseif (isset($input[$column]))
+        {
             $model->{$column} = $input[$column];
         }
+
+        if (empty($input[$column])) $model->{$column} = null;
 
         return $model;
     }
