@@ -89,7 +89,7 @@ class PostService
         $input = $this->filterEmptyInput($input);
 
         // Get the model to be saved
-        $entry = $model->find($id);
+        $entry = $model->find($this->request->segment(3));
 
         // Save the entry
         return $this->save($entry);
