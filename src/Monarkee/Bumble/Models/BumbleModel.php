@@ -8,9 +8,23 @@ use Monarkee\Bumble\Exceptions\TableNotFoundException;
 use ReflectionClass;
 use Str;
 use Config;
+use Request;
 
 abstract class BumbleModel extends Eloquent
 {
+    /**
+     * If not in the admin, boot the traits of the model
+     *
+     * @return void
+     */
+    protected static function bootTraits()
+    {
+        if (Request::segment(1) !== Config::get('bumble::admin_prefix'))
+        {
+            parent::bootTraits();
+        }
+    }
+
     /**
      * The fieldset for the model
      *
