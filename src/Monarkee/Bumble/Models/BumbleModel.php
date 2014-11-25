@@ -23,6 +23,12 @@ abstract class BumbleModel extends Eloquent
         {
             parent::bootTraits();
         }
+
+        // Boot soft-delete trait all the time
+        if (method_exists(get_called_class(), $method = 'bootSoftDeletingTrait'))
+        {
+            forward_static_call([get_called_class(), $method]);
+        }
     }
 
     /**
