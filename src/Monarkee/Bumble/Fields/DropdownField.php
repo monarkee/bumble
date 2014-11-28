@@ -21,8 +21,13 @@ class DropdownField extends Field implements FieldInterface
 
     public function getValue($key)
     {
-        return $this->options['options'][$key];
+        try {
+            return $this->options['options'][$key];
+        }
+        catch (\Exception $e)
+        {
 
+        }
     }
 
 }
