@@ -28,7 +28,7 @@ class BumbleServiceProvider extends ServiceProvider {
 		$this->package('monarkee/bumble');
 
         include __DIR__.'/../../filters.php';
-        include __DIR__.'/../../validation_rules.php';
+        include __DIR__.'/../../validation.php';
         include __DIR__.'/../../helpers.php';
         include __DIR__.'/../../routes.php';
         include __DIR__.'/../../composers.php';
