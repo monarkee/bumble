@@ -114,10 +114,10 @@ $(document).on('click', function(e) {
   BooleanField Toggles
  */
 
-elem = document.querySelector('._switch');
+var elems = Array.prototype.slice.call(document.querySelectorAll('._switch'));
 
-init = new Switchery(elem, {
-  secondaryColor: "#DB5554"
+elems.forEach(function(html) {
+  var switchery = new Switchery(html, {secondaryColor: "#DB5554"});
 });
 
 
