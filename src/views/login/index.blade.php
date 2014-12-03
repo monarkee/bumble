@@ -11,23 +11,21 @@
             </div>
         @endif
 
+        @foreach(Config::get('bumble::auth_columns') as $column)
+        <?php $upper_col = ucwords($column); ?>
         <div class="control g-row">
             <div class="g-col-3 tar">
-                {{ Form::label('email', 'Email', ['class' => 'label label--tar']) }}
+                {{ Form::label($column, $upper_col, ['class' => 'label label--tar']) }}
             </div>
             <div class="g-col-9">
-                {{ Form::text('email', null, ['class' => 'input input1', 'placeholder' => 'Your email address']) }}
+                @unless ($column === 'password')
+                {{ Form::text($column, null, ['class' => 'input input1', 'placeholder' => 'Your '.$upper_col]) }}
+                @else
+                {{ Form::password($column, ['class' => 'input input1', 'placeholder' => 'Your '.$upper_col]) }}
+                @endunless
             </div>
         </div>
-
-        <div class="control g-row">
-            <div class="g-col-3 tar">
-                {{ Form::label('password', 'Password', ['class' => 'label label--tar']) }}
-            </div>
-            <div class="g-col-9">
-                {{ Form::password('password', ['class' => 'input input1', 'placeholder' => 'Your password']) }}
-            </div>
-        </div>
+        @endforeach
 
         <div class="login-control g-row">
             <div class="g-col-1">

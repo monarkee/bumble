@@ -5,6 +5,7 @@ use Auth;
 use View;
 use Redirect;
 use Input;
+use Config;
 
 class LoginController extends BumbleController
 {
@@ -29,8 +30,18 @@ class LoginController extends BumbleController
     {
         $input = Input::all();
 
+        // Get the columns we will authenticate against
+        $columns = Config::get('bumble::auth_columns');
+
+        $creds = [];
+
+        foreach ($columns as $column)
+        {
+            $creds[$column] = $input[$column];
+        }
+
         // Log the user in
-        if (Auth::attempt(['email' => $input['email'], 'password' => $input['password']]))
+        if (Auth::attempt($creds))
         {
             return Redirect::route('bumble_dashboard');
         }
