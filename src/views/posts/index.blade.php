@@ -59,6 +59,8 @@
                                 <td>{{ $entry->{$field->getColumn()} }}</td>
                             @elseif ($field->getFieldType() == 'HasOneField')
                                 <td>{{ $model->{$field->method()}()->getRelated()->whereId($entry->{$field->getColumn()})->pluck($field->getTitleOption()) }}</td>
+                            @elseif ($field->getFieldType() == 'BelongsToField')
+                                <td>{{ $model->{$field->method()}()->getRelated()->whereId($entry->{$field->getColumn()})->pluck($field->getTitleOption()) }}</td>
                             @else
                                 <td>{{ $entry->{$field->getColumn()} }}</td>
                             @endif
