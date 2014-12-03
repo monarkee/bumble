@@ -76,21 +76,21 @@ abstract class BumbleModel extends Eloquent
     /**
      * @var
      */
-    protected $description;
+    public $description;
 
     /**
      * Whether the model should be hidden from the CMS
      *
      * @var
      */
-    protected $invisible;
+    public $invisible;
 
     /**
      * Whether to show the model in the top nav
      *
      * @var bool
      */
-    protected $showInTopNav = false;
+    public $showInTopNav = false;
 
     /**
      * Find out if the model supports Soft Deletes
