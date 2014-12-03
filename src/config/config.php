@@ -53,7 +53,6 @@ return [
     |--------------------------------------------------------------------------
     */
     'admin' => [
-        'index' => 'index',
         'login' => 'login',
         'logout' => 'logout',
         'dashboard' => 'dashboard',
