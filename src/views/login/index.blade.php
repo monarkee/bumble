@@ -32,7 +32,7 @@
                 {{ Form::button('Login', ['type' => 'submit', 'class' => 'btn form__btn--auto-with']) }}
             </div>
             <div class="login-control__link g-col-1 tar">
-                <a href="#">Forgot Password</a>
+                <a href="{{ route('bumble.forgot-password') }}">Forgot Password</a>
             </div>
         </div>
     {{ Form::close() }}

@@ -56,5 +56,7 @@ return [
         'login' => 'login',
         'logout' => 'logout',
         'dashboard' => 'dashboard',
+        'forgot_password' => 'forgot-password',
+        'reset_password' => 'reset-password',
     ]
 ];
