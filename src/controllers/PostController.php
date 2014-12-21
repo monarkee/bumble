@@ -116,13 +116,15 @@ class PostController extends BumbleController
      */
     public function edit()
     {
+        $editing = true;
+
         $slug = $this->request->segment(2);
         $id = $this->request->segment(3);
 
         $model = $this->modelRepo->get($this->request->segment(2));
         $post = $model->whereId($id)->first();
 
-        return View::make('bumble::posts.edit')->with(compact('post', 'model'));
+        return View::make('bumble::posts.edit')->with(compact('post', 'model', 'editing'));
     }
 
     /**
@@ -157,9 +159,11 @@ class PostController extends BumbleController
      */
     public function create()
     {
+        $editing = false;
+
         $model = $this->modelRepo->get($this->request->segment(2));
 
-        return View::make('bumble::posts.create')->with(compact('model'));
+        return View::make('bumble::posts.create')->with(compact('model', 'editing'));
     }
 
     /**

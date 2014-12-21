@@ -275,8 +275,10 @@ abstract class Field {
      *
      * @return mixed|string
      */
-    public function getDefaultValue()
+    public function getDefaultValue($editing = false)
     {
+        if ($editing) return;
+
         return $this->hasOption('default_value') ? $this->getOption('default_value') : false;
     }
 }
