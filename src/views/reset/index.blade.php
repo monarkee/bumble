@@ -31,7 +31,7 @@
 
             <div class="login-control g-row">
                 <div class="g-col-1">
-                    {{ Form::button('Login', ['type' => 'submit', 'class' => 'btn form__btn--auto-with']) }}
+                    {{ Form::button('Send Reset', ['type' => 'submit', 'class' => 'btn form__btn--auto-with']) }}
                 </div>
             </div>
         @endunless
