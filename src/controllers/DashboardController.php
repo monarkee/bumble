@@ -21,6 +21,6 @@ class DashboardController extends BumbleController
      */
     public function redirectToIndex()
     {
-        return Redirect::route('bumble_dashboard');
+        return Redirect::route('bumble.dashboard');
     }
 }
