@@ -4,7 +4,30 @@
 <section class="main-area">
     @include('bumble::partials.sidenav')
     <main class="main-content">
+        <div class="header">
+            <div class="flex jcc aic acc">
+                <h2 class="header__title">Dashboard</h2>
+            </div>
+        </div>
 
+        <table class="table">
+        @foreach($models as $model)
+        <tr>
+            <td>{{{ $model->getPluralName() }}}</td>
+            <td>{{{ $model::count() }}} {{{ Str::plural($model->getModelName(), $model::count()) }}}</td>
+            <td>
+                @if ($model->isSoftDeleting())
+                    {{ $model::onlyTrashed()->count() }} trashed entries
+                @endif
+            </td>
+            <td>
+                <div class="inline-flex">
+                    <a href="{{ route(Config::get('bumble::admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="btn-create">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
+                </div>
+            </td>
+        </tr>
+        @endforeach
+        </table>
     </main>
 </section>
 @stop

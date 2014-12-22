@@ -3,6 +3,7 @@
 use Monarkee\Bumble\Controllers\BumbleController;
 use View;
 use Redirect;
+use App;
 
 class DashboardController extends BumbleController
 {
@@ -12,7 +13,9 @@ class DashboardController extends BumbleController
      */
     public function getIndex()
     {
-        return View::make('bumble::dashboard.index');
+        $models = App::make('Monarkee\Bumble\Repositories\ModelRepository')->getModels();
+
+        return View::make('bumble::dashboard.index')->with(compact('models'));
     }
 
     /**
