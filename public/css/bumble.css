@@ -1209,6 +1209,21 @@ a {
 .edit-post {
   background-image: url("../img/ico-edit@2x.png"); }
 
+.restore-button {
+  font-family: "Avenir Next", "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border: 1px solid #2795b6;
+  border-radius: 3px;
+  background: none;
+  color: #2795b6;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  padding: 0 1rem;
+  height: 2.8rem;
+  text-transform: uppercase;
+  cursor: pointer; }
+
 .pagination {
   margin: 0;
   padding: 0; }

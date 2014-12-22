@@ -559,6 +559,22 @@ a {
   background-image: url('../img/ico-edit@2x.png');
 }
 
+.restore-button {
+  font-family: $avenir;
+  border: 1px solid $branding-color;
+  border-radius: 3px;
+  background: none;
+  color: $branding-color;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: $bold;
+  letter-spacing: 0.1rem;
+  padding: 0 1rem;
+  height: 2.8rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
 // Pagination
 // ------------------------------------------------------------------------------------ */
 .pagination {
