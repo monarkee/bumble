@@ -18,7 +18,7 @@ var SRC = './resources/assets/',
 // Javascript Sources
 // ------------------------------------------------------------------------------------ */
 var vendorJS = [
-    NODE + 'jquery/dist/cdn/jquery-2.1.1.min.js',
+    NODE + 'jquery/dist/jquery.min.js',
     BOWER + 'trumbowyg/dist/trumbowyg.min.js',
     BOWER + 'switchery/dist/switchery.min.js',
     PACKAGES + 'tipr/tipr.min.js',
