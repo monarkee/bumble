@@ -1213,8 +1213,8 @@ a {
   font-family: "Avenir Next", "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: 1px solid #2795b6;
   border-radius: 3px;
-  background: none;
-  color: #2795b6;
+  background: #2795b6;
+  color: #FFF;
   margin: 0;
   font-size: 1.1rem;
   font-weight: 700;
