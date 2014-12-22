@@ -52,7 +52,7 @@ gulp.task('scss', function () {
 gulp.task('coffee', function() {
     gulp.src(SRC + 'coffee/**/*.coffee')
         .pipe(coffee({bare: true}).on('error', gutil.log))
-        .pipe(gulp.dest(DIST + 'js'))
+        .pipe(gulp.dest(DIST + 'js'));
 });
 
 // Concat Vendor Javascripts
@@ -65,7 +65,8 @@ gulp.task('vendorJS', function() {
 });
 
 gulp.task('publish', ['scss', 'coffee', 'vendorJS'], function() {
-    gulp.src('').pipe(shell('cd ~/Sites/bumble && php artisan asset:publish --bench=monarkee/bumble'), {ignoreErrors: true});
+    // gulp.src('').pipe(shell('cd ~/Sites/bumble && php artisan asset:publish --bench=monarkee/bumble'), {ignoreErrors: true});
+    gulp.src('').pipe(shell('cd ~/Sites/bumble && php artisan asset:publish --path="vendor/monarkee/bumble/public" monarkee/bumble'), {ignoreErrors: true});
 });
 
 /* Blade Templates */
