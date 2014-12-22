@@ -563,8 +563,8 @@ a {
   font-family: $avenir;
   border: 1px solid $branding-color;
   border-radius: 3px;
-  background: none;
-  color: $branding-color;
+  background: $branding-color;
+  color: $white;
   margin: 0;
   font-size: 1.1rem;
   font-weight: $bold;
