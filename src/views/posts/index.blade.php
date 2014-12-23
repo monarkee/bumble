@@ -54,7 +54,14 @@
                             @elseif ($field->getFieldType() == 'DropdownField')
                                 <td>{{ $field->getValue($entry->{$field->getColumn()}) }}</td>
                             @elseif ($field->getFieldType() == 'TextareaField')
-                                <td>{{ str_limit($entry->{$field->getColumn()}, $limit = 40, $end = '&hellip;') }}</td>
+                                @if ($field->getWidgetType() == 'bumble::fieldTypes.MarkdownField')
+                                <td>
+                                    <?php $output = \Michelf\Markdown::defaultTransform($entry->{$field->getColumn()}); ?>
+                                    {{ strip_tags(str_limit($output, $limit = 40, $end = '&hellip;')) }}</td>
+                                @else
+                                <td>
+                                    {{ str_limit($entry->{$field->getColumn()}, $limit = 40, $end = '&hellip;') }}</td>
+                                @endif
                             @elseif ($field->getFieldType() == 'ImageField')
                                 <td>{{ $entry->{$field->getColumn()} }}</td>
                             @elseif ($field->getFieldType() == 'HasOneField')
