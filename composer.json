@@ -12,7 +12,7 @@
         "php": ">=5.3.0",
         "thomaswelton/gravatarlib": "0.1.0",
         "michelf/php-markdown": "1.4.1",
-        "league/flysystem": "~1.*",
+        "league/flysystem": "1.*",
         "aws/aws-sdk-php": "2.*"
     },
     "require-dev": {
