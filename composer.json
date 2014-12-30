@@ -11,7 +11,7 @@
     "require": {
         "php": ">=5.3.0",
         "thomaswelton/gravatarlib": "0.1.0",
-        "league/flysystem": "1.*",
+        "thephpleague/flysystem": "1.*",
         "aws/aws-sdk-php": "2.*",
         "league/commonmark": "~0.5@dev"
     },
