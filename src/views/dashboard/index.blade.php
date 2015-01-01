@@ -11,9 +11,19 @@
         </div>
 
         <table class="table">
+            <thead>
+                <tr>
+                    <th>Model Name</th>
+                    <th>Description</th>
+                    <th># of Entries</th>
+                    <th>Trashed Entries</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
         @foreach($models as $model)
         <tr>
             <td>{{{ $model->getPluralName() }}}</td>
+            <td>{{ $model->getDescription() }}</td>
             <td>{{{ $model::count() }}} {{{ Str::plural($model->getModelName(), $model::count()) }}}</td>
             <td>
                 @if ($model->isSoftDeleting())
