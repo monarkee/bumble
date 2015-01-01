@@ -76,8 +76,15 @@ class ModelRepository {
 
         foreach ($filesystem->listPaths() as $file)
         {
-            $key = str_replace('.php', '', $file);
-            $this->models[] = $namespace . '\\' . $key;
+            if (str_contains($file, '.DS_Store'))
+            {
+                continue;
+            }
+            else
+            {
+                $key = str_replace('.php', '', $file);
+                $this->models[] = $namespace . '\\' . $key;
+            }
         }
     }
 
