@@ -33,6 +33,9 @@
                 <div class="g-col-1">
                     {{ Form::button('Send Reset', ['type' => 'submit', 'class' => 'btn form__btn--auto-with']) }}
                 </div>
+                <div class="login-control__link g-col-1 tar">
+                    <a href="{{ route('bumble.login') }}">Login</a>
+                </div>
             </div>
         @endunless
     {{ Form::close() }}
