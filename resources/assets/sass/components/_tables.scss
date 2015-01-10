@@ -8,14 +8,21 @@
 
   th {
     color: $branding_color;
-    font-weight: $normal;
+    font-weight: $bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 1rem;
+    color: #999;
+  }
+
+  td {
+    font-size: 1.4rem;
+    color: #777;
   }
 
   th, td {
-    font-size: 1.4rem;
     text-align: left;
     padding: $main_padding/3 0;
-    color: #777;
 
     &:last-child {
       text-align: right;

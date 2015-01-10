@@ -13,11 +13,11 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Model Name</th>
-                    <th>Description</th>
-                    <th># of Entries</th>
-                    <th>Trashed Entries</th>
-                    <th>Actions</th>
+                    <th class="uppercase fwbold ls-2 ft-2">Model Name</th>
+                    <th class="uppercase fwbold ls-2 ft-2">Description</th>
+                    <th class="uppercase fwbold ls-2 ft-2"># of Entries</th>
+                    <th class="uppercase fwbold ls-2 ft-2">Trashed Entries</th>
+                    <th class="uppercase fwbold ls-2 ft-2">Actions</th>
                 </tr>
             </thead>
         @foreach($models as $model)
