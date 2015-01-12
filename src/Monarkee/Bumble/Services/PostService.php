@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 use Monarkee\Bumble\Exceptions\ValidationException;
 use Monarkee\Bumble\Support\BumbleStr;
+use Monarkee\Bumble\Repositories\ModelRepository;
 use Monarkee\Bumble\Validators\PostValidator;
 use Tag;
 
@@ -40,13 +41,20 @@ class PostService
      */
     private $hash;
 
-    public function __construct(PostValidator $validator, Application $app, Request $request, BumbleStr $str, HasherInterface $hash)
+    /**
+     * The repository that holds the models
+     * @var object
+     */
+    private $modelRepo;
+
+    public function __construct(PostValidator $validator, Application $app, Request $request, BumbleStr $str, HasherInterface $hash, ModelRepository $modelRepo)
     {
         $this->validator = $validator;
         $this->app = $app;
         $this->request = $request;
         $this->str = $str;
         $this->hash = $hash;
+        $this->modelRepo = $modelRepo;
     }
 
     /**
@@ -100,11 +108,9 @@ class PostService
      * @param $id
      * @return mixed
      */
-    public function delete($model, $id)
+    public function delete($segment, $id)
     {
-        $modelName = model_name($model);
-        $modelClass = full_model_name($modelName);
-        $model = new $modelClass;
+        $model = $this->getNewModel($segment);
 
         $post = $model->find($id)->first();
 
@@ -115,11 +121,9 @@ class PostService
         return $post->delete();
     }
 
-    public function restore($model, $id)
+    public function restore($segment, $id)
     {
-        $modelName = model_name($model);
-        $modelClass = full_model_name($modelName);
-        $model = new $modelClass;
+        $model = $this->getNewModel($segment);
 
         return $model->withTrashed()->find($id)->restore();
     }
@@ -129,11 +133,9 @@ class PostService
      * @param $id
      * @return mixed
      */
-    public function annihilate($model, $id)
+    public function annihilate($segment, $id)
     {
-        $modelName = model_name($model);
-        $modelClass = full_model_name($modelName);
-        $model = new $modelClass;
+        $model = $this->getNewModel($segment);
 
         $post = $model->onlyTrashed()->find($id)->first();
 
@@ -190,8 +192,7 @@ class PostService
      */
     public function getNewModel($class)
     {
-        $modelClass = $this->str->full_model_name($class);
-        return $this->app->make($modelClass);
+        return $this->modelRepo->get($class);
     }
 
     /**
@@ -228,7 +229,8 @@ class PostService
                 $component->handleFile($this->request, $file, $filename);
 
                 $model->{$column} = $filename;
-            } else
+            }
+            else
             {
                 // Process the input data for this component type
                 $model = $component->process($model, $this->input);

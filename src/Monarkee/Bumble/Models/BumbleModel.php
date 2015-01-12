@@ -8,6 +8,7 @@ use Monarkee\Bumble\Exceptions\TableNotFoundException;
 use ReflectionClass;
 use Str;
 use Config;
+use App;
 use Request;
 
 abstract class BumbleModel extends Eloquent
@@ -39,27 +40,6 @@ abstract class BumbleModel extends Eloquent
     protected $fieldset;
 
     /**
-     * The validation rules used for creation and updating
-     *
-     * @var
-     */
-    public $rules = [];
-
-    /**
-     * The editing title key for the model
-     *
-     * @var
-     */
-    protected $editingTitle;
-
-    /**
-     * The edit validation rules
-     *
-     * @var
-     */
-    private $editRules;
-
-    /**
      * Create a new BumbleModel
      *
      * @param array $attributes
@@ -70,7 +50,18 @@ abstract class BumbleModel extends Eloquent
         parent::__construct($attributes);
 
         $this->checkIfTableExists();
-        $this->fieldset = $this->setFields();
+
+        // Set up the model's fieldset by going to the config
+        // and spinning up the class
+        $modelConfig = Config::get('bumble::models');
+
+        if (method_exists($this, 'bumble'))
+        {
+            $adminClass = $this->bumble();
+            $this->admin = new $adminClass;
+
+            $this->fieldset = $this->admin()->setFields();
+        }
     }
 
     /**
@@ -78,19 +69,17 @@ abstract class BumbleModel extends Eloquent
      */
     public $description;
 
-    /**
-     * Whether the model should be hidden from the CMS
-     *
-     * @var
-     */
-    public $invisible;
+    protected $admin;
 
-    /**
-     * Whether to show the model in the top nav
-     *
-     * @var bool
-     */
-    public $showInTopNav = false;
+    public function hasAdmin($adminClass)
+    {
+        return $adminClass;
+    }
+
+    public function admin()
+    {
+        return $this->admin;
+    }
 
     /**
      * Find out if the model supports Soft Deletes
@@ -128,13 +117,6 @@ abstract class BumbleModel extends Eloquent
      * @var
      */
     protected $fields;
-
-    /**
-     * Set the fields on the model
-     *
-     * @return mixed
-     */
-    abstract public function setFields();
 
     /**
      * Check wheter the model has fields
@@ -205,7 +187,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function fieldIsRequired($field)
     {
-        return array_key_exists($field->getLowerName(), $this->rules);
+        return array_key_exists($field->getLowerName(), $this->admin()->rules);
     }
 
     /**
@@ -215,7 +197,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function getEditValidationRules()
     {
-        return $this->editRules;
+        return $this->admin()->editRules ?: $this->getValidationRules();
     }
 
     /**
@@ -225,7 +207,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function getValidationRules()
     {
-        return $this->rules;
+        return $this->admin()->rules;
     }
 
     /**
@@ -235,7 +217,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function isHidden()
     {
-        return $this->invisible;
+        return $this->admin()->invisible;
     }
 
     /**
@@ -255,7 +237,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function getShowInTopNav()
     {
-        return $this->showInTopNav;
+        return $this->admin()->showInTopNav;
     }
 
     /**
@@ -317,7 +299,9 @@ abstract class BumbleModel extends Eloquent
      */
     public function editingTitle()
     {
-        if ($this->columnExists($this->editingTitle)) return $this->{$this->editingTitle};
+        $editingTitle = $this->admin()->editingTitle;
+
+        if ($this->columnExists($editingTitle)) return $this->{$editingTitle};
 
         if ($this->columnExists('title')) return $this->title;
 
