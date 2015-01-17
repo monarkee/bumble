@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use Schema;
 use Monarkee\Bumble\Exceptions\TableNotFoundException;
 use ReflectionClass;
 use Str;
@@ -33,13 +33,6 @@ abstract class BumbleModel extends Eloquent
     }
 
     /**
-     * The fieldset for the model
-     *
-     * @var
-     */
-    protected $fieldset;
-
-    /**
      * Create a new BumbleModel
      *
      * @param array $attributes
@@ -59,23 +52,32 @@ abstract class BumbleModel extends Eloquent
         {
             $adminClass = $this->bumble();
             $this->admin = new $adminClass;
-
-            $this->fieldset = $this->admin()->setFields();
         }
     }
 
     /**
-     * @var
+     * The admin instance
+     *
+     * @var $admin
      */
-    public $description;
-
     protected $admin;
 
+    /**
+     * Return the model's related admin class
+     *
+     * @param $adminClass
+     * @return string
+     */
     public function hasAdmin($adminClass)
     {
         return $adminClass;
     }
 
+    /**
+     * Get the model's ModelAdmin instance
+     *
+     * @return mixed
+     */
     public function admin()
     {
         return $this->admin;
@@ -98,7 +100,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function getDescription()
     {
-        return $this->description;
+        return $this->admin()->description;
     }
 
     /**
@@ -108,24 +110,17 @@ abstract class BumbleModel extends Eloquent
      */
     public function getFields()
     {
-        return $this->fieldset->getFields();
+        return $this->admin()->getFields();
     }
 
     /**
-     * The fields of the model
-     *
-     * @var
-     */
-    protected $fields;
-
-    /**
-     * Check wheter the model has fields
+     * Check whether the model has fields
      *
      * @return bool
      */
     public function hasFields()
     {
-        return isset($this->fields);
+        return $this->admin()->hasFields();
     }
 
     /**
@@ -135,7 +130,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function getTabs()
     {
-        return $this->fieldset->getTabs();
+        return $this->admin()->getTabs();
     }
 
     /**
@@ -146,7 +141,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function getTabFields($tabId)
     {
-        return $this->fieldset->getTabFields($tabId);
+        return $this->admin()->getTabFields($tabId);
     }
 
     /**
@@ -187,7 +182,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function fieldIsRequired($field)
     {
-        return array_key_exists($field->getLowerName(), $this->admin()->rules);
+        return $this->admin()->fieldIsRequired($field);
     }
 
     /**
@@ -197,7 +192,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function getEditValidationRules()
     {
-        return $this->admin()->editRules ?: $this->getValidationRules();
+        return $this->admin()->getEditValidationRules();
     }
 
     /**
@@ -207,7 +202,7 @@ abstract class BumbleModel extends Eloquent
      */
     public function getValidationRules()
     {
-        return $this->admin()->rules;
+        return $this->admin()->getValidationRules();
     }
 
     /**
@@ -227,7 +222,17 @@ abstract class BumbleModel extends Eloquent
      */
     public function isHiddenFromTopNav()
     {
-        if ($this->getShowinTopNav() === false) return true;
+        if ($this->getShowInTopNav() === false) return true;
+    }
+
+    /**
+     * Check if the model is hidden from the top nav
+     *
+     * @return bool
+     */
+    public function isHiddenFromSideNav()
+    {
+        if ($this->getShowInSideNav() === false) return true;
     }
 
     /**
@@ -239,6 +244,17 @@ abstract class BumbleModel extends Eloquent
     {
         return $this->admin()->showInTopNav;
     }
+
+    /**
+     * Check whether to show this model in the top navigation
+     *
+     * @return boolean
+     */
+    public function getShowInSideNav()
+    {
+        return $this->admin()->showInSideNav;
+    }
+
 
     /**
      * Check if the table exists for the model
@@ -301,11 +317,15 @@ abstract class BumbleModel extends Eloquent
     {
         $editingTitle = $this->admin()->editingTitle;
 
+        // Check for the custom option first and
+        // return it if it exists
         if ($this->columnExists($editingTitle)) return $this->{$editingTitle};
 
+        // As a last-ditch effort, see if there's a title option
+        // we can use so the user doesn't have to ask for it
         if ($this->columnExists('title')) return $this->title;
 
-        return '';
+        return;
     }
 
     /**

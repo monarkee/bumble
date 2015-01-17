@@ -28,7 +28,7 @@ class PasswordField extends Field implements FieldInterface
      */
     public function showInListing()
     {
-        return false;
+        return $this->hasOption('show_in_listing') ? $this->getOption('show_in_listing') : false;
     }
 
     /**
