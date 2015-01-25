@@ -39,8 +39,6 @@ class BumbleServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-//        $this->registerResources();
-
         $this->app->singleton('bumblestr', function ()
         {
             return $this->app->make('Monarkee\Bumble\Support\BumbleStr');
@@ -60,24 +58,6 @@ class BumbleServiceProvider extends ServiceProvider {
         $loader->alias('BumbleStr', 'Monarkee\Bumble\Support\Facades\BumbleStr');
         $loader->alias('BumbleGravatar', 'Monarkee\Bumble\Support\Facades\Gravatar');
     }
-
-//    /**
-//     * Register the package resources.
-//     *
-//     * @return void
-//     */
-//    protected function registerResources()
-//    {
-//        $userConfigFile = app()->configPath() . '/caffeinated/modules.php';
-//        $packageConfigFile = __DIR__ . '/../../config/config.php';
-//        $config = $this->app['files']->getRequire($packageConfigFile);
-//        if (file_exists($userConfigFile))
-//        {
-//            $userConfig = $this->app['files']->getRequire($userConfigFile);
-//            $config = array_replace_recursive($config, $userConfig);
-//        }
-//        $this->app['config']->set('caffeinated::modules', $config);
-//    }
 
     /**
      * Get the services provided by the provider.
