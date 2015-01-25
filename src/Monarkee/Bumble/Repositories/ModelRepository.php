@@ -2,13 +2,9 @@
 
 use Exception;
 use Illuminate\Config\Repository;
-use League\Flysystem\Adapter\Local as Adapter;
-use League\Flysystem\Filesystem;
-use Monarkee\Bumble\Support\BumbleStr;
 use ReflectionClass;
-use Symfony\Component\Debug\Exception\FatalErrorException;
 
-class ModelRepository {
+final class ModelRepository {
 
     /**
      * @var
@@ -26,18 +22,21 @@ class ModelRepository {
     private $config;
 
     /**
-     * @var BumbleStr
+     *
+     *
+     * @var $modelConfig
      */
-    private $str;
+    protected $modelConfig;
 
-    function __construct(Repository $config, BumbleStr $str)
+    public function __construct(Repository $config)
     {
         $this->config = $config;
-        $this->str = $str;
+
+        $this->setModelConfig();
     }
 
     /**
-     * Get an array of model names from the directory
+     * Get an list of model names
      */
     public function getModelNames()
     {
@@ -51,44 +50,15 @@ class ModelRepository {
      */
     public function generateArray()
     {
-        $namespace = $this->config->get('bumble::models');
-
-        // If the model namespace config setting is empty
-        // we'll assume they're using the default models
-        // folder that Laravel provides. If that folder doesn't exist
-        // we'll throw an Exception
-        if (empty($namespace))
+        foreach ($this->modelConfig as $key => $class)
         {
-            // Check to see if the default models directory is there
-            if (file_exists(app_path('models')))
-            {
-                $modelDir = 'models/';
-            }
-            else {
-                throw new Exception('No models directory found');
-            }
-        }
-        else {
-            $modelDir = $this->getFormattedModelsDirectory($namespace);
-        }
-
-        $filesystem = new Filesystem(new Adapter(app_path($modelDir)));
-
-        foreach ($filesystem->listPaths() as $file)
-        {
-            if (str_contains($file, '.DS_Store'))
-            {
-                continue;
-            }
-            else
-            {
-                $key = str_replace('.php', '', $file);
-                $this->models[] = $namespace . '\\' . $key;
-            }
+            $this->models[] = $class;
         }
     }
 
     /**
+     * Return an array of models
+     *
      * @return array
      */
     public function getModels()
@@ -101,7 +71,7 @@ class ModelRepository {
     /**
      *
      */
-    private function loadObjects()
+    protected function loadObjects()
     {
         if ($this->hasModels())
         {
@@ -136,25 +106,29 @@ class ModelRepository {
     }
 
     /**
-     * Format the namespace config variable for use
-     *
-     * @param $namespace
-     * @return mixed
-     */
-    private function getFormattedModelsDirectory($namespace)
-    {
-        return str_replace('\\', '/', $namespace) . '/';
-    }
-
-    /**
      * @param $modelName
      * @return mixed
      */
     public function get($modelName)
     {
-        $modelName = $this->str->model_name($modelName);
-        $modelClass = $this->str->full_model_name($modelName);
+        $modelClass = $this->modelConfig[str_singular($modelName)];
 
         return new $modelClass;
+    }
+
+    /**
+     * Set the model config
+     *
+     * @throws Exception
+     */
+    private function setModelConfig()
+    {
+        try {
+            $this->modelConfig = $this->config->get('bumble.models');
+        }
+        catch (Exception $e)
+        {
+            throw new Exception("Model configuration hasn't been set.");
+        }
     }
 }

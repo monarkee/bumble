@@ -8,7 +8,7 @@
 </head>
 <body class="login">
 
-    <h1>{{ Config::get('bumble::site-title') }}</h1>
+    <h1>{{ Config::get('bumble.site-title') }}</h1>
 
     @yield('content')
 

@@ -1,6 +1,6 @@
 <?php namespace Monarkee\Bumble\Models;
 
-use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -10,7 +10,7 @@ use Str;
 use Config;
 use Request;
 
-abstract class BumbleModel extends Eloquent
+abstract class BumbleModel extends Model
 {
     /**
      * If not in the admin, boot the traits of the model

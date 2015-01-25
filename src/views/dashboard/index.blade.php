@@ -24,7 +24,7 @@
         <tr>
             <td>{{{ $model->getPluralName() }}}</td>
             <td>{{ $model->getDescription() }}</td>
-            <td>{{{ $model::count() }}} {{{ Str::plural($model->getModelName(), $model::count()) }}}</td>
+            <td>{{{ $model::count() }}} {{{ str_plural($model->getModelName(), $model::count()) }}}</td>
             <td>
                 @if ($model->isSoftDeleting())
                     {{ $model::onlyTrashed()->count() }} trashed entries
@@ -32,7 +32,7 @@
             </td>
             <td>
                 <div class="inline-flex">
-                    <a href="{{ route(Config::get('bumble::admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="btn-create">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
+                    <a href="{{ route(Config::get('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="btn-create">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
                 </div>
             </td>
         </tr>

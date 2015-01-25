@@ -33,7 +33,7 @@ class LoginController extends BumbleController
         $input = Input::all();
 
         // Get the columns we will authenticate against
-        $columns = Config::get('bumble::auth_columns');
+        $columns = config('bumble.auth_columns');
 
         $creds = [];
 

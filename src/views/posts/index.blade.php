@@ -8,10 +8,10 @@
             <div class="flex jcc aic acc">
                 <h2 class="header__title">{{ $model->getPluralName() }}</h2>
                 @if ($model->isSoftDeleting())
-                    <a href="{{ route(Config::get('bumble::admin_prefix') . '.' . $model->getPluralSlug() . '.trashed') }}" class="trashed-link">View Trashed</a>
+                    <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.trashed') }}" class="trashed-link">View Trashed</a>
                 @endif
             </div>
-            <a href="{{ route(Config::get('bumble::admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="btn-create">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
+            <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="btn-create">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
         </div>
 
         @include('bumble::partials.messages')
@@ -25,11 +25,11 @@
                     @foreach ($model->getFields() as $field)
                         @if ($field->showInListing())
                             @if ($field->getColumn() == 'active' || $field->getFieldType() == "BooleanField")
-                                <th class="active-status">{{ Str::title($field->getName()) }}</th>
+                                <th class="active-status">{{ strtoupper($field->getName()) }}</th>
                             @elseif ($field->getFieldType() == "HasOneField")
                                 <th>{{ $field->getTitle() }}</th>
                             @else
-                                <th>{{ Str::title($field->getName()) }}</th>
+                                <th>{{ strtoupper($field->getName()) }}</th>
                             @endif
                         @endif
                     @endforeach
@@ -75,11 +75,11 @@
                     @endforeach
                     <td width="90">
                         <div class="inline-flex">
-                            <a href="{{ route(Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.edit', ['id' => $entry->id]) }}" class="edit-post">Edit</a>
-                            {{ Form::open(['method' => 'delete', 'route' => [Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.destroy', $entry->id]]) }}
-                            {{ Form::hidden('id', $entry->id) }}
-                            {{ Form::button('', ['type' => 'submit', 'class' => 'delete-post js-delete-post']) }}
-                            {{ Form::close() }}
+                            <a href="{{ route(config('bumble.admin_prefix').'.'.$model->getPluralSlug().'.edit', ['id' => $entry->id]) }}" class="edit-post">Edit</a>
+                            {!! Form::open(['method' => 'delete', 'route' => [config('bumble.admin_prefix').'.'.$model->getPluralSlug().'.destroy', $entry->id]]) !!}
+                            {!! Form::hidden('id', $entry->id) !!}
+                            {!! Form::button('', ['type' => 'submit', 'class' => 'delete-post js-delete-post']) !!}
+                            {!! Form::close() !!}
                         </div>
                     </td>
                 </tr>
@@ -88,12 +88,12 @@
         </table>
 
         <div class="pv">
-        {{ $entries->links() }}
+            {{ $entries->links() }}
         </div>
         @else
             <div class="info-box">
                 <p>You haven&rsquo;t create any {{ strtolower($model->getPluralName()) }} yet.
-                    <a href="{{ route(Config::get('bumble::admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}">Create a new {{{ str_singular($model->getModelName()) }}} &#8594;</a>
+                    <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}">Create a new {{{ str_singular($model->getModelName()) }}} &#8594;</a>
                 </p>
             </div>
         @endunless

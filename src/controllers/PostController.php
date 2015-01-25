@@ -58,7 +58,9 @@ class PostController extends BumbleController
     {
         $model = $this->modelRepo->get($this->request->segment(2));
 
-        $entries = $model->orderBy('id', 'desc')->paginate($this->config->get('bumble::paginate'));
+        $entries = $model->orderBy('id', 'desc')->paginate($this->config->get('bumble.paginate'));
+
+        dd($entries);
 
         return View::make('bumble::posts.index')->with(compact('model', 'entries'));
     }

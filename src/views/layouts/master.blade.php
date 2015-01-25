@@ -13,11 +13,11 @@
 <body>
     <header class="main-header">
         <div class="main-header__wrap">
-            <h1 class="main-logo"><a href="{{ route('bumble.dashboard') }}" class="main-logo__link">{{{ Config::get('bumble::site-title') }}}</a></h1>
+            <h1 class="main-logo"><a href="{{ route('bumble.dashboard') }}" class="main-logo__link">{{{ config('bumble.site-title') }}}</a></h1>
 
             <a href="{{ url('/') }}" class="visit-site">Visit Site</a>
 
-            @if (Config::get('bumble::search'))
+            @if (config('bumble.search'))
             <form action="{{ url('/') }}" class="main-search">
                 <input class="main-search__input" type="search" name="q" value="" placeholder="Search Entries">
             </form>
@@ -28,7 +28,7 @@
                     <li class="main-nav__item"><a href="{{ route('bumble.dashboard') }}" class="main-nav__link">Dashboard</a></li>
                     @foreach ($topModels as $model)
                         @unless ($model->isHiddenFromTopNav())
-                            <li class="main-nav__item"><a href="{{ route(Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.index') }}" class="main-nav__link">{{ $model->getPluralName() }}</a></li>
+                            <li class="main-nav__item"><a href="{{ route(config('bumble::admin_prefix').'.'.$model->getPluralSlug().'.index') }}" class="main-nav__link">{{ $model->getPluralName() }}</a></li>
                         @endunless
                     @endforeach
                     <li class="main-nav__item main-nav__item--border-left">

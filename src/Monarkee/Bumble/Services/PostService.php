@@ -4,7 +4,7 @@ use DB;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Foundation\Application;
-use Illuminate\Hashing\HasherInterface;
+use Illuminate\Contracts\Hashing\Hasher as HasherInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 use Monarkee\Bumble\Exceptions\ValidationException;
