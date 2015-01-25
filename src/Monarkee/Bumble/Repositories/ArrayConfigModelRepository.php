@@ -111,7 +111,9 @@ final class ArrayConfigModelRepository implements ModelRepository {
      */
     public function get($modelName)
     {
-        $modelClass = $this->modelConfig[str_singular($modelName)];
+        $className = str_singular($modelName);
+
+        $modelClass = $this->modelConfig[$className];
 
         return new $modelClass;
     }

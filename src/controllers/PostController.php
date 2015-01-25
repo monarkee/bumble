@@ -60,8 +60,6 @@ class PostController extends BumbleController
 
         $entries = $model->orderBy('id', 'desc')->paginate($this->config->get('bumble.paginate'));
 
-        dd($entries);
-
         return View::make('bumble::posts.index')->with(compact('model', 'entries'));
     }
 
@@ -149,7 +147,8 @@ class PostController extends BumbleController
             return Redirect::back()->withInput()->withErrors($e->getErrors());
         }
 
-        return Redirect::route($this->config->get('bumble::admin_prefix').'.'.$segment.'.index')->with('success', 'The entry was successfully updated.');
+        return Redirect::route($this->config->get('bumble.admin_prefix').'.'.$segment.'.index')
+                                            ->with('success', 'The entry was successfully updated.');
     }
 
     /**
@@ -169,14 +168,16 @@ class PostController extends BumbleController
      */
     public function store()
     {
-        $resource = $this->request->segment(2);
+        $segment = $this->request->segment(2);
+
+        $model = $this->modelRepo->get($segment);
         $input = Input::all();
 
         try
         {
-            $this->postService->create($resource, $input);
+            $this->postService->create($model, $input);
 
-            return Redirect::route($this->config->get('bumble::admin_prefix').'.'.$resource.'.index')
+            return Redirect::route($this->config->get('bumble.admin_prefix').'.'.$segment.'.index')
                            ->withSuccess('The entry was successfully created');
         }
         catch (ValidationException $e)

@@ -63,11 +63,9 @@ class PostService
      * @return bool
      * @throws ValidationException
      */
-    public function create($class, $input)
+    public function create($model, $input)
     {
         $this->setInput($input);
-
-        $model = $this->getNewModel($class);
 
         $rules = $model->getValidationRules();
 

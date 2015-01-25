@@ -88,7 +88,7 @@
         </table>
 
         <div class="pv">
-            {{ $entries->links() }}
+            {{--  $entries->links() --}}
         </div>
         @else
             <div class="info-box">
