@@ -32,7 +32,7 @@
             </td>
             <td>
                 <div class="inline-flex">
-                    <a href="{{ route(Config::get('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="btn-create">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
+                    <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="btn-create">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
                 </div>
             </td>
         </tr>

@@ -124,7 +124,7 @@ final class ArrayConfigModelRepository implements ModelRepository {
     private function setModelConfig()
     {
         try {
-            $this->modelConfig = $this->config->get('bumble::models');
+            $this->modelConfig = $this->config->get('bumble.models');
         }
         catch (Exception $e)
         {

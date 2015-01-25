@@ -12,13 +12,13 @@
                 @endif
             </div>
         </div>
-        {{ Form::open([
+        {!! Form::open([
             'files' => true,
             'class' => 'form',
-            'route' => Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.store'
-        ]) }}
+            'route' => config('bumble.admin_prefix').'.'.$model->getPluralSlug().'.store'
+        ]) !!}
             @include('bumble::posts.partials.form')
-        {{ Form::close() }}
+        {!! Form::close() !!}
     </main>
 </section>
 @stop
