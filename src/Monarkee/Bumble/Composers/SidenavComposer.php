@@ -16,7 +16,6 @@ class SidenavComposer
 
     public function compose($view)
     {
-//        dd($this->modelRepo->getModels());
         $view->with('sideModels', $this->modelRepo->getModels());
     }
 }

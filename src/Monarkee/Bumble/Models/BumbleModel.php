@@ -3,11 +3,12 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use Schema;
 use Monarkee\Bumble\Exceptions\TableNotFoundException;
 use ReflectionClass;
 use Str;
 use Config;
+use App;
 use Request;
 
 abstract class BumbleModel extends Model
@@ -32,34 +33,6 @@ abstract class BumbleModel extends Model
     }
 
     /**
-     * The fieldset for the model
-     *
-     * @var
-     */
-    protected $fieldset;
-
-    /**
-     * The validation rules used for creation and updating
-     *
-     * @var
-     */
-    public $rules = [];
-
-    /**
-     * The editing title key for the model
-     *
-     * @var
-     */
-    protected $editingTitle;
-
-    /**
-     * The edit validation rules
-     *
-     * @var
-     */
-    private $editRules;
-
-    /**
      * Create a new BumbleModel
      *
      * @param array $attributes
@@ -70,27 +43,45 @@ abstract class BumbleModel extends Model
         parent::__construct($attributes);
 
         $this->checkIfTableExists();
-        $this->fieldset = $this->setFields();
+
+        // Set up the model's fieldset by going to the config
+        // and spinning up the class
+        $modelConfig = Config::get('bumble::models');
+
+        if (method_exists($this, 'bumble'))
+        {
+            $adminClass = $this->bumble();
+            $this->admin = new $adminClass;
+        }
     }
 
     /**
-     * @var
+     * The admin instance
+     *
+     * @var $admin
      */
-    public $description;
+    protected $admin;
 
     /**
-     * Whether the model should be hidden from the CMS
+     * Return the model's related admin class
      *
-     * @var
+     * @param $adminClass
+     * @return string
      */
-    public $invisible;
+    public function hasAdmin($adminClass)
+    {
+        return $adminClass;
+    }
 
     /**
-     * Whether to show the model in the top nav
+     * Get the model's ModelAdmin instance
      *
-     * @var bool
+     * @return mixed
      */
-    public $showInTopNav = false;
+    public function admin()
+    {
+        return $this->admin;
+    }
 
     /**
      * Find out if the model supports Soft Deletes
@@ -109,7 +100,7 @@ abstract class BumbleModel extends Model
      */
     public function getDescription()
     {
-        return $this->description;
+        return $this->admin()->description;
     }
 
     /**
@@ -119,31 +110,17 @@ abstract class BumbleModel extends Model
      */
     public function getFields()
     {
-        return $this->fieldset->getFields();
+        return $this->admin()->getFields();
     }
 
     /**
-     * The fields of the model
-     *
-     * @var
-     */
-    protected $fields;
-
-    /**
-     * Set the fields on the model
-     *
-     * @return mixed
-     */
-    abstract public function setFields();
-
-    /**
-     * Check wheter the model has fields
+     * Check whether the model has fields
      *
      * @return bool
      */
     public function hasFields()
     {
-        return isset($this->fields);
+        return $this->admin()->hasFields();
     }
 
     /**
@@ -153,7 +130,7 @@ abstract class BumbleModel extends Model
      */
     public function getTabs()
     {
-        return $this->fieldset->getTabs();
+        return $this->admin()->getTabs();
     }
 
     /**
@@ -164,7 +141,7 @@ abstract class BumbleModel extends Model
      */
     public function getTabFields($tabId)
     {
-        return $this->fieldset->getTabFields($tabId);
+        return $this->admin()->getTabFields($tabId);
     }
 
     /**
@@ -205,7 +182,7 @@ abstract class BumbleModel extends Model
      */
     public function fieldIsRequired($field)
     {
-        return array_key_exists($field->getLowerName(), $this->rules);
+        return $this->admin()->fieldIsRequired($field);
     }
 
     /**
@@ -215,7 +192,7 @@ abstract class BumbleModel extends Model
      */
     public function getEditValidationRules()
     {
-        return $this->editRules;
+        return $this->admin()->getEditValidationRules();
     }
 
     /**
@@ -225,7 +202,7 @@ abstract class BumbleModel extends Model
      */
     public function getValidationRules()
     {
-        return $this->rules;
+        return $this->admin()->getValidationRules();
     }
 
     /**
@@ -235,7 +212,7 @@ abstract class BumbleModel extends Model
      */
     public function isHidden()
     {
-        return $this->invisible;
+        return $this->admin()->invisible;
     }
 
     /**
@@ -245,7 +222,17 @@ abstract class BumbleModel extends Model
      */
     public function isHiddenFromTopNav()
     {
-        if ($this->getShowinTopNav() === false) return true;
+        if ($this->getShowInTopNav() === false) return true;
+    }
+
+    /**
+     * Check if the model is hidden from the top nav
+     *
+     * @return bool
+     */
+    public function isHiddenFromSideNav()
+    {
+        if ($this->getShowInSideNav() === false) return true;
     }
 
     /**
@@ -255,8 +242,19 @@ abstract class BumbleModel extends Model
      */
     public function getShowInTopNav()
     {
-        return $this->showInTopNav;
+        return $this->admin()->showInTopNav;
     }
+
+    /**
+     * Check whether to show this model in the top navigation
+     *
+     * @return boolean
+     */
+    public function getShowInSideNav()
+    {
+        return $this->admin()->showInSideNav;
+    }
+
 
     /**
      * Check if the table exists for the model
@@ -317,11 +315,17 @@ abstract class BumbleModel extends Model
      */
     public function editingTitle()
     {
-        if ($this->columnExists($this->editingTitle)) return $this->{$this->editingTitle};
+        $editingTitle = $this->admin()->editingTitle;
 
+        // Check for the custom option first and
+        // return it if it exists
+        if ($this->columnExists($editingTitle)) return $this->{$editingTitle};
+
+        // As a last-ditch effort, see if there's a title option
+        // we can use so the user doesn't have to ask for it
         if ($this->columnExists('title')) return $this->title;
 
-        return '';
+        return;
     }
 
     /**

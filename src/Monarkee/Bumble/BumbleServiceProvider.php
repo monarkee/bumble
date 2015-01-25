@@ -51,6 +51,8 @@ class BumbleServiceProvider extends ServiceProvider {
             return $this->app->make('Monarkee\Bumble\Support\Gravatar');
         });
 
+        $this->app->bind('Monarkee\Bumble\Repositories\ModelRepository', 'Monarkee\Bumble\Repositories\ArrayConfigModelRepository');
+
         /*
          * Create aliases for the dependency.
          */

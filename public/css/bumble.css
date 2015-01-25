@@ -409,9 +409,9 @@
   text-align: center;
   border-radius: 50px; }
   .badge.green {
-    background: #4AB471; }
+    background: #4ab471; }
   .badge.red {
-    background: #CF5C60; }
+    background: #cf5c60; }
 
 .btn {
   font-family: "Avenir Next", "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -430,7 +430,7 @@
     color: white; }
 
 .btn--danger {
-  background: #CF5C60;
+  background: #cf5c60;
   font-weight: 400; }
 
 .btn--full-width {
@@ -633,14 +633,14 @@ put-label {
   margin-left: 0.5rem;
   font-weight: 700;
   content: '*';
-  color: #CF5C60; }
+  color: #cf5c60; }
 
 .danger {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 700;
   font-size: 1.2rem;
-  color: #CF5C60; }
+  color: #cf5c60; }
 
 .control {
   position: relative;
@@ -667,7 +667,7 @@ put-label {
 
 .input {
   font-family: "Avenir Next", "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  border: 1px solid #FFF;
+  border: 1px solid white;
   font-size: 1.6rem;
   display: block;
   width: 100%;
@@ -720,18 +720,18 @@ put-label {
     display: none; }
 
 .message--success {
-  background: #4AB471; }
+  background: #4ab471; }
 
 .message--warning {
-  background: #F3AE4E; }
+  background: #f3ae4e; }
 
 .message--danger {
-  background: #CF5C60; }
+  background: #cf5c60; }
 
 .message__text {
   font-size: 1.5rem;
   line-height: 1.3;
-  color: #FFF !important;
+  color: white !important;
   display: table-cell;
   vertical-align: middle;
   padding: 1rem 1rem;
@@ -746,7 +746,7 @@ put-label {
   vertical-align: middle;
   opacity: 0.6;
   display: block;
-  color: #FFF;
+  color: white;
   margin-right: 1rem; }
   .message__btn-close:hover, .message__btn-close:active {
     opacity: 1; }
@@ -758,12 +758,17 @@ put-label {
     border-bottom: 1px solid gainsboro; }
   .table th {
     color: #2795b6;
-    font-weight: 400; }
-  .table th, .table td {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 1rem;
+    color: #999; }
+  .table td {
     font-size: 1.4rem;
-    text-align: left;
-    padding: 2rem 0;
     color: #777; }
+  .table th, .table td {
+    text-align: left;
+    padding: 2rem 0; }
     .table th:last-child, .table td:last-child {
       text-align: right; }
     .table th.id, .table td.id {
@@ -785,13 +790,13 @@ put-label {
     float: right; }
 
 .text--success {
-  color: #CF5C60; }
+  color: #cf5c60; }
 
 .text--warning {
-  color: #CF5C60; }
+  color: #cf5c60; }
 
 .text--danger {
-  color: #CF5C60; }
+  color: #cf5c60; }
 
 .tal {
   text-align: left; }
@@ -861,7 +866,7 @@ a {
   font-size: 1.8rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #FFF; }
+  color: white; }
 
 .visit-site {
   font-size: 1.2rem;
@@ -933,7 +938,7 @@ a {
   height: 7.6rem;
   text-align: center; }
   .main-nav__link:hover {
-    color: #FFF;
+    color: white;
     background: #2384a1; }
 
 .main-nav__avatar {
@@ -1004,7 +1009,7 @@ a {
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 5rem;
-  color: #FFF; }
+  color: white; }
   .main-search__input:focus {
     background: #17576a;
     border-bottom: 1px solid #17576a; }
@@ -1028,7 +1033,7 @@ a {
           flex: 0 0 230px; }
 
 .main-content {
-  background: #FFF;
+  background: white;
   padding: 3rem 3rem 3rem;
   width: 100%; }
 
@@ -1214,7 +1219,7 @@ a {
   border: 1px solid #2795b6;
   border-radius: 3px;
   background: #2795b6;
-  color: #FFF;
+  color: white;
   margin: 0;
   font-size: 1.1rem;
   font-weight: 700;
@@ -1294,7 +1299,7 @@ body.login {
           justify-content: center; }
 
 .login-form {
-  background-color: #FFF;
+  background-color: white;
   width: 60rem;
   padding: 6rem; }
 

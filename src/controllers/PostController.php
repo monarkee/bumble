@@ -80,11 +80,10 @@ class PostController extends BumbleController
     public function restore($id)
     {
         $segment = $this->request->segment(2);
-        $model = model_name($segment);
 
         try
         {
-            $this->postService->restore($model, $id);
+            $this->postService->restore($segment, $id);
 
             return Redirect::back()->with('success', 'The entry was successfully restored.');
         }
@@ -97,13 +96,12 @@ class PostController extends BumbleController
     public function annihilate($id)
     {
         $segment = $this->request->segment(2);
-        $model = model_name($segment);
 
         $input = Input::only('id');
 
         try
         {
-            $this->postService->annihilate($model, $input);
+            $this->postService->annihilate($segment, $input);
 
             return Redirect::back()->with('success', 'The entry was deleted forever.');
         }
@@ -141,19 +139,17 @@ class PostController extends BumbleController
 
         $id = Input::get('id');
 
-        $modelName = model_name($this->request->segment(2));
-
-        $resource = resource_name($modelName);
+        $segment = $this->request->segment(2);
 
         try {
-           $this->postService->update($modelName, $id, $input);
+           $this->postService->update($segment, $id, $input);
         }
         catch (ValidationException $e)
         {
             return Redirect::back()->withInput()->withErrors($e->getErrors());
         }
 
-        return Redirect::route($this->config->get('bumble::admin_prefix').'.'.$resource.'.index')->with('success', 'The entry was successfully updated.');
+        return Redirect::route($this->config->get('bumble::admin_prefix').'.'.$segment.'.index')->with('success', 'The entry was successfully updated.');
     }
 
     /**
@@ -173,16 +169,12 @@ class PostController extends BumbleController
      */
     public function store()
     {
-        $segment = $this->request->segment(2);
-
-        $model = model_name($segment);
-        $resource = resource_name($segment);
-
+        $resource = $this->request->segment(2);
         $input = Input::all();
 
         try
         {
-            $this->postService->create($model, $input);
+            $this->postService->create($resource, $input);
 
             return Redirect::route($this->config->get('bumble::admin_prefix').'.'.$resource.'.index')
                            ->withSuccess('The entry was successfully created');
@@ -202,13 +194,12 @@ class PostController extends BumbleController
     public function destroy($id)
     {
         $segment = $this->request->segment(2);
-        $model = model_name($segment);
 
         $input = Input::only('id');
 
         try
         {
-            $this->postService->delete($model, $input);
+            $this->postService->delete($segment, $input);
 
             return Redirect::back()->with('success', 'The entry was successfully deleted.');
         }
