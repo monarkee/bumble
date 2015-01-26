@@ -7,9 +7,9 @@
         <div class="header">
             <div class="flex jcc aic acc">
                 <h2 class="header__title">{{ $model->getPluralName() }}</h2>
-                <a href="{{ route(Config::get('bumble::admin_prefix') . '.' . $model->getPluralSlug() . '.index') }}" class="trashed-link">View Non-Trashed</a>
+                <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.index') }}" class="trashed-link">View Non-Trashed</a>
             </div>
-            <a href="{{ route(Config::get('bumble::admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="btn-create">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
+            <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="btn-create">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
         </div>
 
         @include('bumble::partials.messages')
@@ -23,9 +23,9 @@
                     @foreach ($model->getFields() as $field)
                         @if ($field->showInListing())
                             @if ($field->getColumn() == 'active')
-                                <th class="active-status">{{ Str::title($field->getName()) }}</th>
+                                <th class="active-status">{{ strtoupper($field->getName()) }}</th>
                             @else
-                                <th>{{ Str::title($field->getName()) }}</th>
+                                <th>{{ strtoupper($field->getName()) }}</th>
                             @endif
                         @endif
                     @endforeach
@@ -64,21 +64,21 @@
                     @endforeach
                     <td>
                         <div class="inline-flex">
-                        {{ Form::open([
+                        {!! Form::open([
                             'method' => 'put',
                             'class' => 'dibe',
                             'route' => [
-                                Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.restore', $entry->id
+                                config('bumble.admin_prefix').'.'.$model->getPluralSlug().'.restore', $entry->id
                             ]
-                        ]) }}
-                        {{ Form::hidden('id', $entry->id) }}
-                        {{ Form::button('Restore', ['type' => 'submit', 'class' => 'dib restore-button']) }}
-                        {{ Form::close() }}
+                        ]) !!}
+                        {!! Form::hidden('id', $entry->id) !!}
+                        {!! Form::button('Restore', ['type' => 'submit', 'class' => 'dib restore-button']) !!}
+                        {!! Form::close() !!}
 
-                        {{ Form::open(['method' => 'delete', 'route' => [Config::get('bumble::admin_prefix').'.'.$model->getPluralSlug().'.annihilate', $entry->id]]) }}
-                            {{ Form::hidden('id', $entry->id) }}
-                            {{ Form::button('', ['type' => 'submit', 'class' => 'delete-post js-delete-post']) }}
-                        {{ Form::close() }}
+                        {!! Form::open(['method' => 'delete', 'route' => [config('bumble.admin_prefix').'.'.$model->getPluralSlug().'.annihilate', $entry->id]]) !!}
+                            {!! Form::hidden('id', $entry->id) !!}
+                            {!! Form::button('', ['type' => 'submit', 'class' => 'delete-post js-delete-post']) !!}
+                        {!! Form::close() !!}
                         </div>
                     </td>
                 </tr>
@@ -87,7 +87,7 @@
         </table>
 
         <div class="pv">
-        {{ $entries->links() }}
+        {{-- {!! $entries->links() !!} --}}
         </div>
         @else
             <div class="info-box">

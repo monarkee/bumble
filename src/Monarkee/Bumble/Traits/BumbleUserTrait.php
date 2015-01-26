@@ -22,7 +22,7 @@ trait BumbleUserTrait {
     public function getFirstName()
     {
         $config = app('config');
-        return $config->has('bumble::first_name') ? $this->attributes[$config->get('bumble::first_name')] : $this->attributes['first_name'];
+        return $config->has('bumble.first_name') ? $this->attributes[$config->get('bumble.first_name')] : $this->attributes['first_name'];
     }
 
     /**
@@ -33,7 +33,7 @@ trait BumbleUserTrait {
     public function getLastName()
     {
         $config = app('config');
-        return $config->has('bumble::last_name') ? $this->attributes[$config->get('bumble::last_name')] : $this->attributes['last_name'];
+        return $config->has('bumble.last_name') ? $this->attributes[$config->get('bumble.last_name')] : $this->attributes['last_name'];
     }
 
     /**
@@ -44,6 +44,6 @@ trait BumbleUserTrait {
     public function getAvatar()
     {
         $config = app('config');
-        return $config->has('bumble::email') ? Gravatar::get($this->attributes[$config->get('bumble::email')]) : $this->attributes['email'];
+        return $config->has('bumble.email') ? Gravatar::get($this->attributes[$config->get('bumble.email')]) : $this->attributes['email'];
     }
 }

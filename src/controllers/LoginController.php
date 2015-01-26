@@ -1,6 +1,7 @@
 <?php namespace Monarkee\Bumble\Controllers;
 
 use Monarkee\Bumble\Controllers\BumbleController;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 use Auth;
 use View;
 use Redirect;
@@ -11,6 +12,19 @@ use Hash;
 
 class LoginController extends BumbleController
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Password Reset Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller is responsible for handling password reset requests
+    | and uses a simple trait to include this behavior. You're free to
+    | explore this trait and override any methods you wish to tweak.
+    |
+    */
+
+    use ResetsPasswords;
+
     /**
      * Dashboard View
      * @return View
@@ -64,7 +78,7 @@ class LoginController extends BumbleController
 
     public function postForgotPassword()
     {
-        switch ($response = Password::remind(Input::only('email')))
+        switch ($response = Password::sendResetLink(Input::only('email')))
         {
             case Password::INVALID_USER:
                 return Redirect::back()->with('error', 'A user could not be found with that email address.');
