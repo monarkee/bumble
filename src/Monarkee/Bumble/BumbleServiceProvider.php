@@ -20,10 +20,19 @@ class BumbleServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
+        // Register the default configuration
         config(['bumble' => require __DIR__.'/../../config/config.php']);
 
+        // Publish the config files and public assets
+        $this->publishes([
+            __DIR__.'/../../config/config.php' => config_path('bumble.php'),
+            __DIR__.'/../../../public/' => public_path().'/packages/monarkee/bumble',
+        ]);
+
+        // Register the default views
         $this->loadViewsFrom('bumble', __DIR__ . '/../../views/');
 
+        // Include custom Bumble configuration
         include __DIR__ . '/../../filters.php';
         include __DIR__ . '/../../validation.php';
         include __DIR__ . '/../../helpers.php';
