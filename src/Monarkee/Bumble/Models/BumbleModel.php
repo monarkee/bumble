@@ -26,7 +26,7 @@ abstract class BumbleModel extends Model
         }
 
         // Boot soft-delete trait all the time
-        if (method_exists(get_called_class(), $method = 'bootSoftDeletingTrait'))
+        if (method_exists(get_called_class(), $method = 'bootSoftDeletes'))
         {
             forward_static_call([get_called_class(), $method]);
         }
@@ -90,7 +90,7 @@ abstract class BumbleModel extends Model
      */
     public function isSoftDeleting()
     {
-        return in_array('Illuminate\Database\Eloquent\SoftDeletingTrait', class_uses($this));
+        return in_array('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
     }
 
     /**
