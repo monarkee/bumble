@@ -20,12 +20,8 @@ class BumbleServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        // Register the default configuration
-        config(['bumble' => require __DIR__.'/../../config/bumble.php']);
-
         // Merge the config values so they don't have to have a complete configuration
-        $this->mergeConfigFrom('bumble', config_path('bumble.php'));
-        // $this->mergeConfigFrom('bumble', __DIR__.'/../../config/bumble.php');
+        $this->mergeConfigFrom('bumble', __DIR__.'/../../config/bumble.php');
 
         // Publish the config files and public assets
         $this->publishes([
