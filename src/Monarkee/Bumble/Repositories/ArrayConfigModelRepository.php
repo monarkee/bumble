@@ -80,17 +80,10 @@ final class ArrayConfigModelRepository implements ModelRepository {
                 $testClass = new ReflectionClass($model);
                 if ( ! $testClass->isAbstract())
                 {
-                    try
+                    $newObject = new $model;
+                    if ( ! $newObject->isHidden())
                     {
-                        $newObject = new $model;
-                        if ( ! $newObject->isHidden())
-                        {
-                            $this->objects[] = $newObject;
-                        }
-                    }
-                    catch (Exception $e)
-                    {
-
+                        $this->objects[] = $newObject;
                     }
                 }
             }

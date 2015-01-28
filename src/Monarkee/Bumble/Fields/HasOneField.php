@@ -16,7 +16,12 @@ class HasOneField extends Field implements FieldInterface
 
     public function getRelatedTitle()
     {
-        return isset($this->options['related_title']) ? $this->options['related_title'] : 'title';
+        return $this->hasOption('related_title') ? ucwords($this->getOption('related_title')) : $this->getTitle();
+    }
+
+    public function getRelatedTitleColumn()
+    {
+        return $this->hasOption('related_title_column') ? $this->getOption('related_title_column') : $this->title;
     }
 
     /**

@@ -116,7 +116,7 @@ abstract class Field {
      */
     public function getColumn()
     {
-        return $this->hasOption('column') ? $this->getOption('column') : $this->title;
+        return $this->hasOption('column') ? $this->getOption('column') : strtolower($this->title);
     }
 
     /**

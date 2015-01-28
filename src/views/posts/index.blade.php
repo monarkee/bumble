@@ -20,14 +20,14 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th class="id">ID</th>
-
                     @foreach ($model->getFields() as $field)
                         @if ($field->showInListing())
                             @if ($field->getColumn() == 'active' || $field->getFieldType() == "BooleanField")
                                 <th class="active-status">{{ strtoupper($field->getName()) }}</th>
+                            @elseif ($field->getFieldType() == "BelongsToField")
+                                <th>{{ $field->getRelatedTitle() }}</th>
                             @elseif ($field->getFieldType() == "HasOneField")
-                                <th>{{ $field->getTitle() }}</th>
+                                <th>{{ $field->getRelatedTitle() }}</th>
                             @else
                                 <th>{{ strtoupper($field->getName()) }}</th>
                             @endif
@@ -40,11 +40,12 @@
             <tbody>
                 @foreach ($entries as $entry)
                 <tr>
-                    <td class="id">{{ $entry->id }}</td>
                     @foreach ($model->getFields() as $field)
                         @unless ($field->showInListing() == false)
                             @if ($field->getFieldType() == 'TextField')
                                 <td>{{ $entry->{$field->getColumn()} }}</td>
+                            @elseif ($field->getColumn() == 'id')
+                                <td><code>{{ $entry->{$field->getColumn()} }}</code></td>
                             @elseif ($field->getFieldType() == 'SlugField')
                                 <td><code>{{ $entry->{$field->getColumn()} }}</code></td>
                             @elseif ($field->getFieldType() == 'DateTimeField')
@@ -65,9 +66,9 @@
                             @elseif ($field->getFieldType() == 'ImageField')
                                 <td>{{ $entry->{$field->getColumn()} }}</td>
                             @elseif ($field->getFieldType() == 'HasOneField')
-                                <td>{{ $model->{$field->method()}()->getRelated()->whereId($entry->{$field->getColumn()})->pluck($field->getTitleOption()) }}</td>
+                                <td>{{ $model->{$field->method()}()->getRelated()->whereId($entry->{$field->getColumn()})->pluck($field->getRelatedTitleColumn()) }}</td>
                             @elseif ($field->getFieldType() == 'BelongsToField')
-                                <td>{{ $model->{$field->method()}()->getRelated()->whereId($entry->{$field->getColumn()})->pluck($field->getTitleOption()) }}</td>
+                                <td>{{ $model->{$field->method()}()->getRelated()->whereId($entry->{$field->getColumn()})->pluck($field->getRelatedTitleColumn()) }}</td>
                             @else
                                 <td>{{ $entry->{$field->getColumn()} }}</td>
                             @endif
