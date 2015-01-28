@@ -95,7 +95,7 @@ final class ArrayConfigModelRepository implements ModelRepository {
      */
     public function hasModels()
     {
-        return !is_null($this->objects) ? true : false;
+        return !empty($this->modelConfig);
     }
 
     /**
