@@ -95,7 +95,7 @@
         </table>
 
         <div class="pv">
-            {{--  $entries->links() --}}
+            {!! $entries->render() !!}
         </div>
         @else
             <div class="info-box">
