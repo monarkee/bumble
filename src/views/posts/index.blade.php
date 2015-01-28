@@ -20,6 +20,9 @@
         <table class="table">
             <thead>
                 <tr>
+                    @if ($model->admin()->showIdInListing())
+                        <th>{{ $model->admin()->getIdColumn() }}</th>
+                    @endif
                     @foreach ($model->getFields() as $field)
                         @if ($field->showInListing())
                             @if ($field->getColumn() == 'active' || $field->getFieldType() == "BooleanField")
@@ -40,6 +43,9 @@
             <tbody>
                 @foreach ($entries as $entry)
                 <tr>
+                    @if ($model->admin()->showIdInListing())
+                        <td>{{ $entry->{$model->admin()->getIdColumn()} }}</td>
+                    @endif
                     @foreach ($model->getFields() as $field)
                         @unless ($field->showInListing() == false)
                             @if ($field->getFieldType() == 'TextField')

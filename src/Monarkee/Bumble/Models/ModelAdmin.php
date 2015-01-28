@@ -5,9 +5,16 @@ class ModelAdmin
     /**
      * Whether the model should be hidden from the CMS
      *
-     * @var
+     * @var boolean
      */
     public $invisible;
+
+    /**
+     * Whether to show the ID field in the listing
+     *
+     * @var boolean
+     */
+    public $showIdInListing;
 
     /**
      * Whether to show the model in the top nav
@@ -137,5 +144,23 @@ class ModelAdmin
     public function fieldIsRequired($field)
     {
         return array_key_exists($field->getLowerName(), $this->rules);
+    }
+
+    /**
+     * Whether to show the ID field in the listing
+     * @return boolean
+     */
+    public function showIdInListing()
+    {
+        return $this->showIdInListing ?: false;
+    }
+
+    /**
+     * Allow the user to set a custom id field
+     * @return string
+     */
+    public function getIdColumn()
+    {
+        return isset($this->idColumn) ? $this->idColumn : 'id';
     }
 }
