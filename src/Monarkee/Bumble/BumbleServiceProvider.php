@@ -20,25 +20,14 @@ class BumbleServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        // Merge the config values so they don't have to have a complete configuration
-        $this->mergeConfigFrom('bumble', __DIR__.'/../../config/bumble.php');
-
         // Publish the config files and public assets
         $this->publishes([
             __DIR__.'/../../config/bumble.php' => config_path('bumble.php'),
             __DIR__.'/../../../public/' => public_path().'/packages/monarkee/bumble',
         ]);
 
-        // Register the default views
-        $this->loadViewsFrom('bumble', __DIR__ . '/../../views/');
-
         // Include custom Bumble configuration
-        include __DIR__ . '/../../filters.php';
-        include __DIR__ . '/../../validation.php';
-        include __DIR__ . '/../../helpers.php';
-        include __DIR__ . '/../../routes.php';
-        include __DIR__ . '/../../composers.php';
-        include __DIR__ . '/../../extensions.php';
+        $this->includeCustomConfiguration();
     }
 
     /**
@@ -66,6 +55,14 @@ class BumbleServiceProvider extends ServiceProvider {
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
         $loader->alias('BumbleStr', 'Monarkee\Bumble\Support\Facades\BumbleStr');
         $loader->alias('BumbleGravatar', 'Monarkee\Bumble\Support\Facades\Gravatar');
+
+        // config(['bumble', __DIR__.'/../../config/bumble.php']);
+
+        // Merge the config values so they don't have to have a complete configuration
+        $this->mergeConfigFrom(__DIR__.'/../../config/bumble.php', 'bumble');
+
+        // Register the default views
+        $this->loadViewsFrom(__DIR__ . '/../../views/', 'bumble');
     }
 
     /**
@@ -78,4 +75,17 @@ class BumbleServiceProvider extends ServiceProvider {
         return array('bumble.bumblestr', 'bumble.bumble-gravatar');
     }
 
+    /**
+     * Include custom filters, validation, helpers, routes, composers, and extensions
+     * @return [type] [description]
+     */
+    public function includeCustomConfiguration()
+    {
+        include __DIR__ . '/../../filters.php';
+        include __DIR__ . '/../../validation.php';
+        include __DIR__ . '/../../helpers.php';
+        include __DIR__ . '/../../routes.php';
+        include __DIR__ . '/../../composers.php';
+        include __DIR__ . '/../../extensions.php';
+    }
 }
