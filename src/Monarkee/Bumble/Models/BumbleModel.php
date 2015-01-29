@@ -20,7 +20,13 @@ abstract class BumbleModel extends Model
      */
     protected static function bootTraits()
     {
-        if (Request::segment(1) !== Config::get('bumble::admin_prefix'))
+        $segment = Request::segment(1);
+
+        if ($segment == config('bumble.admin_prefix') && self::enableTraits() == true)
+        {
+            parent::bootTraits();
+        }
+        elseif ($segment !== config('bumble.admin_prefix'))
         {
             parent::bootTraits();
         }
@@ -54,6 +60,12 @@ abstract class BumbleModel extends Model
             $this->admin = new $adminClass;
         }
     }
+
+    /**
+     * Whether to enable traits
+     * @var boolean
+     */
+    protected static $enableTraits = false;
 
     /**
      * The admin instance
@@ -336,5 +348,14 @@ abstract class BumbleModel extends Model
     public function columnExists($column)
     {
         return Schema::hasColumn($this->getTable(), $column);
+    }
+
+    /**
+     * Enable the Model's traits
+     * @return boolean
+     */
+    public static function enableTraits()
+    {
+        return static::$enableTraits;
     }
 }
