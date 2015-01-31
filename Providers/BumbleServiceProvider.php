@@ -45,10 +45,10 @@ class BumbleServiceProvider extends ServiceProvider {
         $this->createAliases();
 
         // Merge the config values so they don't have to have a complete configuration
-        $this->mergeConfigFrom(__DIR__.'/../../config/bumble.php', 'bumble');
+        $this->mergeConfigFrom(__DIR__.'/../config/bumble.php', 'bumble');
 
         // Register the default views
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'bumble');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'bumble');
     }
 
     /**
@@ -97,11 +97,11 @@ class BumbleServiceProvider extends ServiceProvider {
      */
     public function includeCustomConfiguration()
     {
-        include __DIR__ . '/../../filters.php';
-        include __DIR__ . '/../../validation.php';
-        include __DIR__ . '/../../helpers.php';
-        include __DIR__ . '/../../routes.php';
-        include __DIR__ . '/../../composers.php';
-        include __DIR__ . '/../../extensions.php';
+        include __DIR__ . '/../filters.php';
+        include __DIR__ . '/../validation.php';
+        include __DIR__ . '/../helpers.php';
+        include __DIR__ . '/../routes.php';
+        include __DIR__ . '/../composers.php';
+        include __DIR__ . '/../extensions.php';
     }
 }
