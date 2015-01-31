@@ -23,13 +23,8 @@
         "bin-dir": "bin"
     },
     "autoload": {
-        "classmap": [
-            "src/migrations",
-            "src/seeds",
-            "src/controllers"
-        ],
-        "psr-0": {
-            "Monarkee\\Bumble": "src/"
+        "psr-4": {
+            "Monarkee\\Bumble\\": "/"
         }
     },
     "minimum-stability": "dev"
