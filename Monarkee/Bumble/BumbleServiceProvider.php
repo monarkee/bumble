@@ -62,7 +62,7 @@ class BumbleServiceProvider extends ServiceProvider {
         $this->mergeConfigFrom(__DIR__.'/../../config/bumble.php', 'bumble');
 
         // Register the default views
-        $this->loadViewsFrom(__DIR__ . '/../../views/', 'bumble');
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'bumble');
     }
 
     /**
