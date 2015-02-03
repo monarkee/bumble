@@ -50,7 +50,7 @@ class FileField extends Field implements FileFieldInterface {
     }
 
     /**
-     * Check wether to delete the files when the Model is deleted from the database
+     * Check whether to delete the files when the Model is deleted from the database
      *
      * @return bool
      */
