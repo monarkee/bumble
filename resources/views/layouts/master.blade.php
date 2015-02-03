@@ -15,7 +15,7 @@
         <div class="main-header__wrap">
             <h1 class="main-logo"><a href="{{ route('bumble.dashboard') }}" class="main-logo__link">
                 @if (config('bumble.site-title-image'))
-                    <img src="{{ config('bumble.site-title-image') }}" alt="" height="30">
+                    <img src="{{ config('bumble.site-title-image') }}">
                 @else
                     {{ config('bumble.site-title') }}
                 @endif

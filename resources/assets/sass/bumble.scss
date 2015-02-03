@@ -161,11 +161,18 @@ a {
 }
 
 .main-logo__link {
+  display: flex;
   font-size: 1.8rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: $white;
+
+  img {
+    height: 3.7rem;
+    width: auto;
+  }
 }
+
 
 .visit-site {
   font-size: 1.2rem;
