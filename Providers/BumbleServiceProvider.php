@@ -21,13 +21,13 @@ class BumbleServiceProvider extends ServiceProvider {
     public function boot()
     {
         // Publish the config files and public assets
-        $this->publishes([__DIR__.'/../../config/bumble.php' => config_path('bumble.php')], 'config');
+        $this->publishes([__DIR__.'/../config/bumble.php' => config_path('bumble.php')], 'config');
 
-        $this->publishes([__DIR__.'/../../../public/' => public_path().'/packages/monarkee/bumble'], 'views');
+        $this->publishes([__DIR__.'/../public' => public_path('/packages/monarkee/bumble')], 'assets');
 
-        $this->publishes([__DIR__.'/../../../database/migrations/' => base_path().'/database/migrations'], 'migrations');
+        $this->publishes([__DIR__.'/../database/migrations/' => base_path('/database/migrations')], 'migrations');
 
-        $this->publishes([__DIR__.'/../../../database/seeds/' => base_path().'/database/seeds'], 'seeds');
+        $this->publishes([__DIR__.'/../database/seeds/' => base_path('/database/seeds')], 'seeds');
 
         // Include custom Bumble configuration
         $this->includeCustomConfiguration();
