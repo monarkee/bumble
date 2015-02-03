@@ -13,7 +13,14 @@
 <body>
     <header class="main-header">
         <div class="main-header__wrap">
-            <h1 class="main-logo"><a href="{{ route('bumble.dashboard') }}" class="main-logo__link">{!! config('bumble.site-title') !!}</a></h1>
+            <h1 class="main-logo"><a href="{{ route('bumble.dashboard') }}" class="main-logo__link">
+                @if (config('bumble.site-title-image'))
+                    <img src="{{ config('bumble.site-title-image') }}" alt="" height="30">
+                @else
+                    {{ config('bumble.site-title') }}
+                @endif
+                </a>
+            </h1>
 
             <a href="{{ url('/') }}" class="visit-site">Visit Site</a>
 

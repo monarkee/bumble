@@ -18,6 +18,7 @@ return [
     */
     'site-title' => 'Bumble',
     'site-url' => 'http://bumblecms.com',
+    'site-title-image' => '',
 
     /*
     |--------------------------------------------------------------------------
