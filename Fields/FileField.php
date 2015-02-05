@@ -42,11 +42,20 @@ class FileField extends Field implements FileFieldInterface {
      *
      * @return mixed
      */
-    public function getUploadTo()
+    public function getUploadTo($path = '')
     {
         if (isset($this->options['upload_to'])) return $this->options['upload_to'];
 
-        return public_path(self::DEFAULT_UPLOAD_TO);
+        return public_path($this->addSlashes(self::DEFAULT_UPLOAD_TO)) . $path;
+    }
+
+    /**
+     * Add trailing slashes if not present
+     * @param string $value
+     */
+    protected function addSlashes($value)
+    {
+        return rtrim($value, '/') . '/';
     }
 
     /**
