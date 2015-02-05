@@ -14,7 +14,9 @@
         "thomaswelton/gravatarlib": "0.1.0",
         "aws/aws-sdk-php": "2.*",
         "league/commonmark": "~0.5@dev",
-        "illuminate/html": "5.*"
+        "illuminate/html": "5.*",
+        "intervention/image": "~2.1",
+        "league/glide": "0.3.*"
     },
     "require-dev": {
         "phpspec/phpspec": "~2.0"
