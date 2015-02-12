@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "laravel/framework": "5.*",
+        "laravel/framework": "4.*|5.*",
         "thomaswelton/gravatarlib": "0.1.0",
         "aws/aws-sdk-php": "2.*",
         "league/commonmark": "~0.5@dev",
