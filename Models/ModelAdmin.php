@@ -7,7 +7,7 @@ class ModelAdmin
      *
      * @var boolean
      */
-    public $invisible;
+    public $invisible = false;
 
     /**
      * Whether to show the ID field in the listing
