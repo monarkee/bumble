@@ -52,7 +52,7 @@ abstract class BumbleModel extends Model
 
         // Set up the model's fieldset by going to the config
         // and spinning up the class
-        $modelConfig = Config::get('bumble::models');
+        $modelConfig = config('bumble.models');
 
         if (method_exists($this, 'bumble'))
         {

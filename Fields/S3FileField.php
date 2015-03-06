@@ -25,9 +25,7 @@ class S3FileField extends ImageField implements FileFieldInterface {
 
     public function getBucketName()
     {
-        $config = App::make('Illuminate\Config\Repository');
-
-        return isset($this->options['bucket_name']) ? $this->options['bucket_name'] : $config->get('bumble::bucket_name');
+        return isset($this->options['bucket_name']) ? $this->options['bucket_name'] : config('bumble.bucket_name');
     }
 
     public function getUploadTo($path = '')
