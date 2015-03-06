@@ -1,5 +1,9 @@
 <?php
 
+use Aws\S3\S3Client;
+use League\Flysystem\AwsS3v2\AwsS3Adapter;
+use League\Flysystem\Filesystem;
+
 Route::group(['prefix' => config('bumble.admin_prefix'), 'namespace' => 'Monarkee\Bumble\Controllers'], function()
 {
     Route::get(config('bumble.admin.login'), ['as' => 'bumble.login', 'uses' => 'LoginController@getLogin']);
@@ -11,6 +15,24 @@ Route::group(['prefix' => config('bumble.admin_prefix'), 'namespace' => 'Monarke
     Route::post(config('bumble.admin.reset_password'), ['as' => 'bumble.reset-password.post', 'uses' => 'LoginController@postReset']);
 
     // Image Cache Routes
+    Route::get('cache/s3/{path?}', function($path)
+    {
+        $client = S3Client::factory(array(
+            'key'    => config('bumble.S3-key'),
+            'secret' => config('bumble.S3-secret'),
+        ));
+
+        // Setup Glide server
+        $server = League\Glide\ServerFactory::create([
+            'base_url' => config("bumble.admin_prefix") . '/cache/s3/',
+            'source' => new Filesystem(new AwsS3Adapter($client, config('bumble.bucket_name'))),
+            'cache' => public_path('cache'),
+        ]);
+
+        // Or better yet, output the image based on the current URL
+        $server->outputImage($path, $_GET);
+    })->where('path', '(.*)');
+
     Route::get('cache/{path?}', function($path)
     {
         // Setup Glide server

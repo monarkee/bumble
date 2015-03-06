@@ -34,8 +34,8 @@ class S3FileService implements UploadInterface
         $this->config = app()->make('config');
 
         $client = S3Client::factory(array(
-            'key'    => $this->config->get('bumble::S3-key'),
-            'secret' => $this->config->get('bumble::S3-secret'),
+            'key'    => $this->config->get('bumble.S3-key'),
+            'secret' => $this->config->get('bumble.S3-secret'),
         ));
 
         $this->local = new Filesystem(new LocalAdapter('/'));
