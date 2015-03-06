@@ -37,7 +37,7 @@ class ImageField extends FileField implements FileFieldInterface
             $base = $pieces[1];
 
             $params = http_build_query($params);
-            return asset('admin/cache'.$base.$image.'?'.$params);
+            return asset(config('bumble.admin_prefix').'/cache'.$base.$image.'?'.$params);
         }
     }
 }
