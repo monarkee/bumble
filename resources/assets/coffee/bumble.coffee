@@ -105,7 +105,7 @@ $(document).on 'click', (e) ->
 ###
   BooleanField Toggles
 ###
-elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+elems = Array.prototype.slice.call(document.querySelectorAll('._switch'));
 
 elems.forEach (html) ->
   switchery = new Switchery html,

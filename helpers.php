@@ -57,7 +57,7 @@ if (!function_exists('active_color'))
 {
     function active_color($activeStatus)
     {
-        return $activeStatus == 1 ? 'green' : 'red';
+        return $activeStatus === 1 ? 'green' : 'red';
     }
 }
 

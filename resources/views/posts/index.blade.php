@@ -57,7 +57,7 @@
                             @elseif ($field->getFieldType() == 'DateTimeField')
                                 <td><code>{{ $field->display($entry->{$field->getColumn()}) }}</code></td>
                             @elseif ($field->getFieldType() == 'BooleanField')
-                                <td class="active-status"><i class="badge {{ active_color($entry->active) }}"></i></td>
+                                <td class="active-status"><i class="badge {{ active_color($entry->{$field->getColumn()}) }}"></i></td>
                             @elseif ($field->getFieldType() == 'DropdownField')
                                 <td>{{ $field->getValue($entry->{$field->getColumn()}) }}</td>
                             @elseif ($field->getFieldType() == 'TextareaField')
