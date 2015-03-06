@@ -77,6 +77,14 @@
                                         &hellip;
                                     @endif
                                 </td>
+                            @elseif ($field->getFieldType() == 'S3FileField')
+                                <td>
+                                    @if ($entry->{$field->getColumn()})
+                                        <img src="{{ $field->getCachedUrl($entry->{$field->getColumn()}) }}" alt="{{ $entry->{$field->getColumn()} }}" width="50">
+                                        @else
+                                        &hellip;
+                                    @endif
+                                </td>
                             @elseif ($field->getFieldType() == 'HasOneField')
                                 <td>{{ $model->{$field->method()}()->getRelated()->whereId($entry->{$field->getColumn()})->pluck($field->getRelatedTitleColumn()) }}</td>
                             @elseif ($field->getFieldType() == 'BelongsToField')

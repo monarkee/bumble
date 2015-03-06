@@ -52,6 +52,7 @@ class FileField extends Field implements FileFieldInterface {
     /**
      * Add trailing slashes if not present
      * @param string $value
+     * @return string
      */
     protected function addSlashes($value)
     {

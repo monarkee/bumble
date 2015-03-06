@@ -16,7 +16,8 @@
         "league/commonmark": "~0.5@dev",
         "illuminate/html": "5.*",
         "intervention/image": "~2.1",
-        "league/glide": "0.3.*"
+        "league/glide": "0.3.*",
+        "league/flysystem-aws-s3-v2": "~1.0@dev"
     },
     "require-dev": {
         "phpspec/phpspec": "~2.0"
