@@ -1,7 +1,12 @@
 <?php namespace Monarkee\Bumble\Fields;
 
+use Aws\S3\S3Client;
 use Illuminate\Config\Repository;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
+use League\Flysystem\Adapter\Local;
+use League\Flysystem\AwsS3v3\AwsS3Adapter;
+use League\Flysystem\Filesystem;
 use League\Glide\ServerFactory;
 use Monarkee\Bumble\Fields\ImageField;
 use Monarkee\Bumble\Interfaces\FileFieldInterface;
@@ -39,23 +44,30 @@ class S3FileField extends ImageField implements FileFieldInterface {
      */
     public function getCachedUrl($image, array $params = ['w' => 300])
     {
-        return $image;
-
         // If the image doesn't exist in the cache, create it
+        $client = S3Client::factory(array(
+            'key'    => Config::get('bumble::S3-key'),
+            'secret' => Config::get('bumble::S3-secret'),
+        ));
 
         // Setup Glide server
         $server = ServerFactory::create([
-            'source' => new Filesystem(new AwsS3Adapter('path/to/source/folder')),
-            'cache' => new Filesystem(new Local('path/to/cache/folder')),
+            'source' => new Filesystem(new AwsS3Adapter($client, $this->getUploadTo())),
+            'cache' => new Filesystem(new Local(public_path('s3/cache'))),
         ]);
+
+        dd($server->sourceFileExists('uploads/aBcMwAXK.jpg'));
+
+        // Or better yet, output the image based on the current URL
+//        $server->makeImage();
 
 //        if (str_contains($this->getUploadTo(), 'public'))
 //        {
 //            $pieces = explode('public', $this->getUploadTo());
 //            $base = $pieces[1];
 //
-//            $params = http_build_query($params);
-//            return asset(config('bumble.admin_prefix').'/cache'.$base.$image.'?'.$params);
+            $params = http_build_query($params);
+            return asset(config('bumble.admin_prefix').'/s3/cache/'.$this->getUploadTo().'/'.$image.'?'.$params);
 //        }
     }
 

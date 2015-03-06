@@ -2,10 +2,10 @@
 
 use Aws\S3\S3Client;
 use Illuminate\Support\Facades\App;
+use League\Flysystem\AwsS3v2\AwsS3Adapter;
 use League\Flysystem\File;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local as LocalAdapter;
-use League\Flysystem\Adapter\AwsS3 as Adapter;
 
 class S3FileService implements UploadInterface
 {
@@ -40,7 +40,7 @@ class S3FileService implements UploadInterface
 
         $this->local = new Filesystem(new LocalAdapter('/'));
 
-        $this->remote = new Filesystem(new Adapter($client, $this->attributes['bucket_name']));
+        $this->remote = new Filesystem(new AwsS3Adapter($client, $this->attributes['bucket_name']));
 
         return $this;
     }
