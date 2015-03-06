@@ -43,8 +43,8 @@ class S3FileField extends ImageField implements FileFieldInterface {
      */
     public function getCachedUrl($image, array $params = ['w' => 300])
     {
-            $params = http_build_query($params);
-            return asset(config('bumble.admin_prefix').'/cache/s3/'.$this->getUploadTo().'/'.$image.'?'.$params);
+        $params = http_build_query($params);
+        return asset(config('bumble.admin_prefix').'/cache/s3/'.$this->getUploadTo().'/'.$image.'?'.$params);
     }
 
     public function handleFile($request, $file, $filename)
