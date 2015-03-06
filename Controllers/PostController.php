@@ -70,7 +70,7 @@ class PostController extends BumbleController
     {
         $model = $this->modelRepo->get($this->request->segment(2));
 
-        $entries = $model->onlyTrashed()->paginate($this->config->get('bumble::paginate'));
+        $entries = $model->onlyTrashed()->paginate($this->config->get('bumble.paginate'));
 
         return View::make('bumble::posts.trashed')->with(compact('model', 'entries'));
     }
