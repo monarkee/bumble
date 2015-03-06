@@ -12,7 +12,7 @@
         "php": ">=5.3.0",
         "laravel/framework": "4.*|5.*",
         "thomaswelton/gravatarlib": "0.1.0",
-        "aws/aws-sdk-php": "2.7.*@dev",
+        "aws/aws-sdk-php": "2.7.21",
         "league/flysystem-aws-s3-v2": "1.0.*@dev",
         "league/commonmark": "~0.5@dev",
         "illuminate/html": "5.*",
