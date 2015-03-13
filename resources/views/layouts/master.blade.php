@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/bower_components/switchery/dist/switchery.css') }}">
     <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/packages/tipr/tipr.css') }}">
     <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/css/bumble.css') }}">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/bower_components/MirrorMark/dist/css/mirrormark.package.min.css') }}">
 </head>
 <body>
     <header class="main-header">

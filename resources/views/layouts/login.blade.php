@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Bumble</title>
 
-    <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/css/bumble.css') }}">
+    <link rel="stylesheet" href="/packages/monarkee/bumble/css/bumble.css">
 </head>
 <body class="login">
 

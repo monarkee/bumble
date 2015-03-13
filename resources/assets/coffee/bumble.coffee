@@ -116,3 +116,11 @@ elems.forEach (html) ->
 ###
 
 $('._tooltip').tipr();
+
+###
+  MarkdownField
+###
+$('._markdown-field').each () ->
+  editor = mirrorMark this,
+    showToolbar: true
+  editor.render()

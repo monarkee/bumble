@@ -5,12 +5,7 @@
     </div>
 </div>
 <div class="control g-row">
-    <div class="g-col-1">
-        <div class="bgw" style="background-color: #fff">
-            {!! Form::textarea($field->getColumn(), $field->getDefaultValue($editing) ?: null, ['class' => 'form__textarea-input mdhtmlform-md', 'placeholder' => $field->getDescription()]) !!}
-        </div>
-    </div>
-    <div class="g-col-1">
-        <div class="form__textarea md-preview mdhtmlform-html"></div>
+    <div class="g-col-1 bgw" style="background-color: #fff">
+        {!! Form::textarea($field->getColumn(), $field->getDefaultValue($editing) ?: null, ['class' => 'form__textarea-input _markdown-field', 'placeholder' => $field->getDescription()]) !!}
     </div>
 </div>

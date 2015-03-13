@@ -129,3 +129,16 @@ elems.forEach(function(html) {
  */
 
 $('._tooltip').tipr();
+
+
+/*
+  MarkdownField
+ */
+
+$('._markdown-field').each(function() {
+  var editor;
+  editor = mirrorMark(this, {
+    showToolbar: true
+  });
+  return editor.render();
+});

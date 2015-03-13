@@ -23,8 +23,7 @@ var vendorJS = [
     BOWER + 'switchery/dist/switchery.min.js',
     PACKAGES + 'tipr/tipr.min.js',
     BOWER + 'datetimepicker/jquery.datetimepicker.js',
-    SRC + 'packages/showdown/showdown.js',
-    SRC + 'packages/mdhtmlform/mdhtmlform.js',
+    BOWER + 'MirrorMark/dist/js/mirrormark.package.js',
     NODE + 'fastclick/lib/fastclick.js',
 ];
 
@@ -66,7 +65,7 @@ gulp.task('vendorJS', function() {
 
 gulp.task('publish', ['scss', 'coffee', 'vendorJS'], function() {
     // gulp.src('').pipe(shell('cd ~/Sites/bumble && php artisan asset:publish --bench=monarkee/bumble'), {ignoreErrors: true});
-    gulp.src('').pipe(shell('cd ~/Sites/bumblecms && php artisan asset:publish --path="vendor/monarkee/bumble/public" monarkee/bumble'), {ignoreErrors: true});
+    // gulp.src('').pipe(shell('cd ~/Sites/bumblecms && php artisan asset:publish --path="vendor/monarkee/bumble/public" monarkee/bumble'), {ignoreErrors: true});
 });
 
 /* Blade Templates */

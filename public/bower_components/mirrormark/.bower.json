@@ -1,0 +1,35 @@
+{
+  "name": "MirrorMark",
+  "homepage": "https://github.com/themusicbed/MirrorMark",
+  "authors": [
+    "Andrew Del Prete <andrew@musicbed.com>"
+  ],
+  "description": "Simple, yet extensible.",
+  "keywords": [
+    "markdown",
+    "codemirror",
+    "editor"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "lodash": "~3.5.0",
+    "codemirror": "~5.0.0",
+    "font-awesome": "~4.3.0"
+  },
+  "_release": "3b1bb2e25b",
+  "_resolution": {
+    "type": "commit",
+    "commit": "3b1bb2e25b247cf24742a4a01c5cc0e22e22c26f"
+  },
+  "_source": "git://github.com/themusicbed/MirrorMark.git",
+  "_target": "3b1bb2e25b247cf24742a4a01c5cc0e22e22c26f",
+  "_originalSource": "mirrormark",
+  "_direct": true
+}

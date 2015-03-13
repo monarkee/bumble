@@ -1,0 +1,27 @@
+{
+  "name": "MirrorMark",
+  "version": "1.0.0",
+  "homepage": "https://github.com/themusicbed/MirrorMark",
+  "authors": [
+    "Andrew Del Prete <andrew@musicbed.com>"
+  ],
+  "description": "Simple, yet extensible.",
+  "keywords": [
+    "markdown",
+    "codemirror",
+    "editor"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "lodash": "~3.5.0",
+    "codemirror": "~5.0.0",
+    "font-awesome": "~4.3.0"
+  }
+}
