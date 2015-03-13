@@ -29,6 +29,8 @@ class BumbleServiceProvider extends ServiceProvider {
 
         $this->publishes([__DIR__.'/../database/seeds/' => base_path('/database/seeds')], 'seeds');
 
+        $this->publishes([__DIR__.'/../resources/views/' => base_path('resources/views/vendor/bumble')], 'views');
+
         // Include custom Bumble configuration
         $this->includeCustomConfiguration();
     }
