@@ -1,0 +1,34 @@
+{
+  "name": "beard",
+  "version": "1.1.1",
+  "homepage": "https://github.com/davidhemphill/beard",
+  "authors": [
+    "David Hemphill <davidlee.hemphill@gmail.com>"
+  ],
+  "description": "A front-end framework for scruffy web projects",
+  "keywords": [
+    "scss",
+    "sass",
+    "framework",
+    "front-end"
+  ],
+  "license": "MIT",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "1.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.1.1",
+    "commit": "71d701c33055ad196d9456a1fb20fab2f8c10fa6"
+  },
+  "_source": "git://github.com/davidhemphill/beard.git",
+  "_target": "~1.1.1",
+  "_originalSource": "beard",
+  "_direct": true
+}

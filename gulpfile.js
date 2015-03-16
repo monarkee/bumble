@@ -64,8 +64,9 @@ gulp.task('vendorJS', function() {
 });
 
 gulp.task('publish', ['scss', 'coffee', 'vendorJS'], function() {
-    // gulp.src('').pipe(shell('cd ~/Sites/bumble && php artisan asset:publish --bench=monarkee/bumble'), {ignoreErrors: true});
-    // gulp.src('').pipe(shell('cd ~/Sites/bumblecms && php artisan asset:publish --path="vendor/monarkee/bumble/public" monarkee/bumble'), {ignoreErrors: true});
+    //gulp.src('').pipe(shell('cd ~/Sites/bumble && php artisan asset:publish --bench=monarkee/bumble'), {ignoreErrors: true});
+    gulp.src('').pipe(shell("cd ~/Sites/pushsilver && php artisan vendor:publish --provider=Monarkee\Bumble\Providers\BumbleServiceProvider --tag=assets --force"), {ignoreErrors: true});
+
 });
 
 /* Blade Templates */
@@ -83,7 +84,7 @@ gulp.task('watch', function () {
     // Watch Coffee files
     gulp.watch([
         SRC + 'coffee/**/*.coffee',
-    ], ['coffee']);
+    ], ['coffee', 'publish']);
 
     // Watch Blade files
     gulp.watch([

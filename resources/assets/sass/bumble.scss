@@ -5,23 +5,11 @@
     Author: David Hemphill
     Notes:
 */
-// Custom Font Stacks
-$avenir: 'Avenir Next', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-// Base Setup
-$white: #FFF;
-$black: #000;
+$beard-reset: true;
+$sans-serif: 'Avenir Next', 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-// Font weight variables
-$thin: 100;
-$xlight: 200;
-$light: 300;
-$normal: 400;
-$medium: 500;
-$semibold: 600;
-$bold: 700;
-$xbold: 800;
-$xxbold: 900;
+@import '../bower_components/beard/beard';
 
 // Global Widths
 $main_site_width: 120rem;
@@ -36,7 +24,7 @@ $main_padding: $spacing-horz-lg;
 $main_margin: $spacing-horz-lg;
 
 // Custom Settings & Colors
-$branding_color: #2795b6;
+$branding_color: $brand-color-1;
 $branding_gray: rgba(60, 60, 60, 1);
 $light_gray: rgba(#f5f5f5, 1);
 $bg_light_gray: darken($light_gray, 5%);
@@ -47,30 +35,6 @@ $bg_main: $white;
 $bg_sidebar: $light_gray;
 $link_color: red;
 $border_gray: darken($light_gray, 10%);
-
-$bc1: darken($branding_color, 6%);
-$bc2: darken($branding_color, 17%);
-$bc3: darken($branding_color, 28%);
-$bc4: darken($branding_color, 39%);
-$bc5: darken($branding_color, 50%);
-$bc6: darken($branding_color, 61%);
-$bc7: darken($branding_color, 72%);
-$bc8: darken($branding_color, 83%);
-$bc9: darken($branding_color, 94%);
-
-$cg1: darken(#fff, 6%);
-$cg2: darken(#fff, 17%);
-$cg3: darken(#fff, 28%);
-$cg4: darken(#fff, 39%);
-$cg5: darken(#fff, 50%);
-$cg6: darken(#fff, 61%);
-$cg7: darken(#fff, 72%);
-$cg8: darken(#fff, 83%);
-$cg9: darken(#fff, 94%);
-
-$success_color: #4AB471;
-$warning_color: #F3AE4E;
-$danger_color: #CF5C60;
 
 // Mixins
 %clearfix {
@@ -103,31 +67,35 @@ $danger_color: #CF5C60;
 @import 'components/tables';
 @import 'components/text';
 
-// Basic Styles
-// ------------------------------------------------------------------------------------ */
-* {
-  box-sizing: border-box;
+.fdr { flex-direction: row; }
+.fdc { flex-direction: column; }
+.oh { overflow: hidden; }
+.stretch {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
+// Basic Styles
+// ------------------------------------------------------------------------------------ */
 html {
-  font-size: 62.5%;
-  height: 100%;
   background: $bg_body;
 }
 
 body {
-  font-family: $avenir;
-  min-height: 100%;
   color: $branding_gray;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
   user-select: none;
 }
 
-a {
-  text-decoration: none;
+input, button, select {
+  font-family: $sans-serif;
+  outline: none;
+}
+
+select {
+  border: 1px solid #bbb;
 }
 
 // Wraps
@@ -140,7 +108,7 @@ a {
 // Main Header
 // ------------------------------------------------------------------------------------ */
 .main-header {
-  background: $branding_color;
+  background: $brand-color-1;
   height: 7.6rem;
 }
 
@@ -325,6 +293,12 @@ a {
     background: darken($branding_color, 18%);
     border-bottom: 1px solid darken($branding_color, 18%);
   }
+}
+
+// Media Browser
+// ------------------------------------------------------------------------------------ */
+.media-browser-open {
+  padding: 3px 6px;
 }
 
 // Main Layout Areas
@@ -567,7 +541,6 @@ a {
 }
 
 .restore-button {
-  font-family: $avenir;
   border: 1px solid $branding-color;
   border-radius: 3px;
   background: $branding-color;
@@ -623,12 +596,12 @@ a {
 
 // Login Page
 // ------------------------------------------------------------------------------------ */
-body.login {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-}
+//body.login {
+//  display: flex;
+//  align-items: center;
+//  align-content: center;
+//  justify-content: center;
+//}
 .login-form {
   background-color: $white;
   width: 60rem;
@@ -687,4 +660,132 @@ body.login {
     background-color: #DDD;
     color: #777;
   }
+}
+
+// Media Browser
+// ------------------------------------------------------------------------------------ */
+.media-browser-input {
+  width: 5rem;
+  height: 3.3rem;
+}
+
+.media-browser-open {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.modal__bg {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modal__content {
+  position: absolute;
+  top: 6rem;
+  right: 6rem;
+  bottom: 6rem;
+  left: 6rem;
+}
+
+.media-browser {
+  position: relative;
+  max-width: 80rem;
+  width: 100%;
+}
+
+.media-browser__clip {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  bottom: 2rem;
+  left: 2rem;
+  overflow-x: scroll;
+}
+
+.media-browser__content {
+  background: #fff;
+}
+
+.media-browser__heading {
+  flex: 0 0 auto;
+}
+
+.media-browser__filter {
+  height: 3.3rem;
+  flex: 0 1 40rem;
+}
+
+.assets {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.asset {
+  background-color: #f5f5f5;
+  list-style: none;
+  width: 100%;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.asset > * {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.asset__img {
+  display: flex;
+  flex: 0 0 auto;
+  width: 5rem;
+  height: 5rem;
+}
+
+.asset__title {
+  flex: 1 0 auto;
+}
+
+.asset__input {
+  flex: 0 1 40rem;
+}
+
+.asset__btn {
+  background: #ccc;
+  color: #888;
+  font-family: Menlo, Consolas, Monaco, "Andale Mono", monospace;
+  border: none;
+  border-radius: 3px;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 50px;
+  height: 23px;
+}
+
+.asset_row {
+  width: 100%;
+}
+
+// Media Browser Options
+// ------------------------------------------------------------------------------------ */
+.options {
+  background-color: #f5f5f5;
+  flex: 0 0 100%;
+  padding: 1.3rem;
 }

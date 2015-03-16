@@ -124,3 +124,123 @@ $('._markdown-field').each () ->
   editor = mirrorMark this,
     showToolbar: true
   editor.render()
+
+
+###
+  Show Media Browser
+###
+
+MediaBrowser =
+  $assets: ''
+  $asset: ''
+  $modal: ''
+  $openBtn: ''
+  $closeBtn: ''
+  copyBtns: ''
+  width: ''
+  height: ''
+  crop: ''
+  init: ->
+    @$assets = $('.assets')
+    @$asset = $('.asset')
+    @$modal = $('.modal')
+    @$openBtn = $('._media-browser-open')
+    @$closeBtn = $('._media-browser-close')
+    @copyBtns = '._send-to-editor'
+    @width = '._width'
+    @height = '._height'
+    @crop = '._crop'
+    @bindEvents()
+    return
+  bindEvents: ->
+    # Open the modal
+    @$openBtn.on 'click', (e) ->
+      e.preventDefault()
+      MediaBrowser.openModal()
+      return
+
+    # Close the modal
+    @$closeBtn.on 'click', (e) ->
+      e.preventDefault()
+      MediaBrowser.closeModal()
+      return
+
+    # Hide the modal if click outside
+    @$modal.on 'click', (e) ->
+#      e.stopPropagation()
+      return
+
+    # Close the modal on click outside
+    $('.modal__bg').on 'click', (e) ->
+      MediaBrowser.closeModal()
+      return
+
+#    $(document).on 'click', (e) ->
+#      @$modal.hide()
+#      return
+
+    @$asset.on 'input', MediaBrowser.width, (e) ->
+      MediaBrowser.setInputValue $(e.delegateTarget)
+      return
+    @$asset.on 'input', MediaBrowser.height, (e) ->
+      MediaBrowser.setInputValue $(e.delegateTarget)
+      return
+    @$asset.on 'click', MediaBrowser.crop, (e) ->
+      MediaBrowser.setInputValue $(e.delegateTarget)
+      return
+    # Copy Button
+    @$asset.on 'click', @copyBtns, (e) ->
+      e.preventDefault()
+      $delegate = $(e.delegateTarget)
+      MediaBrowser.setInputValue $delegate
+      output = MediaBrowser.getCopyValue($delegate)
+      MediaBrowser.copyToClipboard MediaBrowser.getInput($delegate)
+      return
+    # Close the modal if ESC is pressed
+    $(document).keyup (e) ->
+      if e.keyCode == 27
+        MediaBrowser.closeModal()
+      return
+    return
+  openModal: ->
+    $('body').css 'overflow', 'hidden'
+    MediaBrowser.$modal.show()
+    return
+  closeModal: ->
+    $('body').css 'overflow', ''
+    MediaBrowser.$modal.hide()
+    return
+  updateInput: ($input) ->
+  setInputValue: ($delegate) ->
+    orginalInputValue = MediaBrowser.getOriginalInputValue($delegate)
+    params = MediaBrowser.getParamString($delegate)
+    $input = MediaBrowser.getInput($delegate)
+    $input.val '<img src="' + orginalInputValue + params + '">'
+    return
+  getParamString: ($delegate) ->
+    options = '.options'
+    width = $delegate.children(options).children(MediaBrowser.width).eq(0).val()
+    height = $delegate.children(options).children(MediaBrowser.height).eq(0).val()
+    crop = $delegate.children(options).children(MediaBrowser.crop).eq(0).is(':checked')
+    cropValue = '0'
+    params =
+      w: width
+      h: height
+    # If we're cropping push that parameter
+    if crop == true
+      cropValue = '1'
+      params.c = cropValue
+    '?' + $.param(params)
+  getCopyValue: ($delegate) ->
+    $input = MediaBrowser.getInput($delegate)
+    $input.val()
+  getInput: ($delegate) ->
+    $delegate.children '._input-value'
+  getOriginalInputValue: ($delegate) ->
+    $input = MediaBrowser.getInput($delegate)
+    $input.attr 'data-original-value'
+  copyToClipboard: (input) ->
+    input.select()
+#    window.prompt 'Copy to clipboard: Ctrl+C, Enter', text
+    return
+MediaBrowser.init()

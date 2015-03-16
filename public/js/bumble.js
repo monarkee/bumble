@@ -2,7 +2,7 @@
 /*
   Datetime Picker
  */
-var btnsGrps, elems;
+var MediaBrowser, btnsGrps, elems;
 
 $('._datetimefield').datetimepicker({
   format: 'Y-m-d H:i:s'
@@ -142,3 +142,119 @@ $('._markdown-field').each(function() {
   });
   return editor.render();
 });
+
+
+/*
+  Show Media Browser
+ */
+
+MediaBrowser = {
+  $assets: '',
+  $asset: '',
+  $modal: '',
+  $openBtn: '',
+  $closeBtn: '',
+  copyBtns: '',
+  width: '',
+  height: '',
+  crop: '',
+  init: function() {
+    this.$assets = $('.assets');
+    this.$asset = $('.asset');
+    this.$modal = $('.modal');
+    this.$openBtn = $('._media-browser-open');
+    this.$closeBtn = $('._media-browser-close');
+    this.copyBtns = '._send-to-editor';
+    this.width = '._width';
+    this.height = '._height';
+    this.crop = '._crop';
+    this.bindEvents();
+  },
+  bindEvents: function() {
+    this.$openBtn.on('click', function(e) {
+      e.preventDefault();
+      MediaBrowser.openModal();
+    });
+    this.$closeBtn.on('click', function(e) {
+      e.preventDefault();
+      MediaBrowser.closeModal();
+    });
+    this.$modal.on('click', function(e) {});
+    $('.modal__bg').on('click', function(e) {
+      MediaBrowser.closeModal();
+    });
+    this.$asset.on('input', MediaBrowser.width, function(e) {
+      MediaBrowser.setInputValue($(e.delegateTarget));
+    });
+    this.$asset.on('input', MediaBrowser.height, function(e) {
+      MediaBrowser.setInputValue($(e.delegateTarget));
+    });
+    this.$asset.on('click', MediaBrowser.crop, function(e) {
+      MediaBrowser.setInputValue($(e.delegateTarget));
+    });
+    this.$asset.on('click', this.copyBtns, function(e) {
+      var $delegate, output;
+      e.preventDefault();
+      $delegate = $(e.delegateTarget);
+      MediaBrowser.setInputValue($delegate);
+      output = MediaBrowser.getCopyValue($delegate);
+      MediaBrowser.copyToClipboard(MediaBrowser.getInput($delegate));
+    });
+    $(document).keyup(function(e) {
+      if (e.keyCode === 27) {
+        MediaBrowser.closeModal();
+      }
+    });
+  },
+  openModal: function() {
+    $('body').css('overflow', 'hidden');
+    MediaBrowser.$modal.show();
+  },
+  closeModal: function() {
+    $('body').css('overflow', '');
+    MediaBrowser.$modal.hide();
+  },
+  updateInput: function($input) {},
+  setInputValue: function($delegate) {
+    var $input, orginalInputValue, params;
+    orginalInputValue = MediaBrowser.getOriginalInputValue($delegate);
+    params = MediaBrowser.getParamString($delegate);
+    $input = MediaBrowser.getInput($delegate);
+    $input.val('<img src="' + orginalInputValue + params + '">');
+  },
+  getParamString: function($delegate) {
+    var crop, cropValue, height, options, params, width;
+    options = '.options';
+    width = $delegate.children(options).children(MediaBrowser.width).eq(0).val();
+    height = $delegate.children(options).children(MediaBrowser.height).eq(0).val();
+    crop = $delegate.children(options).children(MediaBrowser.crop).eq(0).is(':checked');
+    cropValue = '0';
+    params = {
+      w: width,
+      h: height
+    };
+    if (crop === true) {
+      cropValue = '1';
+      params.c = cropValue;
+    }
+    return '?' + $.param(params);
+  },
+  getCopyValue: function($delegate) {
+    var $input;
+    $input = MediaBrowser.getInput($delegate);
+    return $input.val();
+  },
+  getInput: function($delegate) {
+    return $delegate.children('._input-value');
+  },
+  getOriginalInputValue: function($delegate) {
+    var $input;
+    $input = MediaBrowser.getInput($delegate);
+    return $input.attr('data-original-value');
+  },
+  copyToClipboard: function(input) {
+    input.select();
+  }
+};
+
+MediaBrowser.init();

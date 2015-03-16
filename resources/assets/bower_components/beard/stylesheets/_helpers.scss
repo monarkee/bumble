@@ -1,0 +1,12 @@
+// Font Transform Helpers
+//-------------------------------------------------------------------------- */
+.lowercase { text-transform: lowercase; }
+.uppercase { text-transform: uppercase; }
+
+// Ellipses Text
+// ------------------------------------------------------------------------------------
+.ell { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+// Remove borders
+//-------------------------------------------------------------------------- */
+.xbrdr { border: none; }

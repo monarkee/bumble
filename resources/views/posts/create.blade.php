@@ -12,6 +12,10 @@
                 @endif
             </div>
         </div>
+        <div>
+            <a href="#" class="_media-browser">Media Browser</a>
+
+        </div>
         {!! Form::open([
             'files' => true,
             'class' => 'form',

@@ -61,6 +61,22 @@
         <p class="copyright">&copy; {{ date('Y') }} Monarkee. All Rights Reserved.</p>
     </footer>
 
+    {{--<div class="media-browser">--}}
+        {{--<div class="media-browser__content">--}}
+
+            {{--<ul class="assets">--}}
+                {{--@foreach ($assets as $asset)--}}
+                    {{--<li class="asset">--}}
+                        {{--<img src="http://placehold.it/50x50" alt=""/>--}}
+                        {{--<div class="asset__title">Cool Image Bro</div>--}}
+                        {{--<div class="asset__created_at">0000-00-00 00:00:00</div>--}}
+
+                    {{--</li>--}}
+                {{--@endforeach--}}
+            {{--</ul>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+
     <script type="text/javascript" src="{{ asset('/packages/monarkee/bumble/js/vendor.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/packages/monarkee/bumble/js/bumble.js') }}"></script>
 </body>
