@@ -56,7 +56,6 @@
 }
 
 .form__text-input {
-  font-family: $avenir;
     font-size: 1.6rem;
     appearance: none;
     border-radius: 2px;
@@ -290,7 +289,7 @@ put-label {
     margin-left: 0.5rem;
     font-weight: $bold;
     content: '*';
-    color: $danger_color;
+    color: $danger-color;
   }
 }
 
@@ -299,5 +298,5 @@ put-label {
   letter-spacing: 1px;
   font-weight: $bold;
   font-size: 1.2rem;
-  color: $danger_color;
+  color: $danger-color;
 }

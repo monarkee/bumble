@@ -1,5 +1,4 @@
 .btn {
-  font-family: $avenir;
   font-size: 1.2rem;
   font-weight: $semibold;
   letter-spacing: 1px;
@@ -18,7 +17,7 @@
 }
 
 .btn--danger {
-  background: $danger_color;
+  background: $danger-color;
   font-weight: $normal;
 }
 
