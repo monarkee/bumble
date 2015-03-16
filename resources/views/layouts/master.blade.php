@@ -16,10 +16,13 @@
         <link rel="stylesheet" href="{{ asset($asset) }}">
     @endforeach
 </head>
-<body>
+<body
+@section('body-classes')
+@stop
+>
     <header class="main-header">
-        <div class="main-header__wrap">
-            <h1 class="main-logo"><a href="{{ route('bumble.dashboard') }}" class="main-logo__link">
+        <div class="main-header__wrap scrollable">
+            <h1 class="main-logo"><a href="{{ route('bumble.dashboard') }}" class="main-logo__link fwbold">
                 @if (config('bumble.site-title-image'))
                     <img src="{{ config('bumble.site-title-image') }}">
                 @else
@@ -65,21 +68,37 @@
         <p class="copyright">&copy; {{ date('Y') }} Monarkee. All Rights Reserved.</p>
     </footer>
 
-    {{--<div class="media-browser">--}}
-        {{--<div class="media-browser__content">--}}
 
-            {{--<ul class="assets">--}}
-                {{--@foreach ($assets as $asset)--}}
-                    {{--<li class="asset">--}}
-                        {{--<img src="http://placehold.it/50x50" alt=""/>--}}
-                        {{--<div class="asset__title">Cool Image Bro</div>--}}
-                        {{--<div class="asset__created_at">0000-00-00 00:00:00</div>--}}
+    <div class="modal pv3 ph3 flex jcc" style="display: none; z-index: 9999;">
+        <div class="modal__bg stretch"></div>
+        <div class="media-browser bgw">
+            <div class="media-browser__clip">
+                <div class="media-browser__content">
+                    <div class="media-browser-search pb2 flex aic jcsb">
+                        <h2 class="media-browser__heading fl ft5 tcg40">Add Media</h2>
+                        <input type="text" class="media-browser__filter _media-browser-filter ft2 ph1 bgw" placeholder="Search for assets"/>
+                    </div>
+                    <ul class="assets">
+                        @foreach ($bumbleAssets as $asset)
+                            <li class="asset asset__row flex">
+                                <img src="{{ $asset->getCachedUrl(['w'=>50]) }}" alt="" class="asset__img"/>
+                                <div class="asset__title ft2 ph2 tal">{{ $asset->image }}</div>
+                                <input type="text" class="media-browser-input bgw tac asset__input _input-value mr2 code" value='<img src="{{ $asset->getUrl()  }}">' data-original-value="{{ $asset->getUrl() }}"/>
+                                <button class="asset__btn _send-to-editor">Copy</button>
 
-                    {{--</li>--}}
-                {{--@endforeach--}}
-            {{--</ul>--}}
-        {{--</div>--}}
-    {{--</div>--}}
+                                <div class="options flex aic acc">
+                                    <label class="ft1 fwbold uppercase ls1 tcg40 mr1">Width:</label><input type="text" name="width" value="300" class="_width media-browser-input tac mr2 code"/>
+                                    <label class="ft1 fwbold uppercase ls1 tcg40 mr1">Height:</label><input type="text" name="height" value="300" class="_height media-browser-input tac mr2 code"/>
+                                    <label class="ft1 fwbold uppercase ls1 tcg40 mr1">Crop:</label><input type="checkbox" checked class="_crop media-browser-input tac code"/>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+            {{--<a href="#" class="modal__close _media-browser-close">Close</a>--}}
+    </div>
 
     <script type="text/javascript" src="{{ asset('/packages/monarkee/bumble/js/vendor.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/packages/monarkee/bumble/js/bumble.js') }}"></script>
