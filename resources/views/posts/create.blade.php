@@ -10,10 +10,11 @@
                 @if ($model->getDescription())
                     <p class="header__description">{{ $model->getDescription() }}</p>
                 @endif
+
+                <a href="#" class="media-browser-open _media-browser-open br2 bg1 uppercase ft1 ls1 fwbold tcw dib">Media Browser</a>
             </div>
         </div>
         <div>
-            <a href="#" class="_media-browser">Media Browser</a>
 
         </div>
         {!! Form::open([

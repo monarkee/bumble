@@ -6,9 +6,9 @@
 
     <link rel="stylesheet" href="/packages/monarkee/bumble/css/bumble.css">
 </head>
-<body class="login">
+<body class="login flex aic jcc acc fdc">
 
-    <h1>{{ Config::get('bumble.site-title') }}</h1>
+    <h1 class="tcg60 uppercase fwbold ls4 ft6 pv3">{{ Config::get('bumble.site-title') }}</h1>
 
     @yield('content')
 
