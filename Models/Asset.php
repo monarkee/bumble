@@ -4,7 +4,7 @@ use Monarkee\Bumble\Admins\AssetAdmin;
 
 class Asset extends BumbleModel
 {
-    protected static  $_table;
+    protected static $_table;
 
     public function bumble()
     {
