@@ -4,16 +4,9 @@ use Monarkee\Bumble\Admins\AssetAdmin;
 
 class Asset extends BumbleModel
 {
-    protected static $_table;
-
     public function bumble()
     {
         return $this->hasAdmin(AssetAdmin::class);
-    }
-
-    public function setTable($table)
-    {
-        static::$_table = $table;
     }
 
     public function getTable()
