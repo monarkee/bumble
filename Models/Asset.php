@@ -9,6 +9,18 @@ class Asset extends BumbleModel
         return $this->hasAdmin(AssetAdmin::class);
     }
 
+    public function getTable()
+    {
+        $table = config('bumble.assets-table');
+
+        if (empty($table))
+        {
+            return 'assets';
+        }
+
+        return $table;
+    }
+
     public function getUrl()
     {
         return url(config('bumble.admin_prefix') . '/cache/' . $this->attributes['location'] . '/' . $this->attributes['image']);
