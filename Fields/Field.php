@@ -200,20 +200,28 @@ abstract class Field {
     }
 
     /**
+     * Get the fields HTML
+     */
+    public function getFieldHtml($post, $model, $editing = false)
+    {
+        $data = ['post' => $post, 'model' => $model, 'editing' => $editing, 'field' => $this];
+        return view($this->getWidgetType(), $data)->render();
+    }
+
+    /**
      * Return the widget type to be used for this field
      *
      * @return string
      */
-
     public function getWidgetType()
     {
-        // 1. Use the fieldtypes property if set
-        // 2. Use the option 'widget'
-        // 3. Use the fieldType getter
+        // 1. Use the option 'widget'
         if ($this->hasOption('widget')) return $this->viewPrefix . '.' . $this->getOption('widget');
 
+        // 2. Use the fieldtype's `view` property if set
         if (isset($this->view)) return $this->view;
 
+        // 3. Use the fieldType getter
         return $this->viewPrefix . '.' . $this->getFieldType();
     }
 
