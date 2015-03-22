@@ -16,6 +16,12 @@ class MasterComposer
 
     public function compose($view)
     {
-                $view->with('topModels', $this->modelRepo->getModels());
+        $cssAssets = app()->make('assetLoader')->getCssAssets();
+        $jsAssets = app()->make('assetLoader')->getJsAssets();
+
+        $view->with('cssAssets', $cssAssets);
+        $view->with('jsAssets', $jsAssets);
+
+        $view->with('topModels', $this->modelRepo->getModels());
     }
 }
