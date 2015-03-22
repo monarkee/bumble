@@ -10,6 +10,21 @@ abstract class Field {
     protected $options;
 
     /**
+     * The Asset loader singleton
+     */
+    private $assetLoader;
+
+    /**
+     * The CSS assets for the field
+     */
+    protected $cssAssets = [];
+
+    /**
+     * The Javascript assets for the field
+     */
+    protected $jsAssets = [];
+
+    /**
      * The default prefix to use for a fieldtype's view
      * @var
      */
@@ -25,6 +40,9 @@ abstract class Field {
         $this->options = $options;
 
         if (method_exists($this, 'setUp')) $this->setUp();
+
+        $this->assetLoader = app()->make('assetLoader');
+        $this->registerAssets();
     }
 
     /**
@@ -147,6 +165,37 @@ abstract class Field {
         else
         {
             return "This is the {$this->getColumn()}.";
+        }
+    }
+
+    /**
+     * Get the fields HTML
+     */
+    public function getFieldHtml($post, $model, $editing = false)
+    {
+        $data = ['post' => $post, 'model' => $model, 'editing' => $editing, 'field' => $this];
+        return view($this->getWidgetType(), $data)->render();
+    }
+
+    /**
+     * Register the Assets for a given Field
+     */
+    public function registerAssets()
+    {
+        if ($this->cssAssets)
+        {
+            foreach($this->cssAssets as $asset)
+            {
+                $this->assetLoader->registerCssAsset($asset);
+            }
+        }
+
+        if ($this->jsAssets)
+        {
+            foreach($this->jsAssets as $asset)
+            {
+                $this->assetLoader->registerJsAsset($asset);
+            }
         }
     }
 

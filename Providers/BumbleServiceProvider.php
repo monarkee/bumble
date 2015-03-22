@@ -58,7 +58,7 @@ class BumbleServiceProvider extends ServiceProvider {
      */
     public function provides()
     {
-        return array('bumble.bumblestr', 'bumble.bumble-gravatar');
+        return array('assetLoader', 'bumble.bumblestr', 'bumble.bumble-gravatar');
     }
 
     /**
@@ -67,6 +67,8 @@ class BumbleServiceProvider extends ServiceProvider {
      */
     public function registerBindings()
     {
+        $this->app->singleton('assetLoader', 'Monarkee\Bumble\Repositories\FieldAssetRepository');
+
         $this->app->singleton('bumblestr', function ()
         {
             return $this->app->make('Monarkee\Bumble\Support\BumbleStr');

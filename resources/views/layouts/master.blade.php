@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/css/bumble.css') }}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/bower_components/MirrorMark/dist/css/mirrormark.package.min.css') }}">
+
+    @foreach ($cssAssets as $asset)
+        <link rel="stylesheet" href="{{ asset($asset) }}">
+    @endforeach
 </head>
 <body>
     <header class="main-header">
@@ -61,7 +65,12 @@
         <p class="copyright">&copy; {{ date('Y') }} Monarkee. All Rights Reserved.</p>
     </footer>
 
+
     <script type="text/javascript" src="{{ asset('/packages/monarkee/bumble/js/vendor.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/packages/monarkee/bumble/js/bumble.js') }}"></script>
+
+    @foreach ($jsAssets as $asset)
+        <script type="text/javascript" src="{{ asset($asset) }}"></script>
+    @endforeach
 </body>
 </html>
