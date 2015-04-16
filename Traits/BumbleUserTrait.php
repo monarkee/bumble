@@ -44,6 +44,6 @@ trait BumbleUserTrait {
     public function getAvatar()
     {
         $config = app('config');
-        return $config->has('bumble.email') ? Gravatar::get($this->attributes[$config->get('bumble.email')]) : $this->attributes['email'];
+        return $config->has('bumble.email') ? Gravatar::usingSecureImages()->get($this->attributes[$config->get('bumble.email')]) : $this->attributes['email'];
     }
 }
