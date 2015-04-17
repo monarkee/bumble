@@ -200,15 +200,6 @@ abstract class Field {
     }
 
     /**
-     * Get the fields HTML
-     */
-    public function getFieldHtml($post, $model, $editing = false)
-    {
-        $data = ['post' => $post, 'model' => $model, 'editing' => $editing, 'field' => $this];
-        return view($this->getWidgetType(), $data)->render();
-    }
-
-    /**
      * Return the widget type to be used for this field
      *
      * @return string
