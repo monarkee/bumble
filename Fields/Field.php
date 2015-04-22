@@ -330,4 +330,60 @@ abstract class Field {
 
         return $this->hasOption('default_value') ? $this->getOption('default_value') : false;
     }
+
+    /**
+     * Check to see if option exists
+     *
+     * @return bool
+     */
+    public function hasLinkToRoute()
+    {
+        return $this->hasOption('link_to_route');
+    }
+
+    /**
+     * Get option values
+     *
+     * @return bool|mixed
+     */
+    public function getLinkToRouteValue()
+    {
+        return $this->hasLinkToRoute() ? $this->getOption('link_to_route') : false;
+    }
+
+    /**
+     * Generate link
+     *
+     * @param $field
+     *
+     * @return string
+     */
+    public function generateLinkToRoute($field)
+    {
+        $data = $this->getLinkToRouteValue();
+
+        if ( ! $data)
+        {
+            return $field->{$this->getColumn()};
+        }
+
+        $name = array_get($data, 'route');
+        $params = array_get($data, 'params', []);
+
+        foreach ($params as $key => $value)
+        {
+            if (substr($value, 0, 1) === ":")
+            {
+                $params[$key] = $field->{substr($value, 1)};
+            }
+        }
+
+        $target = '';
+        if ($targetAction = array_get($data, 'target'))
+        {
+            $target = 'target="' . $targetAction . '"';
+        }
+
+        return '<a href="' . route($name, $params) . '"' . $target . '>' . $field->{$this->getColumn()} . '</a>';
+    }
 }
