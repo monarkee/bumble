@@ -378,12 +378,12 @@ abstract class Field {
             }
         }
 
-        $target = '';
+        $attributes = [];
         if ($targetAction = array_get($data, 'target'))
         {
-            $target = 'target="' . $targetAction . '"';
+            $attributes = array_add($attributes, 'target', $targetAction);
         }
 
-        return '<a href="' . route($name, $params) . '"' . $target . '>' . $field->{$this->getColumn()} . '</a>';
+        return link_to_route($name, $field->{$this->getColumn()}, $params, $attributes);
     }
 }
