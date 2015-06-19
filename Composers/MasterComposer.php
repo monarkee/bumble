@@ -6,6 +6,7 @@ use Monarkee\Bumble\Repositories\ModelRepository;
 class MasterComposer
 {
     /**
+     * The Model repository
      * @var
      */
     private $modelRepo;
@@ -23,7 +24,12 @@ class MasterComposer
         $view->with('cssAssets', $cssAssets);
         $view->with('jsAssets', $jsAssets);
 
-        $view->with('bumbleAssets', Asset::all());
+        if (config('bumble.enable_asset_manager'))
+        {
+            $assetRepo = app()->make('Monarkee\Bumble\Interfaces\AssetInterface');
+            $view->with('bumbleAssets', $assetRepo->all());
+        }
+
         $view->with('topModels', $this->modelRepo->getModels());
     }
 }

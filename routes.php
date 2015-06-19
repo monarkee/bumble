@@ -51,7 +51,35 @@ Route::group(['prefix' => config('bumble.admin_prefix'), 'namespace' => 'Monarke
         Route::get('/', ['as' => 'bumble_index', 'uses' => 'DashboardController@redirectToIndex']);
         Route::get(config('bumble.admin.dashboard'), ['as' => 'bumble.dashboard', 'uses' => 'DashboardController@getIndex']);
 
-        $modelRepo = App::make('Monarkee\Bumble\Repositories\ModelRepository');
+        /*
+        |--------------------------------------------------------------------------
+        | Assets Routes
+        |--------------------------------------------------------------------------
+        */
+        Route::resource('assets', 'AssetController', ['except' => ['show']]);
+
+        Route::get('assets/trashed', [
+            'as' => config('bumble.admin_prefix').'.'.'assets.trashed',
+            'uses' => 'AssetController@trashed'
+        ]);
+
+        Route::put('assets/restore/{id}', [
+            'as' => config('bumble.admin_prefix').'.'.'assets.restore',
+            'uses' => 'AssetController@restore'
+        ]);
+
+        Route::delete('assets/annihilate/{id}', [
+            'as' => config('bumble.admin_prefix').'.'.'assets.annihilate',
+            'uses' => 'AssetController@annihilate'
+        ]);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Model Routes
+        |--------------------------------------------------------------------------
+        */
+
+        $modelRepo = app()->make('Monarkee\Bumble\Repositories\ModelRepository');
 
         foreach ($modelRepo->getModels() as $model)
         {

@@ -82,6 +82,8 @@ class BumbleServiceProvider extends ServiceProvider {
         });
 
         $this->app->bind('Monarkee\Bumble\Repositories\ModelRepository', 'Monarkee\Bumble\Repositories\ArrayConfigModelRepository');
+
+        $this->app->bind('Monarkee\Bumble\Interfaces\AssetInterface', 'Monarkee\Bumble\Repositories\AssetRepository');
     }
 
     /**

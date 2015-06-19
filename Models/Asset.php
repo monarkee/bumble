@@ -1,17 +1,15 @@
 <?php namespace Monarkee\Bumble\Models;
 
-use Monarkee\Bumble\Admins\AssetAdmin;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
 
-class Asset extends BumbleModel
+class Asset extends Model
 {
-    public function bumble()
-    {
-        return $this->hasAdmin(AssetAdmin::class);
-    }
+    use SoftDeletes;
 
     public function getUrl()
     {
-        return url(config('bumble.admin_prefix') . '/cache/' . $this->attributes['location'] . '/' . $this->attributes['image']);
+        // return url(config('bumble.admin_prefix') . '/cache/' . $this->attributes['location'] . '/' . $this->attributes['image']);
     }
 
     /**
@@ -25,6 +23,6 @@ class Asset extends BumbleModel
     {
         $params = http_build_query($params);
 
-        return url(config('bumble.admin_prefix') . '/cache/' . $this->attributes['location'] . '/' . $this->attributes['image'].'?'.$params);
+        // return url(config('bumble.admin_prefix') . '/cache/' . $this->attributes['location'] . '/' . $this->attributes['image'].'?'.$params);
     }
 }

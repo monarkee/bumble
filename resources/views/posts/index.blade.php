@@ -63,7 +63,7 @@
                             @elseif ($field->getFieldType() == 'TextareaField')
                                 @if ($field->getWidgetType() == 'bumble::fieldTypes.MarkdownField')
                                 <td>
-                                    <?php $output = App::make('\League\CommonMark\CommonMarkConverter')->convertToHtml($entry->{$field->getColumn()}); ?>
+                                    <?php $output = app()->make('\League\CommonMark\CommonMarkConverter')->convertToHtml($entry->{$field->getColumn()}); ?>
                                     {{ strip_tags(str_limit($output, $limit = 40, $end = '&hellip;')) }}</td>
                                 @else
                                 <td>
@@ -72,7 +72,7 @@
                             @elseif ($field->getFieldType() == 'ImageField')
                                 <td>
                                     @if ($entry->{$field->getColumn()})
-                                        <img src="{{ $field->getCachedUrl($entry->{$field->getColumn()}) }}" alt="{{ $entry->{$field->getColumn()} }}" width="50">
+                                        <img src="{{ $field->getCachedUrl($entry->{$field->getColumn()}) }}" alt="{{ $entry->{$field->getColumn()} }}" width="50" class="imax">
                                     @else
                                         &hellip;
                                     @endif
