@@ -11,11 +11,10 @@ class BumbleUsersTableSeeder extends Seeder {
 //        DB::table('users')->truncate();
 
         $users = array([
-            'username' => 'admin',
             'email' => 'admin@bumble.dev',
             'first_name' => 'Bumble',
             'last_name' => 'Administrator',
-            'password' => Hash::make('password'),
+            'password' => bcrypt('password'),
             'active' => true,
             'created_at' => new Carbon,
             'updated_at' => new Carbon,
