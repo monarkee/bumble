@@ -64,21 +64,21 @@
                     @endforeach
                     <td>
                         <div class="inline-flex">
-                        {!! Form::open([
+                        {!! BumbleForm::open([
                             'method' => 'put',
                             'class' => 'dibe',
                             'route' => [
                                 config('bumble.admin_prefix').'.'.$model->getPluralSlug().'.restore', $entry->id
                             ]
                         ]) !!}
-                        {!! Form::hidden('id', $entry->id) !!}
-                        {!! Form::button('Restore', ['type' => 'submit', 'class' => 'dib restore-button']) !!}
-                        {!! Form::close() !!}
+                        {!! BumbleForm::hidden('id', $entry->id) !!}
+                        {!! BumbleForm::button('Restore', ['type' => 'submit', 'class' => 'dib restore-button']) !!}
+                        {!! BumbleForm::close() !!}
 
-                        {!! Form::open(['method' => 'delete', 'route' => [config('bumble.admin_prefix').'.'.$model->getPluralSlug().'.annihilate', $entry->id]]) !!}
-                            {!! Form::hidden('id', $entry->id) !!}
-                            {!! Form::button('', ['type' => 'submit', 'class' => 'delete-post js-delete-post']) !!}
-                        {!! Form::close() !!}
+                        {!! BumbleForm::open(['method' => 'delete', 'route' => [config('bumble.admin_prefix').'.'.$model->getPluralSlug().'.annihilate', $entry->id]]) !!}
+                            {!! BumbleForm::hidden('id', $entry->id) !!}
+                            {!! BumbleForm::button('', ['type' => 'submit', 'class' => 'delete-post js-delete-post']) !!}
+                        {!! BumbleForm::close() !!}
                         </div>
                     </td>
                 </tr>

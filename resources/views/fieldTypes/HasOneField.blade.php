@@ -1,6 +1,6 @@
 <div class="control g-row">
     <div class="g-col-2 tar">
-        {!! Form::label($field->getColumn(), $field->getRelatedTitle(), ['class' => 'label label--tar'.$model->getRequiredClass($field)]) !!}
+        {!! BumbleForm::label($field->getColumn(), $field->getRelatedTitle(), ['class' => 'label label--tar'.$model->getRequiredClass($field)]) !!}
     </div>
      <div class="g-col-10">
         <?php
@@ -18,14 +18,14 @@
             if ($field->hidesSelf())
             {
                 // This entries ID
-                $removeId = \Form::getValueAttribute('id');
+                $removeId = \BumbleForm::getValueAttribute('id');
 
                 // Remove this entry from the values
                 if (isset($removeId)) unset($values[$removeId]);
             }
         ?>
 
-            {!! Form::select($field->getColumn(), $values, null, ['class' => 'input input1', 'placeholder' => $field->getPlaceholder()]) !!}
+            {!! BumbleForm::select($field->getColumn(), $values, null, ['class' => 'input input1', 'placeholder' => $field->getPlaceholder()]) !!}
     </div>
 </div>
 <?php /*

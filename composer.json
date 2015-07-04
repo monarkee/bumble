@@ -15,7 +15,7 @@
         "aws/aws-sdk-php": "2.7.21",
         "league/flysystem-aws-s3-v2": "1.0.*@dev",
         "league/commonmark": "~0.5@dev",
-        "illuminate/html": "5.*",
+        "laravelcollective/html": "5.1.*",
         "intervention/image": "~2.1",
         "league/glide": "0.3.*"
     },

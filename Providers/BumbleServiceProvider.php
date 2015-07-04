@@ -1,5 +1,6 @@
 <?php namespace Monarkee\Bumble\Providers;
 
+use Collective\Html\HtmlServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use League\Flysystem\Adapter\AwsS3 as S3Adapter;
 use Monarkee\Bumble\Models\Module;
@@ -44,6 +45,9 @@ class BumbleServiceProvider extends ServiceProvider {
 
         $this->createAliases();
 
+        // Bootstrap Form and HTML Builders
+        $this->bootstrapFormAndHtmlBuilders();
+
         // Merge the config values so they don't have to have a complete configuration
         $this->mergeConfigFrom(__DIR__.'/../config/bumble.php', 'bumble');
 
@@ -65,7 +69,7 @@ class BumbleServiceProvider extends ServiceProvider {
      * Register the IoC Bindings
      * @return void
      */
-    public function registerBindings()
+    protected function registerBindings()
     {
         $this->app->singleton('assetLoader', 'Monarkee\Bumble\Repositories\FieldAssetRepository');
 
@@ -86,18 +90,21 @@ class BumbleServiceProvider extends ServiceProvider {
      * Create aliases for the dependency.
      * @return void
      */
-    public function createAliases()
+    protected function createAliases()
     {
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
         $loader->alias('BumbleStr', 'Monarkee\Bumble\Support\Facades\BumbleStr');
         $loader->alias('BumbleGravatar', 'Monarkee\Bumble\Support\Facades\Gravatar');
+
+        $loader->alias('BumbleForm', 'Collective\Html\FormFacade');
+        $loader->alias('BumbleHtml', 'Collective\Html\HtmlFacade');
     }
 
     /**
      * Include custom filters, validation, helpers, routes, composers, and extensions
      * @return [type] [description]
      */
-    public function includeCustomConfiguration()
+    protected function includeCustomConfiguration()
     {
         include __DIR__ . '/../filters.php';
         include __DIR__ . '/../validation.php';
@@ -105,5 +112,10 @@ class BumbleServiceProvider extends ServiceProvider {
         include __DIR__ . '/../routes.php';
         include __DIR__ . '/../composers.php';
         include __DIR__ . '/../extensions.php';
+    }
+
+    protected function bootstrapFormAndHtmlBuilders()
+    {
+        return (new HtmlServiceProvider($this->app))->register();
     }
 }

@@ -7,7 +7,7 @@
         <div class="header">
             <h2 class="header__title">Editing <span class="header__id">#{{ $post->id }} @if ($post->editingTitle()) &ldquo;{{ $post->editingTitle() }}&rdquo;@endif</span></h2>
         </div>
-        {!! Form::model($post, [
+        {!! BumbleForm::model($post, [
             'method' => 'put',
             'files' => 'true',
             'class' => 'form',
@@ -15,9 +15,9 @@
                 config('bumble.admin_prefix').'.'.$model->getPluralSlug().'.update', $post->id
                 ]]) !!}
         <?php $editing = true; ?>
-        {!! Form::hidden('id', $post->id) !!}
+        {!! BumbleForm::hidden('id', $post->id) !!}
             @include('bumble::posts.partials.form')
-        {!! Form::close() !!}
+        {!! BumbleForm::close() !!}
     </main>
 </section>
 @stop

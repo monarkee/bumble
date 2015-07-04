@@ -20,6 +20,6 @@
     <div class="danger pts">* required</div>
 
     <div class="pt">
-        {!! Form::button('Save ' . $model->getModelName(), ['class' => 'btn form__btn--auto-with', 'type' => 'submit']) !!}
+        {!! BumbleForm::button('Save ' . $model->getModelName(), ['class' => 'btn form__btn--auto-with', 'type' => 'submit']) !!}
     </div>
 </div>

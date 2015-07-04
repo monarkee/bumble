@@ -1,7 +1,7 @@
 @extends('bumble::layouts.login')
 
 @section('content')
-    {!! Form::open(['method' => 'post', 'route' => 'bumble.forgot-password.post', 'class' => 'login-form']) !!}
+    {!! BumbleForm::open(['method' => 'post', 'route' => 'bumble.forgot-password.post', 'class' => 'login-form']) !!}
 
         @if (Session::has('success'))
             <div class="message--success js-message">
@@ -22,21 +22,21 @@
         @unless (Session::has('success'))
             <div class="control g-row">
                 <div class="g-col-3 tar">
-                    {!! Form::label('email', 'Email', ['class' => 'label label--tar']) !!}
+                    {!! BumbleForm::label('email', 'Email', ['class' => 'label label--tar']) !!}
                 </div>
                 <div class="g-col-9">
-                    {!! Form::text('email', null, ['class' => 'input input1', 'placeholder' => 'Your email address']) !!}
+                    {!! BumbleForm::text('email', null, ['class' => 'input input1', 'placeholder' => 'Your email address']) !!}
                 </div>
             </div>
 
             <div class="login-control g-row">
                 <div class="g-col-1">
-                    {!! Form::button('Send Reset', ['type' => 'submit', 'class' => 'btn form__btn--auto-with']) !!}
+                    {!! BumbleForm::button('Send Reset', ['type' => 'submit', 'class' => 'btn form__btn--auto-with']) !!}
                 </div>
                 <div class="login-control__link g-col-1 tar">
                     <a href="{{ route('bumble.login') }}">Login</a>
                 </div>
             </div>
         @endunless
-    {!! Form::close() !!}
+    {!! BumbleForm::close() !!}
 @stop

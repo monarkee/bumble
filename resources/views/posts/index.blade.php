@@ -97,10 +97,10 @@
                     <td width="90">
                         <div class="inline-flex">
                             <a href="{{ route(config('bumble.admin_prefix').'.'.$model->getPluralSlug().'.edit', ['id' => $entry->id]) }}" class="edit-post">Edit</a>
-                            {!! Form::open(['method' => 'delete', 'route' => [config('bumble.admin_prefix').'.'.$model->getPluralSlug().'.destroy', $entry->id]]) !!}
-                            {!! Form::hidden('id', $entry->id) !!}
-                            {!! Form::button('', ['type' => 'submit', 'class' => 'delete-post js-delete-post']) !!}
-                            {!! Form::close() !!}
+                            {!! BumbleForm::open(['method' => 'delete', 'route' => [config('bumble.admin_prefix').'.'.$model->getPluralSlug().'.destroy', $entry->id]]) !!}
+                            {!! BumbleForm::hidden('id', $entry->id) !!}
+                            {!! BumbleForm::button('', ['type' => 'submit', 'class' => 'delete-post js-delete-post']) !!}
+                            {!! BumbleForm::close() !!}
                         </div>
                     </td>
                 </tr>
