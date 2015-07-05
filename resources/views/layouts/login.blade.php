@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <title>Bumble</title>
 
-    <link rel="stylesheet" href="/packages/monarkee/bumble/css/bumble.css">
+    <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/css/bumble.css') }}">
 </head>
-<body class="login">
+<body class="login flex aic acc jcc fdc">
 
-    <h1>{{ Config::get('bumble.site-title') }}</h1>
+    <h1 class="ft7 tcg60 mb3">{{ Config::get('bumble.site-title') }}</h1>
 
-    @yield('content')
+        @yield('content')
 
-    <footer class="main-footer">
-        <p class="copyright">&copy; {{ date('Y') }} Monarkee. All Rights Reserved.</p>
-    </footer>
+        <footer class="main-footer">
+            <p class="copyright">&copy; {{ date('Y') }} Monarkee. All Rights Reserved.</p>
+        </footer>
 </body>
 </html>

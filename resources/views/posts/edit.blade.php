@@ -4,8 +4,8 @@
 <section class="main-area">
     @include ('bumble::partials.sidenav')
     <main class="main-content">
-        <div class="header">
-            <h2 class="header__title">Editing <span class="header__id">#{{ $post->id }} @if ($post->editingTitle()) &ldquo;{{ $post->editingTitle() }}&rdquo;@endif</span></h2>
+        <div class="header flex aic acc jcsb pb2 mb3">
+            <h2 class="tcg60 ft8">Editing <span class="header__id">#{{ $post->id }} @if ($post->editingTitle()) &ldquo;{{ $post->editingTitle() }}&rdquo;@endif</span></h2>
         </div>
         {!! BumbleForm::model($post, [
             'method' => 'put',

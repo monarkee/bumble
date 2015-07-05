@@ -6,3 +6,4 @@ composer.phar
 composer.lock
 .DS_Store
 .sass-cache
+resources/assets/bower_components

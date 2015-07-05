@@ -17,41 +17,44 @@
     @endforeach
 </head>
 <body>
-    <header class="main-header">
-        <div class="main-header__wrap">
-            <h1 class="main-logo"><a href="{{ route('bumble.dashboard') }}" class="main-logo__link">
-                @if (config('bumble.site-title-image'))
-                    <img src="{{ config('bumble.site-title-image') }}">
-                @else
-                    {{ config('bumble.site-title') }}
-                @endif
-                </a>
-            </h1>
+    <header class="bg1 lh1">
+        <div class="flex aic acc jcsb">
+            <div class="flex aic">
+                <h1 class="ml2 tcw ft6 fw7 ls1 uppercase mr2">
+                    <a href="{{ route('bumble.dashboard') }}" class="tcw">
+                    @if (config('bumble.site-title-image'))
+                        <img src="{{ config('bumble.site-title-image') }}">
+                    @else
+                        {{ config('bumble.site-title') }}
+                    @endif
+                    </a>
+                </h1>
 
-            <a href="{{ url('/') }}" class="visit-site">Visit Site</a>
+                <a href="{{ url('/') }}" class="tcw fw6 ft3 uppercase ls1">Visit Site</a>
+            </div>
 
-            @if (config('bumble.search'))
-            <form action="{{ url('/') }}" class="main-search">
-                <input class="main-search__input" type="search" name="q" value="" placeholder="Search Entries">
-            </form>
-            @endif
-
-            <nav class="main-nav">
-                <ul class="main-nav__links">
-                    <li class="main-nav__item"><a href="{{ route('bumble.dashboard') }}" class="main-nav__link">Dashboard</a></li>
+            <nav class="">
+                <ul class="flex aic">
+                    <li class="mr4 ft3 fw6 uppercase ls1">
+                        <a href="{{ route('bumble.dashboard') }}" class="tcw">Dashboard</a>
+                    </li>
                     @foreach ($topModels as $model)
                         @unless ($model->isHiddenFromTopNav())
-                            <li class="main-nav__item"><a href="{{ route(config('bumble.admin_prefix').'.'.$model->getPluralSlug().'.index') }}" class="main-nav__link">{{ $model->getPluralName() }}</a></li>
+                            <li class="mr4 ft3 fw6 uppercase ls1">
+                                <a href="{{ route(config('bumble.admin_prefix').'.'.$model->getPluralSlug().'.index') }}" class="tcw">{{ $model->getPluralName() }}</a>
+                            </li>
                         @endunless
                     @endforeach
-                    <li class="main-nav__item main-nav__item--border-left">
+                    <li class="main-nav__item main-nav__item--border-left pv1 pl2 pr2">
                         <a href="#" class="main-nav__link _dropdown" data-dropdown-target="account-menu">
-                            <img class="main-nav__avatar" src="{{ $authUser->getAvatar() }}" alt="{{ $authUser->email }}&rsquo;s Avatar">
+                            <img class="wht35 fl lh1 circle" src="{{ $authUser->getAvatar() }}" alt="{{ $authUser->email }}&rsquo;s Avatar">
                         </a>
-                        <ul id="account-menu" class="secondary-nav _dropdown-menu">
+                        <ul id="account-menu" class="secondary-nav _dropdown-menu bbr3 oh">
                             {{-- <li class="secondary-nav__item"><a href="{{ url('/') }}" class="secondary-nav__link">Account</a></li>
                             <li class="secondary-nav__separator"></li> --}}
-                            <li class="secondary-nav__item"><a href="{{ route('bumble.logout') }}" class="secondary-nav__link">Logout</a></li>
+                            <li class="secondary-nav__item">
+                                <a href="{{ route('bumble.logout') }}" class="secondary-nav__link">Logout</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -61,9 +64,9 @@
 
     @yield('content')
 
-    <footer class="main-footer">
+    {{-- <footer class="main-footer">
         <p class="copyright">&copy; {{ date('Y') }} Monarkee. All Rights Reserved.</p>
-    </footer>
+    </footer> --}}
 
 
     <script type="text/javascript" src="{{ asset('/packages/monarkee/bumble/js/vendor.min.js') }}"></script>

@@ -4,9 +4,9 @@
 <section class="main-area">
     @include('bumble::partials.sidenav')
     <main class="main-content">
-        <div class="header">
+        <div class="header flex aic acc jcsb pb2 mb3">
             <div class="flex jcc aic acc">
-                <h2 class="header__title">Dashboard</h2>
+                <h2 class="tcg60 ft8 mb1">Dashboard</h2>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
             </td>
             <td>
                 <div class="inline-flex">
-                    <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="btn-create">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
+                    <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="fr ft4 tc1">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
                 </div>
             </td>
         </tr>

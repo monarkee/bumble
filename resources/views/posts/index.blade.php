@@ -4,14 +4,14 @@
 <section class="main-area">
     @include('bumble::partials.sidenav')
     <main class="main-content">
-        <div class="header">
-            <div class="flex jcc aic acc">
-                <h2 class="header__title">{{ $model->getPluralName() }}</h2>
+        <div class="header flex aic acc jcsb pb2 mb3">
+            <div class="flex acc aic">
+                <h2 class="tcg60 ft8">{{ $model->getPluralName() }}</h2>
                 @if ($model->isSoftDeleting())
-                    <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.trashed') }}" class="trashed-link">View Trashed</a>
+                    <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.trashed') }}" class="ml2 tc1 ft3 fw8 ls1 uppercase">View Trashed</a>
                 @endif
             </div>
-            <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="btn-create">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
+            <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="fr ft5 tc1">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
         </div>
 
         @include('bumble::partials.messages')
@@ -55,7 +55,7 @@
                             @elseif ($field->getFieldType() == 'SlugField')
                                 <td><code>{{ $entry->{$field->getColumn()} }}</code></td>
                             @elseif ($field->getFieldType() == 'DateTimeField')
-                                <td><code>{{ $field->display($entry->{$field->getColumn()}) }}</code></td>
+                                <td><code class="bgg05 tcg50 br3">{{ $field->display($entry->{$field->getColumn()}) }}</code></td>
                             @elseif ($field->getFieldType() == 'BooleanField')
                                 <td class="active-status"><i class="badge {{ active_color($entry->{$field->getColumn()}) }}"></i></td>
                             @elseif ($field->getFieldType() == 'DropdownField')

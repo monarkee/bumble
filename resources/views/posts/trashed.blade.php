@@ -4,12 +4,12 @@
 <section class="main-area">
     @include('bumble::partials.sidenav')
     <main class="main-content">
-        <div class="header">
+        <div class="header flex aic acc jcsb pb2 mb3">
             <div class="flex jcc aic acc">
-                <h2 class="header__title">{{ $model->getPluralName() }}</h2>
-                <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.index') }}" class="trashed-link">View Non-Trashed</a>
+                <h2 class="tcg60 ft8">{{ $model->getPluralName() }}</h2>
+                <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.index') }}" class="ml2 tc1 ft3 fw8 ls1 uppercase">View Non-Trashed</a>
             </div>
-            <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="btn-create">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
+            <a href="{{ route(config('bumble.admin_prefix') . '.' . $model->getPluralSlug() . '.create') }}" class="fr ft5 tc1">Create {{{ str_singular($model->getModelName()) }}} &#8594;</a>
         </div>
 
         @include('bumble::partials.messages')

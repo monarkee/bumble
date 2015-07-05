@@ -4,11 +4,11 @@
 <section class="main-area">
     @include ('bumble::partials.sidenav')
     <main class="main-content">
-        <div class="header">
-            <div class="header__wrap">
-                <h2 class="header__title">Create a new {{ $model->getModelName() }}</h2>
+        <div class="header flex aic acc jcsb pb2 mb3">
+            <div>
+                <h2 class="tcg60 ft8 mb1">Create a new {{ $model->getModelName() }}</h2>
                 @if ($model->getDescription())
-                    <p class="header__description">{{ $model->getDescription() }}</p>
+                    <p class="tcg40 ft4">{{ $model->getDescription() }}</p>
                 @endif
             </div>
         </div>

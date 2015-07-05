@@ -1,4 +1,4 @@
-<aside class="main-sidebar">
+<aside class="main-sidebar bgg05">
     @if ($sideModels)
     <ul class="side-nav">
         @foreach ($sideModels as $model)

@@ -18,11 +18,13 @@
   td {
     font-size: 1.4rem;
     color: #777;
+    vertical-align: middle;
   }
 
   th, td {
     text-align: left;
-    padding: $main_padding/3 0;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 
     &:last-child {
       text-align: right;
@@ -45,10 +47,6 @@
   }
 
   code {
-    font-size: 1.4rem;
-    background: $light_gray;
-    color: $branding_gray;
-    border-radius: 4px;
     padding: 6px 10px;
   }
 
