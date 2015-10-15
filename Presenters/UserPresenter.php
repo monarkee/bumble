@@ -3,13 +3,13 @@
 namespace Monarkee\Bumble\Presenters;
 
 use Exception;
-use App\User;
+use Illuminate\Contracts\Auth\Authenticatable as Authenticatable;
 use Monarkee\Bumble\Support\Gravatar;
 
 class UserPresenter
 {
-    function __construct(User $user) {
-        $this->user = $user;
+    function __construct(Authenticatable $authenticatable) {
+        $this->user = $authenticatable;
     }
 
     /**
