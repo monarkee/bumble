@@ -49,7 +49,11 @@
                     @foreach ($model->getFields() as $field)
                         @unless ($field->showInListing() == false)
                             @if ($field->getFieldType() == 'TextField')
-                                <td>{{ $entry->{$field->getColumn()} }}</td>
+                                @if ($field->hasLinkToRoute())
+                                    <td>{!! $field->generateLinkToRoute($entry) !!}</td>
+                                @else
+                                    <td>{{ $entry->{$field->getColumn()} }}</td>
+                                @endif
                             @elseif ($field->getColumn() == 'id')
                                 <td><code>{{ $entry->{$field->getColumn()} }}</code></td>
                             @elseif ($field->getFieldType() == 'SlugField')
