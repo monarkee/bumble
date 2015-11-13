@@ -8,18 +8,18 @@ $('._datetimefield').datetimepicker({
 ###
   Date Picker
 ###
-$('._datefield').datetimepicker({
-  timepicker: false,
-  format: 'Y-m-d'
-});
+# $('._datefield').datetimepicker({
+#   timepicker: false,
+#   format: 'Y-m-d'
+# });
 
 ###
   Time Picker
 ###
-$('._timefield').datetimepicker({
-  datepicker: false,
-  format: 'H:i:s'
-});
+# $('._timefield').datetimepicker({
+#   datepicker: false,
+#   format: 'H:i:s'
+# });
 
 ###
   Handle messages
@@ -66,21 +66,21 @@ $('.tab').hide().first().show()
 ###
   Set up WYSIWYG fields
 ###
-btnsGrps = jQuery.trumbowyg.btnsGrps
+# btnsGrps = jQuery.trumbowyg.btnsGrps
 
-$('._wysiwyg').trumbowyg({
-  autogrow: true,
-  btns: ['viewHTML',
-         btnsGrps.design,
-         'link',
-         'insertImage',
-         btnsGrps.justify,
-         btnsGrps.lists,
-         'insertHorizontalRule']
-#  fullscreenable: false,
-#  closable: true,
-#  btns: ['bold', 'italic', '|', 'insertImage']
-});
+# $('._wysiwyg').trumbowyg({
+#   autogrow: true,
+#   btns: ['viewHTML',
+#          btnsGrps.design,
+#          'link',
+#          'insertImage',
+#          btnsGrps.justify,
+#          btnsGrps.lists,
+#          'insertHorizontalRule']
+# #  fullscreenable: false,
+# #  closable: true,
+# #  btns: ['bold', 'italic', '|', 'insertImage']
+# });
 
 
 ###
@@ -115,7 +115,7 @@ elems.forEach (html) ->
   Tooltips
 ###
 
-$('._tooltip').tipr();
+# $('._tooltip').tipr();
 
 ###
   MarkdownField

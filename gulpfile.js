@@ -1,95 +1,24 @@
-var gulp = require('gulp'),
-    gutil = require('gulp-util'),
-    concat = require('gulp-concat'),
-    sass = require('gulp-ruby-sass'),
-    uglify = require('gulp-uglify'),
-    autoprefixer = require('gulp-autoprefixer'),
-    plumber = require('gulp-plumber'),
-    coffee = require('gulp-coffee'),
-    shell = require('gulp-shell'),
-    livereload = require('gulp-livereload');
+var elixir = require('laravel-elixir');
 
-var SRC = './resources/assets/',
-    BOWER = './public/bower_components/',
-    PACKAGES = './public/packages/',
-    NODE = './node_modules/',
-    DIST = './public/';
+elixir.config.assetsPath = "resources/assets";
+elixir.config.css.outputFolder = "../public/css";
+elixir.config.js.outputFolder = "../public/js";
 
-// Javascript Sources
-// ------------------------------------------------------------------------------------ */
-var vendorJS = [
-    NODE + 'jquery/dist/jquery.min.js',
-    BOWER + 'trumbowyg/dist/trumbowyg.min.js',
-    BOWER + 'switchery/dist/switchery.min.js',
-    PACKAGES + 'tipr/tipr.min.js',
-    BOWER + 'datetimepicker/jquery.datetimepicker.js',
-    BOWER + 'MirrorMark/dist/js/mirrormark.package.js',
-    NODE + 'fastclick/lib/fastclick.js',
-];
-
-var onError = function (err) {
-    gutil.beep();
-};
-
-// SCSS Compiling and Minification
-gulp.task('scss', function () {
-    return gulp.src([
-        SRC + 'sass/bumble.scss',
-    ])
-        .pipe(plumber({
-            errorHandler: onError
-        }))
-        .pipe(sass({
-            debugInfo: false,
-            lineNumbers: false
-        }))
-        .pipe(autoprefixer())
-        .pipe(livereload())
-        .pipe(gulp.dest(DIST + '/css'));
+elixir(function(mix) {
+    mix.sass('bumble.scss')
+        .coffee('bumble.coffee')
+        .scripts([
+            "../../../bower_components/jquery/dist/jquery.js",
+            "../../../bower_components/switchery/dist/switchery.js",
+            "../../../bower_components/datetimepicker/build/jquery.datetimepicker.full.js",
+            "../../../bower_components/mirrormark/dist/js/mirrormark.package.min.js",
+        ], 'public/js/vendor.js')
+        .styles([
+            "../../../bower_components/trumbowyg/dist/ui/trumbowyg.min.css",
+            "../../../bower_components/datetimepicker/jquery.datetimepicker.css",
+            "../../../bower_components/switchery/dist/switchery.css",
+            "../../../bower_components/mirrormark/dist/css/mirrormark.package.min.css",
+            "../../../css/bumble.css",
+        ], 'public/css/vendor.css')
+        .copy('public', '../bumbletest/public/packages/monarkee/bumble');
 });
-
-gulp.task('coffee', function() {
-    gulp.src(SRC + 'coffee/**/*.coffee')
-        .pipe(coffee({bare: true}).on('error', gutil.log))
-        .pipe(gulp.dest(DIST + 'js'));
-});
-
-// Concat Vendor Javascripts
-// ------------------------------------------------------------------------------------ */
-gulp.task('vendorJS', function() {
-   gulp.src(vendorJS)
-       .pipe(concat('vendor.min.js'))
-       .pipe(uglify())
-       .pipe(gulp.dest(DIST + 'js'));
-});
-
-gulp.task('publish', ['scss', 'coffee', 'vendorJS'], function() {
-    // gulp.src('').pipe(shell('cd ~/Sites/bumble && php artisan asset:publish --bench=monarkee/bumble'), {ignoreErrors: true});
-    // gulp.src('').pipe(shell('cd ~/Sites/bumblecms && php artisan asset:publish --path="vendor/monarkee/bumble/public" monarkee/bumble'), {ignoreErrors: true});
-});
-
-/* Blade Templates */
-gulp.task('blade', function () {
-    return gulp.src('./views/**/*.blade.php')
-        .pipe(livereload(server));
-});
-
-gulp.task('watch', function () {
-    // Watch .scss files
-    gulp.watch([
-        SRC + 'sass/**/*.scss',
-    ], ['scss', 'publish']);
-
-    // Watch Coffee files
-    gulp.watch([
-        SRC + 'coffee/**/*.coffee',
-    ], ['coffee']);
-
-    // Watch Blade files
-    gulp.watch([
-        './views/**/*.blade.php'
-    ], ['blade']);
-});
-
-// Gulp Default Task
-gulp.task('default', ['vendorJS', 'scss', 'coffee', 'publish', 'watch']);

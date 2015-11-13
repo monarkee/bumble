@@ -3,11 +3,11 @@
   border-collapse: collapse;
 
   tr {
-    border-bottom: 1px solid $border_gray;
+    border-bottom: 1px solid $bcg10;
   }
 
   th {
-    color: $branding_color;
+    color: $tc1;
     font-weight: $bold;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
@@ -18,11 +18,12 @@
   td {
     font-size: 1.4rem;
     color: #777;
+    vertical-align: middle;
   }
 
   th, td {
     text-align: left;
-    padding: $main_padding/3 0;
+    padding: 1rem 0;
 
     &:last-child {
       text-align: right;
@@ -46,10 +47,10 @@
 
   code {
     font-size: 1.4rem;
-    background: $light_gray;
-    color: $branding_gray;
-    border-radius: 4px;
-    padding: 6px 10px;
+    background: $bgg05;
+    color: $tcg50;
+    border-radius: 2px;
+    padding: 4px 7px;
   }
 
   form {

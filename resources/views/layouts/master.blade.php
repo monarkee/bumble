@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <title>Bumble</title>
 
-    <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/bower_components/trumbowyg/dist/ui/trumbowyg.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/bower_components/datetimepicker/jquery.datetimepicker.css') }}">
-    <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/bower_components/switchery/dist/switchery.css') }}">
-    <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/packages/tipr/tipr.css') }}">
     <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/css/bumble.css') }}">
+    <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/css/vendor.css') }}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('/packages/monarkee/bumble/bower_components/MirrorMark/dist/css/mirrormark.package.min.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
 
     @foreach ($cssAssets as $asset)
         <link rel="stylesheet" href="{{ asset($asset) }}">
@@ -19,12 +16,13 @@
 <body>
     <header class="main-header">
         <div class="main-header__wrap">
-            <h1 class="main-logo"><a href="{{ route('bumble.dashboard') }}" class="main-logo__link">
-                @if (config('bumble.site-title-image'))
-                    <img src="{{ config('bumble.site-title-image') }}">
-                @else
-                    {{ config('bumble.site-title') }}
-                @endif
+            <h1 class="main-logo">
+                <a href="{{ route('bumble.dashboard') }}" class="main-logo__link fw7">
+                    @if (config('bumble.site-title-image'))
+                        <img src="{{ config('bumble.site-title-image') }}">
+                    @else
+                        {{ config('bumble.site-title') }}
+                    @endif
                 </a>
             </h1>
 
@@ -61,12 +59,12 @@
 
     @yield('content')
 
-    <footer class="main-footer">
-        <p class="copyright">&copy; {{ date('Y') }} Monarkee. All Rights Reserved.</p>
-    </footer>
+    {{-- <footer class="">
+        <p class="pv2 tac tcg40 ft3">&copy; {{ date('Y') }} Monarkee. All Rights Reserved.</p>
+    </footer> --}}
 
 
-    <script type="text/javascript" src="{{ asset('/packages/monarkee/bumble/js/vendor.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/packages/monarkee/bumble/js/vendor.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/packages/monarkee/bumble/js/bumble.js') }}"></script>
 
     @foreach ($jsAssets as $asset)

@@ -1,0 +1,24 @@
+{
+  "name": "bumble",
+  "version": "1.0.0",
+  "homepage": "https://github.com/monarkee/bumble",
+  "authors": [
+    "David Hemphill <davidlee.hemphill@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "datetimepicker": "http://github.com/xdan/datetimepicker.git#7e35e325363eafe9764228acc6a3d0be473b3aae",
+    "mirrormark": "~1.0.1",
+    "switchery": "~0.8.1",
+    "transitionize": "~0.0.3",
+    "beard": "v2.0-develop"
+  }
+}

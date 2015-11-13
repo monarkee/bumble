@@ -2,12 +2,7 @@
 // ------------------------------------------------------------------------------------ */
 .control {
   position: relative;
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  background: #E5E5E5;
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
   padding: 1rem;
 
   &:last-child {
@@ -21,7 +16,8 @@
 // ------------------------------------------------------------------------------------ */
 .input {
   font-family: $avenir;
-  border: 1px solid $white;
+  border: 1px solid $tcg20;
+  border-radius: 3px;
   font-size: 1.6rem;
   display: block;
   width: 100%;
@@ -40,9 +36,11 @@
 // Labels
 // ------------------------------------------------------------------------------------ */
 .label {
+  display: block;
   font-size: 1.6rem;
-  color: #666;
-  height: 100%;
+  color: #777;
+  // height: 100%;
+  margin-bottom: 1rem;
 
 //  display: flex;
 //  align-items: center;

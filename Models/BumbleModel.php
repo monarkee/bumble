@@ -304,9 +304,9 @@ abstract class BumbleModel extends Model
      * @param $field
      * @return string
      */
-    public function getRequiredClass($field)
+    public function getRequiredClass($field, $classname = 'required')
     {
-        return $this->fieldIsRequired($field) ? ' required' : '';
+        return $this->fieldIsRequired($field) ? " {$classname}" : '';
     }
 
     /**
