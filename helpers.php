@@ -1,171 +1,147 @@
 <?php
 
-if (!function_exists('slug_case'))
-{
-    function slug_case($value)
-    {
-        return BumbleStr::slug_case($value);
-    }
-}
-
-if (!function_exists('resource_name'))
-{
+if (!function_exists('resource_name')) {
     function resource_name($value)
     {
         return BumbleStr::resource_name($value);
     }
 }
 
-if (!function_exists('model_name'))
-{
+if (!function_exists('model_name')) {
     function model_name($value)
     {
         return BumbleStr::model_name($value);
     }
 }
 
-if (!function_exists('full_model_name'))
-{
+if (!function_exists('full_model_name')) {
     function full_model_name($value)
     {
         return BumbleStr::full_model_name($value);
     }
 }
 
-if (!function_exists('sentence_name'))
-{
+if (!function_exists('sentence_name')) {
     function sentence_name($value)
     {
         return BumbleStr::sentence_name($value);
     }
 }
 
-if (!function_exists('title_name'))
-{
+if (!function_exists('title_name')) {
     function title_name($value)
     {
         return BumbleStr::title_name($value);
     }
 }
 
-/**
- * Return the active color
- * @param  [type] $boolean [description]
- * @return [type]          [description]
- */
-if (!function_exists('active_color'))
-{
-    function active_color($activeStatus)
+if (!function_exists('active_color')) {
+    /**
+     * Return the active color
+     * @param  boolean $status
+     * @return string
+     */
+    function active_color($status)
     {
-        return $activeStatus === 1 ? 'green' : 'red';
+        return $status === 1 ? 'green' : 'red';
     }
 }
 
-/**
- * Swap the module separators
- * @param  string $string The string to search
- * @param  string $firstOption The string to be replaced
- * @param  string $secondOption The string to replace with
- * @return string The final string
- */
-if (!function_exists('swap_sep'))
-{
+if (!function_exists('swap_sep')) {
+    /**
+     * Swap the module separators
+     * @param  string $string The string to search
+     * @param  string $firstOption The string to be replaced
+     * @param  string $secondOption The string to replace with
+     * @return string The final string
+     */
     function swap_sep($string, $firstOption = '-', $secondOption = '_')
     {
         return str_replace($firstOption, $secondOption, $string);
     }
 }
 
-/**
- * Get the module system name
- * @param  string $string The string to search
- * @param  string $firstOption The string to be replaced
- * @param  string $secondOption The string to replace with
- * @return string The final string
- */
-if (!function_exists('module_name'))
-{
+if (!function_exists('module_name')) {
+    /**
+     * Get the module system name
+     * @param  string $string The string to search
+     * @param  string $firstOption The string to be replaced
+     * @param  string $secondOption The string to replace with
+     * @return string The final string
+     */
     function module_name($string)
     {
         return str_replace('_', '-', $string);
     }
 }
 
-/**
- * Get the database table name for a string
- * @param  string $string The string to search
- * @param  string $firstOption The string to be replaced
- * @param  string $secondOption The string to replace with
- * @return string The final string
- */
-if (!function_exists('table_name'))
-{
+if (!function_exists('table_name')) {
+    /**
+     * Get the database table name for a string
+     * @param  string $string The string to search
+     * @param  string $firstOption The string to be replaced
+     * @param  string $secondOption The string to replace with
+     * @return string The final string
+     */
     function table_name($string)
     {
         return str_replace('-', '_', $string);
     }
 }
 
-/**
- * Grab a config item from the database
- * @param  string $key The key of the setting to get from the database
- * @param  string $table The table to get the setting from
- * @return mixed The returned value
- */
-if (!function_exists('app_config'))
-{
+if (!function_exists('app_config')) {
+    /**
+     * Grab a config item from the database
+     * @param  string $key The key of the setting to get from the database
+     * @param  string $table The table to get the setting from
+     * @return mixed The returned value
+     */
     function app_config($key, $table = 'settings')
     {
         try {
             return DB::table($table)->whereKey($key)->pluck('value');
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             return false;
         }
     }
 }
 
-/**
- * Convert Integer Into Human-Readable Active Status
- * @param  string $boolean
- * @return string
- */
-if (!function_exists('open_status'))
-{
+if (!function_exists('open_status')) {
+    /**
+     * Convert Integer Into Human-Readable Active Status
+     * @param  string $boolean
+     * @return string
+     */
     function published_status($value)
     {
         return (string) $value === '1' ? 'Published' : 'Draft';
     }
 }
 
-/**
- * Return Human-Readable Integer Status
- * @param  string $boolean
- * @return string
- */
-if (!function_exists('int_column'))
-{
+if (!function_exists('int_column')) {
+    /**
+     * Return Human-Readable Integer Status
+     * @param  string $boolean
+     * @return string
+     */
     function int_column($value)
     {
         return ($value === (string) '0' || $value === (string) '1') ? true : false;
     }
 }
 
-/**
- * Return a Carbon\Carbon version of the provided date
- * @param string $date
- */
-if (!function_exists('carbon_date'))
-{
+if (!function_exists('carbon_date')) {
+    /**
+     * Return a Carbon\Carbon version of the provided date
+     * @param string $date
+     */
     function carbon_date($date)
     {
         return (new \Carbon\Carbon)->createFromTimestamp(strtotime($date));
     }
 }
 
-if (!function_exists('timestamp_column'))
-{
+if (!function_exists('timestamp_column')) {
     function timestamp_column($timestamp)
     {
         $pattern = '/^(((\d{4})(-)(0[13578]|10|12)(-)(0[1-9]|[12][0-9]|3[01]))|((\d{4})(-)(0[469]|1‌​1)(-)([0][1-9]|[12][0-9]|30))|((\d{4})(-)(02)(-)(0[1-9]|1[0-9]|2[0-8]))|(([02468]‌​[048]00)(-)(02)(-)(29))|(([13579][26]00)(-)(02)(-)(29))|(([0-9][0-9][0][48])(-)(0‌​2)(-)(29))|(([0-9][0-9][2468][048])(-)(02)(-)(29))|(([0-9][0-9][13579][26])(-)(02‌​)(-)(29)))(\s([0-1][0-9]|2[0-4]):([0-5][0-9]):([0-5][0-9]))$/';
@@ -183,19 +159,20 @@ if (!function_exists('timestamp_column'))
         $re10='(:)';  # Any Single Character 4
         $re11='(00)'; # Integer Number 6
 
-        $empty_timestamp = preg_match_all ("/".$re1.$re2.$re3.$re4.$re5.$re6.$re7.$re8.$re9.$re10.$re11."/is", $timestamp, $matches);
+        $empty_timestamp = preg_match_all("/".$re1.$re2.$re3.$re4.$re5.$re6.$re7.$re8.$re9.$re10.$re11."/is", $timestamp, $matches);
 
-        if ($empty_timestamp || $real_timestamp) return true;
+        if ($empty_timestamp || $real_timestamp) {
+            return true;
+        }
 
         return false;
     }
 }
 
-/**
- * Get the relationship display value
- */
-if (!function_exists('get_relation_display_value'))
-{
+if (!function_exists('get_relation_display_value')) {
+    /**
+     * Get the relationship display value
+     */
     function get_relation_display_value($value, $options)
     {
         // UnJSONinfy the $options

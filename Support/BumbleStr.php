@@ -1,27 +1,19 @@
-<?php namespace Monarkee\Bumble\Support;
+<?php
+
+namespace Monarkee\Bumble\Support;
 
 use Illuminate\Config\Repository;
 
 class BumbleStr
 {
-
     /**
      * @var Repository
      */
     private $config;
 
-    function __construct(Repository $config)
+    public function __construct(Repository $config)
     {
         $this->config = $config;
-    }
-
-    /**
-     * @param $value
-     * @return string
-     */
-    public function slug_case($value)
-    {
-        return ctype_lower($value) ? $value : strtolower(preg_replace('/(.)([A-Z])/', '$1-$2', $value));
     }
 
     /**
