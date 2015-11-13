@@ -1,4 +1,6 @@
-<?php namespace Monarkee\Bumble\Repositories;
+<?php
+
+namespace Monarkee\Bumble\Repositories;
 
 class FieldAssetRepository
 {

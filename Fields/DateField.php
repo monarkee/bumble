@@ -1,4 +1,6 @@
-<?php namespace Monarkee\Bumble\Fields;
+<?php
+
+namespace Monarkee\Bumble\Fields;
 
 use Carbon\Carbon;
 use Monarkee\Bumble\Interfaces\FieldInterface;

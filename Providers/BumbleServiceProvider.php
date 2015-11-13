@@ -1,22 +1,27 @@
-<?php namespace Monarkee\Bumble\Providers;
+<?php
 
-use Collective\Html\HtmlServiceProvider;
-use Illuminate\Support\ServiceProvider;
-use League\Flysystem\Adapter\AwsS3 as S3Adapter;
+namespace Monarkee\Bumble\Providers;
+
+use View;
+use Blade;
+use Validator;
 use Monarkee\Bumble\Models\Module;
+use Illuminate\Support\ServiceProvider;
+use Collective\Html\HtmlServiceProvider;
+use Monarkee\Bumble\Middleware\Authenticate;
+use League\Flysystem\Adapter\AwsS3 as S3Adapter;
+use Illuminate\Contracts\Http\Kernel;
 
-class BumbleServiceProvider extends ServiceProvider {
-
+class BumbleServiceProvider extends ServiceProvider
+{
     /**
      * Indicates if loading of the provider is deferred.
-     *
      * @var bool
      */
     protected $defer = false;
 
     /**
      * Bootstrap the application events.
-     *
      * @return void
      */
     public function boot()
@@ -30,13 +35,17 @@ class BumbleServiceProvider extends ServiceProvider {
 
         $this->publishes([__DIR__.'/../database/seeds/' => base_path('/database/seeds')], 'seeds');
 
-        // Include custom Bumble configuration
         $this->includeCustomConfiguration();
+
+        $this->registerViewComposers();
+
+        $this->registerViewComposers();
+
+        $this->registerValidationExtensions();
     }
 
     /**
      * Register the service provider.
-     *
      * @return void
      */
     public function register()
@@ -57,7 +66,6 @@ class BumbleServiceProvider extends ServiceProvider {
 
     /**
      * Get the services provided by the provider.
-     *
      * @return array
      */
     public function provides()
@@ -73,13 +81,11 @@ class BumbleServiceProvider extends ServiceProvider {
     {
         $this->app->singleton('assetLoader', 'Monarkee\Bumble\Repositories\FieldAssetRepository');
 
-        $this->app->singleton('bumblestr', function ()
-        {
+        $this->app->singleton('bumblestr', function () {
             return $this->app->make('Monarkee\Bumble\Support\BumbleStr');
         });
 
-        $this->app->singleton('bumble-gravatar', function ()
-        {
+        $this->app->singleton('bumble-gravatar', function () {
             return $this->app->make('Monarkee\Bumble\Support\Gravatar');
         });
 
@@ -93,29 +99,61 @@ class BumbleServiceProvider extends ServiceProvider {
     protected function createAliases()
     {
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-        $loader->alias('BumbleStr', 'Monarkee\Bumble\Support\Facades\BumbleStr');
-        $loader->alias('BumbleGravatar', 'Monarkee\Bumble\Support\Facades\Gravatar');
+        $loader->alias('BumbleStr', Monarkee\Bumble\Support\Facades\BumbleStr::class);
+        $loader->alias('BumbleGravatar', Monarkee\Bumble\Support\Facades\Gravatar::class);
 
-        $loader->alias('BumbleForm', 'Collective\Html\FormFacade');
-        $loader->alias('BumbleHtml', 'Collective\Html\HtmlFacade');
+        $loader->alias('BumbleForm', Collective\Html\FormFacade::class);
+        $loader->alias('BumbleHtml', Collective\Html\HtmlFacade::class);
     }
 
     /**
      * Include custom filters, validation, helpers, routes, composers, and extensions
-     * @return [type] [description]
+     * @return void
      */
     protected function includeCustomConfiguration()
     {
-        include __DIR__ . '/../filters.php';
-        include __DIR__ . '/../validation.php';
         include __DIR__ . '/../helpers.php';
         include __DIR__ . '/../routes.php';
-        include __DIR__ . '/../composers.php';
-        include __DIR__ . '/../extensions.php';
     }
 
+    /**
+     * Bootstrap the Form and Html Builders
+     * @return void
+     */
     protected function bootstrapFormAndHtmlBuilders()
     {
         return (new HtmlServiceProvider($this->app))->register();
+    }
+
+    /**
+     * Register View Composers
+     * @return void
+     */
+    protected function registerViewComposers()
+    {
+        View::composer('bumble::partials.sidenav', Monarkee\Bumble\Composers\SidenavComposer::class);
+        View::composer('bumble::layouts.master', Monarkee\Bumble\Composers\MasterComposer::class);
+    }
+
+    /**
+     * Register Blade Directives
+     * @return void
+     */
+    protected function registerBladeDirectives()
+    {
+        Blade::directive('markdown', function ($expression) {
+            return "<?php echo app('\League\CommonMark\CommonMarkConverter')->convertToHtml({$expression}); ?>";
+        });
+    }
+
+    /**
+     * Register Validation Extensions
+     * @return void
+     */
+    protected function registerValidationExtensions()
+    {
+        Validator::extend('system_name', function ($attribute, $value, $parameters) {
+            return preg_match('`^[a-zA-Z0-9_]{1,}$`', $value);
+        });
     }
 }

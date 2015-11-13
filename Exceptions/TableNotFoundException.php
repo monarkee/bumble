@@ -1,3 +1,5 @@
-<?php namespace Monarkee\Bumble\Exceptions;
+<?php
+
+namespace Monarkee\Bumble\Exceptions;
 
 class TableNotFoundException extends \Exception {}

@@ -1,14 +1,16 @@
-<?php namespace Monarkee\Bumble\Controllers;
+<?php
 
-use Monarkee\Bumble\Controllers\BumbleController;
-use Illuminate\Foundation\Auth\ResetsPasswords;
+namespace Monarkee\Bumble\Controllers;
+
 use Auth;
+use Hash;
 use View;
-use Redirect;
 use Input;
 use Config;
 use Password;
-use Hash;
+use Redirect;
+use Illuminate\Foundation\Auth\ResetsPasswords;
+use Monarkee\Bumble\Controllers\BumbleController;
 
 class LoginController extends BumbleController
 {

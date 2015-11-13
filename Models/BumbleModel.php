@@ -1,15 +1,17 @@
-<?php namespace Monarkee\Bumble\Models;
+<?php
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingTrait;
-use Illuminate\Database\Schema\Blueprint;
-use Schema;
-use Monarkee\Bumble\Exceptions\TableNotFoundException;
-use ReflectionClass;
+namespace Monarkee\Bumble\Models;
+
+use App;
 use Str;
 use Config;
-use App;
+use Schema;
 use Request;
+use ReflectionClass;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Monarkee\Bumble\Exceptions\TableNotFoundException;
 
 abstract class BumbleModel extends Model
 {
@@ -22,18 +24,14 @@ abstract class BumbleModel extends Model
     {
         $segment = Request::segment(1);
 
-        if ($segment == config('bumble.admin_prefix') && self::enableTraits() == true)
-        {
+        if ($segment == config('bumble.admin_prefix') && self::enableTraits() == true) {
             parent::bootTraits();
-        }
-        elseif ($segment !== config('bumble.admin_prefix'))
-        {
+        } elseif ($segment !== config('bumble.admin_prefix')) {
             parent::bootTraits();
         }
 
         // Boot soft-delete trait all the time
-        if (method_exists(get_called_class(), $method = 'bootSoftDeletes'))
-        {
+        if (method_exists(get_called_class(), $method = 'bootSoftDeletes')) {
             forward_static_call([get_called_class(), $method]);
         }
     }
@@ -54,8 +52,7 @@ abstract class BumbleModel extends Model
         // and spinning up the class
         $modelConfig = config('bumble.models');
 
-        if (method_exists($this, 'bumble'))
-        {
+        if (method_exists($this, 'bumble')) {
             $adminClass = $this->bumble();
             $this->admin = new $adminClass;
         }
@@ -234,7 +231,9 @@ abstract class BumbleModel extends Model
      */
     public function isHiddenFromTopNav()
     {
-        if ($this->getShowInTopNav() === false) return true;
+        if ($this->getShowInTopNav() === false) {
+            return true;
+        }
     }
 
     /**
@@ -244,7 +243,9 @@ abstract class BumbleModel extends Model
      */
     public function isHiddenFromSideNav()
     {
-        if ($this->getShowInSideNav() === false) return true;
+        if ($this->getShowInSideNav() === false) {
+            return true;
+        }
     }
 
     /**
@@ -276,8 +277,7 @@ abstract class BumbleModel extends Model
      */
     public function checkIfTableExists()
     {
-        if (!Schema::hasTable($this->getTable()))
-        {
+        if (!Schema::hasTable($this->getTable())) {
             throw new TableNotFoundException("The specified table '{$this->getTable()}' doesn't exist.");
         }
 
@@ -292,9 +292,10 @@ abstract class BumbleModel extends Model
      */
     public function hasFieldTypes($type)
     {
-        foreach ($this->getFields() as $component)
-        {
-            if ($component->isFieldType($type)) return true;
+        foreach ($this->getFields() as $component) {
+            if ($component->isFieldType($type)) {
+                return true;
+            }
         }
     }
 
@@ -331,11 +332,15 @@ abstract class BumbleModel extends Model
 
         // Check for the custom option first and
         // return it if it exists
-        if ($this->columnExists($editingTitle)) return $this->{$editingTitle};
+        if ($this->columnExists($editingTitle)) {
+            return $this->{$editingTitle};
+        }
 
         // As a last-ditch effort, see if there's a title option
         // we can use so the user doesn't have to ask for it
-        if ($this->columnExists('title')) return $this->title;
+        if ($this->columnExists('title')) {
+            return $this->title;
+        }
 
         return;
     }

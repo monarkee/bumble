@@ -1,4 +1,6 @@
-<?php namespace Monarkee\Bumble\Fieldset;
+<?php
+
+namespace Monarkee\Bumble\Fieldset;
 
 use Whoops\Example\Exception;
 
@@ -28,15 +30,11 @@ class Fieldset
      */
     public function assignTabs($tabs = [])
     {
-        foreach ($tabs as $key => $fields)
-        {
-            if (is_array($fields))
-            {
+        foreach ($tabs as $key => $fields) {
+            if (is_array($fields)) {
                 $this->tabs[$key] = $fields;
                 $this->assignTabs($fields);
-            }
-            else
-            {
+            } else {
                 $this->fields[] = $fields;
             }
         }
@@ -44,8 +42,7 @@ class Fieldset
         // If the tabs are empty after that, then we were
         // given a flat array so create a default one
         // called 'content' and assign the fields to that
-        if (empty($this->tabs))
-        {
+        if (empty($this->tabs)) {
             $this->tabs['content'] = $this->fields;
         }
     }

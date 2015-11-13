@@ -1,4 +1,6 @@
-<?php namespace Monarkee\Bumble\Fields;
+<?php
+
+namespace Monarkee\Bumble\Fields;
 
 class BelongsToManyField extends Field
 {

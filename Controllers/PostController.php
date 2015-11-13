@@ -1,18 +1,20 @@
-<?php namespace Monarkee\Bumble\Controllers;
+<?php
 
-use Illuminate\Config\Repository;
-use Illuminate\Http\Request;
-use Exception;
-use Monarkee\Bumble\Repositories\ModelRepository;
-use View;
+namespace Monarkee\Bumble\Controllers;
+
 use DB;
+use View;
 use Input;
 use Redirect;
-use Monarkee\Bumble\Controllers\BumbleController;
-use Monarkee\Bumble\Exceptions\ValidationException;
-use Monarkee\Bumble\Services\PostService;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Config\Repository;
 use Monarkee\Bumble\Models\Module;
 use Monarkee\Bumble\Models\Component;
+use Monarkee\Bumble\Services\PostService;
+use Monarkee\Bumble\Repositories\ModelRepository;
+use Monarkee\Bumble\Controllers\BumbleController;
+use Monarkee\Bumble\Exceptions\ValidationException;
 
 class PostController extends BumbleController
 {
@@ -79,14 +81,11 @@ class PostController extends BumbleController
     {
         $segment = $this->request->segment(2);
 
-        try
-        {
+        try {
             $this->postService->restore($segment, $id);
 
             return Redirect::back()->with('success', 'The entry was successfully restored.');
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             throw new Exception('Could not restore the post');
         }
     }
@@ -97,14 +96,11 @@ class PostController extends BumbleController
 
         $input = Input::only('id');
 
-        try
-        {
+        try {
             $this->postService->annihilate($segment, $input);
 
             return Redirect::back()->with('success', 'The entry was deleted forever.');
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             throw new Exception('Could not delete the post');
         }
     }
@@ -140,10 +136,8 @@ class PostController extends BumbleController
         $segment = $this->request->segment(2);
 
         try {
-           $this->postService->update($segment, $id, $input);
-        }
-        catch (ValidationException $e)
-        {
+            $this->postService->update($segment, $id, $input);
+        } catch (ValidationException $e) {
             return Redirect::back()->withInput()->withErrors($e->getErrors());
         }
 
@@ -173,15 +167,12 @@ class PostController extends BumbleController
         $model = $this->modelRepo->get($segment);
         $input = Input::all();
 
-        try
-        {
+        try {
             $this->postService->create($model, $input);
 
             return Redirect::route($this->config->get('bumble.admin_prefix').'.'.$segment.'.index')
                            ->withSuccess('The entry was successfully created');
-        }
-        catch (ValidationException $e)
-        {
+        } catch (ValidationException $e) {
             return Redirect::back()
                            ->withInput()
                            ->with('errors', $e->getErrors());
@@ -198,14 +189,11 @@ class PostController extends BumbleController
 
         $input = Input::only('id');
 
-        try
-        {
+        try {
             $this->postService->delete($segment, $input);
 
             return Redirect::back()->with('success', 'The entry was successfully deleted.');
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             throw new Exception('Could not delete the post');
         }
     }

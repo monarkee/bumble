@@ -1,4 +1,6 @@
-<?php namespace Monarkee\Bumble\Fields;
+<?php
+
+namespace Monarkee\Bumble\Fields;
 
 use Monarkee\Bumble\Interfaces\FieldInterface;
 
@@ -23,11 +25,7 @@ class DropdownField extends Field implements FieldInterface
     {
         try {
             return $this->options['options'][$key];
-        }
-        catch (\Exception $e)
-        {
-
+        } catch (\Exception $e) {
         }
     }
-
 }

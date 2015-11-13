@@ -1,11 +1,13 @@
-<?php namespace Monarkee\Bumble\Repositories;
+<?php
+
+namespace Monarkee\Bumble\Repositories;
 
 use Exception;
-use Illuminate\Config\Repository;
 use ReflectionClass;
+use Illuminate\Config\Repository;
 
-final class ArrayConfigModelRepository implements ModelRepository {
-
+final class ArrayConfigModelRepository implements ModelRepository
+{
     /**
      * @var
      */
@@ -50,8 +52,7 @@ final class ArrayConfigModelRepository implements ModelRepository {
      */
     public function generateArray()
     {
-        foreach ($this->modelConfig as $key => $class)
-        {
+        foreach ($this->modelConfig as $key => $class) {
             $this->models[] = $class;
         }
     }
@@ -73,16 +74,12 @@ final class ArrayConfigModelRepository implements ModelRepository {
      */
     protected function loadObjects()
     {
-        if ($this->hasModels())
-        {
-            foreach ($this->getModelNames() as $model)
-            {
+        if ($this->hasModels()) {
+            foreach ($this->getModelNames() as $model) {
                 $testClass = new ReflectionClass($model);
-                if ( ! $testClass->isAbstract())
-                {
+                if (! $testClass->isAbstract()) {
                     $newObject = new $model;
-                    if ( ! $newObject->isHidden())
-                    {
+                    if (! $newObject->isHidden()) {
                         $this->objects[] = $newObject;
                     }
                 }
@@ -120,9 +117,7 @@ final class ArrayConfigModelRepository implements ModelRepository {
     {
         try {
             $this->modelConfig = $this->config->get('bumble.models');
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             throw new Exception("Model configuration hasn't been set.");
         }
     }

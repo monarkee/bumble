@@ -1,4 +1,6 @@
-<?php namespace Monarkee\Bumble\Models;
+<?php
+
+namespace Monarkee\Bumble\Models;
 
 class ModelAdmin
 {

@@ -1,8 +1,11 @@
-<?php namespace Monarkee\Bumble\Traits;
+<?php
+
+namespace Monarkee\Bumble\Traits;
 
 use Monarkee\Bumble\Support\Facades\Gravatar;
 
-trait BumbleUserTrait {
+trait BumbleUserTrait
+{
     /**
      * Get the Gravatar URL for a user
      *

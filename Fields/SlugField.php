@@ -1,4 +1,6 @@
-<?php namespace Monarkee\Bumble\Fields;
+<?php
+
+namespace Monarkee\Bumble\Fields;
 
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
@@ -10,7 +12,7 @@ class SlugField extends TextField implements FieldInterface
 {
     protected $app;
 
-    function __construct($title, $options = [])
+    public function __construct($title, $options = [])
     {
         parent::__construct($title, $options);
 
@@ -31,23 +33,17 @@ class SlugField extends TextField implements FieldInterface
     {
         $column = $this->getColumn();
 
-        if (!empty($input[$column]))
-        {
+        if (!empty($input[$column])) {
             $model->{$column} = $this->slugifyService->slugify($input[$column]);
             return $model;
-        }
-        elseif ($this->getSetFrom())
-        {
+        } elseif ($this->getSetFrom()) {
             $model->{$column} = $this->slugifyService->slugify($input[$this->getSetFrom()]);
             return $model;
-        }
-        else
-        {
+        } else {
             $message = "The {$column} field is required.";
             $errors = new MessageBag(['slug' => $message]);
 
             throw new ValidationException($errors, $message);
         }
     }
-
 }

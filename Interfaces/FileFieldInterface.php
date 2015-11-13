@@ -1,4 +1,6 @@
-<?php namespace Monarkee\Bumble\Interfaces;
+<?php
+
+namespace Monarkee\Bumble\Interfaces;
 
 interface FileFieldInterface extends FieldInterface
 {

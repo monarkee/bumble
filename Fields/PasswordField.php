@@ -1,11 +1,12 @@
-<?php namespace Monarkee\Bumble\Fields;
+<?php
+
+namespace Monarkee\Bumble\Fields;
 
 use Monarkee\Bumble\Fields\Field;
 use Monarkee\Bumble\Interfaces\FieldInterface;
 
 class PasswordField extends Field implements FieldInterface
 {
-
     /**
      * The hasher used for processing the password input
      *
@@ -54,11 +55,12 @@ class PasswordField extends Field implements FieldInterface
 
         // If the column is empty then it means they don't require it
         // and so we can just return the model unchanged.
-        if (empty($input[$column])) return $model;
+        if (empty($input[$column])) {
+            return $model;
+        }
 
         // Use our built-in hashing using Laravel's Hasher
-        if ($this->getHashOption())
-        {
+        if ($this->getHashOption()) {
             $model->{$column} = $this->hasher->make($input[$column]);
             return $model;
         }

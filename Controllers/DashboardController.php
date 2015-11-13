@@ -1,9 +1,11 @@
-<?php namespace Monarkee\Bumble\Controllers;
+<?php
 
-use Monarkee\Bumble\Controllers\BumbleController;
+namespace Monarkee\Bumble\Controllers;
+
+use App;
 use View;
 use Redirect;
-use App;
+use Monarkee\Bumble\Controllers\BumbleController;
 
 class DashboardController extends BumbleController
 {

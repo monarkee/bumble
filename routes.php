@@ -46,7 +46,7 @@ Route::group(['prefix' => config('bumble.admin_prefix'), 'namespace' => 'Monarke
         $server->outputImage($path, $_GET);
     })->where('path', '(.*)');
 
-    Route::group(['before' => 'bumble_auth'], function()
+    Route::group(['middleware' => 'bumble.auth'], function()
     {
         Route::get('/', ['as' => 'bumble_index', 'uses' => 'DashboardController@redirectToIndex']);
         Route::get(config('bumble.admin.dashboard'), ['as' => 'bumble.dashboard', 'uses' => 'DashboardController@getIndex']);

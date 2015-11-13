@@ -1,4 +1,6 @@
-<?php namespace Monarkee\Bumble\Fields;
+<?php
+
+namespace Monarkee\Bumble\Fields;
 
 use Exception;
 use Monarkee\Bumble\Interfaces\FieldInterface;
@@ -11,8 +13,7 @@ class BelongsToField extends HasOneField implements FieldInterface
      */
     public function setUp()
     {
-        if (!isset($this->options['related_title_column']))
-        {
+        if (!isset($this->options['related_title_column'])) {
             throw new Exception('BelongsToField requires option `related_title_column` to be set');
         }
     }
@@ -30,8 +31,7 @@ class BelongsToField extends HasOneField implements FieldInterface
         // by stripping _id from the column name. If not
         // then we're going to rely on the method option
         // being set.
-        if ($this->hasOption('method'))
-        {
+        if ($this->hasOption('method')) {
             return $this->getOption('method');
         }
 

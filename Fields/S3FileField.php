@@ -1,4 +1,6 @@
-<?php namespace Monarkee\Bumble\Fields;
+<?php
+
+namespace Monarkee\Bumble\Fields;
 
 use Aws\S3\S3Client;
 use Illuminate\Config\Repository;
@@ -11,8 +13,8 @@ use Monarkee\Bumble\Fields\ImageField;
 use Monarkee\Bumble\Interfaces\FileFieldInterface;
 use Monarkee\Bumble\Services\S3FileService;
 
-class S3FileField extends ImageField implements FileFieldInterface {
-
+class S3FileField extends ImageField implements FileFieldInterface
+{
     /**
      * @var S3FileService
      */

@@ -1,4 +1,6 @@
-<?php namespace Monarkee\Bumble\Composers;
+<?php
+
+namespace Monarkee\Bumble\Composers;
 
 use Illuminate\Http\Request;
 use Monarkee\Bumble\Presenters\UserPresenter;
@@ -11,7 +13,7 @@ class MasterComposer
      */
     private $modelRepo;
 
-    function __construct(ModelRepository $modelRepo, Request $request)
+    public function __construct(ModelRepository $modelRepo, Request $request)
     {
         $this->modelRepo = $modelRepo;
         $this->request = $request;

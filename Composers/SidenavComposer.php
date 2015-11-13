@@ -1,4 +1,6 @@
-<?php namespace Monarkee\Bumble\Composers;
+<?php
+
+namespace Monarkee\Bumble\Composers;
 
 use Monarkee\Bumble\Repositories\ModelRepository;
 
@@ -9,7 +11,7 @@ class SidenavComposer
      */
     private $modelRepo;
 
-    function __construct(ModelRepository $modelRepo)
+    public function __construct(ModelRepository $modelRepo)
     {
         $this->modelRepo = $modelRepo;
     }

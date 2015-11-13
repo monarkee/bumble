@@ -1,11 +1,13 @@
-<?php namespace Monarkee\Bumble\Fields;
+<?php
+
+namespace Monarkee\Bumble\Fields;
 
 use Monarkee\Bumble\Fields\Field;
 use Monarkee\Bumble\Interfaces\FileFieldInterface;
 use Monarkee\Bumble\Services\FileFieldUploadService;
 
-class FileField extends Field implements FileFieldInterface {
-
+class FileField extends Field implements FileFieldInterface
+{
     /**
      * The default location to upload the file
      */
@@ -44,7 +46,9 @@ class FileField extends Field implements FileFieldInterface {
      */
     public function getUploadTo($path = '')
     {
-        if (isset($this->options['upload_to'])) return $this->options['upload_to'];
+        if (isset($this->options['upload_to'])) {
+            return $this->options['upload_to'];
+        }
 
         return public_path($this->addSlashes(self::DEFAULT_UPLOAD_TO)) . $path;
     }
@@ -97,11 +101,9 @@ class FileField extends Field implements FileFieldInterface {
     public function unlinkFile($filename)
     {
         // Try to delete the file, if it doesn't work it probably doesn't exist
-        try
-        {
+        try {
             return unlink($filename);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return;
         }
     }

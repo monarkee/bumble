@@ -1,4 +1,6 @@
-<?php namespace Monarkee\Bumble\Fields;
+<?php
+
+namespace Monarkee\Bumble\Fields;
 
 use Carbon\Carbon;
 use Monarkee\Bumble\Interfaces\FieldInterface;
@@ -19,7 +21,9 @@ class DateTimeField extends TextField implements FieldInterface
 
     public function display($value)
     {
-        if (is_null($value)) return 'NULL';
+        if (is_null($value)) {
+            return 'NULL';
+        }
 
         return Carbon::parse($value)->format($this->getFormat());
     }
@@ -36,16 +40,15 @@ class DateTimeField extends TextField implements FieldInterface
         $column = $this->getColumn();
 
         // Handle a special case where the data in the database is 0000-00-00 00:00:00
-        if ($input[$column] == '-0001-11-30 00:00:00' || $input[$column] == '0000-00-00 00:00:00')
-        {
+        if ($input[$column] == '-0001-11-30 00:00:00' || $input[$column] == '0000-00-00 00:00:00') {
             $model->{$column} = Carbon::now();
-        }
-        elseif (isset($input[$column]))
-        {
+        } elseif (isset($input[$column])) {
             $model->{$column} = $input[$column];
         }
 
-        if (empty($input[$column])) $model->{$column} = null;
+        if (empty($input[$column])) {
+            $model->{$column} = null;
+        }
 
         return $model;
     }

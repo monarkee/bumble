@@ -1,7 +1,9 @@
-<?php namespace Monarkee\Bumble\Fields;
+<?php
 
-abstract class Field {
+namespace Monarkee\Bumble\Fields;
 
+abstract class Field
+{
     /**
      * The array of options passed to the field
      *
@@ -39,7 +41,9 @@ abstract class Field {
         $this->title = $title;
         $this->options = $options;
 
-        if (method_exists($this, 'setUp')) $this->setUp();
+        if (method_exists($this, 'setUp')) {
+            $this->setUp();
+        }
 
         $this->assetLoader = app()->make('assetLoader');
         $this->registerAssets();
@@ -62,8 +66,7 @@ abstract class Field {
      */
     public function isImageField()
     {
-        switch ($this->getFieldType())
-        {
+        switch ($this->getFieldType()) {
             case 'ImageField':
                 return true;
                 break;
@@ -154,16 +157,11 @@ abstract class Field {
      */
     public function getPlaceholder()
     {
-        if ($this->hasOption('placeholder'))
-        {
+        if ($this->hasOption('placeholder')) {
             return $this->getOption('placeholder');
-        }
-        elseif ($this->hasOption('description'))
-        {
+        } elseif ($this->hasOption('description')) {
             return $this->getDescription();
-        }
-        else
-        {
+        } else {
             return "This is the {$this->getColumn()}.";
         }
     }
@@ -182,18 +180,14 @@ abstract class Field {
      */
     public function registerAssets()
     {
-        if ($this->cssAssets)
-        {
-            foreach($this->cssAssets as $asset)
-            {
+        if ($this->cssAssets) {
+            foreach ($this->cssAssets as $asset) {
                 $this->assetLoader->registerCssAsset($asset);
             }
         }
 
-        if ($this->jsAssets)
-        {
-            foreach($this->jsAssets as $asset)
-            {
+        if ($this->jsAssets) {
+            foreach ($this->jsAssets as $asset) {
                 $this->assetLoader->registerJsAsset($asset);
             }
         }
@@ -210,9 +204,13 @@ abstract class Field {
         // 1. Use the fieldtypes property if set
         // 2. Use the option 'widget'
         // 3. Use the fieldType getter
-        if ($this->hasOption('widget')) return $this->viewPrefix . '.' . $this->getOption('widget');
+        if ($this->hasOption('widget')) {
+            return $this->viewPrefix . '.' . $this->getOption('widget');
+        }
 
-        if (isset($this->view)) return $this->view;
+        if (isset($this->view)) {
+            return $this->view;
+        }
 
         return $this->viewPrefix . '.' . $this->getFieldType();
     }
@@ -270,7 +268,7 @@ abstract class Field {
     {
         $column = $this->getColumn();
 
-        if(isset($input[$column])) {
+        if (isset($input[$column])) {
             $model->{$column} = $input[$column];
         }
 
@@ -326,7 +324,9 @@ abstract class Field {
      */
     public function getDefaultValue($editing = false)
     {
-        if ($editing) return;
+        if ($editing) {
+            return;
+        }
 
         return $this->hasOption('default_value') ? $this->getOption('default_value') : false;
     }
@@ -362,25 +362,21 @@ abstract class Field {
     {
         $data = $this->getLinkToRouteValue();
 
-        if ( ! $data)
-        {
+        if (! $data) {
             return $field->{$this->getColumn()};
         }
 
         $name = array_get($data, 'route');
         $params = array_get($data, 'params', []);
 
-        foreach ($params as $key => $value)
-        {
-            if (substr($value, 0, 1) === ":")
-            {
+        foreach ($params as $key => $value) {
+            if (substr($value, 0, 1) === ":") {
                 $params[$key] = $field->{substr($value, 1)};
             }
         }
 
         $attributes = [];
-        if ($targetAction = array_get($data, 'target'))
-        {
+        if ($targetAction = array_get($data, 'target')) {
             $attributes = array_add($attributes, 'target', $targetAction);
         }
 

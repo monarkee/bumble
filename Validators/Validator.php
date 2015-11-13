@@ -1,7 +1,9 @@
-<?php namespace Monarkee\Bumble\Validators;
+<?php
 
-use Illuminate\Validation\Factory as LaravelValidator;
+namespace Monarkee\Bumble\Validators;
+
 use Monarkee\Bumble\Exceptions\ValidationException;
+use Illuminate\Validation\Factory as LaravelValidator;
 
 abstract class Validator
 {
@@ -35,13 +37,15 @@ abstract class Validator
      */
   public function validate($input, $rules = [])
   {
-    $rules = $rules ?: $this->getRules();
+      $rules = $rules ?: $this->getRules();
 
-    $validator = $this->validator->make($input, $rules);
+      $validator = $this->validator->make($input, $rules);
 
-    if ($validator->fails()) throw new ValidationException($validator->messages(), 'Validation failed.');
+      if ($validator->fails()) {
+          throw new ValidationException($validator->messages(), 'Validation failed.');
+      }
 
-    return true;
+      return true;
   }
 
     /**
@@ -68,9 +72,9 @@ abstract class Validator
      * @throws ValidationException
      */
     public function validateForCreate($input)
-  {
-    return $this->validate($input, $this->getRules());
-  }
+    {
+        return $this->validate($input, $this->getRules());
+    }
 
     /**
      *
@@ -80,9 +84,9 @@ abstract class Validator
      * @throws ValidationException
      */
     public function validateForUpdate($input)
-  {
-    return $this->validate($input, $this->getUpdateRules());
-  }
+    {
+        return $this->validate($input, $this->getUpdateRules());
+    }
 
     /**
      * @return mixed
