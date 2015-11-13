@@ -2,7 +2,7 @@
 
 namespace Monarkee\Bumble\Fieldset;
 
-use Whoops\Example\Exception;
+use Exception;
 
 class Fieldset
 {
@@ -21,6 +21,8 @@ class Fieldset
 
     public function getFields()
     {
+        $this->checkForFields();
+
         return $this->fields;
     }
 
@@ -49,6 +51,8 @@ class Fieldset
 
     public function getTabFields($tabId)
     {
+        $this->checkForFields();
+
         return $this->tabs[$tabId];
     }
 
@@ -60,5 +64,12 @@ class Fieldset
     public function getTabs()
     {
         return $this->tabs;
+    }
+
+    protected function checkForFields()
+    {
+        if (empty($this->fields)) {
+            throw new Exception('Model admins must have at least one field defined.');
+        }
     }
 }

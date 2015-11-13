@@ -22,7 +22,7 @@ class BumbleStr
      */
     public function resource_name($value)
     {
-        return str_plural(slug_case($value));
+        return str_plural(str_slug($value));
     }
 
     /**
