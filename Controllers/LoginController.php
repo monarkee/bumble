@@ -31,8 +31,7 @@ class LoginController extends BumbleController
      */
     public function getLogin()
     {
-        if (Auth::check())
-        {
+        if (Auth::check()) {
             return Redirect::route('bumble.dashboard');
         }
         return View::make('bumble::login.index');
@@ -51,14 +50,12 @@ class LoginController extends BumbleController
 
         $creds = [];
 
-        foreach ($columns as $column)
-        {
+        foreach ($columns as $column) {
             $creds[$column] = $input[$column];
         }
 
         // Log the user in
-        if (Auth::attempt($creds))
-        {
+        if (Auth::attempt($creds)) {
             return Redirect::route('bumble.dashboard');
         }
 
@@ -78,8 +75,7 @@ class LoginController extends BumbleController
 
     public function postForgotPassword()
     {
-        switch ($response = Password::sendResetLink(Input::only('email')))
-        {
+        switch ($response = Password::sendResetLink(Input::only('email'))) {
             case Password::INVALID_USER:
                 return Redirect::back()->with('error', 'A user could not be found with that email address.');
 
@@ -96,7 +92,9 @@ class LoginController extends BumbleController
      */
     public function getReset($token = null)
     {
-        if (is_null($token)) App::abort(404);
+        if (is_null($token)) {
+            App::abort(404);
+        }
 
         return View::make('bumble::reset.reset')->with('token', $token);
     }
@@ -112,14 +110,12 @@ class LoginController extends BumbleController
             'email', 'password', 'password_confirmation', 'token'
         );
 
-        $response = Password::reset($credentials, function($user, $password)
-        {
+        $response = Password::reset($credentials, function ($user, $password) {
             $user->password = Hash::make($password);
             $user->save();
         });
 
-        switch ($response)
-        {
+        switch ($response) {
             case Password::INVALID_PASSWORD:
             case Password::INVALID_TOKEN:
             case Password::INVALID_USER:
