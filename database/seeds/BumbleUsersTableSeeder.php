@@ -7,13 +7,9 @@ class BumbleUsersTableSeeder extends Seeder {
 
     public function run()
     {
-        // Uncomment the below to wipe the table clean before populating
-//        DB::table('users')->truncate();
-
         $users = array([
             'email' => 'admin@bumble.dev',
-            'first_name' => 'Bumble',
-            'last_name' => 'Administrator',
+            'name' => 'Bumble Administrator',
             'password' => bcrypt('password'),
             'active' => true,
             'created_at' => new Carbon,

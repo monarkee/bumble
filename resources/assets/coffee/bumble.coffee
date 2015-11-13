@@ -8,18 +8,18 @@ $('._datetimefield').datetimepicker({
 ###
   Date Picker
 ###
-# $('._datefield').datetimepicker({
-#   timepicker: false,
-#   format: 'Y-m-d'
-# });
+$('._datefield').datetimepicker({
+  timepicker: false,
+  format: 'Y-m-d'
+});
 
 ###
   Time Picker
 ###
-# $('._timefield').datetimepicker({
-#   datepicker: false,
-#   format: 'H:i:s'
-# });
+$('._timefield').datetimepicker({
+  datepicker: false,
+  format: 'H:i:s'
+});
 
 ###
   Handle messages

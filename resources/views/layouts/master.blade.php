@@ -45,10 +45,11 @@
                     <li class="main-nav__item main-nav__item--border-left">
                         <a href="#" class="main-nav__link _dropdown" data-dropdown-target="account-menu">
                             <img class="main-nav__avatar" src="{{ $authUser->getAvatar() }}" alt="{{ $authUser->email }}&rsquo;s Avatar">
+                            <span>{{ $authUser->name }}</span>
                         </a>
                         <ul id="account-menu" class="secondary-nav _dropdown-menu">
-                            {{-- <li class="secondary-nav__item"><a href="{{ url('/') }}" class="secondary-nav__link">Account</a></li>
-                            <li class="secondary-nav__separator"></li> --}}
+                            {{-- <li class="secondary-nav__item"><a href="{{ url('/') }}" class="secondary-nav__link">Account</a></li> --}}
+                            {{-- <li class="secondary-nav__separator"></li> --}}
                             <li class="secondary-nav__item"><a href="{{ route('bumble.logout') }}" class="secondary-nav__link">Logout</a></li>
                         </ul>
                     </li>

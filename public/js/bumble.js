@@ -15,10 +15,20 @@
     Date Picker
    */
 
+  $('._datefield').datetimepicker({
+    timepicker: false,
+    format: 'Y-m-d'
+  });
+
 
   /*
     Time Picker
    */
+
+  $('._timefield').datetimepicker({
+    datepicker: false,
+    format: 'H:i:s'
+  });
 
 
   /*
