@@ -79,17 +79,17 @@ class BumbleServiceProvider extends ServiceProvider
      */
     protected function registerBindings()
     {
-        $this->app->singleton('assetLoader', 'Monarkee\Bumble\Repositories\FieldAssetRepository');
+        $this->app->singleton('assetLoader', \Monarkee\Bumble\Repositories\FieldAssetRepository::class);
 
         $this->app->singleton('bumblestr', function () {
-            return $this->app->make('Monarkee\Bumble\Support\BumbleStr');
+            return $this->app->make(\Monarkee\Bumble\Support\BumbleStr::class);
         });
 
         $this->app->singleton('bumble-gravatar', function () {
-            return $this->app->make('Monarkee\Bumble\Support\Gravatar');
+            return $this->app->make(\Monarkee\Bumble\Support\Gravatar::class);
         });
 
-        $this->app->bind('Monarkee\Bumble\Repositories\ModelRepository', 'Monarkee\Bumble\Repositories\ArrayConfigModelRepository');
+        $this->app->bind(\Monarkee\Bumble\Repositories\ModelRepository::class, \Monarkee\Bumble\Repositories\ArrayConfigModelRepository::class);
     }
 
     /**
@@ -99,11 +99,11 @@ class BumbleServiceProvider extends ServiceProvider
     protected function createAliases()
     {
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-        $loader->alias('BumbleStr', Monarkee\Bumble\Support\Facades\BumbleStr::class);
-        $loader->alias('BumbleGravatar', Monarkee\Bumble\Support\Facades\Gravatar::class);
+        $loader->alias('BumbleStr', \Monarkee\Bumble\Support\Facades\BumbleStr::class);
+        $loader->alias('BumbleGravatar', \Monarkee\Bumble\Support\Facades\Gravatar::class);
 
-        $loader->alias('BumbleForm', Collective\Html\FormFacade::class);
-        $loader->alias('BumbleHtml', Collective\Html\HtmlFacade::class);
+        $loader->alias('BumbleForm', \Collective\Html\FormFacade::class);
+        $loader->alias('BumbleHtml', \Collective\Html\HtmlFacade::class);
     }
 
     /**
@@ -131,8 +131,8 @@ class BumbleServiceProvider extends ServiceProvider
      */
     protected function registerViewComposers()
     {
-        View::composer('bumble::partials.sidenav', Monarkee\Bumble\Composers\SidenavComposer::class);
-        View::composer('bumble::layouts.master', Monarkee\Bumble\Composers\MasterComposer::class);
+        View::composer('bumble::partials.sidenav', \Monarkee\Bumble\Composers\SidenavComposer::class);
+        View::composer('bumble::layouts.master', \Monarkee\Bumble\Composers\MasterComposer::class);
     }
 
     /**
